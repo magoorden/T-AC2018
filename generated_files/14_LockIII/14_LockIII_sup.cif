@@ -1,0 +1,1742 @@
+uncontrollable pad_N_c_open;
+uncontrollable pad_N_c_close;
+uncontrollable pad_N_c_stop;
+uncontrollable pad_S_c_open;
+uncontrollable pad_S_c_close;
+uncontrollable pad_S_c_stop;
+uncontrollable culvert_N_c_enable;
+uncontrollable culvert_N_c_disable;
+uncontrollable culvert_N_u_on;
+uncontrollable culvert_N_u_off;
+uncontrollable culvert_S_c_enable;
+uncontrollable culvert_S_c_disable;
+uncontrollable culvert_S_u_on;
+uncontrollable culvert_S_u_off;
+uncontrollable gate_D_N_c_high_on;
+uncontrollable gate_D_N_c_high_off;
+uncontrollable gate_D_N_c_low_on;
+uncontrollable gate_D_N_c_low_off;
+uncontrollable gate_D_N_c_open;
+uncontrollable gate_D_N_c_close;
+uncontrollable gate_D_N_c_stop;
+uncontrollable gate_D_N_c_fc_off;
+uncontrollable gate_D_N_c_fc_on;
+uncontrollable gate_D_N_c_sc_on;
+uncontrollable gate_D_N_c_sc_off;
+uncontrollable gate_D_N_c_fo_off;
+uncontrollable gate_D_N_c_fo_on;
+uncontrollable gate_D_N_c_so_on;
+uncontrollable gate_D_N_c_so_off;
+uncontrollable gate_D_N_u_s1_on;
+uncontrollable gate_D_N_u_s1_off;
+uncontrollable gate_D_N_u_s2_on;
+uncontrollable gate_D_N_u_s2_off;
+uncontrollable gate_D_N_u_s3_on;
+uncontrollable gate_D_N_u_s3_off;
+uncontrollable gate_D_N_u_s4_on;
+uncontrollable gate_D_N_u_s4_off;
+uncontrollable gate_D_N_u_s5_on;
+uncontrollable gate_D_N_u_s5_off;
+uncontrollable gate_D_N_u_s6_on;
+uncontrollable gate_D_N_u_s6_off;
+uncontrollable gate_D_S_c_high_on;
+uncontrollable gate_D_S_c_high_off;
+uncontrollable gate_D_S_c_low_on;
+uncontrollable gate_D_S_c_low_off;
+uncontrollable gate_D_S_c_open;
+uncontrollable gate_D_S_c_close;
+uncontrollable gate_D_S_c_stop;
+uncontrollable gate_D_S_c_fc_off;
+uncontrollable gate_D_S_c_fc_on;
+uncontrollable gate_D_S_c_sc_on;
+uncontrollable gate_D_S_c_sc_off;
+uncontrollable gate_D_S_c_fo_off;
+uncontrollable gate_D_S_c_fo_on;
+uncontrollable gate_D_S_c_so_on;
+uncontrollable gate_D_S_c_so_off;
+uncontrollable gate_D_S_u_s1_on;
+uncontrollable gate_D_S_u_s1_off;
+uncontrollable gate_D_S_u_s2_on;
+uncontrollable gate_D_S_u_s2_off;
+uncontrollable gate_D_S_u_s3_on;
+uncontrollable gate_D_S_u_s3_off;
+uncontrollable gate_D_S_u_s4_on;
+uncontrollable gate_D_S_u_s4_off;
+uncontrollable gate_D_S_u_s5_on;
+uncontrollable gate_D_S_u_s5_off;
+uncontrollable gate_D_S_u_s6_on;
+uncontrollable gate_D_S_u_s6_off;
+uncontrollable gate_U_N_c_high_on;
+uncontrollable gate_U_N_c_high_off;
+uncontrollable gate_U_N_c_low_on;
+uncontrollable gate_U_N_c_low_off;
+uncontrollable gate_U_N_c_open;
+uncontrollable gate_U_N_c_close;
+uncontrollable gate_U_N_c_stop;
+uncontrollable gate_U_N_c_fc_off;
+uncontrollable gate_U_N_c_fc_on;
+uncontrollable gate_U_N_c_sc_on;
+uncontrollable gate_U_N_c_sc_off;
+uncontrollable gate_U_N_c_fo_off;
+uncontrollable gate_U_N_c_fo_on;
+uncontrollable gate_U_N_c_so_on;
+uncontrollable gate_U_N_c_so_off;
+uncontrollable gate_U_N_u_s1_on;
+uncontrollable gate_U_N_u_s1_off;
+uncontrollable gate_U_N_u_s2_on;
+uncontrollable gate_U_N_u_s2_off;
+uncontrollable gate_U_N_u_s3_on;
+uncontrollable gate_U_N_u_s3_off;
+uncontrollable gate_U_N_u_s4_on;
+uncontrollable gate_U_N_u_s4_off;
+uncontrollable gate_U_N_u_s5_on;
+uncontrollable gate_U_N_u_s5_off;
+uncontrollable gate_U_N_u_s6_on;
+uncontrollable gate_U_N_u_s6_off;
+uncontrollable gate_U_S_c_high_on;
+uncontrollable gate_U_S_c_high_off;
+uncontrollable gate_U_S_c_low_on;
+uncontrollable gate_U_S_c_low_off;
+uncontrollable gate_U_S_c_open;
+uncontrollable gate_U_S_c_close;
+uncontrollable gate_U_S_c_stop;
+uncontrollable gate_U_S_c_fc_off;
+uncontrollable gate_U_S_c_fc_on;
+uncontrollable gate_U_S_c_sc_on;
+uncontrollable gate_U_S_c_sc_off;
+uncontrollable gate_U_S_c_fo_off;
+uncontrollable gate_U_S_c_fo_on;
+uncontrollable gate_U_S_c_so_on;
+uncontrollable gate_U_S_c_so_off;
+uncontrollable gate_U_S_u_s1_on;
+uncontrollable gate_U_S_u_s1_off;
+uncontrollable gate_U_S_u_s2_on;
+uncontrollable gate_U_S_u_s2_off;
+uncontrollable gate_U_S_u_s3_on;
+uncontrollable gate_U_S_u_s3_off;
+uncontrollable gate_U_S_u_s4_on;
+uncontrollable gate_U_S_u_s4_off;
+uncontrollable gate_U_S_u_s5_on;
+uncontrollable gate_U_S_u_s5_off;
+uncontrollable gate_U_S_u_s6_on;
+uncontrollable gate_U_S_u_s6_off;
+uncontrollable out_D_N_c_red;
+uncontrollable out_D_N_c_green;
+uncontrollable out_D_N_u_r_on;
+uncontrollable out_D_N_u_r_off;
+uncontrollable out_D_N_u_g_on;
+uncontrollable out_D_N_u_g_off;
+uncontrollable out_D_S_c_red;
+uncontrollable out_D_S_c_green;
+uncontrollable out_D_S_u_r_on;
+uncontrollable out_D_S_u_r_off;
+uncontrollable out_D_S_u_g_on;
+uncontrollable out_D_S_u_g_off;
+uncontrollable out_U_N_c_red;
+uncontrollable out_U_N_c_green;
+uncontrollable out_U_N_u_r_on;
+uncontrollable out_U_N_u_r_off;
+uncontrollable out_U_N_u_g_on;
+uncontrollable out_U_N_u_g_off;
+uncontrollable out_U_S_c_red;
+uncontrollable out_U_S_c_green;
+uncontrollable out_U_S_u_r_on;
+uncontrollable out_U_S_u_r_off;
+uncontrollable out_U_S_u_g_on;
+uncontrollable out_U_S_u_g_off;
+uncontrollable in_D_N_c_red;
+uncontrollable in_D_N_c_green;
+uncontrollable in_D_N_c_redgreen;
+uncontrollable in_D_N_c_redred;
+uncontrollable in_D_N_u_r_on;
+uncontrollable in_D_N_u_r_off;
+uncontrollable in_D_N_u_g_on;
+uncontrollable in_D_N_u_g_off;
+uncontrollable in_D_N_u_s_on;
+uncontrollable in_D_N_u_s_off;
+uncontrollable in_D_S_c_red;
+uncontrollable in_D_S_c_green;
+uncontrollable in_D_S_c_redgreen;
+uncontrollable in_D_S_c_redred;
+uncontrollable in_D_S_u_r_on;
+uncontrollable in_D_S_u_r_off;
+uncontrollable in_D_S_u_g_on;
+uncontrollable in_D_S_u_g_off;
+uncontrollable in_D_S_u_s_on;
+uncontrollable in_D_S_u_s_off;
+uncontrollable in_U_N_c_red;
+uncontrollable in_U_N_c_green;
+uncontrollable in_U_N_c_redgreen;
+uncontrollable in_U_N_c_redred;
+uncontrollable in_U_N_u_r_on;
+uncontrollable in_U_N_u_r_off;
+uncontrollable in_U_N_u_g_on;
+uncontrollable in_U_N_u_g_off;
+uncontrollable in_U_N_u_s_on;
+uncontrollable in_U_N_u_s_off;
+uncontrollable in_U_S_c_red;
+uncontrollable in_U_S_c_green;
+uncontrollable in_U_S_c_redgreen;
+uncontrollable in_U_S_c_redred;
+uncontrollable in_U_S_u_r_on;
+uncontrollable in_U_S_u_r_off;
+uncontrollable in_U_S_u_g_on;
+uncontrollable in_U_S_u_g_off;
+uncontrollable in_U_S_u_s_on;
+uncontrollable in_U_S_u_s_off;
+uncontrollable button1_u_push;
+uncontrollable button1_u_release;
+uncontrollable button2_u_push;
+uncontrollable button2_u_release;
+uncontrollable button3_u_push;
+uncontrollable button3_u_release;
+uncontrollable button4_u_push;
+uncontrollable button4_u_release;
+uncontrollable button5_u_push;
+uncontrollable button5_u_release;
+uncontrollable button6_u_push;
+uncontrollable button6_u_release;
+uncontrollable button7_u_push;
+uncontrollable button7_u_release;
+uncontrollable button8_u_push;
+uncontrollable button8_u_release;
+uncontrollable button9_u_push;
+uncontrollable button9_u_release;
+uncontrollable button10_u_push;
+uncontrollable button10_u_release;
+uncontrollable button11_u_push;
+uncontrollable button11_u_release;
+uncontrollable button12_u_push;
+uncontrollable button12_u_release;
+uncontrollable button13_u_push;
+uncontrollable button13_u_release;
+uncontrollable button14_u_push;
+uncontrollable button14_u_release;
+uncontrollable button15_u_push;
+uncontrollable button15_u_release;
+uncontrollable button16_u_push;
+uncontrollable button16_u_release;
+uncontrollable button17_u_push;
+uncontrollable button17_u_release;
+uncontrollable button18_u_push;
+uncontrollable button18_u_release;
+uncontrollable button19_u_push;
+uncontrollable button19_u_release;
+uncontrollable button20_u_push;
+uncontrollable button20_u_release;
+uncontrollable emergencystop_u_push;
+uncontrollable emergencystop_u_release;
+uncontrollable stop1_u_push;
+uncontrollable stop1_u_release;
+uncontrollable stop2_u_push;
+uncontrollable stop2_u_release;
+uncontrollable stop3_u_push;
+uncontrollable stop3_u_release;
+uncontrollable stop4_u_push;
+uncontrollable stop4_u_release;
+uncontrollable pad_N_S1_u_closed_on;
+uncontrollable pad_N_S1_u_closed_off;
+uncontrollable pad_N_S1_u_open_on;
+uncontrollable pad_N_S1_u_open_off;
+uncontrollable pad_N_S2_u_closed_on;
+uncontrollable pad_N_S2_u_closed_off;
+uncontrollable pad_N_S2_u_open_on;
+uncontrollable pad_N_S2_u_open_off;
+uncontrollable pad_N_S3_u_closed_on;
+uncontrollable pad_N_S3_u_closed_off;
+uncontrollable pad_N_S3_u_open_on;
+uncontrollable pad_N_S3_u_open_off;
+uncontrollable pad_S_S1_u_closed_on;
+uncontrollable pad_S_S1_u_closed_off;
+uncontrollable pad_S_S1_u_open_on;
+uncontrollable pad_S_S1_u_open_off;
+uncontrollable pad_S_S2_u_closed_on;
+uncontrollable pad_S_S2_u_closed_off;
+uncontrollable pad_S_S2_u_open_on;
+uncontrollable pad_S_S2_u_open_off;
+uncontrollable pad_S_S3_u_closed_on;
+uncontrollable pad_S_S3_u_closed_off;
+uncontrollable pad_S_S3_u_open_on;
+uncontrollable pad_S_S3_u_open_off;
+uncontrollable s_equal_D_u_equal_on;
+uncontrollable s_equal_D_u_equal_off;
+uncontrollable s_equal_U_u_equal_on;
+uncontrollable s_equal_U_u_equal_off;
+plant automaton button1:
+  location released:
+    initial;
+    marked;
+    edge button1_u_push goto pushed;
+  location pushed:
+    edge button1_u_release goto released;
+end
+plant automaton button2:
+  location released:
+    initial;
+    marked;
+    edge button2_u_push goto pushed;
+  location pushed:
+    edge button2_u_release goto released;
+end
+plant automaton button3:
+  location released:
+    initial;
+    marked;
+    edge button3_u_push goto pushed;
+  location pushed:
+    edge button3_u_release goto released;
+end
+plant automaton button4:
+  location released:
+    initial;
+    marked;
+    edge button4_u_push goto pushed;
+  location pushed:
+    edge button4_u_release goto released;
+end
+plant automaton button5:
+  location released:
+    initial;
+    marked;
+    edge button5_u_push goto pushed;
+  location pushed:
+    edge button5_u_release goto released;
+end
+plant automaton button6:
+  location released:
+    initial;
+    marked;
+    edge button6_u_push goto pushed;
+  location pushed:
+    edge button6_u_release goto released;
+end
+plant automaton button7:
+  location released:
+    initial;
+    marked;
+    edge button7_u_push goto pushed;
+  location pushed:
+    edge button7_u_release goto released;
+end
+plant automaton button8:
+  location released:
+    initial;
+    marked;
+    edge button8_u_push goto pushed;
+  location pushed:
+    edge button8_u_release goto released;
+end
+plant automaton button9:
+  location released:
+    initial;
+    marked;
+    edge button9_u_push goto pushed;
+  location pushed:
+    edge button9_u_release goto released;
+end
+plant automaton button10:
+  location released:
+    initial;
+    marked;
+    edge button10_u_push goto pushed;
+  location pushed:
+    edge button10_u_release goto released;
+end
+plant automaton button11:
+  location released:
+    initial;
+    marked;
+    edge button11_u_push goto pushed;
+  location pushed:
+    edge button11_u_release goto released;
+end
+plant automaton button12:
+  location released:
+    initial;
+    marked;
+    edge button12_u_push goto pushed;
+  location pushed:
+    edge button12_u_release goto released;
+end
+plant automaton button13:
+  location released:
+    initial;
+    marked;
+    edge button13_u_push goto pushed;
+  location pushed:
+    edge button13_u_release goto released;
+end
+plant automaton button14:
+  location released:
+    initial;
+    marked;
+    edge button14_u_push goto pushed;
+  location pushed:
+    edge button14_u_release goto released;
+end
+plant automaton button15:
+  location released:
+    initial;
+    marked;
+    edge button15_u_push goto pushed;
+  location pushed:
+    edge button15_u_release goto released;
+end
+plant automaton button16:
+  location released:
+    initial;
+    marked;
+    edge button16_u_push goto pushed;
+  location pushed:
+    edge button16_u_release goto released;
+end
+plant automaton button17:
+  location released:
+    initial;
+    marked;
+    edge button17_u_push goto pushed;
+  location pushed:
+    edge button17_u_release goto released;
+end
+plant automaton button18:
+  location released:
+    initial;
+    marked;
+    edge button18_u_push goto pushed;
+  location pushed:
+    edge button18_u_release goto released;
+end
+plant automaton button19:
+  location released:
+    initial;
+    marked;
+    edge button19_u_push goto pushed;
+  location pushed:
+    edge button19_u_release goto released;
+end
+plant automaton button20:
+  location released:
+    initial;
+    marked;
+    edge button20_u_push goto pushed;
+  location pushed:
+    edge button20_u_release goto released;
+end
+plant automaton emergencystop:
+  location released:
+    initial;
+    marked;
+    edge emergencystop_u_push goto pushed;
+  location pushed:
+    edge emergencystop_u_release goto released;
+end
+plant automaton stop1:
+  location released:
+    initial;
+    marked;
+    edge stop1_u_push goto pushed;
+  location pushed:
+    edge stop1_u_release goto released;
+end
+plant automaton stop2:
+  location released:
+    initial;
+    marked;
+    edge stop2_u_push goto pushed;
+  location pushed:
+    edge stop2_u_release goto released;
+end
+plant automaton stop3:
+  location released:
+    initial;
+    marked;
+    edge stop3_u_push goto pushed;
+  location pushed:
+    edge stop3_u_release goto released;
+end
+plant automaton stop4:
+  location released:
+    initial;
+    marked;
+    edge stop4_u_push goto pushed;
+  location pushed:
+    edge stop4_u_release goto released;
+end
+plant automaton pad_N_A:
+  location rest:
+    initial;
+    marked;
+    edge pad_N_c_open goto opening;
+    edge pad_N_c_close goto closing;
+  location opening:
+    edge pad_N_c_close goto closing;
+    edge pad_N_c_stop goto rest;
+    edge pad_N_S1_u_closed_off, pad_N_S1_u_open_on;
+    edge pad_N_S2_u_closed_off, pad_N_S2_u_open_on;
+    edge pad_N_S3_u_closed_off, pad_N_S3_u_open_on;
+  location closing:
+    edge pad_N_c_open goto opening;
+    edge pad_N_c_stop goto rest;
+    edge pad_N_S1_u_closed_on, pad_N_S1_u_open_off;
+    edge pad_N_S2_u_closed_on, pad_N_S2_u_open_off;
+    edge pad_N_S3_u_closed_on, pad_N_S3_u_open_off;
+end
+plant automaton pad_N_S1:
+  location closed:
+    initial;
+    marked;
+    edge pad_N_S1_u_closed_off goto between;
+  location between:
+    edge pad_N_S1_u_closed_on goto closed;
+    edge pad_N_S1_u_open_on goto open;
+  location open:
+    edge pad_N_S1_u_open_off goto between;
+end
+plant automaton pad_N_S2:
+  location closed:
+    initial;
+    marked;
+    edge pad_N_S2_u_closed_off goto between;
+  location between:
+    edge pad_N_S2_u_closed_on goto closed;
+    edge pad_N_S2_u_open_on goto open;
+  location open:
+    edge pad_N_S2_u_open_off goto between;
+end
+plant automaton pad_N_S3:
+  location closed:
+    initial;
+    marked;
+    edge pad_N_S3_u_closed_off goto between;
+  location between:
+    edge pad_N_S3_u_closed_on goto closed;
+    edge pad_N_S3_u_open_on goto open;
+  location open:
+    edge pad_N_S3_u_open_off goto between;
+end
+plant automaton pad_S_A:
+  location rest:
+    initial;
+    marked;
+    edge pad_S_c_open goto opening;
+    edge pad_S_c_close goto closing;
+  location opening:
+    edge pad_S_c_close goto closing;
+    edge pad_S_c_stop goto rest;
+    edge pad_S_S1_u_closed_off, pad_S_S1_u_open_on;
+    edge pad_S_S2_u_closed_off, pad_S_S2_u_open_on;
+    edge pad_S_S3_u_closed_off, pad_S_S3_u_open_on;
+  location closing:
+    edge pad_S_c_open goto opening;
+    edge pad_S_c_stop goto rest;
+    edge pad_S_S1_u_closed_on, pad_S_S1_u_open_off;
+    edge pad_S_S2_u_closed_on, pad_S_S2_u_open_off;
+    edge pad_S_S3_u_closed_on, pad_S_S3_u_open_off;
+end
+plant automaton pad_S_S1:
+  location closed:
+    initial;
+    marked;
+    edge pad_S_S1_u_closed_off goto between;
+  location between:
+    edge pad_S_S1_u_closed_on goto closed;
+    edge pad_S_S1_u_open_on goto open;
+  location open:
+    edge pad_S_S1_u_open_off goto between;
+end
+plant automaton pad_S_S2:
+  location closed:
+    initial;
+    marked;
+    edge pad_S_S2_u_closed_off goto between;
+  location between:
+    edge pad_S_S2_u_closed_on goto closed;
+    edge pad_S_S2_u_open_on goto open;
+  location open:
+    edge pad_S_S2_u_open_off goto between;
+end
+plant automaton pad_S_S3:
+  location closed:
+    initial;
+    marked;
+    edge pad_S_S3_u_closed_off goto between;
+  location between:
+    edge pad_S_S3_u_closed_on goto closed;
+    edge pad_S_S3_u_open_on goto open;
+  location open:
+    edge pad_S_S3_u_open_off goto between;
+end
+plant automaton culvert_N_A:
+  location closed:
+    initial;
+    marked;
+    edge culvert_N_c_enable goto open;
+    edge culvert_N_u_off;
+  location open:
+    edge culvert_N_c_disable goto closed;
+    edge culvert_N_u_on;
+end
+plant automaton culvert_N_S:
+  location noflow:
+    initial;
+    marked;
+    edge culvert_N_u_on goto flow;
+  location flow:
+    edge culvert_N_u_off goto noflow;
+end
+plant automaton culvert_S_A:
+  location closed:
+    initial;
+    marked;
+    edge culvert_S_c_enable goto open;
+    edge culvert_S_u_off;
+  location open:
+    edge culvert_S_c_disable goto closed;
+    edge culvert_S_u_on;
+end
+plant automaton culvert_S_S:
+  location noflow:
+    initial;
+    marked;
+    edge culvert_S_u_on goto flow;
+  location flow:
+    edge culvert_S_u_off goto noflow;
+end
+plant automaton gate_D_N_S:
+  location closed:
+    initial;
+    marked;
+    edge gate_D_N_u_s1_on goto bclosed;
+  location bclosed:
+    edge gate_D_N_u_s1_off goto closed;
+    edge gate_D_N_u_s2_on goto fclosed;
+  location fclosed:
+    edge gate_D_N_u_s2_off goto bclosed;
+    edge gate_D_N_u_s3_on goto middle;
+  location middle:
+    edge gate_D_N_u_s3_off goto fclosed;
+    edge gate_D_N_u_s4_off goto fopen;
+  location fopen:
+    edge gate_D_N_u_s4_on goto middle;
+    edge gate_D_N_u_s5_off goto bopen;
+  location bopen:
+    edge gate_D_N_u_s5_on goto fopen;
+    edge gate_D_N_u_s6_off goto open;
+  location open:
+    edge gate_D_N_u_s6_on goto bopen;
+end
+plant automaton gate_D_N_Dir:
+  location off:
+    initial;
+    marked;
+    edge gate_D_N_c_open goto opening;
+    edge gate_D_N_c_close goto closing;
+  location opening:
+    edge gate_D_N_c_close goto closing;
+    edge gate_D_N_c_stop goto off;
+    edge gate_D_N_u_s1_on, gate_D_N_u_s2_on, gate_D_N_u_s3_on, gate_D_N_u_s4_off, gate_D_N_u_s5_off, gate_D_N_u_s6_off;
+  location closing:
+    edge gate_D_N_c_open goto opening;
+    edge gate_D_N_c_stop goto off;
+    edge gate_D_N_u_s6_on, gate_D_N_u_s5_on, gate_D_N_u_s4_on, gate_D_N_u_s3_off, gate_D_N_u_s2_off, gate_D_N_u_s1_off;
+end
+plant automaton gate_D_N_Spe:
+  location off:
+    initial;
+    marked;
+    edge gate_D_N_c_fc_on goto fast_c;
+    edge gate_D_N_c_sc_on goto slow_c;
+    edge gate_D_N_c_fo_on goto fast_o;
+    edge gate_D_N_c_so_on goto slow_o;
+  location fast_c:
+    edge gate_D_N_c_fc_off goto off;
+  location slow_c:
+    edge gate_D_N_c_sc_off goto off;
+  location fast_o:
+    edge gate_D_N_c_fo_off goto off;
+  location slow_o:
+    edge gate_D_N_c_so_off goto off;
+end
+plant automaton gate_D_N_Pre:
+  location off:
+    initial;
+    marked;
+    edge gate_D_N_c_high_on goto high;
+    edge gate_D_N_c_low_on goto low;
+  location high:
+    edge gate_D_N_c_high_off goto off;
+  location low:
+    edge gate_D_N_c_low_off goto off;
+end
+plant automaton gate_D_S_S:
+  location closed:
+    initial;
+    marked;
+    edge gate_D_S_u_s1_on goto bclosed;
+  location bclosed:
+    edge gate_D_S_u_s1_off goto closed;
+    edge gate_D_S_u_s2_on goto fclosed;
+  location fclosed:
+    edge gate_D_S_u_s2_off goto bclosed;
+    edge gate_D_S_u_s3_on goto middle;
+  location middle:
+    edge gate_D_S_u_s3_off goto fclosed;
+    edge gate_D_S_u_s4_off goto fopen;
+  location fopen:
+    edge gate_D_S_u_s4_on goto middle;
+    edge gate_D_S_u_s5_off goto bopen;
+  location bopen:
+    edge gate_D_S_u_s5_on goto fopen;
+    edge gate_D_S_u_s6_off goto open;
+  location open:
+    edge gate_D_S_u_s6_on goto bopen;
+end
+plant automaton gate_D_S_Dir:
+  location off:
+    initial;
+    marked;
+    edge gate_D_S_c_open goto opening;
+    edge gate_D_S_c_close goto closing;
+  location opening:
+    edge gate_D_S_c_close goto closing;
+    edge gate_D_S_c_stop goto off;
+    edge gate_D_S_u_s1_on, gate_D_S_u_s2_on, gate_D_S_u_s3_on, gate_D_S_u_s4_off, gate_D_S_u_s5_off, gate_D_S_u_s6_off;
+  location closing:
+    edge gate_D_S_c_open goto opening;
+    edge gate_D_S_c_stop goto off;
+    edge gate_D_S_u_s6_on, gate_D_S_u_s5_on, gate_D_S_u_s4_on, gate_D_S_u_s3_off, gate_D_S_u_s2_off, gate_D_S_u_s1_off;
+end
+plant automaton gate_D_S_Spe:
+  location off:
+    initial;
+    marked;
+    edge gate_D_S_c_fc_on goto fast_c;
+    edge gate_D_S_c_sc_on goto slow_c;
+    edge gate_D_S_c_fo_on goto fast_o;
+    edge gate_D_S_c_so_on goto slow_o;
+  location fast_c:
+    edge gate_D_S_c_fc_off goto off;
+  location slow_c:
+    edge gate_D_S_c_sc_off goto off;
+  location fast_o:
+    edge gate_D_S_c_fo_off goto off;
+  location slow_o:
+    edge gate_D_S_c_so_off goto off;
+end
+plant automaton gate_D_S_Pre:
+  location off:
+    initial;
+    marked;
+    edge gate_D_S_c_high_on goto high;
+    edge gate_D_S_c_low_on goto low;
+  location high:
+    edge gate_D_S_c_high_off goto off;
+  location low:
+    edge gate_D_S_c_low_off goto off;
+end
+plant automaton gate_U_N_S:
+  location closed:
+    initial;
+    marked;
+    edge gate_U_N_u_s1_on goto bclosed;
+  location bclosed:
+    edge gate_U_N_u_s1_off goto closed;
+    edge gate_U_N_u_s2_on goto fclosed;
+  location fclosed:
+    edge gate_U_N_u_s2_off goto bclosed;
+    edge gate_U_N_u_s3_on goto middle;
+  location middle:
+    edge gate_U_N_u_s3_off goto fclosed;
+    edge gate_U_N_u_s4_off goto fopen;
+  location fopen:
+    edge gate_U_N_u_s4_on goto middle;
+    edge gate_U_N_u_s5_off goto bopen;
+  location bopen:
+    edge gate_U_N_u_s5_on goto fopen;
+    edge gate_U_N_u_s6_off goto open;
+  location open:
+    edge gate_U_N_u_s6_on goto bopen;
+end
+plant automaton gate_U_N_Dir:
+  location off:
+    initial;
+    marked;
+    edge gate_U_N_c_open goto opening;
+    edge gate_U_N_c_close goto closing;
+  location opening:
+    edge gate_U_N_c_close goto closing;
+    edge gate_U_N_c_stop goto off;
+    edge gate_U_N_u_s1_on, gate_U_N_u_s2_on, gate_U_N_u_s3_on, gate_U_N_u_s4_off, gate_U_N_u_s5_off, gate_U_N_u_s6_off;
+  location closing:
+    edge gate_U_N_c_open goto opening;
+    edge gate_U_N_c_stop goto off;
+    edge gate_U_N_u_s6_on, gate_U_N_u_s5_on, gate_U_N_u_s4_on, gate_U_N_u_s3_off, gate_U_N_u_s2_off, gate_U_N_u_s1_off;
+end
+plant automaton gate_U_N_Spe:
+  location off:
+    initial;
+    marked;
+    edge gate_U_N_c_fc_on goto fast_c;
+    edge gate_U_N_c_sc_on goto slow_c;
+    edge gate_U_N_c_fo_on goto fast_o;
+    edge gate_U_N_c_so_on goto slow_o;
+  location fast_c:
+    edge gate_U_N_c_fc_off goto off;
+  location slow_c:
+    edge gate_U_N_c_sc_off goto off;
+  location fast_o:
+    edge gate_U_N_c_fo_off goto off;
+  location slow_o:
+    edge gate_U_N_c_so_off goto off;
+end
+plant automaton gate_U_N_Pre:
+  location off:
+    initial;
+    marked;
+    edge gate_U_N_c_high_on goto high;
+    edge gate_U_N_c_low_on goto low;
+  location high:
+    edge gate_U_N_c_high_off goto off;
+  location low:
+    edge gate_U_N_c_low_off goto off;
+end
+plant automaton gate_U_S_S:
+  location closed:
+    initial;
+    marked;
+    edge gate_U_S_u_s1_on goto bclosed;
+  location bclosed:
+    edge gate_U_S_u_s1_off goto closed;
+    edge gate_U_S_u_s2_on goto fclosed;
+  location fclosed:
+    edge gate_U_S_u_s2_off goto bclosed;
+    edge gate_U_S_u_s3_on goto middle;
+  location middle:
+    edge gate_U_S_u_s3_off goto fclosed;
+    edge gate_U_S_u_s4_off goto fopen;
+  location fopen:
+    edge gate_U_S_u_s4_on goto middle;
+    edge gate_U_S_u_s5_off goto bopen;
+  location bopen:
+    edge gate_U_S_u_s5_on goto fopen;
+    edge gate_U_S_u_s6_off goto open;
+  location open:
+    edge gate_U_S_u_s6_on goto bopen;
+end
+plant automaton gate_U_S_Dir:
+  location off:
+    initial;
+    marked;
+    edge gate_U_S_c_open goto opening;
+    edge gate_U_S_c_close goto closing;
+  location opening:
+    edge gate_U_S_c_close goto closing;
+    edge gate_U_S_c_stop goto off;
+    edge gate_U_S_u_s1_on, gate_U_S_u_s2_on, gate_U_S_u_s3_on, gate_U_S_u_s4_off, gate_U_S_u_s5_off, gate_U_S_u_s6_off;
+  location closing:
+    edge gate_U_S_c_open goto opening;
+    edge gate_U_S_c_stop goto off;
+    edge gate_U_S_u_s6_on, gate_U_S_u_s5_on, gate_U_S_u_s4_on, gate_U_S_u_s3_off, gate_U_S_u_s2_off, gate_U_S_u_s1_off;
+end
+plant automaton gate_U_S_Spe:
+  location off:
+    initial;
+    marked;
+    edge gate_U_S_c_fc_on goto fast_c;
+    edge gate_U_S_c_sc_on goto slow_c;
+    edge gate_U_S_c_fo_on goto fast_o;
+    edge gate_U_S_c_so_on goto slow_o;
+  location fast_c:
+    edge gate_U_S_c_fc_off goto off;
+  location slow_c:
+    edge gate_U_S_c_sc_off goto off;
+  location fast_o:
+    edge gate_U_S_c_fo_off goto off;
+  location slow_o:
+    edge gate_U_S_c_so_off goto off;
+end
+plant automaton gate_U_S_Pre:
+  location off:
+    initial;
+    marked;
+    edge gate_U_S_c_high_on goto high;
+    edge gate_U_S_c_low_on goto low;
+  location high:
+    edge gate_U_S_c_high_off goto off;
+  location low:
+    edge gate_U_S_c_low_off goto off;
+end
+plant automaton s_equal_D:
+  location off:
+    marked;
+    edge s_equal_D_u_equal_on goto on;
+  location on:
+    initial;
+    marked;
+    edge s_equal_D_u_equal_off goto off;
+end
+plant automaton s_equal_U:
+  location off:
+    initial;
+    marked;
+    edge s_equal_U_u_equal_on goto on;
+  location on:
+    marked;
+    edge s_equal_U_u_equal_off goto off;
+end
+plant automaton out_D_N_S:
+  location off:
+    edge out_D_N_u_r_on goto red;
+    edge out_D_N_u_g_on goto green;
+  location red:
+    initial;
+    marked;
+    edge out_D_N_u_r_off goto off;
+    edge out_D_N_u_g_on goto redgreen;
+  location green:
+    edge out_D_N_u_r_on goto redgreen;
+    edge out_D_N_u_g_off goto off;
+  location redgreen:
+    edge out_D_N_u_r_off goto green;
+    edge out_D_N_u_g_off goto red;
+end
+plant automaton out_D_N_A:
+  location red:
+    initial;
+    marked;
+    edge out_D_N_c_green goto green;
+    edge out_D_N_u_r_on, out_D_N_u_g_off;
+  location green:
+    edge out_D_N_c_red goto red;
+    edge out_D_N_u_g_on, out_D_N_u_r_off;
+end
+plant automaton out_D_S_S:
+  location off:
+    edge out_D_S_u_r_on goto red;
+    edge out_D_S_u_g_on goto green;
+  location red:
+    initial;
+    marked;
+    edge out_D_S_u_r_off goto off;
+    edge out_D_S_u_g_on goto redgreen;
+  location green:
+    edge out_D_S_u_r_on goto redgreen;
+    edge out_D_S_u_g_off goto off;
+  location redgreen:
+    edge out_D_S_u_r_off goto green;
+    edge out_D_S_u_g_off goto red;
+end
+plant automaton out_D_S_A:
+  location red:
+    initial;
+    marked;
+    edge out_D_S_c_green goto green;
+    edge out_D_S_u_r_on, out_D_S_u_g_off;
+  location green:
+    edge out_D_S_c_red goto red;
+    edge out_D_S_u_g_on, out_D_S_u_r_off;
+end
+plant automaton out_U_N_S:
+  location off:
+    edge out_U_N_u_r_on goto red;
+    edge out_U_N_u_g_on goto green;
+  location red:
+    initial;
+    marked;
+    edge out_U_N_u_r_off goto off;
+    edge out_U_N_u_g_on goto redgreen;
+  location green:
+    edge out_U_N_u_r_on goto redgreen;
+    edge out_U_N_u_g_off goto off;
+  location redgreen:
+    edge out_U_N_u_r_off goto green;
+    edge out_U_N_u_g_off goto red;
+end
+plant automaton out_U_N_A:
+  location red:
+    initial;
+    marked;
+    edge out_U_N_c_green goto green;
+    edge out_U_N_u_r_on, out_U_N_u_g_off;
+  location green:
+    edge out_U_N_c_red goto red;
+    edge out_U_N_u_g_on, out_U_N_u_r_off;
+end
+plant automaton out_U_S_S:
+  location off:
+    edge out_U_S_u_r_on goto red;
+    edge out_U_S_u_g_on goto green;
+  location red:
+    initial;
+    marked;
+    edge out_U_S_u_r_off goto off;
+    edge out_U_S_u_g_on goto redgreen;
+  location green:
+    edge out_U_S_u_r_on goto redgreen;
+    edge out_U_S_u_g_off goto off;
+  location redgreen:
+    edge out_U_S_u_r_off goto green;
+    edge out_U_S_u_g_off goto red;
+end
+plant automaton out_U_S_A:
+  location red:
+    initial;
+    marked;
+    edge out_U_S_c_green goto green;
+    edge out_U_S_u_r_on, out_U_S_u_g_off;
+  location green:
+    edge out_U_S_c_red goto red;
+    edge out_U_S_u_g_on, out_U_S_u_r_off;
+end
+plant automaton in_D_N_S:
+  location off:
+    edge in_D_N_u_r_on goto red;
+    edge in_D_N_u_g_on goto green;
+    edge in_D_N_u_s_on goto lowred;
+  location red:
+    initial;
+    marked;
+    edge in_D_N_u_r_off goto off;
+    edge in_D_N_u_g_on goto redgreen;
+    edge in_D_N_u_s_on goto redred;
+  location green:
+    edge in_D_N_u_r_on goto redgreen;
+    edge in_D_N_u_g_off goto off;
+    edge in_D_N_u_s_on goto greenred;
+  location lowred:
+    edge in_D_N_u_r_on goto redred;
+    edge in_D_N_u_g_on goto greenred;
+    edge in_D_N_u_s_off goto off;
+  location redgreen:
+    edge in_D_N_u_r_off goto green;
+    edge in_D_N_u_g_off goto red;
+    edge in_D_N_u_s_on goto redgreenred;
+  location redred:
+    edge in_D_N_u_r_off goto lowred;
+    edge in_D_N_u_g_on goto redgreenred;
+    edge in_D_N_u_s_off goto red;
+  location greenred:
+    edge in_D_N_u_r_on goto redgreenred;
+    edge in_D_N_u_g_off goto lowred;
+    edge in_D_N_u_s_off goto green;
+  location redgreenred:
+    edge in_D_N_u_r_off goto greenred;
+    edge in_D_N_u_g_off goto redred;
+    edge in_D_N_u_s_off goto redgreen;
+end
+plant automaton in_D_N_A:
+  location red:
+    initial;
+    marked;
+    edge in_D_N_c_redgreen goto redgreen;
+    edge in_D_N_c_redred goto redred;
+    edge in_D_N_u_r_on, in_D_N_u_g_off, in_D_N_u_s_off;
+  location green:
+    edge in_D_N_c_red goto red;
+    edge in_D_N_c_redgreen goto redgreen;
+    edge in_D_N_u_r_off, in_D_N_u_g_on, in_D_N_u_s_off;
+  location redred:
+    edge in_D_N_c_red goto red;
+    edge in_D_N_u_r_on, in_D_N_u_g_off, in_D_N_u_s_on;
+  location redgreen:
+    edge in_D_N_c_green goto green;
+    edge in_D_N_c_red goto red;
+    edge in_D_N_u_r_on, in_D_N_u_g_on, in_D_N_u_s_off;
+end
+plant automaton in_D_S_S:
+  location off:
+    edge in_D_S_u_r_on goto red;
+    edge in_D_S_u_g_on goto green;
+    edge in_D_S_u_s_on goto lowred;
+  location red:
+    initial;
+    marked;
+    edge in_D_S_u_r_off goto off;
+    edge in_D_S_u_g_on goto redgreen;
+    edge in_D_S_u_s_on goto redred;
+  location green:
+    edge in_D_S_u_r_on goto redgreen;
+    edge in_D_S_u_g_off goto off;
+    edge in_D_S_u_s_on goto greenred;
+  location lowred:
+    edge in_D_S_u_r_on goto redred;
+    edge in_D_S_u_g_on goto greenred;
+    edge in_D_S_u_s_off goto off;
+  location redgreen:
+    edge in_D_S_u_r_off goto green;
+    edge in_D_S_u_g_off goto red;
+    edge in_D_S_u_s_on goto redgreenred;
+  location redred:
+    edge in_D_S_u_r_off goto lowred;
+    edge in_D_S_u_g_on goto redgreenred;
+    edge in_D_S_u_s_off goto red;
+  location greenred:
+    edge in_D_S_u_r_on goto redgreenred;
+    edge in_D_S_u_g_off goto lowred;
+    edge in_D_S_u_s_off goto green;
+  location redgreenred:
+    edge in_D_S_u_r_off goto greenred;
+    edge in_D_S_u_g_off goto redred;
+    edge in_D_S_u_s_off goto redgreen;
+end
+plant automaton in_D_S_A:
+  location red:
+    initial;
+    marked;
+    edge in_D_S_c_redgreen goto redgreen;
+    edge in_D_S_c_redred goto redred;
+    edge in_D_S_u_r_on, in_D_S_u_g_off, in_D_S_u_s_off;
+  location green:
+    edge in_D_S_c_red goto red;
+    edge in_D_S_c_redgreen goto redgreen;
+    edge in_D_S_u_r_off, in_D_S_u_g_on, in_D_S_u_s_off;
+  location redred:
+    edge in_D_S_c_red goto red;
+    edge in_D_S_u_r_on, in_D_S_u_g_off, in_D_S_u_s_on;
+  location redgreen:
+    edge in_D_S_c_green goto green;
+    edge in_D_S_c_red goto red;
+    edge in_D_S_u_r_on, in_D_S_u_g_on, in_D_S_u_s_off;
+end
+plant automaton in_U_N_S:
+  location off:
+    edge in_U_N_u_r_on goto red;
+    edge in_U_N_u_g_on goto green;
+    edge in_U_N_u_s_on goto lowred;
+  location red:
+    initial;
+    marked;
+    edge in_U_N_u_r_off goto off;
+    edge in_U_N_u_g_on goto redgreen;
+    edge in_U_N_u_s_on goto redred;
+  location green:
+    edge in_U_N_u_r_on goto redgreen;
+    edge in_U_N_u_g_off goto off;
+    edge in_U_N_u_s_on goto greenred;
+  location lowred:
+    edge in_U_N_u_r_on goto redred;
+    edge in_U_N_u_g_on goto greenred;
+    edge in_U_N_u_s_off goto off;
+  location redgreen:
+    edge in_U_N_u_r_off goto green;
+    edge in_U_N_u_g_off goto red;
+    edge in_U_N_u_s_on goto redgreenred;
+  location redred:
+    edge in_U_N_u_r_off goto lowred;
+    edge in_U_N_u_g_on goto redgreenred;
+    edge in_U_N_u_s_off goto red;
+  location greenred:
+    edge in_U_N_u_r_on goto redgreenred;
+    edge in_U_N_u_g_off goto lowred;
+    edge in_U_N_u_s_off goto green;
+  location redgreenred:
+    edge in_U_N_u_r_off goto greenred;
+    edge in_U_N_u_g_off goto redred;
+    edge in_U_N_u_s_off goto redgreen;
+end
+plant automaton in_U_N_A:
+  location red:
+    initial;
+    marked;
+    edge in_U_N_c_redgreen goto redgreen;
+    edge in_U_N_c_redred goto redred;
+    edge in_U_N_u_r_on, in_U_N_u_g_off, in_U_N_u_s_off;
+  location green:
+    edge in_U_N_c_red goto red;
+    edge in_U_N_c_redgreen goto redgreen;
+    edge in_U_N_u_r_off, in_U_N_u_g_on, in_U_N_u_s_off;
+  location redred:
+    edge in_U_N_c_red goto red;
+    edge in_U_N_u_r_on, in_U_N_u_g_off, in_U_N_u_s_on;
+  location redgreen:
+    edge in_U_N_c_green goto green;
+    edge in_U_N_c_red goto red;
+    edge in_U_N_u_r_on, in_U_N_u_g_on, in_U_N_u_s_off;
+end
+plant automaton in_U_S_S:
+  location off:
+    edge in_U_S_u_r_on goto red;
+    edge in_U_S_u_g_on goto green;
+    edge in_U_S_u_s_on goto lowred;
+  location red:
+    initial;
+    marked;
+    edge in_U_S_u_r_off goto off;
+    edge in_U_S_u_g_on goto redgreen;
+    edge in_U_S_u_s_on goto redred;
+  location green:
+    edge in_U_S_u_r_on goto redgreen;
+    edge in_U_S_u_g_off goto off;
+    edge in_U_S_u_s_on goto greenred;
+  location lowred:
+    edge in_U_S_u_r_on goto redred;
+    edge in_U_S_u_g_on goto greenred;
+    edge in_U_S_u_s_off goto off;
+  location redgreen:
+    edge in_U_S_u_r_off goto green;
+    edge in_U_S_u_g_off goto red;
+    edge in_U_S_u_s_on goto redgreenred;
+  location redred:
+    edge in_U_S_u_r_off goto lowred;
+    edge in_U_S_u_g_on goto redgreenred;
+    edge in_U_S_u_s_off goto red;
+  location greenred:
+    edge in_U_S_u_r_on goto redgreenred;
+    edge in_U_S_u_g_off goto lowred;
+    edge in_U_S_u_s_off goto green;
+  location redgreenred:
+    edge in_U_S_u_r_off goto greenred;
+    edge in_U_S_u_g_off goto redred;
+    edge in_U_S_u_s_off goto redgreen;
+end
+plant automaton in_U_S_A:
+  location red:
+    initial;
+    marked;
+    edge in_U_S_c_redgreen goto redgreen;
+    edge in_U_S_c_redred goto redred;
+    edge in_U_S_u_r_on, in_U_S_u_g_off, in_U_S_u_s_off;
+  location green:
+    edge in_U_S_c_red goto red;
+    edge in_U_S_c_redgreen goto redgreen;
+    edge in_U_S_u_r_off, in_U_S_u_g_on, in_U_S_u_s_off;
+  location redred:
+    edge in_U_S_c_red goto red;
+    edge in_U_S_u_r_on, in_U_S_u_g_off, in_U_S_u_s_on;
+  location redgreen:
+    edge in_U_S_c_green goto green;
+    edge in_U_S_c_red goto red;
+    edge in_U_S_u_r_on, in_U_S_u_g_on, in_U_S_u_s_off;
+end
+plant automaton sup1:
+  alphabet pad_N_c_open, pad_N_c_close, pad_N_c_stop, pad_S_c_open, pad_S_c_close, pad_S_c_stop, culvert_N_c_enable, culvert_N_c_disable, culvert_S_c_enable, culvert_S_c_disable, gate_D_N_c_open, gate_D_N_c_close, gate_D_N_c_stop, gate_D_S_c_open, gate_D_S_c_close, gate_D_S_c_stop;
+  location:
+    initial;
+    marked;
+    edge culvert_N_c_disable when true;
+    edge culvert_N_c_enable when true;
+    edge culvert_S_c_disable when true;
+    edge culvert_S_c_enable when true;
+    edge gate_D_N_c_close when true;
+    edge gate_D_N_c_open when true;
+    edge gate_D_N_c_stop when true;
+    edge gate_D_S_c_close when true;
+    edge gate_D_S_c_open when true;
+    edge gate_D_S_c_stop when true;
+    edge pad_N_c_close when true;
+    edge pad_N_c_open when true;
+    edge pad_N_c_stop when true;
+    edge pad_S_c_close when true;
+    edge pad_S_c_open when true;
+    edge pad_S_c_stop when true;
+end
+plant automaton sup5:
+  alphabet gate_D_N_c_open, gate_D_N_c_close, gate_D_N_c_stop, gate_D_S_c_open, gate_D_S_c_close, gate_D_S_c_stop, gate_U_N_c_open, gate_U_N_c_close, gate_U_N_c_stop, gate_U_S_c_open, gate_U_S_c_close, gate_U_S_c_stop, out_D_N_c_green, out_D_N_c_red, out_D_S_c_green, out_D_S_c_red, in_D_N_c_redgreen, in_D_N_c_redred, in_D_N_c_red, in_D_N_c_green, in_D_S_c_redgreen, in_D_S_c_redred, in_D_S_c_red, in_D_S_c_green;
+  location:
+    initial;
+    marked;
+    edge gate_D_N_c_close when true;
+    edge gate_D_N_c_open when true;
+    edge gate_D_N_c_stop when true;
+    edge gate_D_S_c_close when true;
+    edge gate_D_S_c_open when true;
+    edge gate_D_S_c_stop when true;
+    edge gate_U_N_c_close when true;
+    edge gate_U_N_c_open when true;
+    edge gate_U_N_c_stop when true;
+    edge gate_U_S_c_close when true;
+    edge gate_U_S_c_open when true;
+    edge gate_U_S_c_stop when true;
+    edge in_D_N_c_green when true;
+    edge in_D_N_c_red when true;
+    edge in_D_N_c_redgreen when true;
+    edge in_D_N_c_redred when true;
+    edge in_D_S_c_green when true;
+    edge in_D_S_c_red when true;
+    edge in_D_S_c_redgreen when true;
+    edge in_D_S_c_redred when true;
+    edge out_D_N_c_green when true;
+    edge out_D_N_c_red when true;
+    edge out_D_S_c_green when true;
+    edge out_D_S_c_red when true;
+end
+plant automaton sup9:
+  alphabet gate_D_N_c_open, gate_D_N_c_close, gate_D_N_c_stop, gate_U_N_c_open, gate_U_N_c_close, gate_U_N_c_stop, gate_U_S_c_open, gate_U_S_c_close, gate_U_S_c_stop, out_D_N_c_green, out_D_N_c_red, out_D_S_c_green, out_D_S_c_red, in_D_N_c_redgreen, in_D_N_c_redred, in_D_N_c_red, in_D_N_c_green, in_D_S_c_redgreen, in_D_S_c_redred, in_D_S_c_red, in_D_S_c_green;
+  location:
+    initial;
+    marked;
+    edge gate_D_N_c_close when true;
+    edge gate_D_N_c_open when true;
+    edge gate_D_N_c_stop when true;
+    edge gate_U_N_c_close when true;
+    edge gate_U_N_c_open when true;
+    edge gate_U_N_c_stop when true;
+    edge gate_U_S_c_close when true;
+    edge gate_U_S_c_open when true;
+    edge gate_U_S_c_stop when true;
+    edge in_D_N_c_green when true;
+    edge in_D_N_c_red when true;
+    edge in_D_N_c_redgreen when true;
+    edge in_D_N_c_redred when true;
+    edge in_D_S_c_green when true;
+    edge in_D_S_c_red when true;
+    edge in_D_S_c_redgreen when true;
+    edge in_D_S_c_redred when true;
+    edge out_D_N_c_green when true;
+    edge out_D_N_c_red when true;
+    edge out_D_S_c_green when true;
+    edge out_D_S_c_red when true;
+end
+plant automaton sup10:
+  alphabet gate_D_N_c_open, gate_D_N_c_close, gate_D_N_c_stop, gate_D_N_c_fc_on, gate_D_N_c_sc_on, gate_D_N_c_fo_on, gate_D_N_c_so_on, gate_D_N_c_fc_off, gate_D_N_c_sc_off, gate_D_N_c_fo_off, gate_D_N_c_so_off;
+  location:
+    initial;
+    marked;
+    edge gate_D_N_c_close when true;
+    edge gate_D_N_c_fc_off when true;
+    edge gate_D_N_c_fc_on when true;
+    edge gate_D_N_c_fo_off when true;
+    edge gate_D_N_c_fo_on when true;
+    edge gate_D_N_c_open when true;
+    edge gate_D_N_c_sc_off when true;
+    edge gate_D_N_c_sc_on when true;
+    edge gate_D_N_c_so_off when true;
+    edge gate_D_N_c_so_on when true;
+    edge gate_D_N_c_stop when true;
+end
+plant automaton sup12:
+  alphabet gate_D_N_c_open, gate_D_N_c_close, gate_D_N_c_stop, gate_D_N_c_high_on, gate_D_N_c_low_on, gate_D_N_c_high_off, gate_D_N_c_low_off;
+  location:
+    initial;
+    marked;
+    edge gate_D_N_c_close when true;
+    edge gate_D_N_c_high_off when true;
+    edge gate_D_N_c_high_on when true;
+    edge gate_D_N_c_low_off when true;
+    edge gate_D_N_c_low_on when true;
+    edge gate_D_N_c_open when true;
+    edge gate_D_N_c_stop when true;
+end
+plant automaton sup16:
+  alphabet pad_N_c_open, pad_N_c_close, pad_N_c_stop, pad_S_c_open, pad_S_c_close, pad_S_c_stop, gate_U_N_c_open, gate_U_N_c_close, gate_U_N_c_stop, gate_U_S_c_open, gate_U_S_c_close, gate_U_S_c_stop;
+  location:
+    initial;
+    marked;
+    edge gate_U_N_c_close when true;
+    edge gate_U_N_c_open when true;
+    edge gate_U_N_c_stop when true;
+    edge gate_U_S_c_close when true;
+    edge gate_U_S_c_open when true;
+    edge gate_U_S_c_stop when true;
+    edge pad_N_c_close when true;
+    edge pad_N_c_open when true;
+    edge pad_N_c_stop when true;
+    edge pad_S_c_close when true;
+    edge pad_S_c_open when true;
+    edge pad_S_c_stop when true;
+end
+plant automaton sup17:
+  alphabet pad_S_c_open, pad_S_c_close, pad_S_c_stop;
+  location:
+    initial;
+    marked;
+    edge pad_S_c_close when true;
+    edge pad_S_c_open when true;
+    edge pad_S_c_stop when true;
+end
+plant automaton sup18:
+  alphabet pad_N_c_open, pad_N_c_close, pad_N_c_stop;
+  location:
+    initial;
+    marked;
+    edge pad_N_c_close when true;
+    edge pad_N_c_open when true;
+    edge pad_N_c_stop when true;
+end
+plant automaton sup22:
+  alphabet pad_N_c_open, pad_N_c_close, pad_N_c_stop;
+  location:
+    initial;
+    marked;
+    edge pad_N_c_close when true;
+    edge pad_N_c_open when true;
+    edge pad_N_c_stop when true;
+end
+plant automaton sup23:
+  alphabet pad_S_c_open, pad_S_c_close, pad_S_c_stop;
+  location:
+    initial;
+    marked;
+    edge pad_S_c_close when true;
+    edge pad_S_c_open when true;
+    edge pad_S_c_stop when true;
+end
+plant automaton sup24:
+  alphabet gate_U_N_c_open, gate_U_N_c_close, gate_U_N_c_stop, gate_U_S_c_open, gate_U_S_c_close, gate_U_S_c_stop, out_U_N_c_green, out_U_N_c_red, out_U_S_c_green, out_U_S_c_red, in_U_N_c_redgreen, in_U_N_c_redred, in_U_N_c_red, in_U_N_c_green, in_U_S_c_redgreen, in_U_S_c_redred, in_U_S_c_red, in_U_S_c_green;
+  location:
+    initial;
+    marked;
+    edge gate_U_N_c_close when true;
+    edge gate_U_N_c_open when true;
+    edge gate_U_N_c_stop when true;
+    edge gate_U_S_c_close when true;
+    edge gate_U_S_c_open when true;
+    edge gate_U_S_c_stop when true;
+    edge in_U_N_c_green when true;
+    edge in_U_N_c_red when true;
+    edge in_U_N_c_redgreen when true;
+    edge in_U_N_c_redred when true;
+    edge in_U_S_c_green when true;
+    edge in_U_S_c_red when true;
+    edge in_U_S_c_redgreen when true;
+    edge in_U_S_c_redred when true;
+    edge out_U_N_c_green when true;
+    edge out_U_N_c_red when true;
+    edge out_U_S_c_green when true;
+    edge out_U_S_c_red when true;
+end
+plant automaton sup25:
+  alphabet gate_U_N_c_open, gate_U_N_c_close, gate_U_N_c_stop, gate_U_S_c_open, gate_U_S_c_close, gate_U_S_c_stop;
+  location:
+    initial;
+    marked;
+    edge gate_U_N_c_close when true;
+    edge gate_U_N_c_open when true;
+    edge gate_U_N_c_stop when true;
+    edge gate_U_S_c_close when true;
+    edge gate_U_S_c_open when true;
+    edge gate_U_S_c_stop when true;
+end
+plant automaton sup26:
+  alphabet gate_U_S_c_open, gate_U_S_c_close, gate_U_S_c_stop;
+  location:
+    initial;
+    marked;
+    edge gate_U_S_c_close when true;
+    edge gate_U_S_c_open when true;
+    edge gate_U_S_c_stop when true;
+end
+plant automaton sup30:
+  alphabet gate_U_S_c_open, gate_U_S_c_close, gate_U_S_c_stop, gate_U_S_c_high_on, gate_U_S_c_low_on, gate_U_S_c_high_off, gate_U_S_c_low_off;
+  location:
+    initial;
+    marked;
+    edge gate_U_S_c_close when true;
+    edge gate_U_S_c_high_off when true;
+    edge gate_U_S_c_high_on when true;
+    edge gate_U_S_c_low_off when true;
+    edge gate_U_S_c_low_on when true;
+    edge gate_U_S_c_open when true;
+    edge gate_U_S_c_stop when true;
+end
+plant automaton sup31:
+  alphabet gate_U_S_c_open, gate_U_S_c_close, gate_U_S_c_stop, gate_U_S_c_fc_on, gate_U_S_c_sc_on, gate_U_S_c_fo_on, gate_U_S_c_so_on, gate_U_S_c_fc_off, gate_U_S_c_sc_off, gate_U_S_c_fo_off, gate_U_S_c_so_off;
+  location:
+    initial;
+    marked;
+    edge gate_U_S_c_close when true;
+    edge gate_U_S_c_fc_off when true;
+    edge gate_U_S_c_fc_on when true;
+    edge gate_U_S_c_fo_off when true;
+    edge gate_U_S_c_fo_on when true;
+    edge gate_U_S_c_open when true;
+    edge gate_U_S_c_sc_off when true;
+    edge gate_U_S_c_sc_on when true;
+    edge gate_U_S_c_so_off when true;
+    edge gate_U_S_c_so_on when true;
+    edge gate_U_S_c_stop when true;
+end
+plant automaton sup35:
+  alphabet gate_U_N_c_open, gate_U_N_c_close, gate_U_N_c_stop;
+  location:
+    initial;
+    marked;
+    edge gate_U_N_c_close when true;
+    edge gate_U_N_c_open when true;
+    edge gate_U_N_c_stop when true;
+end
+plant automaton sup36:
+  alphabet gate_U_N_c_open, gate_U_N_c_close, gate_U_N_c_stop, gate_U_N_c_high_on, gate_U_N_c_low_on, gate_U_N_c_high_off, gate_U_N_c_low_off;
+  location:
+    initial;
+    marked;
+    edge gate_U_N_c_close when true;
+    edge gate_U_N_c_high_off when true;
+    edge gate_U_N_c_high_on when true;
+    edge gate_U_N_c_low_off when true;
+    edge gate_U_N_c_low_on when true;
+    edge gate_U_N_c_open when true;
+    edge gate_U_N_c_stop when true;
+end
+plant automaton sup37:
+  alphabet gate_U_N_c_open, gate_U_N_c_close, gate_U_N_c_stop, gate_U_N_c_fc_on, gate_U_N_c_sc_on, gate_U_N_c_fo_on, gate_U_N_c_so_on, gate_U_N_c_fc_off, gate_U_N_c_sc_off, gate_U_N_c_fo_off, gate_U_N_c_so_off;
+  location:
+    initial;
+    marked;
+    edge gate_U_N_c_close when true;
+    edge gate_U_N_c_fc_off when true;
+    edge gate_U_N_c_fc_on when true;
+    edge gate_U_N_c_fo_off when true;
+    edge gate_U_N_c_fo_on when true;
+    edge gate_U_N_c_open when true;
+    edge gate_U_N_c_sc_off when true;
+    edge gate_U_N_c_sc_on when true;
+    edge gate_U_N_c_so_off when true;
+    edge gate_U_N_c_so_on when true;
+    edge gate_U_N_c_stop when true;
+end
+plant automaton sup42:
+  alphabet out_D_N_c_green, out_D_N_c_red, out_D_S_c_green, out_D_S_c_red, in_D_N_c_redgreen, in_D_N_c_redred, in_D_N_c_red, in_D_N_c_green, in_D_S_c_redgreen, in_D_S_c_redred, in_D_S_c_red, in_D_S_c_green;
+  location:
+    initial;
+    marked;
+    edge in_D_N_c_green when true;
+    edge in_D_N_c_red when true;
+    edge in_D_N_c_redgreen when true;
+    edge in_D_N_c_redred when true;
+    edge in_D_S_c_green when true;
+    edge in_D_S_c_red when true;
+    edge in_D_S_c_redgreen when true;
+    edge in_D_S_c_redred when true;
+    edge out_D_N_c_green when true;
+    edge out_D_N_c_red when true;
+    edge out_D_S_c_green when true;
+    edge out_D_S_c_red when true;
+end
+plant automaton sup43:
+  alphabet in_D_N_c_redgreen, in_D_N_c_redred, in_D_N_c_red, in_D_N_c_green;
+  location:
+    initial;
+    marked;
+    edge in_D_N_c_green when true;
+    edge in_D_N_c_red when true;
+    edge in_D_N_c_redgreen when true;
+    edge in_D_N_c_redred when true;
+end
+plant automaton sup52:
+  alphabet out_D_N_c_green, out_D_N_c_red, out_D_S_c_green, out_D_S_c_red, in_D_S_c_redgreen, in_D_S_c_redred, in_D_S_c_red, in_D_S_c_green;
+  location:
+    initial;
+    marked;
+    edge in_D_S_c_green when true;
+    edge in_D_S_c_red when true;
+    edge in_D_S_c_redgreen when true;
+    edge in_D_S_c_redred when true;
+    edge out_D_N_c_green when true;
+    edge out_D_N_c_red when true;
+    edge out_D_S_c_green when true;
+    edge out_D_S_c_red when true;
+end
+plant automaton sup54:
+  alphabet out_D_N_c_green, out_D_N_c_red, out_D_S_c_green, out_D_S_c_red, out_U_N_c_green, out_U_N_c_red, out_U_S_c_green, out_U_S_c_red, in_U_N_c_redgreen, in_U_N_c_redred, in_U_N_c_red, in_U_N_c_green, in_U_S_c_redgreen, in_U_S_c_redred, in_U_S_c_red, in_U_S_c_green;
+  location:
+    initial;
+    marked;
+    edge in_U_N_c_green when true;
+    edge in_U_N_c_red when true;
+    edge in_U_N_c_redgreen when true;
+    edge in_U_N_c_redred when true;
+    edge in_U_S_c_green when true;
+    edge in_U_S_c_red when true;
+    edge in_U_S_c_redgreen when true;
+    edge in_U_S_c_redred when true;
+    edge out_D_N_c_green when true;
+    edge out_D_N_c_red when true;
+    edge out_D_S_c_green when true;
+    edge out_D_S_c_red when true;
+    edge out_U_N_c_green when true;
+    edge out_U_N_c_red when true;
+    edge out_U_S_c_green when true;
+    edge out_U_S_c_red when true;
+end
+plant automaton sup55:
+  alphabet out_D_N_c_green, out_D_N_c_red;
+  location:
+    initial;
+    marked;
+    edge out_D_N_c_green when true;
+    edge out_D_N_c_red when true;
+end
+plant automaton sup57:
+  alphabet out_D_S_c_green, out_D_S_c_red;
+  location:
+    initial;
+    marked;
+    edge out_D_S_c_green when true;
+    edge out_D_S_c_red when true;
+end
+plant automaton sup62:
+  alphabet out_U_N_c_green, out_U_N_c_red;
+  location:
+    initial;
+    marked;
+    edge out_U_N_c_green when true;
+    edge out_U_N_c_red when true;
+end
+plant automaton sup64:
+  alphabet out_U_S_c_green, out_U_S_c_red;
+  location:
+    initial;
+    marked;
+    edge out_U_S_c_green when true;
+    edge out_U_S_c_red when true;
+end
+plant automaton sup69:
+  alphabet in_U_N_c_redgreen, in_U_N_c_redred, in_U_N_c_red, in_U_N_c_green, in_U_S_c_redgreen, in_U_S_c_redred, in_U_S_c_red, in_U_S_c_green;
+  location:
+    initial;
+    marked;
+    edge in_U_N_c_green when true;
+    edge in_U_N_c_red when true;
+    edge in_U_N_c_redgreen when true;
+    edge in_U_N_c_redred when true;
+    edge in_U_S_c_green when true;
+    edge in_U_S_c_red when true;
+    edge in_U_S_c_redgreen when true;
+    edge in_U_S_c_redred when true;
+end
+plant automaton sup79:
+  alphabet in_U_S_c_redgreen, in_U_S_c_redred, in_U_S_c_red, in_U_S_c_green;
+  location:
+    initial;
+    marked;
+    edge in_U_S_c_green when true;
+    edge in_U_S_c_red when true;
+    edge in_U_S_c_redgreen when true;
+    edge in_U_S_c_redred when true;
+end
+plant automaton sup88:
+  alphabet gate_D_S_c_open, gate_D_S_c_close, gate_D_S_c_stop, gate_D_S_c_fc_on, gate_D_S_c_sc_on, gate_D_S_c_fo_on, gate_D_S_c_so_on, gate_D_S_c_fc_off, gate_D_S_c_sc_off, gate_D_S_c_fo_off, gate_D_S_c_so_off;
+  location:
+    initial;
+    marked;
+    edge gate_D_S_c_close when true;
+    edge gate_D_S_c_fc_off when true;
+    edge gate_D_S_c_fc_on when true;
+    edge gate_D_S_c_fo_off when true;
+    edge gate_D_S_c_fo_on when true;
+    edge gate_D_S_c_open when true;
+    edge gate_D_S_c_sc_off when true;
+    edge gate_D_S_c_sc_on when true;
+    edge gate_D_S_c_so_off when true;
+    edge gate_D_S_c_so_on when true;
+    edge gate_D_S_c_stop when true;
+end
+plant automaton sup90:
+  alphabet gate_D_S_c_open, gate_D_S_c_close, gate_D_S_c_stop, gate_D_S_c_high_on, gate_D_S_c_low_on, gate_D_S_c_high_off, gate_D_S_c_low_off;
+  location:
+    initial;
+    marked;
+    edge gate_D_S_c_close when true;
+    edge gate_D_S_c_high_off when true;
+    edge gate_D_S_c_high_on when true;
+    edge gate_D_S_c_low_off when true;
+    edge gate_D_S_c_low_on when true;
+    edge gate_D_S_c_open when true;
+    edge gate_D_S_c_stop when true;
+end
+plant automaton RequirementStateEvtExcls:
+  location:
+    initial;
+    marked;
+    edge in_D_N_c_green when not emergencystop.pushed, not(out_D_N_S.green or out_D_N_A.green or out_D_S_S.green or out_D_S_A.green), not(not gate_D_N_S.open or gate_D_N_Dir.closing or not gate_D_S_S.open or gate_D_S_Dir.closing), button14.pushed and not button10.pushed and not button17.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_D_S_c_green when not emergencystop.pushed, not(out_D_N_S.green or out_D_N_A.green or out_D_S_S.green or out_D_S_A.green), not(not gate_D_N_S.open or gate_D_N_Dir.closing or not gate_D_S_S.open or gate_D_S_Dir.closing), button14.pushed and not button10.pushed and not button17.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_U_N_c_green when not emergencystop.pushed, not(out_U_N_S.green or out_U_N_A.green or out_U_S_S.green or out_U_S_A.green), not(not gate_U_N_S.open or gate_U_N_Dir.closing or not gate_U_S_S.open or gate_U_S_Dir.closing), button16.pushed and not button12.pushed and not button19.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_U_S_c_green when not emergencystop.pushed, not(out_U_N_S.green or out_U_N_A.green or out_U_S_S.green or out_U_S_A.green), not(not gate_U_N_S.open or gate_U_N_Dir.closing or not gate_U_S_S.open or gate_U_S_Dir.closing), button16.pushed and not button12.pushed and not button19.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_D_N_c_redgreen when not emergencystop.pushed, button17.pushed and not button10.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_D_S_c_redgreen when not emergencystop.pushed, button17.pushed and not button10.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_U_N_c_redgreen when not emergencystop.pushed, button19.pushed and not button12.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_U_S_c_redgreen when not emergencystop.pushed, button19.pushed and not button12.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge out_D_N_c_green when not emergencystop.pushed, not(in_D_N_S.green or in_D_N_A.green or in_D_S_S.green or in_D_S_A.green), not(not gate_D_N_S.open or gate_D_N_Dir.closing or not gate_D_S_S.open or gate_D_S_Dir.closing), button13.pushed and not button9.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge out_D_S_c_green when not emergencystop.pushed, not(in_D_N_S.green or in_D_N_A.green or in_D_S_S.green or in_D_S_A.green), not(not gate_D_N_S.open or gate_D_N_Dir.closing or not gate_D_S_S.open or gate_D_S_Dir.closing), button13.pushed and not button9.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge out_U_N_c_green when not emergencystop.pushed, not(in_U_N_S.green or in_U_N_A.green or in_U_S_S.green or in_U_S_A.green), not(not gate_U_N_S.open or gate_U_N_Dir.closing or not gate_U_S_S.open or gate_U_S_Dir.closing), button15.pushed and not button11.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge out_U_S_c_green when not emergencystop.pushed, not(in_U_N_S.green or in_U_N_A.green or in_U_S_S.green or in_U_S_A.green), not(not gate_U_N_S.open or gate_U_N_Dir.closing or not gate_U_S_S.open or gate_U_S_Dir.closing), button15.pushed and not button11.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge pad_N_c_open when not emergencystop.pushed, not(culvert_N_S.flow or culvert_N_A.open or culvert_S_S.flow or culvert_S_A.open), not(not gate_U_N_S.closed or gate_U_N_Dir.opening or not gate_U_S_S.closed or gate_U_S_Dir.opening), button1.pushed and not button2.pushed, not pad_N_S1.open or not pad_N_S2.open or not pad_N_S3.open, not(emergencystop.pushed or stop4.pushed);
+    edge pad_S_c_open when not emergencystop.pushed, not(culvert_N_S.flow or culvert_N_A.open or culvert_S_S.flow or culvert_S_A.open), not(not gate_U_N_S.closed or gate_U_N_Dir.opening or not gate_U_S_S.closed or gate_U_S_Dir.opening), button1.pushed and not button2.pushed, not pad_S_S1.open or not pad_S_S2.open or not pad_S_S3.open, not(emergencystop.pushed or stop4.pushed);
+    edge pad_N_c_close when not emergencystop.pushed, button2.pushed, not pad_N_S1.closed or not pad_N_S2.closed or not pad_N_S3.closed, not(emergencystop.pushed or stop4.pushed);
+    edge pad_S_c_close when not emergencystop.pushed, button2.pushed, not pad_S_S1.closed or not pad_S_S2.closed or not pad_S_S3.closed, not(emergencystop.pushed or stop4.pushed);
+    edge culvert_N_c_enable when not emergencystop.pushed, not(not pad_N_S1.closed or not pad_N_S2.closed or not pad_N_S3.closed or pad_N_A.opening or not pad_S_S1.closed or not pad_S_S2.closed or not pad_S_S3.closed or pad_S_A.opening), not(not gate_D_N_S.closed or gate_D_N_Dir.opening or not gate_D_S_S.closed or gate_D_S_Dir.opening), button3.pushed and not button4.pushed, not(emergencystop.pushed or stop3.pushed);
+    edge culvert_S_c_enable when not emergencystop.pushed, not(not pad_N_S1.closed or not pad_N_S2.closed or not pad_N_S3.closed or pad_N_A.opening or not pad_S_S1.closed or not pad_S_S2.closed or not pad_S_S3.closed or pad_S_A.opening), not(not gate_D_N_S.closed or gate_D_N_Dir.opening or not gate_D_S_S.closed or gate_D_S_Dir.opening), button3.pushed and not button4.pushed, not(emergencystop.pushed or stop3.pushed);
+    edge gate_D_N_c_open when not emergencystop.pushed, not s_equal_D.off, not(culvert_N_S.flow or culvert_N_A.open or culvert_S_S.flow or culvert_S_A.open), not(not gate_U_N_S.closed or gate_U_N_Dir.opening or not gate_U_S_S.closed or gate_U_S_Dir.opening), button5.pushed and not button6.pushed and not gate_D_N_S.open, not(emergencystop.pushed or stop1.pushed);
+    edge gate_D_S_c_open when not emergencystop.pushed, not s_equal_D.off, not(culvert_N_S.flow or culvert_N_A.open or culvert_S_S.flow or culvert_S_A.open), not(not gate_U_N_S.closed or gate_U_N_Dir.opening or not gate_U_S_S.closed or gate_U_S_Dir.opening), button5.pushed and not button6.pushed and not gate_D_S_S.open, not(emergencystop.pushed or stop1.pushed);
+    edge gate_U_N_c_open when not emergencystop.pushed, not s_equal_U.off, not(not pad_N_S1.closed or not pad_N_S2.closed or not pad_N_S3.closed or pad_N_A.opening or not pad_S_S1.closed or not pad_S_S2.closed or not pad_S_S3.closed or pad_S_A.opening), not(not gate_D_N_S.closed or gate_D_N_Dir.opening or not gate_D_S_S.closed or gate_D_S_Dir.opening), button7.pushed and not button8.pushed and not gate_U_N_S.open, not(emergencystop.pushed or stop2.pushed);
+    edge gate_U_S_c_open when not emergencystop.pushed, not s_equal_U.off, not(not pad_N_S1.closed or not pad_N_S2.closed or not pad_N_S3.closed or pad_N_A.opening or not pad_S_S1.closed or not pad_S_S2.closed or not pad_S_S3.closed or pad_S_A.opening), not(not gate_D_N_S.closed or gate_D_N_Dir.opening or not gate_D_S_S.closed or gate_D_S_Dir.opening), button7.pushed and not button8.pushed and not gate_U_S_S.open, not(emergencystop.pushed or stop2.pushed);
+    edge gate_D_N_c_close when not emergencystop.pushed, not(not(in_D_N_S.red or in_D_N_S.redred) or not(in_D_N_A.red or in_D_N_A.redred) or not(in_D_S_S.red or in_D_S_S.redred) or not(in_D_S_A.red or in_D_S_A.redred)), not(not out_D_N_S.red or not out_D_N_A.red or not out_D_S_S.red or not out_D_S_A.red), button6.pushed and not gate_D_N_S.closed, not(emergencystop.pushed or stop1.pushed);
+    edge gate_D_S_c_close when not emergencystop.pushed, not(not(in_D_N_S.red or in_D_N_S.redred) or not(in_D_N_A.red or in_D_N_A.redred) or not(in_D_S_S.red or in_D_S_S.redred) or not(in_D_S_A.red or in_D_S_A.redred)), not(not out_D_N_S.red or not out_D_N_A.red or not out_D_S_S.red or not out_D_S_A.red), button6.pushed and not gate_D_S_S.closed, not(emergencystop.pushed or stop1.pushed);
+    edge gate_U_N_c_close when not emergencystop.pushed, not(not(in_U_N_S.red or in_U_N_S.redred) or not(in_U_N_A.red or in_U_N_A.redred) or not(in_U_S_S.red or in_U_S_S.redred) or not(in_U_S_A.red or in_U_S_A.redred)), not(not out_U_N_S.red or not out_U_N_A.red or not out_U_S_S.red or not out_U_S_A.red), not(not out_U_N_S.red or not out_U_N_A.red or not out_U_S_S.red or not out_U_S_A.red), button8.pushed and not gate_U_N_S.closed, not(emergencystop.pushed or stop2.pushed);
+    edge gate_U_S_c_close when not emergencystop.pushed, not(not(in_U_N_S.red or in_U_N_S.redred) or not(in_U_N_A.red or in_U_N_A.redred) or not(in_U_S_S.red or in_U_S_S.redred) or not(in_U_S_A.red or in_U_S_A.redred)), button8.pushed and not gate_U_S_S.closed, not(emergencystop.pushed or stop2.pushed);
+    edge pad_N_c_stop when emergencystop.pushed or stop4.pushed or pad_N_S1.closed and pad_N_S2.closed and pad_N_S3.closed and pad_N_A.closing or pad_N_S1.open and pad_N_S2.open and pad_N_S3.open and pad_N_A.opening;
+    edge pad_S_c_stop when emergencystop.pushed or stop4.pushed or pad_S_S1.closed and pad_S_S2.closed and pad_S_S3.closed and pad_S_A.closing or pad_S_S1.open and pad_S_S2.open and pad_S_S3.open and pad_S_A.opening;
+    edge culvert_N_c_disable when button4.pushed or (emergencystop.pushed or stop3.pushed);
+    edge culvert_S_c_disable when button4.pushed or (emergencystop.pushed or stop3.pushed);
+    edge gate_D_N_c_stop when emergencystop.pushed or stop1.pushed or gate_D_N_S.closed and gate_D_N_Dir.closing or gate_D_N_S.open and gate_D_N_Dir.opening;
+    edge gate_D_S_c_stop when emergencystop.pushed or stop1.pushed or gate_D_S_S.closed and gate_D_S_Dir.closing or gate_D_S_S.open and gate_D_S_Dir.opening;
+    edge gate_U_N_c_stop when emergencystop.pushed or stop2.pushed or gate_U_N_S.closed and gate_U_N_Dir.closing or gate_U_N_S.open and gate_U_N_Dir.opening;
+    edge gate_U_S_c_stop when emergencystop.pushed or stop2.pushed or gate_U_S_S.closed and gate_U_S_Dir.closing or gate_U_S_S.open and gate_U_S_Dir.opening;
+    edge out_D_N_c_red when button9.pushed or (emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge out_D_S_c_red when button9.pushed or (emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge out_U_N_c_red when button11.pushed or (emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge out_U_S_c_red when button11.pushed or (emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_D_N_c_red when button10.pushed or (emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_D_N_c_redred when button18.pushed and not button10.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_D_S_c_red when button10.pushed or (emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_D_S_c_redred when button18.pushed and not button10.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_U_N_c_red when button12.pushed or (emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_U_N_c_redred when button20.pushed and not button12.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_U_S_c_red when button12.pushed or (emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge in_U_S_c_redred when button20.pushed and not button12.pushed, not(emergencystop.pushed or stop1.pushed or stop2.pushed or stop4.pushed or stop4.pushed);
+    edge gate_D_S_c_fc_on when not(gate_D_S_S.bclosed or gate_D_S_S.closed) and gate_D_S_Dir.closing;
+    edge gate_D_S_c_fc_off when gate_D_S_S.bclosed or gate_D_S_S.closed;
+    edge gate_D_S_c_sc_on when gate_D_S_S.bclosed and gate_D_S_Dir.closing;
+    edge gate_D_S_c_sc_off when not gate_D_S_S.bclosed;
+    edge gate_D_S_c_fo_on when not(gate_D_S_S.bopen or gate_D_S_S.open) and gate_D_S_Dir.opening;
+    edge gate_D_S_c_fo_off when gate_D_S_S.bopen or gate_D_S_S.open;
+    edge gate_D_S_c_so_on when gate_D_S_S.bopen and gate_D_S_Dir.opening;
+    edge gate_D_S_c_so_off when not gate_D_S_S.bopen;
+    edge gate_D_S_c_high_on when (gate_D_S_S.open or gate_D_S_S.bopen or gate_D_S_S.fopen or gate_D_S_S.middle) and gate_D_S_Dir.closing or (gate_D_S_S.closed or gate_D_S_S.bclosed or gate_D_S_S.fclosed or gate_D_S_S.middle) and gate_D_S_Dir.opening;
+    edge gate_D_S_c_high_off when not((gate_D_S_S.open or gate_D_S_S.bopen or gate_D_S_S.fopen or gate_D_S_S.middle) and gate_D_S_Dir.closing or (gate_D_S_S.closed or gate_D_S_S.bclosed or gate_D_S_S.fclosed or gate_D_S_S.middle) and gate_D_S_Dir.opening);
+    edge gate_D_S_c_low_on when (gate_D_S_S.fclosed or gate_D_S_S.bclosed) and gate_D_S_Dir.closing or (gate_D_S_S.fopen or gate_D_S_S.bopen) and gate_D_S_Dir.opening;
+    edge gate_D_S_c_low_off when not((gate_D_S_S.fclosed or gate_D_S_S.bclosed) and gate_D_S_Dir.closing or (gate_D_S_S.fopen or gate_D_S_S.bopen) and gate_D_S_Dir.opening);
+    edge gate_D_N_c_fc_on when not(gate_D_N_S.bclosed or gate_D_N_S.closed) and gate_D_N_Dir.closing;
+    edge gate_D_N_c_fc_off when gate_D_N_S.bclosed or gate_D_N_S.closed;
+    edge gate_D_N_c_sc_on when gate_D_N_S.bclosed and gate_D_N_Dir.closing;
+    edge gate_D_N_c_sc_off when not gate_D_N_S.bclosed;
+    edge gate_D_N_c_fo_on when not(gate_D_N_S.bopen or gate_D_N_S.open) and gate_D_N_Dir.opening;
+    edge gate_D_N_c_fo_off when gate_D_N_S.bopen or gate_D_N_S.open;
+    edge gate_D_N_c_so_on when gate_D_N_S.bopen and gate_D_N_Dir.opening;
+    edge gate_D_N_c_so_off when not gate_D_N_S.bopen;
+    edge gate_D_N_c_high_on when (gate_D_N_S.open or gate_D_N_S.bopen or gate_D_N_S.fopen or gate_D_N_S.middle) and gate_D_N_Dir.closing or (gate_D_N_S.closed or gate_D_N_S.bclosed or gate_D_N_S.fclosed or gate_D_N_S.middle) and gate_D_N_Dir.opening;
+    edge gate_D_N_c_high_off when not((gate_D_N_S.open or gate_D_N_S.bopen or gate_D_N_S.fopen or gate_D_N_S.middle) and gate_D_N_Dir.closing or (gate_D_N_S.closed or gate_D_N_S.bclosed or gate_D_N_S.fclosed or gate_D_N_S.middle) and gate_D_N_Dir.opening);
+    edge gate_D_N_c_low_on when (gate_D_N_S.fclosed or gate_D_N_S.bclosed) and gate_D_N_Dir.closing or (gate_D_N_S.fopen or gate_D_N_S.bopen) and gate_D_N_Dir.opening;
+    edge gate_D_N_c_low_off when not((gate_D_N_S.fclosed or gate_D_N_S.bclosed) and gate_D_N_Dir.closing or (gate_D_N_S.fopen or gate_D_N_S.bopen) and gate_D_N_Dir.opening);
+    edge gate_U_S_c_fc_on when not(gate_U_S_S.bclosed or gate_U_S_S.closed) and gate_U_S_Dir.closing;
+    edge gate_U_S_c_fc_off when gate_U_S_S.bclosed or gate_U_S_S.closed;
+    edge gate_U_S_c_sc_on when gate_U_S_S.bclosed and gate_U_S_Dir.closing;
+    edge gate_U_S_c_sc_off when not gate_U_S_S.bclosed;
+    edge gate_U_S_c_fo_on when not(gate_U_S_S.bopen or gate_U_S_S.open) and gate_U_S_Dir.opening;
+    edge gate_U_S_c_fo_off when gate_U_S_S.bopen or gate_U_S_S.open;
+    edge gate_U_S_c_so_on when gate_U_S_S.bopen and gate_U_S_Dir.opening;
+    edge gate_U_S_c_so_off when not gate_U_S_S.bopen;
+    edge gate_U_S_c_high_on when (gate_U_S_S.open or gate_U_S_S.bopen or gate_U_S_S.fopen or gate_U_S_S.middle) and gate_U_S_Dir.closing or (gate_U_S_S.closed or gate_U_S_S.bclosed or gate_U_S_S.fclosed or gate_U_S_S.middle) and gate_U_S_Dir.opening;
+    edge gate_U_S_c_high_off when not((gate_U_S_S.open or gate_U_S_S.bopen or gate_U_S_S.fopen or gate_U_S_S.middle) and gate_U_S_Dir.closing or (gate_U_S_S.closed or gate_U_S_S.bclosed or gate_U_S_S.fclosed or gate_U_S_S.middle) and gate_U_S_Dir.opening);
+    edge gate_U_S_c_low_on when (gate_U_S_S.fclosed or gate_U_S_S.bclosed) and gate_U_S_Dir.closing or (gate_U_S_S.fopen or gate_U_S_S.bopen) and gate_U_S_Dir.opening;
+    edge gate_U_S_c_low_off when not((gate_U_S_S.fclosed or gate_U_S_S.bclosed) and gate_U_S_Dir.closing or (gate_U_S_S.fopen or gate_U_S_S.bopen) and gate_U_S_Dir.opening);
+    edge gate_U_N_c_fc_on when not(gate_U_N_S.bclosed or gate_U_N_S.closed) and gate_U_N_Dir.closing;
+    edge gate_U_N_c_fc_off when gate_U_N_S.bclosed or gate_U_N_S.closed;
+    edge gate_U_N_c_sc_on when gate_U_N_S.bclosed and gate_U_N_Dir.closing;
+    edge gate_U_N_c_sc_off when not gate_U_N_S.bclosed;
+    edge gate_U_N_c_fo_on when not(gate_U_N_S.bopen or gate_U_N_S.open) and gate_U_N_Dir.opening;
+    edge gate_U_N_c_fo_off when gate_U_N_S.bopen or gate_U_N_S.open;
+    edge gate_U_N_c_so_on when gate_U_N_S.bopen and gate_U_N_Dir.opening;
+    edge gate_U_N_c_so_off when not gate_U_N_S.bopen;
+    edge gate_U_N_c_high_on when (gate_U_N_S.open or gate_U_N_S.bopen or gate_U_N_S.fopen or gate_U_N_S.middle) and gate_U_N_Dir.closing or (gate_U_N_S.closed or gate_U_N_S.bclosed or gate_U_N_S.fclosed or gate_U_N_S.middle) and gate_U_N_Dir.opening;
+    edge gate_U_N_c_high_off when not((gate_U_N_S.open or gate_U_N_S.bopen or gate_U_N_S.fopen or gate_U_N_S.middle) and gate_U_N_Dir.closing or (gate_U_N_S.closed or gate_U_N_S.bclosed or gate_U_N_S.fclosed or gate_U_N_S.middle) and gate_U_N_Dir.opening);
+    edge gate_U_N_c_low_on when (gate_U_N_S.fclosed or gate_U_N_S.bclosed) and gate_U_N_Dir.closing or (gate_U_N_S.fopen or gate_U_N_S.bopen) and gate_U_N_Dir.opening;
+    edge gate_U_N_c_low_off when not((gate_U_N_S.fclosed or gate_U_N_S.bclosed) and gate_U_N_Dir.closing or (gate_U_N_S.fopen or gate_U_N_S.bopen) and gate_U_N_Dir.opening);
+end
+supervisor automaton ncsup:
+  alphabet;
+  location:
+    initial;
+    marked;
+end

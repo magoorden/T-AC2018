@@ -1,0 +1,53 @@
+// Example from Sumpremica tooling
+
+// This example is originally from 'Supervisory control of discrete-
+// event systems' by  W. M. Wonham
+
+plant def Machine ():
+	controllable start;
+	uncontrollable finish;
+
+	location Idle:
+		initial; marked;
+		edge start goto Working;
+	location Working:
+		edge finish goto Idle;
+end
+
+M1 : Machine();
+M2 : Machine();
+
+plant def TestUnit ():
+	controllable start;
+	uncontrollable accepted, rejected;
+
+	location Idle:
+		initial; marked;
+		edge start goto Testing;
+	location Testing:
+		edge accepted, rejected goto Idle;
+end
+
+TU : TestUnit();
+
+requirement B1:
+	location l0:
+		initial; marked;
+		edge M1.finish, TU.rejected goto l1;
+	location l1:
+		edge M1.finish, TU.rejected goto l2;
+		edge M2.start goto l0;
+	location l2:
+		edge M1.finish, TU.rejected goto l3;
+		edge M2.start goto l1;
+	location l3:
+		edge M2.start goto l2;
+end
+
+requirement B2:
+	location l0:
+		initial; marked;
+		edge M2.finish goto l1;
+	location l1:
+		edge TU.start goto l0;
+end

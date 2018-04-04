@@ -1,0 +1,439 @@
+// This example is originally from 'Systematic Model-Based Design and Implementation
+// of Supervisors for Advanced Driver Assistance Systems' by Tim Korssen,
+// Victor Dolk, Joanna van de Mortel-Fronczak, Michel Reniers, and Maurice Heemels
+
+// plant definition for a sensor automaton.
+plant def sensor():
+    uncontrollable u_on, u_off;
+    location off:
+        initial; marked;
+        edge u_on goto on;
+    location on:
+        edge u_off goto off;
+end
+
+
+brake_sensor:               sensor();
+
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////// CC low-level Control components //////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// CC enablement automaton.
+plant CC_enabled:
+    controllable c_enable, c_disable;
+    location disabled:
+        initial; marked;
+        edge c_enable goto enabled;
+    location enabled:
+        edge c_disable goto disabled;
+end
+
+// CC activation automaton
+plant CC_active:
+    controllable c_activate, c_deactivate;
+    location inactive:
+        initial; marked;
+        edge c_activate goto active;
+    location active:
+        edge c_deactivate goto inactive;
+end
+
+// timer automaton definition.
+plant def timer():
+    controllable c_start, c_cancel, c_reset;
+    uncontrollable u_timeout;
+
+    location idle:
+        initial; marked;
+        edge c_start goto started;
+
+    location started:
+        edge u_timeout goto timedout;
+        edge c_cancel goto idle;
+    location timedout:
+        edge c_reset goto idle;
+end
+
+// plant automaton definition for a CC action
+plant def CC_action():
+    controllable c_on, c_off;
+    location off:
+        initial; marked;
+        edge c_on goto on;
+    location on:
+        edge c_off goto off;
+end
+// plant instantiation for the different CC actions
+set_speed:          CC_action();
+increase:           CC_action();
+decrease:           CC_action();
+resume:             CC_action();
+mode:               CC_action();
+cancel:             CC_action();
+erase_set_speed:    CC_action();
+
+// timer instantiations for different timer purposes
+timer_180_CC : timer();  // timer used to deactivate CC when throttle overtake > 180sec
+timerdecrease : timer(); // timer used to stop set_speed command and start decrease speed command
+timerincrease : timer(); // timer used to stop resume command and start increase speed command
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////// CC component observers //////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// observer that tracks whether the velocity is above or below 30km/h
+plant obs_min_v_activate:
+    uncontrollable u_above_30, u_below_30;
+    location below_30:
+        initial; marked;
+        edge u_above_30 goto above_30;
+    location above_30:
+        edge u_below_30 goto below_30;
+end
+
+// observer automaton that tracks whether the velocity is above or below 25km/h
+plant obs_min_v_deactivate:
+    uncontrollable u_above_25, u_below_25;
+    location below_25:
+        initial; marked;
+        edge u_above_25 goto above_25;
+    location above_25:
+        edge u_below_25 goto below_25;
+end
+
+// observer that tracks when the maximum speed is reached
+plant obs_max_speed:
+    uncontrollable u_above_max, u_below_max;
+    location below:
+        initial; marked;
+        edge u_above_max goto above;
+    location above:
+        edge u_below_max goto below;
+end
+
+// observer that tracks whether the throttle is overtaking the velocity control
+plant obs_overtake_throttle:
+    uncontrollable u_on, u_off;
+    location off:
+        initial; marked;
+        edge u_on goto on;
+    location on:
+        edge u_off goto off;
+end
+
+// observer that tracks whether a set-point velocity is set
+plant obs_set_speed:
+    uncontrollable u_speed_set, u_speed_erased;
+    location no_set_speed:
+        initial; marked;
+        edge u_speed_set goto speed_set;
+    location speed_set:
+        edge u_speed_erased goto no_set_speed;
+end
+
+// observer that tracks whether the set-point velocity is above or below 30km/h
+plant obs_min_set_speed:
+    uncontrollable u_above_30, u_below_30;
+    location below_30:
+        initial; marked;
+        edge u_above_30 goto above_30;
+    location above_30:
+        edge u_below_30 goto below_30;
+end
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////// ACC low-level Control components /////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// ACC activation automaton
+plant ACC_active:
+    controllable c_activate, c_deactivate;
+    location inactive:
+        initial; marked;
+        edge c_activate goto active;
+    location active:
+        edge c_deactivate goto inactive;
+end
+
+// automaton for command to set new time gap:
+time_gap: CC_action();
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////// ACC component observers /////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// radar automaton, on/off correspond to whether or not an object is detected:
+plant radar:
+    uncontrollable u_on, u_off;
+    location off:
+        initial; marked;
+        edge u_on  goto on;
+    location on:
+        edge u_off goto off;
+end
+// radar data reliability observer that tracks whether the radar data is reliable:
+plant radar_reliable:
+    uncontrollable u_reliable, u_unreliable;
+    location off:
+        initial; marked;
+        edge u_reliable goto on;
+    location on:
+        edge u_unreliable goto off;
+end
+
+// observer that tracks whether the velocity of the preceding vehicle
+// is higher than the set-point velocity
+plant obs_higher_speed:
+    uncontrollable u_higher, u_not_higher;
+    location not_higher:
+        initial; marked;
+        edge u_higher goto higher;
+    location higher:
+        edge u_not_higher goto not_higher;
+end
+
+/////////////////////////////////////////////////////////////////////////////////
+/////////////////////////// CC and ACC HMI components ///////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// plant definition for a button automaton.
+plant def button():
+    uncontrollable u_pushed, u_released;
+    location released:
+        initial; marked;
+        edge u_pushed goto pushed;
+    location pushed:
+        edge u_released goto released;
+end
+
+// button instantiations for the CC/ACC case study
+CC_enable_button:           button();
+ACC_time_gap_button:        button();
+
+// CC lever automaton
+plant CC_lever:
+    uncontrollable u_forward_on,
+                   u_forward_off,
+                   u_backward_on,
+                   u_backward_off,
+                   u_down_on,
+                   u_down_off,
+                   u_up_on, u_up_off;
+    location nothing_on:
+        initial; marked;
+        edge u_forward_on   goto forward_on;
+        edge u_backward_on  goto backward_on;
+        edge u_down_on      goto down_on;
+        edge u_up_on        goto up_on;
+    location down_on:
+        edge u_down_off goto nothing_on;
+        edge u_forward_on,
+             u_forward_off,
+             u_backward_on,
+             u_backward_off,
+             u_up_on,
+             u_up_off;
+    location forward_on:
+        edge u_forward_off goto nothing_on;
+        edge u_down_on,
+             u_down_off,
+             u_backward_on,
+             u_backward_off,
+             u_up_on,
+             u_up_off;
+    location backward_on:
+        edge u_backward_off goto nothing_on;
+        edge u_down_on,
+             u_down_off,
+             u_forward_on,
+             u_forward_off,
+             u_up_on,
+             u_up_off;
+    location up_on:
+        edge u_up_off goto nothing_on;
+        edge u_down_on, u_down_off,
+             u_forward_on,
+             u_forward_off,
+             u_backward_on,
+             u_backward_off;
+end
+
+/////////////////////////////////////////////////////////////////////////////////
+//////////////////////////// HMI Component observers ////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// mode observer automaton that keeps track of the desired mode, CC or ACC (or CACC):
+plant mode_observer:
+    controllable c_reset;
+    location CC:
+        initial; marked;
+        edge mode.c_on goto ACC;
+    location ACC:
+        edge mode.c_on goto CACC;
+        edge c_reset goto CC;
+    location CACC:
+        edge mode.c_on goto CC;
+        edge c_reset goto CC;
+end
+
+////////////////////////////////////////////////////////////////////////
+///////////////////////////// requirements /////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//  requirements for set speed action:
+requirement set_speed.c_on        needs CC_lever.down_on            and
+                                        obs_min_v_activate.above_30 and
+                                        CC_enabled.enabled          and
+                                        decrease.off                and
+                                        brake_sensor.off            and
+                                        ((ACC_active.inactive) or obs_overtake_throttle.on);
+
+requirement set_speed.c_off       needs decrease.on                 or
+                                        (CC_lever.nothing_on        and
+                                        (CC_active.active or obs_overtake_throttle.on));
+
+// requirements for decrease speed action
+requirement decrease.c_on         needs CC_lever.down_on            and
+                                        brake_sensor.off            and
+                                        obs_min_v_activate.above_30 and
+                                        obs_set_speed.speed_set     and
+                                        timerdecrease.timedout      and
+                                        (CC_active.active           or
+                                        ACC_active.active)          and
+                                        CC_enabled.enabled          and
+                                        obs_min_set_speed.above_30  and
+                                        not obs_overtake_throttle.on;
+
+requirement decrease.c_off        needs CC_lever.nothing_on        or
+                                        obs_min_set_speed.below_30;
+
+// requirements for resume action
+requirement resume.c_on           needs CC_lever.up_on             and
+                                        CC_active.inactive          and
+                                        ACC_active.inactive         and
+                                        CC_enabled.enabled          and
+                                        brake_sensor.off            and
+                                        obs_set_speed.speed_set;
+
+requirement resume.c_off          needs CC_lever.nothing_on        or
+                                        increase.on;
+
+// requirements for increase action
+requirement increase.c_on         needs CC_lever.up_on             and
+                                        obs_max_speed.below         and
+                                        obs_min_v_activate.above_30 and
+                                        CC_active.active            and
+                                        obs_set_speed.speed_set     and
+                                        timerincrease.timedout      and
+                                        brake_sensor.off            and
+                                        CC_enabled.enabled;
+
+requirement increase.c_off        needs CC_lever.nothing_on        or
+                                        obs_max_speed.above;
+
+// requirements for cancel action
+requirement cancel.c_on           needs CC_lever.backward_on       and
+                                        (CC_active.active        or
+                                        ACC_active.active)
+                                                                    and
+                                        CC_enabled.enabled;
+
+requirement cancel.c_off          needs CC_lever.nothing_on;
+
+// requirements for the erase set-point speed action:
+requirement erase_set_speed.c_on  needs CC_enabled.disabled         and
+                                        obs_set_speed.speed_set;
+
+requirement erase_set_speed.c_off needs CC_enabled.enabled;
+
+// requirements for the changing-the-mode action
+requirement mode.c_on             needs CC_lever.forward_on;
+requirement mode.c_off            needs CC_lever.nothing_on;
+
+// requirement for enabling CC after a single push, and disabling after another:
+requirement enabling:
+    location one:
+        initial; marked;
+        edge CC_enable_button.u_pushed goto two;
+    location two:
+        edge CC_enabled.c_enable goto one;
+        edge CC_enabled.c_disable goto one;
+        edge CC_enable_button.u_pushed;
+end
+
+// requirements for activating and deactivating CC:
+requirement CC_active.c_activate  needs CC_enabled.enabled                          and
+                                        (set_speed.on                               or
+                                        (ACC_active.inactive and obs_set_speed.speed_set) or
+                                        (resume.on and obs_set_speed.speed_set))    and
+                                        brake_sensor.off                            and
+                                        obs_min_v_activate.above_30                 and
+                                        not obs_overtake_throttle.on                and
+                                        not cancel.on                               and
+                                        not timer_180_CC.timedout;
+
+requirement CC_active.c_deactivate needs CC_enabled.disabled        or
+                                         cancel.on                  or
+                                         brake_sensor.on            or
+                                         timer_180_CC.timedout      or
+                                         ACC_active.active          or
+                                         obs_min_v_deactivate.below_25;
+
+requirement CC_not_activate_directly_after_deactivate:
+    location one:
+        initial; marked;
+        edge CC_active.c_activate, ACC_active.c_activate, CC_lever.u_up_on, CC_lever.u_down_on;
+        edge CC_lever.u_backward_on, brake_sensor.u_on goto two;
+    location two:
+        marked;
+        edge CC_lever.u_backward_on, brake_sensor.u_on;
+        edge CC_lever.u_up_on, CC_lever.u_down_on goto one;
+end
+
+requirement CC_not_activate_after_throttle_overtake:
+
+    location one:
+        initial; marked;
+        edge CC_active.c_activate, set_speed.c_on, resume.c_on;
+        edge timer_180_CC.u_timeout goto two;
+    location two:
+        edge timer_180_CC.u_timeout;
+        edge resume.c_on, set_speed.c_on goto one;
+
+end
+
+// requirements for starting, canceling and resetting the timer for decrease set speed:
+requirement timerdecrease.c_start needs CC_lever.down_on;
+requirement timerdecrease.c_cancel needs CC_lever.nothing_on;
+requirement timerdecrease.c_reset needs CC_lever.nothing_on;
+
+// requirements for starting, canceling and resetting the timer for increase set speed:
+requirement timerincrease.c_start needs CC_lever.up_on;
+requirement timerincrease.c_cancel needs CC_lever.nothing_on;
+requirement timerincrease.c_reset needs CC_lever.nothing_on;
+
+// requirements for starting, canceling and resetting the timer for throttle overtake:
+requirement timer_180_CC.c_start needs obs_overtake_throttle.on     and
+                                       CC_active.active;
+requirement timer_180_CC.c_cancel needs obs_overtake_throttle.off;
+requirement timer_180_CC.c_reset needs  CC_active.inactive;
+
+
+// requirements for the time gap button
+requirement time_gap.c_on needs ACC_time_gap_button.pushed;
+requirement time_gap.c_off needs ACC_time_gap_button.released;
+
+// requirement that sets the mode back to CC only when CC is disabled:
+requirement mode_observer.c_reset needs CC_enabled.disabled;
+
+// requirements for ACC activation and deactivation:
+requirement ACC_active.c_activate needs      (obs_higher_speed.higher   and
+                                             brake_sensor.off           and
+                                             not mode_observer.CC       and
+                                             not cancel.on              and
+                                             radar_reliable.on);
+
+requirement ACC_active.c_deactivate needs   (obs_higher_speed.not_higher   or
+                                             brake_sensor.on            or
+                                             mode_observer.CC           or
+                                             cancel.on                  or
+                                             radar_reliable.off);

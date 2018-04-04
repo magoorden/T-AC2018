@@ -1,0 +1,327 @@
+uncontrollable brake_sensor_u_on;
+uncontrollable brake_sensor_u_off;
+controllable CC_enabled_c_enable;
+controllable CC_enabled_c_disable;
+controllable CC_active_c_activate;
+controllable CC_active_c_deactivate;
+controllable set_speed_c_on;
+controllable set_speed_c_off;
+controllable increase_c_on;
+controllable increase_c_off;
+controllable decrease_c_on;
+controllable decrease_c_off;
+controllable resume_c_on;
+controllable resume_c_off;
+controllable mode_c_on;
+controllable mode_c_off;
+controllable cancel_c_on;
+controllable cancel_c_off;
+controllable erase_set_speed_c_on;
+controllable erase_set_speed_c_off;
+controllable timer_180_CC_c_start;
+controllable timer_180_CC_c_cancel;
+controllable timer_180_CC_c_reset;
+uncontrollable timer_180_CC_u_timeout;
+controllable timerdecrease_c_start;
+controllable timerdecrease_c_cancel;
+controllable timerdecrease_c_reset;
+uncontrollable timerdecrease_u_timeout;
+controllable timerincrease_c_start;
+controllable timerincrease_c_cancel;
+controllable timerincrease_c_reset;
+uncontrollable timerincrease_u_timeout;
+uncontrollable obs_min_v_activate_u_above_30;
+uncontrollable obs_min_v_activate_u_below_30;
+uncontrollable obs_min_v_deactivate_u_above_25;
+uncontrollable obs_min_v_deactivate_u_below_25;
+uncontrollable obs_max_speed_u_above_max;
+uncontrollable obs_max_speed_u_below_max;
+uncontrollable obs_overtake_throttle_u_on;
+uncontrollable obs_overtake_throttle_u_off;
+uncontrollable obs_set_speed_u_speed_set;
+uncontrollable obs_set_speed_u_speed_erased;
+uncontrollable obs_min_set_speed_u_above_30;
+uncontrollable obs_min_set_speed_u_below_30;
+controllable ACC_active_c_activate;
+controllable ACC_active_c_deactivate;
+controllable time_gap_c_on;
+controllable time_gap_c_off;
+uncontrollable radar_u_on;
+uncontrollable radar_u_off;
+uncontrollable radar_reliable_u_reliable;
+uncontrollable radar_reliable_u_unreliable;
+uncontrollable obs_higher_speed_u_higher;
+uncontrollable obs_higher_speed_u_not_higher;
+uncontrollable CC_enable_button_u_pushed;
+uncontrollable CC_enable_button_u_released;
+uncontrollable ACC_time_gap_button_u_pushed;
+uncontrollable ACC_time_gap_button_u_released;
+uncontrollable CC_lever_u_forward_on;
+uncontrollable CC_lever_u_forward_off;
+uncontrollable CC_lever_u_backward_on;
+uncontrollable CC_lever_u_backward_off;
+uncontrollable CC_lever_u_down_on;
+uncontrollable CC_lever_u_down_off;
+uncontrollable CC_lever_u_up_on;
+uncontrollable CC_lever_u_up_off;
+controllable mode_observer_c_reset;
+plant automaton brake_sensor:
+  location off:
+    initial;
+    marked;
+    edge brake_sensor_u_on goto on;
+  location on:
+    edge brake_sensor_u_off goto off;
+end
+plant automaton CC_enabled:
+  location disabled:
+    initial;
+    marked;
+    edge CC_enabled_c_enable goto enabled;
+  location enabled:
+    edge CC_enabled_c_disable goto disabled;
+end
+plant automaton CC_active:
+  location inactive:
+    initial;
+    marked;
+    edge CC_active_c_activate goto active;
+  location active:
+    edge CC_active_c_deactivate goto inactive;
+end
+plant automaton set_speed:
+  location off:
+    initial;
+    marked;
+    edge set_speed_c_on goto on;
+  location on:
+    edge set_speed_c_off goto off;
+end
+plant automaton increase:
+  location off:
+    initial;
+    marked;
+    edge increase_c_on goto on;
+  location on:
+    edge increase_c_off goto off;
+end
+plant automaton decrease:
+  location off:
+    initial;
+    marked;
+    edge decrease_c_on goto on;
+  location on:
+    edge decrease_c_off goto off;
+end
+plant automaton resume:
+  location off:
+    initial;
+    marked;
+    edge resume_c_on goto on;
+  location on:
+    edge resume_c_off goto off;
+end
+plant automaton mode:
+  location off:
+    initial;
+    marked;
+    edge mode_c_on goto on;
+  location on:
+    edge mode_c_off goto off;
+end
+plant automaton cancel:
+  location off:
+    initial;
+    marked;
+    edge cancel_c_on goto on;
+  location on:
+    edge cancel_c_off goto off;
+end
+plant automaton erase_set_speed:
+  location off:
+    initial;
+    marked;
+    edge erase_set_speed_c_on goto on;
+  location on:
+    edge erase_set_speed_c_off goto off;
+end
+plant automaton timer_180_CC:
+  location idle:
+    initial;
+    marked;
+    edge timer_180_CC_c_start goto started;
+  location started:
+    edge timer_180_CC_u_timeout goto timedout;
+    edge timer_180_CC_c_cancel goto idle;
+  location timedout:
+    edge timer_180_CC_c_reset goto idle;
+end
+plant automaton timerdecrease:
+  location idle:
+    initial;
+    marked;
+    edge timerdecrease_c_start goto started;
+  location started:
+    edge timerdecrease_u_timeout goto timedout;
+    edge timerdecrease_c_cancel goto idle;
+  location timedout:
+    edge timerdecrease_c_reset goto idle;
+end
+plant automaton timerincrease:
+  location idle:
+    initial;
+    marked;
+    edge timerincrease_c_start goto started;
+  location started:
+    edge timerincrease_u_timeout goto timedout;
+    edge timerincrease_c_cancel goto idle;
+  location timedout:
+    edge timerincrease_c_reset goto idle;
+end
+plant automaton obs_min_v_activate:
+  location below_30:
+    initial;
+    marked;
+    edge obs_min_v_activate_u_above_30 goto above_30;
+  location above_30:
+    edge obs_min_v_activate_u_below_30 goto below_30;
+end
+plant automaton obs_min_v_deactivate:
+  location below_25:
+    initial;
+    marked;
+    edge obs_min_v_deactivate_u_above_25 goto above_25;
+  location above_25:
+    edge obs_min_v_deactivate_u_below_25 goto below_25;
+end
+plant automaton obs_max_speed:
+  location below:
+    initial;
+    marked;
+    edge obs_max_speed_u_above_max goto above;
+  location above:
+    edge obs_max_speed_u_below_max goto below;
+end
+plant automaton obs_overtake_throttle:
+  location off:
+    initial;
+    marked;
+    edge obs_overtake_throttle_u_on goto on;
+  location on:
+    edge obs_overtake_throttle_u_off goto off;
+end
+plant automaton obs_set_speed:
+  location no_set_speed:
+    initial;
+    marked;
+    edge obs_set_speed_u_speed_set goto speed_set;
+  location speed_set:
+    edge obs_set_speed_u_speed_erased goto no_set_speed;
+end
+plant automaton obs_min_set_speed:
+  location below_30:
+    initial;
+    marked;
+    edge obs_min_set_speed_u_above_30 goto above_30;
+  location above_30:
+    edge obs_min_set_speed_u_below_30 goto below_30;
+end
+plant automaton ACC_active:
+  location inactive:
+    initial;
+    marked;
+    edge ACC_active_c_activate goto active;
+  location active:
+    edge ACC_active_c_deactivate goto inactive;
+end
+plant automaton CC_lever:
+  location nothing_on:
+    initial;
+    marked;
+    edge CC_lever_u_forward_on goto forward_on;
+    edge CC_lever_u_backward_on goto backward_on;
+    edge CC_lever_u_down_on goto down_on;
+    edge CC_lever_u_up_on goto up_on;
+  location down_on:
+    edge CC_lever_u_down_off goto nothing_on;
+    edge CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_backward_on, CC_lever_u_backward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location forward_on:
+    edge CC_lever_u_forward_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_backward_on, CC_lever_u_backward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location backward_on:
+    edge CC_lever_u_backward_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location up_on:
+    edge CC_lever_u_up_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_backward_on, CC_lever_u_backward_off;
+end
+plant automaton mode_observer:
+  location CC:
+    initial;
+    marked;
+    edge mode_c_on goto ACC;
+  location ACC:
+    edge mode_c_on goto CACC;
+    edge mode_observer_c_reset goto CC;
+  location CACC:
+    edge mode_c_on goto CC;
+    edge mode_observer_c_reset goto CC;
+end
+supervisor automaton CC_not_activate_after_throttle_overtake:
+  location one:
+    initial;
+    marked;
+    edge CC_active_c_activate, set_speed_c_on, resume_c_on;
+    edge timer_180_CC_u_timeout goto two;
+  location two:
+    edge timer_180_CC_u_timeout;
+    edge resume_c_on, set_speed_c_on goto one;
+end
+supervisor automaton sup6:
+  alphabet CC_enabled_c_enable, CC_enabled_c_disable, CC_active_c_activate, CC_active_c_deactivate, set_speed_c_on, set_speed_c_off, increase_c_on, increase_c_off, decrease_c_on, decrease_c_off, resume_c_on, resume_c_off, mode_c_on, mode_c_off, cancel_c_on, cancel_c_off, erase_set_speed_c_on, erase_set_speed_c_off, timer_180_CC_c_start, timer_180_CC_c_cancel, timer_180_CC_c_reset, timerdecrease_c_start, timerdecrease_c_cancel, timerdecrease_c_reset, timerincrease_c_start, timerincrease_c_cancel, timerincrease_c_reset, ACC_active_c_activate, ACC_active_c_deactivate, mode_observer_c_reset;
+  location:
+    initial;
+    marked;
+    edge ACC_active_c_activate when true;
+    edge ACC_active_c_deactivate when true;
+    edge cancel_c_off when true;
+    edge cancel_c_on when true;
+    edge CC_active_c_activate when true;
+    edge CC_active_c_deactivate when true;
+    edge CC_enabled_c_disable when true;
+    edge CC_enabled_c_enable when true;
+    edge decrease_c_off when true;
+    edge decrease_c_on when true;
+    edge erase_set_speed_c_off when true;
+    edge erase_set_speed_c_on when true;
+    edge increase_c_off when true;
+    edge increase_c_on when true;
+    edge mode_c_off when true;
+    edge mode_c_on when true;
+    edge mode_observer_c_reset when true;
+    edge resume_c_off when true;
+    edge resume_c_on when true;
+    edge set_speed_c_off when true;
+    edge set_speed_c_on when true;
+    edge timer_180_CC_c_cancel when true;
+    edge timer_180_CC_c_reset when true;
+    edge timer_180_CC_c_start when true;
+    edge timerdecrease_c_cancel when true;
+    edge timerdecrease_c_reset when true;
+    edge timerdecrease_c_start when true;
+    edge timerincrease_c_cancel when true;
+    edge timerincrease_c_reset when true;
+    edge timerincrease_c_start when true;
+end
+requirement invariant set_speed_c_on needs CC_lever.down_on and obs_min_v_activate.above_30 and CC_enabled.enabled and decrease.off and brake_sensor.off and (ACC_active.inactive or obs_overtake_throttle.on);
+requirement invariant set_speed_c_off needs decrease.on or CC_lever.nothing_on and (CC_active.active or obs_overtake_throttle.on);
+requirement invariant decrease_c_on needs CC_lever.down_on and brake_sensor.off and obs_min_v_activate.above_30 and obs_set_speed.speed_set and timerdecrease.timedout and (CC_active.active or ACC_active.active) and CC_enabled.enabled and obs_min_set_speed.above_30 and not obs_overtake_throttle.on;
+requirement invariant resume_c_on needs CC_lever.up_on and CC_active.inactive and ACC_active.inactive and CC_enabled.enabled and brake_sensor.off and obs_set_speed.speed_set;
+requirement invariant increase_c_on needs CC_lever.up_on and obs_max_speed.below and obs_min_v_activate.above_30 and CC_active.active and obs_set_speed.speed_set and timerincrease.timedout and brake_sensor.off and CC_enabled.enabled;
+requirement invariant cancel_c_on needs CC_lever.backward_on and (CC_active.active or ACC_active.active) and CC_enabled.enabled;
+requirement invariant erase_set_speed_c_on needs CC_enabled.disabled and obs_set_speed.speed_set;
+requirement invariant CC_active_c_activate needs CC_enabled.enabled and (set_speed.on or ACC_active.inactive and obs_set_speed.speed_set or resume.on and obs_set_speed.speed_set) and brake_sensor.off and obs_min_v_activate.above_30 and not obs_overtake_throttle.on and not cancel.on and not timer_180_CC.timedout;
+requirement invariant CC_active_c_deactivate needs CC_enabled.disabled or cancel.on or brake_sensor.on or timer_180_CC.timedout or ACC_active.active or obs_min_v_deactivate.below_25;
+requirement invariant timer_180_CC_c_start needs obs_overtake_throttle.on and CC_active.active;
+requirement invariant timer_180_CC_c_cancel needs obs_overtake_throttle.off;
+requirement invariant mode_observer_c_reset needs CC_enabled.disabled;

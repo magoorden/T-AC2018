@@ -1,0 +1,174 @@
+controllable AVG1_e11;
+controllable AVG1_e13;
+uncontrollable AVG1_e10;
+uncontrollable AVG1_e12;
+controllable AVG2_e21;
+controllable AVG2_e23;
+uncontrollable AVG2_e18;
+uncontrollable AVG2_e20;
+uncontrollable AVG2_e22;
+uncontrollable AVG2_e24;
+uncontrollable AVG2_e26;
+uncontrollable AVG2_e28;
+controllable AVG3_e31;
+controllable AVG3_e33;
+uncontrollable AVG3_e32;
+uncontrollable AVG3_e34;
+controllable AVG4_e41;
+controllable AVG4_e43;
+uncontrollable AVG4_e40;
+uncontrollable AVG4_e42;
+uncontrollable AVG4_e44;
+uncontrollable AVG4_e46;
+controllable AVG5_e51;
+controllable AVG5_e53;
+uncontrollable AVG5_e50;
+uncontrollable AVG5_e52;
+plant automaton AVG1:
+  location l0:
+    initial;
+    marked;
+    edge AVG1_e11 goto l1;
+  location l1:
+    edge AVG1_e10 goto l2;
+  location l2:
+    edge AVG1_e13 goto l3;
+  location l3:
+    edge AVG1_e12 goto l0;
+end
+plant automaton AVG2:
+  location l0:
+    initial;
+    marked;
+    edge AVG2_e21 goto l1;
+  location l1:
+    edge AVG2_e18 goto l2;
+  location l2:
+    edge AVG2_e20 goto l3;
+  location l3:
+    edge AVG2_e22 goto l4;
+  location l4:
+    edge AVG2_e23 goto l5;
+  location l5:
+    edge AVG2_e24 goto l6;
+  location l6:
+    edge AVG2_e26 goto l7;
+  location l7:
+    edge AVG2_e28 goto l0;
+end
+plant automaton AVG3:
+  location l0:
+    initial;
+    marked;
+    edge AVG3_e33 goto l1;
+  location l1:
+    edge AVG3_e34 goto l2;
+  location l2:
+    edge AVG3_e31 goto l3;
+  location l3:
+    edge AVG3_e32 goto l0;
+end
+plant automaton AVG4:
+  location l0:
+    initial;
+    marked;
+    edge AVG4_e41 goto l1;
+  location l1:
+    edge AVG4_e40 goto l2;
+  location l2:
+    edge AVG4_e42 goto l3;
+  location l3:
+    edge AVG4_e43 goto l4;
+  location l4:
+    edge AVG4_e44 goto l5;
+  location l5:
+    edge AVG4_e46 goto l0;
+end
+plant automaton AVG5:
+  location l0:
+    initial;
+    marked;
+    edge AVG5_e51 goto l1;
+  location l1:
+    edge AVG5_e50 goto l2;
+  location l2:
+    edge AVG5_e53 goto l3;
+  location l3:
+    edge AVG5_e52 goto l0;
+end
+supervisor automaton Z2SPEC:
+  location l0:
+    initial;
+    marked;
+    edge AVG2_e18, AVG2_e24 goto l1;
+    edge AVG3_e31, AVG3_e33 goto l2;
+  location l1:
+    marked;
+    edge AVG2_e20, AVG2_e26 goto l0;
+  location l2:
+    marked;
+    edge AVG3_e32, AVG3_e34 goto l0;
+end
+supervisor automaton Z3SPEC:
+  location l0:
+    initial;
+    marked;
+    edge AVG2_e21, AVG2_e26 goto l1;
+    edge AVG4_e41, AVG4_e44 goto l2;
+  location l1:
+    marked;
+    edge AVG2_e18, AVG2_e28 goto l0;
+  location l2:
+    marked;
+    edge AVG4_e40, AVG4_e46 goto l0;
+end
+supervisor automaton WS1SPEC:
+  location l0:
+    initial;
+    marked;
+    edge AVG3_e32 goto l1;
+    edge AVG4_e46 goto l2;
+  location l1:
+    marked;
+    edge AVG4_e46 goto l3;
+  location l2:
+    marked;
+    edge AVG3_e32 goto l3;
+  location l3:
+    marked;
+    edge AVG5_e50 goto l0;
+end
+supervisor automaton WS2SPEC:
+  location l0:
+    initial;
+    marked;
+    edge AVG1_e12 goto l1;
+  location l1:
+    marked;
+    edge AVG3_e34 goto l0;
+end
+supervisor automaton WS3SPEC:
+  location l0:
+    initial;
+    marked;
+    edge AVG2_e28 goto l1;
+  location l1:
+    marked;
+    edge AVG4_e42 goto l0;
+end
+supervisor automaton sup1:
+  alphabet AVG1_e11, AVG1_e13, AVG2_e21, AVG2_e23, AVG3_e33, AVG3_e31, AVG4_e41, AVG4_e43, AVG5_e51, AVG5_e53;
+  location:
+    initial;
+    marked;
+    edge AVG1_e11 when true;
+    edge AVG1_e13 when WS2SPEC.l0;
+    edge AVG2_e21 when (AVG1.l1 or (AVG1.l3 or AVG5.l1) or (AVG5.l3 or AVG3.l1 or (AVG3.l3 or not AVG4.l4))) and ((AVG1.l1 or (AVG1.l3 or AVG5.l1) or (AVG5.l3 or (AVG3.l0 or AVG3.l2))) and (AVG1.l1 or AVG1.l3 or (not AVG5.l1 or (AVG3.l0 or AVG3.l2)))) and ((AVG1.l1 or (AVG1.l3 or not AVG5.l3) or (AVG3.l1 or (AVG3.l3 or not AVG4.l4))) and (AVG1.l1 or AVG1.l3 or (not AVG5.l3 or (AVG3.l0 or AVG3.l2))) and ((not AVG1.l1 or (AVG5.l1 or AVG5.l3) or (AVG3.l1 or (AVG3.l3 or not AVG4.l4))) and (not AVG1.l1 or AVG5.l1 or (AVG5.l3 or (AVG3.l0 or AVG3.l2))))) and ((not AVG1.l1 or not AVG5.l1 or (AVG3.l0 or AVG3.l2)) and ((not AVG1.l1 or not AVG5.l3 or (AVG3.l1 or (AVG3.l3 or not AVG4.l4))) and (not AVG1.l1 or not AVG5.l3 or (AVG3.l0 or AVG3.l2))) and ((not AVG1.l3 or (AVG5.l1 or AVG5.l3) or (AVG3.l1 or (AVG3.l3 or not AVG4.l4))) and (not AVG1.l3 or AVG5.l1 or (AVG5.l3 or (AVG3.l0 or AVG3.l2))) and ((not AVG1.l3 or not AVG5.l3 or (AVG3.l1 or (AVG3.l3 or not AVG4.l4))) and (not AVG1.l3 or not AVG5.l3 or (AVG3.l0 or AVG3.l2)))));
+    edge AVG2_e23 when (AVG1.l0 or AVG1.l2) and ((AVG5.l0 or AVG5.l2) and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l0 or AVG4.l2))) or ((AVG1.l0 or AVG1.l2) and ((AVG5.l0 or AVG5.l2) and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l1 or (AVG4.l3 or AVG4.l5)))) or (AVG1.l0 or AVG1.l2) and AVG5.l1 and ((AVG3.l0 or AVG3.l2) and (not Z3SPEC.l2 and WS3SPEC.l0))) or ((AVG1.l0 or AVG1.l2) and (AVG5.l3 and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l0 or AVG4.l2))) or (AVG1.l0 or AVG1.l2) and (AVG5.l3 and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l1 or (AVG4.l3 or AVG4.l5)))) or (AVG1.l1 and ((AVG5.l0 or AVG5.l2) and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l0 or AVG4.l2))) or AVG1.l1 and ((AVG5.l0 or AVG5.l2) and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l1 or (AVG4.l3 or AVG4.l5)))))) or (AVG1.l1 and AVG5.l1 and ((AVG3.l0 or AVG3.l2) and (not Z3SPEC.l2 and WS3SPEC.l0)) or AVG1.l1 and (AVG5.l3 and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l0 or AVG4.l2))) or (AVG1.l1 and (AVG5.l3 and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l1 or (AVG4.l3 or AVG4.l5)))) or AVG1.l3 and ((AVG5.l0 or AVG5.l2) and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l0 or AVG4.l2)))) or (AVG1.l3 and ((AVG5.l0 or AVG5.l2) and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l1 or (AVG4.l3 or AVG4.l5)))) or AVG1.l3 and AVG5.l1 and (not Z3SPEC.l2 and WS3SPEC.l0) or (AVG1.l3 and (AVG5.l3 and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l0 or AVG4.l2))) or AVG1.l3 and (AVG5.l3 and (AVG3.l0 or AVG3.l2)) and (not Z3SPEC.l2 and (WS3SPEC.l0 and (AVG4.l1 or (AVG4.l3 or AVG4.l5)))))));
+    edge AVG3_e31 when (AVG5.l1 or AVG5.l3 or (WS1SPEC.l1 or (WS1SPEC.l3 or not AVG2.l1 and not AVG2.l5))) and (AVG5.l1 or AVG5.l3 or (WS1SPEC.l0 or WS1SPEC.l2)) and (not AVG5.l1 and ((not AVG5.l3 or WS1SPEC.l1 or (WS1SPEC.l3 or not AVG2.l1 and not AVG2.l5)) and (not AVG5.l3 or (WS1SPEC.l0 or WS1SPEC.l2))));
+    edge AVG3_e33 when (AVG1.l1 or (AVG1.l3 or WS2SPEC.l1)) and (AVG1.l1 or AVG1.l3 or (WS2SPEC.l0 or not AVG2.l1 and not AVG2.l5)) and ((not AVG1.l1 or WS2SPEC.l1) and ((not AVG1.l1 or (WS2SPEC.l0 or not AVG2.l1 and not AVG2.l5)) and not AVG1.l3));
+    edge AVG4_e41 when (AVG1.l0 or AVG1.l2) and WS2SPEC.l0 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or ((AVG1.l0 or AVG1.l2) and WS2SPEC.l0 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and WS2SPEC.l0 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l2) and ((AVG3.l1 or AVG3.l3) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l1 or WS1SPEC.l3) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l1 or WS1SPEC.l3) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l1 or WS1SPEC.l3) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l1) and (not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l1) and (not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l1) and (Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1))) or ((AVG1.l0 or AVG1.l2) and WS2SPEC.l0 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and WS2SPEC.l0 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or ((AVG1.l0 or AVG1.l2) and WS2SPEC.l0 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l2) and ((AVG3.l1 or AVG3.l3) and WS3SPEC.l1))))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and ((WS1SPEC.l1 or WS1SPEC.l3) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and ((WS1SPEC.l1 or WS1SPEC.l3) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and ((WS1SPEC.l1 or WS1SPEC.l3) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and (AVG3.l0 or AVG3.l2)) and (not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and (AVG3.l0 or AVG3.l2)) and (not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and (AVG3.l0 or AVG3.l2)) and (Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or (AVG1.l0 or AVG1.l2) and WS2SPEC.l1 and ((AVG3.l1 or AVG3.l3) and WS3SPEC.l1))) or (AVG1.l1 and WS2SPEC.l0 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or AVG1.l1 and WS2SPEC.l0 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or (AVG1.l1 and WS2SPEC.l0 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l2) and ((AVG3.l1 or AVG3.l3) and WS3SPEC.l1))) or (AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l1 or WS1SPEC.l3) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l1 or WS1SPEC.l3) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or (AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l1 or WS1SPEC.l3) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or AVG1.l1 and (WS2SPEC.l0 and AVG5.l1) and (not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)))))) or (AVG1.l1 and (WS2SPEC.l0 and AVG5.l1) and (not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or (AVG1.l1 and (WS2SPEC.l0 and AVG5.l1) and (Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or AVG1.l1 and WS2SPEC.l0 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1))) or (AVG1.l1 and WS2SPEC.l0 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or AVG1.l1 and WS2SPEC.l0 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or (AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l2) and ((AVG3.l1 or AVG3.l3) and WS3SPEC.l1)) or AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and ((WS1SPEC.l1 or WS1SPEC.l3) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)))) or (AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and ((WS1SPEC.l1 or WS1SPEC.l3) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and ((WS1SPEC.l1 or WS1SPEC.l3) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or (AVG1.l1 and (WS2SPEC.l1 and (AVG3.l0 or AVG3.l2)) and (not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or AVG1.l1 and (WS2SPEC.l1 and (AVG3.l0 or AVG3.l2)) and (not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1))) or (AVG1.l1 and (WS2SPEC.l1 and (AVG3.l0 or AVG3.l2)) and (Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or AVG1.l1 and WS2SPEC.l1 and ((AVG3.l1 or AVG3.l3) and WS3SPEC.l1) or (AVG1.l3 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or AVG1.l3 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1))))) or (AVG1.l3 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or (AVG1.l3 and (AVG5.l0 or AVG5.l2) and ((WS1SPEC.l0 or WS1SPEC.l2) and ((AVG3.l1 or AVG3.l3) and WS3SPEC.l1)) or AVG1.l3 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l1 or WS1SPEC.l3)) and (not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1))) or (AVG1.l3 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l1 or WS1SPEC.l3)) and (not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or AVG1.l3 and ((AVG5.l0 or AVG5.l2) and (WS1SPEC.l1 or WS1SPEC.l3)) and (Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or (AVG1.l3 and AVG5.l1 and (not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or AVG1.l3 and AVG5.l1 and (not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)))) or (AVG1.l3 and AVG5.l1 and (Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)) or AVG1.l3 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or (AVG1.l3 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or AVG1.l3 and (AVG5.l3 and (WS1SPEC.l0 or WS1SPEC.l2)) and ((AVG3.l0 or AVG3.l2) and Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1))) or (AVG1.l3 and AVG5.l3 and ((WS1SPEC.l0 or WS1SPEC.l2) and ((AVG3.l1 or AVG3.l3) and WS3SPEC.l1)) or AVG1.l3 and (AVG5.l3 and (WS1SPEC.l1 or WS1SPEC.l3)) and (not Z2SPEC.l1 and ((AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)) and WS3SPEC.l1)) or (AVG1.l3 and (AVG5.l3 and (WS1SPEC.l1 or WS1SPEC.l3)) and (not Z2SPEC.l1 and ((AVG2.l3 or AVG2.l7) and WS3SPEC.l1)) or AVG1.l3 and (AVG5.l3 and (WS1SPEC.l1 or WS1SPEC.l3)) and (Z2SPEC.l1 and ((AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)) and WS3SPEC.l1)))))));
+    edge AVG4_e43 when (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6))))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l1 and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l1 and (not Z2SPEC.l1 and AVG2.l3)) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l1 and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6))))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l1 and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l1 and (not Z2SPEC.l1 and AVG2.l3)) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l1 and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))))))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3)))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or (AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))))) or ((AVG1.l0 or AVG1.l2) and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3))))) or (AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or (AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l1 and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l1 and (not Z2SPEC.l1 and AVG2.l3)) or AVG1.l1 and (WS2SPEC.l0 and (AVG5.l0 or AVG5.l2)) and (WS1SPEC.l1 and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3))))))))) or (AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or (AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and (AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6))))) or (AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l1 and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l1 and (not Z2SPEC.l1 and AVG2.l3)) or AVG1.l1 and (WS2SPEC.l0 and AVG5.l3) and (WS1SPEC.l1 and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))))) or (AVG1.l1 and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or AVG1.l1 and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or (AVG1.l1 and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or AVG1.l1 and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6))))) or (AVG1.l1 and (WS2SPEC.l1 and (AVG5.l0 or AVG5.l2)) and ((WS1SPEC.l0 or WS1SPEC.l1) and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or AVG1.l1 and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l1 and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or (AVG1.l1 and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and (AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or AVG1.l1 and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))))))) or (AVG1.l1 and (WS2SPEC.l1 and AVG5.l3) and ((WS1SPEC.l0 or WS1SPEC.l1) and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or AVG1.l3 and ((AVG5.l0 or AVG5.l2) and WS1SPEC.l0) and ((AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l3 and ((AVG5.l0 or AVG5.l2) and WS1SPEC.l0) and ((AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or AVG1.l3 and ((AVG5.l0 or AVG5.l2) and WS1SPEC.l0) and ((AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3))))) or (AVG1.l3 and (AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or AVG1.l3 and (AVG5.l0 or AVG5.l2) and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or (AVG1.l3 and (AVG5.l0 or AVG5.l2) and (WS1SPEC.l1 and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or AVG1.l3 and (AVG5.l0 or AVG5.l2) and (WS1SPEC.l1 and (not Z2SPEC.l1 and AVG2.l3)))) or (AVG1.l3 and (AVG5.l0 or AVG5.l2) and (WS1SPEC.l1 and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3)))) or AVG1.l3 and (AVG5.l3 and WS1SPEC.l0) and ((AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l3 and (AVG5.l3 and WS1SPEC.l0) and ((AVG3.l0 or AVG3.l2) and (not Z2SPEC.l1 and AVG2.l3)) or AVG1.l3 and (AVG5.l3 and WS1SPEC.l0) and ((AVG3.l0 or AVG3.l2) and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3))))) or (AVG1.l3 and AVG5.l3 and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or AVG1.l3 and AVG5.l3 and (WS1SPEC.l0 and ((AVG3.l1 or AVG3.l3) and (AVG2.l1 or AVG2.l3))) or (AVG1.l3 and AVG5.l3 and (WS1SPEC.l1 and (not Z2SPEC.l1 and (AVG2.l0 or AVG2.l2 or (AVG2.l4 or AVG2.l6)))) or (AVG1.l3 and AVG5.l3 and (WS1SPEC.l1 and (not Z2SPEC.l1 and AVG2.l3)) or AVG1.l3 and AVG5.l3 and (WS1SPEC.l1 and (Z2SPEC.l1 and (AVG2.l0 or AVG2.l1 or (AVG2.l2 or AVG2.l3))))))))));
+    edge AVG5_e51 when WS1SPEC.l3;
+    edge AVG5_e53 when true;
+end

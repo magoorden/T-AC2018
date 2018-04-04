@@ -1,0 +1,44 @@
+plant def Color_Sensor(controllable c_notify):
+  uncontrollable u_detected_RED, u_detected_BLUE, u_detected_YELLOW, u_detected_GREEN, u_detected_BLACK, u_detected_WHITE;
+  disc color detected_color = UNDEFINED;
+
+    location Receive_color:
+      initial; marked;
+      edge c_notify                do detected_color := UNDEFINED  goto Wait_for_Reply;
+
+    location Wait_for_Reply:
+      edge u_detected_RED           do detected_color := RED    goto Receive_color;
+
+      edge u_detected_BLUE          do detected_color := BLUE   goto Receive_color;
+
+      edge u_detected_YELLOW        do detected_color := YELLOW goto Receive_color;
+
+      edge u_detected_GREEN         do detected_color := GREEN  goto Receive_color;
+
+      edge u_detected_BLACK         do detected_color := BLACK  goto Receive_color;
+
+      edge u_detected_WHITE         do detected_color := WHITE  goto Receive_color;
+
+end
+
+//plant def Color_Changing(alg color load_pos_color, unload_pos_1_color, unload_pos_2_color):
+//  controllable c_change_color_to_load_pos_color, c_change_color_to_unload_pos_1_color, c_change_color_to_unload_pos_2_color;
+//  disc color req_color = UNDEFINED;
+//
+//    location Change_Color:
+//      initial; marked;
+//      edge c_change_color_to_load_pos_color         when req_color != load_pos_color        do req_color := load_pos_color;
+//      edge c_change_color_to_unload_pos_1_color     when req_color != unload_pos_1_color    do req_color := unload_pos_1_color;
+//      edge c_change_color_to_unload_pos_2_color     when req_color != unload_pos_2_color    do req_color := unload_pos_2_color;
+//
+//end
+
+plant def Color_Sending(alg color req_color):
+  controllable c_notify;
+
+    location Send:
+      initial; marked;
+      edge c_notify;
+
+end
+

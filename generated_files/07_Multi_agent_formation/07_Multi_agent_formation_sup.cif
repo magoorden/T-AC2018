@@ -1,0 +1,291 @@
+uncontrollable tau_1;
+uncontrollable tau_2;
+controllable R1_e01;
+controllable R1_e03;
+controllable R1_e05;
+controllable R1_e07;
+controllable R1_e09;
+controllable R1_e11;
+controllable R1_e13;
+controllable R1_e15;
+controllable R1_e17;
+controllable R1_e19;
+controllable R2_e01;
+controllable R2_e03;
+controllable R2_e05;
+controllable R2_e07;
+controllable R2_e09;
+controllable R2_e11;
+controllable R2_e13;
+controllable R2_e15;
+controllable R2_e17;
+controllable R2_e19;
+controllable R3_e01;
+controllable R3_e03;
+controllable R3_e05;
+controllable R3_e07;
+controllable R3_e09;
+controllable R3_e11;
+controllable R3_e13;
+controllable R3_e15;
+controllable R3_e17;
+controllable R3_e19;
+plant automaton R1:
+  location l0:
+    initial;
+    edge R1_e01 goto l1;
+  location l1:
+    marked;
+    edge R1_e03 goto l2;
+  location l2:
+    marked;
+    edge R1_e05 goto l3;
+  location l3:
+    marked;
+    edge R1_e07 goto l4;
+  location l4:
+    marked;
+    edge R1_e09 goto l5;
+  location l5:
+    marked;
+    edge R1_e11 goto l6;
+  location l6:
+    marked;
+    edge R1_e13 goto l7;
+  location l7:
+    marked;
+    edge R1_e15 goto l8;
+  location l8:
+    marked;
+    edge R1_e17 goto l9;
+  location l9:
+    marked;
+    edge R1_e19 goto l1;
+end
+plant automaton R2:
+  location l0:
+    initial;
+    edge R2_e01 goto l1;
+  location l1:
+    marked;
+    edge R2_e03 goto l2;
+  location l2:
+    marked;
+    edge R2_e05 goto l3;
+  location l3:
+    marked;
+    edge R2_e07 goto l4;
+  location l4:
+    marked;
+    edge R2_e09 goto l5;
+  location l5:
+    marked;
+    edge R2_e11 goto l6;
+  location l6:
+    marked;
+    edge R2_e13 goto l7;
+  location l7:
+    marked;
+    edge R2_e15 goto l8;
+  location l8:
+    marked;
+    edge R2_e17 goto l9;
+  location l9:
+    marked;
+    edge R2_e19 goto l1;
+end
+plant automaton R3:
+  location l0:
+    initial;
+    edge R3_e01 goto l1;
+  location l1:
+    marked;
+    edge R3_e03 goto l2;
+  location l2:
+    marked;
+    edge R3_e05 goto l3;
+  location l3:
+    marked;
+    edge R3_e07 goto l4;
+  location l4:
+    marked;
+    edge R3_e09 goto l5;
+  location l5:
+    marked;
+    edge R3_e11 goto l6;
+  location l6:
+    marked;
+    edge R3_e13 goto l7;
+  location l7:
+    marked;
+    edge R3_e15 goto l8;
+  location l8:
+    marked;
+    edge R3_e17 goto l9;
+  location l9:
+    marked;
+    edge R3_e19 goto l1;
+end
+plant automaton t:
+  location:
+    initial;
+    marked;
+    edge tau_1 when R1.l3 and R2.l6 and R3.l9 or R1.l6 and R2.l9 and R3.l3 or R1.l9 and R2.l3 and R3.l6;
+    edge tau_2 when R1.l2 and R2.l3 and R3.l4 or R1.l4 and R2.l5 and R3.l6 or R1.l6 and R2.l7 and R3.l8;
+end
+supervisor automaton dep_3:
+  location l0:
+    initial;
+    marked;
+    edge R3_e01 goto l1;
+  location l1:
+    marked;
+    edge R2_e01 goto l0;
+end
+supervisor automaton dep_2:
+  location l0:
+    initial;
+    marked;
+    edge R2_e01 goto l1;
+  location l1:
+    marked;
+    edge R1_e01 goto l0;
+end
+supervisor automaton dep_1:
+  location l0:
+    initial;
+    marked;
+    edge R1_e01 goto l1;
+  location l1:
+    marked;
+    edge R3_e19;
+end
+supervisor automaton mut_ex_l2:
+  location l0:
+    initial;
+    marked;
+    edge R1_e03, R2_e03, R3_e03 goto l1;
+  location l1:
+    marked;
+    edge R1_e05, R2_e05, R3_e05 goto l0;
+end
+supervisor automaton mut_ex_l3:
+  location l0:
+    initial;
+    marked;
+    edge R1_e05, R2_e05, R3_e05 goto l1;
+  location l1:
+    marked;
+    edge R1_e07, R2_e07, R3_e07 goto l0;
+end
+supervisor automaton mut_ex_l4:
+  location l0:
+    initial;
+    marked;
+    edge R1_e07, R2_e07, R3_e07 goto l1;
+  location l1:
+    marked;
+    edge R1_e09, R2_e09, R3_e09 goto l0;
+end
+supervisor automaton mut_ex_l5:
+  location l0:
+    initial;
+    marked;
+    edge R1_e09, R2_e09, R3_e09 goto l1;
+  location l1:
+    marked;
+    edge R1_e11, R2_e11, R3_e11 goto l0;
+end
+supervisor automaton mut_ex_l6:
+  location l0:
+    initial;
+    marked;
+    edge R1_e11, R2_e11, R3_e11 goto l1;
+  location l1:
+    marked;
+    edge R1_e13, R2_e13, R3_e13 goto l0;
+end
+supervisor automaton mut_ex_l7:
+  location l0:
+    initial;
+    marked;
+    edge R1_e13, R2_e13, R3_e13 goto l1;
+  location l1:
+    marked;
+    edge R1_e15, R2_e15, R3_e15 goto l0;
+end
+supervisor automaton mut_ex_l8:
+  location l0:
+    initial;
+    marked;
+    edge R1_e15, R2_e15, R3_e15 goto l1;
+  location l1:
+    marked;
+    edge R1_e17, R2_e17, R3_e17 goto l0;
+end
+supervisor automaton mut_ex_l9:
+  location l0:
+    initial;
+    marked;
+    edge R1_e17, R2_e17, R3_e17 goto l1;
+  location l1:
+    marked;
+    edge R1_e19, R2_e19, R3_e19 goto l0;
+end
+supervisor automaton mut_ex_l1:
+  location l0:
+    initial;
+    marked;
+    edge R1_e01, R1_e19, R2_e01, R2_e19, R3_e01, R3_e19 goto l1;
+  location l1:
+    marked;
+    edge R1_e03, R2_e03, R3_e03 goto l0;
+end
+supervisor automaton invariance:
+  location l0:
+    initial;
+    edge tau_1, tau_2 goto l1;
+    edge R1_e01, R1_e03, R1_e05, R1_e07, R1_e09, R1_e11, R1_e13, R1_e15, R1_e17, R1_e19;
+    edge R2_e01, R2_e03, R2_e05, R2_e07, R2_e09, R2_e11, R2_e13, R2_e15, R2_e17, R2_e19;
+    edge R3_e01, R3_e03, R3_e05, R3_e07, R3_e09, R3_e11, R3_e13, R3_e15, R3_e17, R3_e19;
+  location l1:
+    marked;
+    edge tau_1, tau_2;
+end
+supervisor automaton sup:
+  alphabet R1_e01, R1_e03, R1_e05, R1_e07, R1_e09, R1_e11, R1_e13, R1_e15, R1_e17, R1_e19, R2_e01, R2_e03, R2_e05, R2_e07, R2_e09, R2_e11, R2_e13, R2_e15, R2_e17, R2_e19, R3_e01, R3_e03, R3_e05, R3_e07, R3_e09, R3_e11, R3_e13, R3_e15, R3_e17, R3_e19;
+  location:
+    initial;
+    marked;
+    edge R1_e01 when true;
+    edge R1_e03 when true;
+    edge R1_e05 when true;
+    edge R1_e07 when true;
+    edge R1_e09 when true;
+    edge R1_e11 when true;
+    edge R1_e13 when true;
+    edge R1_e15 when true;
+    edge R1_e17 when true;
+    edge R1_e19 when true;
+    edge R2_e01 when true;
+    edge R2_e03 when true;
+    edge R2_e05 when true;
+    edge R2_e07 when true;
+    edge R2_e09 when true;
+    edge R2_e11 when true;
+    edge R2_e13 when true;
+    edge R2_e15 when true;
+    edge R2_e17 when true;
+    edge R2_e19 when true;
+    edge R3_e01 when true;
+    edge R3_e03 when true;
+    edge R3_e05 when true;
+    edge R3_e07 when true;
+    edge R3_e09 when true;
+    edge R3_e11 when true;
+    edge R3_e13 when true;
+    edge R3_e15 when true;
+    edge R3_e17 when true;
+    edge R3_e19 when true;
+end
+marked R1.l3 and R2.l6 and R3.l9 or R1.l6 and R2.l9 and R3.l3 or R1.l9 and R2.l3 and R3.l6 or (R1.l2 and R2.l3 and R3.l4 or R1.l4 and R2.l5 and R3.l6 or R1.l6 and R2.l7 and R3.l8);

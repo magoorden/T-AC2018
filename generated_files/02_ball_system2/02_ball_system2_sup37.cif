@@ -1,0 +1,420 @@
+controllable em_timer_measure_start;
+controllable em_timer_before_put_start;
+controllable em_timer_putting_start;
+controllable em_timer_before_up_start;
+controllable em_timer_before_ballcheck_start;
+controllable es_timer_before_up_start;
+controllable es_timer_before_deput_start;
+controllable es_timer_before_ballcheck_start;
+uncontrollable em_timer_measure_timeout;
+uncontrollable em_timer_before_put_timeout;
+uncontrollable em_timer_putting_timeout;
+uncontrollable em_timer_before_up_timeout;
+uncontrollable em_timer_before_ballcheck_timeout;
+uncontrollable es_timer_before_up_timeout;
+uncontrollable es_timer_before_deput_timeout;
+uncontrollable es_timer_before_ballcheck_timeout;
+controllable em_go_up;
+controllable em_go_down;
+uncontrollable em_is_up;
+uncontrollable em_is_down;
+controllable gk_in_go_in;
+controllable gk_in_go_out;
+controllable gk_in_is_in;
+controllable gk_in_is_out;
+controllable gk_out_go_in;
+controllable gk_out_go_out;
+controllable gk_out_is_in;
+controllable gk_out_is_out;
+controllable em_putter_go_in;
+controllable em_putter_go_out;
+controllable em_putter_is_in;
+controllable em_putter_is_out;
+controllable mode_automatic;
+controllable mode_manual;
+uncontrollable button_automatic_pressed;
+uncontrollable button_automatic_released;
+uncontrollable button_manual_pressed;
+uncontrollable button_manual_released;
+uncontrollable em_has_ball;
+controllable arm_allocate_lower_buffer;
+controllable arm_allocate_upper_buffer;
+controllable em_measure_start;
+controllable em_measure_allocate_station;
+controllable em_measure_go_out;
+controllable em_measure_go_in;
+controllable em_measure_release_station;
+controllable em_large_ball;
+controllable em_small_ball;
+controllable em_measure_finished;
+controllable es_allocate_upper_buffer;
+controllable arm_release_upper_buffer;
+controllable arm_lower_upper_buffer;
+controllable arm_raise_upper_buffer;
+controllable es_release_upper_buffer;
+controllable es_deput_ball_upper;
+controllable es_put_ball_upper;
+controllable gk_enter_ball;
+controllable gk_has_ball;
+controllable gk_ball_out_of_gatekeeper;
+controllable em_enter_ball;
+controllable gk_release_ball;
+controllable es_allocate_lower_buffer;
+controllable arm_release_lower_buffer;
+controllable arm_lower_lower_buffer;
+controllable arm_raise_lower_buffer;
+controllable es_release_lower_buffer;
+controllable es_deput_ball_lower;
+controllable es_put_ball_lower;
+controllable em_measure_has_ball;
+controllable es_enter_ball;
+controllable em_elevator_allocate_station;
+controllable em_elevator_release_station;
+controllable em_putter_start;
+controllable em_measure_has_no_ball;
+controllable em_putter_finished;
+controllable em_ball_out_of_measure_station;
+controllable es_got_ball;
+controllable is_large_ball;
+controllable is_small_ball;
+controllable es_up_upper;
+controllable es_up_lower;
+controllable es_go_down;
+controllable es_is_not_down;
+controllable es_upper_putter_go_in;
+controllable es_upper_putter_go_out;
+controllable es_lower_putter_go_in;
+controllable es_lower_putter_go_out;
+controllable es_is_upper;
+controllable es_is_lower;
+controllable es_no_ball_upper_level;
+controllable es_no_ball_lower_level;
+controllable es_ball_upper_level;
+controllable es_ball_lower_level;
+controllable em_putter_allocate_station;
+controllable em_putter_release_station;
+plant automaton es_timer_before_up:
+  location q0:
+    initial;
+    marked;
+    edge es_timer_before_up_start goto q1;
+  location q1:
+    edge es_timer_before_up_timeout goto q0;
+    edge es_timer_before_up_start;
+end
+plant automaton es_timer_before_deput:
+  location q0:
+    initial;
+    marked;
+    edge es_timer_before_deput_start goto q1;
+  location q1:
+    edge es_timer_before_deput_timeout goto q0;
+    edge es_timer_before_deput_start;
+end
+plant automaton es_timer_before_ballcheck:
+  location q0:
+    initial;
+    marked;
+    edge es_timer_before_ballcheck_start goto q1;
+  location q1:
+    edge es_timer_before_ballcheck_timeout goto q0;
+    edge es_timer_before_ballcheck_start;
+end
+plant automaton P10:
+  location:
+    initial;
+    marked;
+    edge es_allocate_upper_buffer;
+end
+plant automaton P14:
+  location:
+    initial;
+    marked;
+    edge es_release_upper_buffer;
+end
+plant automaton p23:
+  location:
+    initial;
+    marked;
+    edge es_allocate_lower_buffer;
+end
+plant automaton p27:
+  location:
+    initial;
+    marked;
+    edge es_release_lower_buffer;
+end
+plant automaton p31:
+  location:
+    initial;
+    marked;
+    edge es_enter_ball;
+end
+plant automaton p38:
+  location:
+    initial;
+    marked;
+    edge es_got_ball;
+end
+plant automaton p39:
+  location:
+    initial;
+    marked;
+    edge is_large_ball;
+end
+plant automaton p40:
+  location:
+    initial;
+    marked;
+    edge is_small_ball;
+end
+plant automaton p41:
+  location:
+    initial;
+    marked;
+    edge es_up_upper;
+end
+plant automaton p42:
+  location:
+    initial;
+    marked;
+    edge es_up_lower;
+end
+plant automaton p43:
+  location:
+    initial;
+    marked;
+    edge es_go_down;
+end
+plant automaton p45:
+  location:
+    initial;
+    marked;
+    edge es_upper_putter_go_in;
+end
+plant automaton p46:
+  location:
+    initial;
+    marked;
+    edge es_upper_putter_go_out;
+end
+plant automaton p47:
+  location:
+    initial;
+    marked;
+    edge es_lower_putter_go_in;
+end
+plant automaton p48:
+  location:
+    initial;
+    marked;
+    edge es_lower_putter_go_out;
+end
+plant automaton p49:
+  location:
+    initial;
+    marked;
+    edge es_is_upper;
+end
+plant automaton p50:
+  location:
+    initial;
+    marked;
+    edge es_is_lower;
+end
+plant automaton p51:
+  location:
+    initial;
+    marked;
+    edge es_no_ball_upper_level;
+end
+plant automaton p52:
+  location:
+    initial;
+    marked;
+    edge es_no_ball_lower_level;
+end
+plant automaton p53:
+  location:
+    initial;
+    marked;
+    edge es_ball_upper_level;
+end
+plant automaton p54:
+  location:
+    initial;
+    marked;
+    edge es_ball_lower_level;
+end
+supervisor automaton Elevator_and_sort:
+  location q_0:
+    initial;
+    marked;
+    edge es_enter_ball goto q_0_1;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_0_1:
+    edge es_got_ball goto q_1;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_1:
+    edge es_timer_before_up_start goto q_2;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_2:
+    edge es_timer_before_up_timeout goto q_3;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+  location q_3:
+    edge is_large_ball goto q_4_upper;
+    edge is_small_ball goto q_4_lower;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_4_upper:
+    edge es_up_upper goto q_5_upper;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_5_upper:
+    edge es_is_upper goto q_6_upper;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_6_upper:
+    edge es_timer_before_ballcheck_start goto q_7_upper;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_7_upper:
+    edge es_timer_before_ballcheck_timeout goto q_8_upper_1;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_8_upper_1:
+    edge es_no_ball_upper_level goto q_12;
+    edge es_ball_upper_level goto q_8_upper;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_8_upper:
+    edge es_allocate_upper_buffer goto q_8_upper_2;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_8_upper_2:
+    edge es_upper_putter_go_out goto q_9_upper;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_9_upper:
+    edge es_timer_before_deput_start goto q_10_upper;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_10_upper:
+    edge es_timer_before_deput_timeout goto q_11_upper;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_up_timeout;
+  location q_11_upper:
+    edge es_upper_putter_go_in goto q_11_upper_1;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_11_upper_1:
+    edge es_release_upper_buffer goto q_12;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_4_lower:
+    edge es_up_lower goto q_5_lower;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_5_lower:
+    edge es_is_lower goto q_6_lower;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_6_lower:
+    edge es_timer_before_ballcheck_start goto q_7_lower;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_7_lower:
+    edge es_timer_before_ballcheck_timeout goto q_8_lower_1;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_8_lower_1:
+    edge es_no_ball_lower_level goto q_12;
+    edge es_ball_lower_level goto q_8_lower;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_8_lower:
+    edge es_allocate_lower_buffer goto q_8_lower_2;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_8_lower_2:
+    edge es_lower_putter_go_out goto q_9_lower;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_9_lower:
+    edge es_timer_before_deput_start goto q_10_lower;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_10_lower:
+    edge es_timer_before_deput_timeout goto q_11_lower;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_up_timeout;
+  location q_11_lower:
+    edge es_lower_putter_go_in goto q_11_lower_1;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_11_lower_1:
+    edge es_release_lower_buffer goto q_12;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+  location q_12:
+    edge es_go_down goto q_0;
+    edge es_timer_before_ballcheck_timeout;
+    edge es_timer_before_deput_timeout;
+    edge es_timer_before_up_timeout;
+end
+supervisor automaton sup37:
+  alphabet es_timer_before_up_start, es_timer_before_deput_start, es_timer_before_ballcheck_start, es_allocate_upper_buffer, es_release_upper_buffer, es_allocate_lower_buffer, es_release_lower_buffer, es_enter_ball, es_got_ball, is_large_ball, is_small_ball, es_up_upper, es_up_lower, es_go_down, es_upper_putter_go_in, es_upper_putter_go_out, es_lower_putter_go_in, es_lower_putter_go_out, es_is_upper, es_is_lower, es_no_ball_upper_level, es_no_ball_lower_level, es_ball_upper_level, es_ball_lower_level;
+  location:
+    initial;
+    marked;
+    edge es_allocate_lower_buffer when true;
+    edge es_allocate_upper_buffer when true;
+    edge es_ball_lower_level when true;
+    edge es_ball_upper_level when true;
+    edge es_enter_ball when true;
+    edge es_go_down when true;
+    edge es_got_ball when true;
+    edge es_is_lower when true;
+    edge es_is_upper when true;
+    edge es_lower_putter_go_in when true;
+    edge es_lower_putter_go_out when true;
+    edge es_no_ball_lower_level when true;
+    edge es_no_ball_upper_level when true;
+    edge es_release_lower_buffer when true;
+    edge es_release_upper_buffer when true;
+    edge es_timer_before_ballcheck_start when true;
+    edge es_timer_before_deput_start when true;
+    edge es_timer_before_up_start when true;
+    edge es_up_lower when true;
+    edge es_up_upper when true;
+    edge es_upper_putter_go_in when true;
+    edge es_upper_putter_go_out when true;
+    edge is_large_ball when true;
+    edge is_small_ball when true;
+end

@@ -1,0 +1,128 @@
+uncontrollable brake_sensor_u_on;
+uncontrollable brake_sensor_u_off;
+controllable CC_enabled_c_enable;
+controllable CC_enabled_c_disable;
+controllable CC_active_c_activate;
+controllable CC_active_c_deactivate;
+controllable set_speed_c_on;
+controllable set_speed_c_off;
+controllable increase_c_on;
+controllable increase_c_off;
+controllable decrease_c_on;
+controllable decrease_c_off;
+controllable resume_c_on;
+controllable resume_c_off;
+controllable mode_c_on;
+controllable mode_c_off;
+controllable cancel_c_on;
+controllable cancel_c_off;
+controllable erase_set_speed_c_on;
+controllable erase_set_speed_c_off;
+controllable timer_180_CC_c_start;
+controllable timer_180_CC_c_cancel;
+controllable timer_180_CC_c_reset;
+uncontrollable timer_180_CC_u_timeout;
+controllable timerdecrease_c_start;
+controllable timerdecrease_c_cancel;
+controllable timerdecrease_c_reset;
+uncontrollable timerdecrease_u_timeout;
+controllable timerincrease_c_start;
+controllable timerincrease_c_cancel;
+controllable timerincrease_c_reset;
+uncontrollable timerincrease_u_timeout;
+uncontrollable obs_min_v_activate_u_above_30;
+uncontrollable obs_min_v_activate_u_below_30;
+uncontrollable obs_min_v_deactivate_u_above_25;
+uncontrollable obs_min_v_deactivate_u_below_25;
+uncontrollable obs_max_speed_u_above_max;
+uncontrollable obs_max_speed_u_below_max;
+uncontrollable obs_overtake_throttle_u_on;
+uncontrollable obs_overtake_throttle_u_off;
+uncontrollable obs_set_speed_u_speed_set;
+uncontrollable obs_set_speed_u_speed_erased;
+uncontrollable obs_min_set_speed_u_above_30;
+uncontrollable obs_min_set_speed_u_below_30;
+controllable ACC_active_c_activate;
+controllable ACC_active_c_deactivate;
+controllable time_gap_c_on;
+controllable time_gap_c_off;
+uncontrollable radar_u_on;
+uncontrollable radar_u_off;
+uncontrollable radar_reliable_u_reliable;
+uncontrollable radar_reliable_u_unreliable;
+uncontrollable obs_higher_speed_u_higher;
+uncontrollable obs_higher_speed_u_not_higher;
+uncontrollable CC_enable_button_u_pushed;
+uncontrollable CC_enable_button_u_released;
+uncontrollable ACC_time_gap_button_u_pushed;
+uncontrollable ACC_time_gap_button_u_released;
+uncontrollable CC_lever_u_forward_on;
+uncontrollable CC_lever_u_forward_off;
+uncontrollable CC_lever_u_backward_on;
+uncontrollable CC_lever_u_backward_off;
+uncontrollable CC_lever_u_down_on;
+uncontrollable CC_lever_u_down_off;
+uncontrollable CC_lever_u_up_on;
+uncontrollable CC_lever_u_up_off;
+controllable mode_observer_c_reset;
+plant automaton timerdecrease:
+  location idle:
+    initial;
+    marked;
+    edge timerdecrease_c_start goto started;
+  location started:
+    edge timerdecrease_u_timeout goto timedout;
+    edge timerdecrease_c_cancel goto idle;
+  location timedout:
+    edge timerdecrease_c_reset goto idle;
+end
+plant automaton timerincrease:
+  location idle:
+    initial;
+    marked;
+    edge timerincrease_c_start goto started;
+  location started:
+    edge timerincrease_u_timeout goto timedout;
+    edge timerincrease_c_cancel goto idle;
+  location timedout:
+    edge timerincrease_c_reset goto idle;
+end
+plant automaton CC_lever:
+  location nothing_on:
+    initial;
+    marked;
+    edge CC_lever_u_forward_on goto forward_on;
+    edge CC_lever_u_backward_on goto backward_on;
+    edge CC_lever_u_down_on goto down_on;
+    edge CC_lever_u_up_on goto up_on;
+  location down_on:
+    edge CC_lever_u_down_off goto nothing_on;
+    edge CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_backward_on, CC_lever_u_backward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location forward_on:
+    edge CC_lever_u_forward_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_backward_on, CC_lever_u_backward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location backward_on:
+    edge CC_lever_u_backward_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location up_on:
+    edge CC_lever_u_up_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_backward_on, CC_lever_u_backward_off;
+end
+supervisor automaton sup42:
+  alphabet timerdecrease_c_start, timerdecrease_c_cancel, timerdecrease_c_reset, timerincrease_c_start, timerincrease_c_cancel, timerincrease_c_reset;
+  location:
+    initial;
+    marked;
+    edge timerdecrease_c_cancel when true;
+    edge timerdecrease_c_reset when true;
+    edge timerdecrease_c_start when true;
+    edge timerincrease_c_cancel when true;
+    edge timerincrease_c_reset when true;
+    edge timerincrease_c_start when true;
+end
+requirement invariant timerdecrease_c_start needs CC_lever.down_on;
+requirement invariant timerdecrease_c_cancel needs CC_lever.nothing_on;
+requirement invariant timerdecrease_c_reset needs CC_lever.nothing_on;
+requirement invariant timerincrease_c_start needs CC_lever.up_on;
+requirement invariant timerincrease_c_cancel needs CC_lever.nothing_on;
+requirement invariant timerincrease_c_reset needs CC_lever.nothing_on;

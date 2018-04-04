@@ -1,0 +1,1787 @@
+uncontrollable S_product1_u_on;
+uncontrollable S_product1_u_off;
+uncontrollable S_product2_u_on;
+uncontrollable S_product2_u_off;
+uncontrollable S_product3_u_on;
+uncontrollable S_product3_u_off;
+uncontrollable S_pusher1_in_u_on;
+uncontrollable S_pusher1_in_u_off;
+uncontrollable S_pusher1_out_u_on;
+uncontrollable S_pusher1_out_u_off;
+uncontrollable S_stack1_filled_u_on;
+uncontrollable S_stack1_filled_u_off;
+uncontrollable S_pusher2_in_u_on;
+uncontrollable S_pusher2_in_u_off;
+uncontrollable S_pusher2_out_u_on;
+uncontrollable S_pusher2_out_u_off;
+uncontrollable S_stack2_filled_u_on;
+uncontrollable S_stack2_filled_u_off;
+uncontrollable S_pusher3_in_u_on;
+uncontrollable S_pusher3_in_u_off;
+uncontrollable S_pusher3_out_u_on;
+uncontrollable S_pusher3_out_u_off;
+uncontrollable S_stack3_filled_u_on;
+uncontrollable S_stack3_filled_u_off;
+uncontrollable S_Dinitialized_u_on;
+uncontrollable S_Dinitialized_u_off;
+uncontrollable S_handlingbusy_u_on;
+uncontrollable S_handlingbusy_u_off;
+uncontrollable A_pusher1_c_on;
+uncontrollable A_pusher1_c_off;
+uncontrollable A_pusher2_c_on;
+uncontrollable A_pusher2_c_off;
+uncontrollable A_pusher3_c_on;
+uncontrollable A_pusher3_c_off;
+uncontrollable S_product4_u_on;
+uncontrollable S_product4_u_off;
+uncontrollable S_xpos_at1_u_on;
+uncontrollable S_xpos_at1_u_off;
+uncontrollable S_xpos_at2_u_on;
+uncontrollable S_xpos_at2_u_off;
+uncontrollable S_xpos_at3_u_on;
+uncontrollable S_xpos_at3_u_off;
+uncontrollable S_xpos_atdrop_u_on;
+uncontrollable S_xpos_atdrop_u_off;
+uncontrollable S_zpos_atup_u_on;
+uncontrollable S_zpos_atup_u_off;
+uncontrollable S_zpos_atdown_u_on;
+uncontrollable S_zpos_atdown_u_off;
+uncontrollable S_gripper_u_on;
+uncontrollable S_gripper_u_off;
+uncontrollable S_transfer_atpickup_u_on;
+uncontrollable S_transfer_atpickup_u_off;
+uncontrollable S_transfer_atdrop_u_on;
+uncontrollable S_transfer_atdrop_u_off;
+uncontrollable S_transfer_athalfway_u_on;
+uncontrollable S_transfer_athalfway_u_off;
+uncontrollable S_vacuum_u_on;
+uncontrollable S_vacuum_u_off;
+uncontrollable S_Hinitialized_u_on;
+uncontrollable S_Hinitialized_u_off;
+uncontrollable S_testingbusy_u_on;
+uncontrollable S_testingbusy_u_off;
+uncontrollable A_x2distributing_c_on;
+uncontrollable A_x2distributing_c_off;
+uncontrollable A_x2testing_c_on;
+uncontrollable A_x2testing_c_off;
+uncontrollable A_zdown_c_on;
+uncontrollable A_zdown_c_off;
+uncontrollable A_gripperclose_c_on;
+uncontrollable A_gripperclose_c_off;
+uncontrollable A_transfer2pickpos_c_on;
+uncontrollable A_transfer2pickpos_c_off;
+uncontrollable A_transfer2droppos_c_on;
+uncontrollable A_transfer2droppos_c_off;
+uncontrollable A_vacuum_c_on;
+uncontrollable A_vacuum_c_off;
+uncontrollable A_ejectpulse_c_on;
+uncontrollable A_ejectpulse_c_off;
+uncontrollable A_handlingready_c_on;
+uncontrollable A_handlingready_c_off;
+uncontrollable S_elevator_up_u_on;
+uncontrollable S_elevator_up_u_off;
+uncontrollable S_elevator_down_u_on;
+uncontrollable S_elevator_down_u_off;
+uncontrollable S_pusher_u_on;
+uncontrollable S_pusher_u_off;
+uncontrollable S_opticalT_u_on;
+uncontrollable S_opticalT_u_off;
+uncontrollable S_capacitive_u_on;
+uncontrollable S_capacitive_u_off;
+uncontrollable S_reflective_u_on;
+uncontrollable S_reflective_u_off;
+uncontrollable S_productheight_u_on;
+uncontrollable S_productheight_u_off;
+uncontrollable S_bufferingbusy_u_on;
+uncontrollable S_bufferingbusy_u_off;
+uncontrollable S_Tinitialized_u_on;
+uncontrollable S_Tinitialized_u_off;
+uncontrollable A_elevator_up_c_on;
+uncontrollable A_elevator_up_c_off;
+uncontrollable A_elevator_down_c_on;
+uncontrollable A_elevator_down_c_off;
+uncontrollable A_pusher_c_on;
+uncontrollable A_pusher_c_off;
+uncontrollable A_airslide_c_on;
+uncontrollable A_airslide_c_off;
+uncontrollable A_testingready_c_on;
+uncontrollable A_testingready_c_off;
+uncontrollable TTimer_c_on;
+uncontrollable TTimer_c_reset;
+uncontrollable TTimer_u_timeout;
+uncontrollable S_atin_u_on;
+uncontrollable S_atin_u_off;
+uncontrollable S_atseparator_u_on;
+uncontrollable S_atseparator_u_off;
+uncontrollable S_atend_u_on;
+uncontrollable S_atend_u_off;
+uncontrollable S_separator_opened_u_on;
+uncontrollable S_separator_opened_u_off;
+uncontrollable S_separator_closed_u_on;
+uncontrollable S_separator_closed_u_off;
+uncontrollable S_processingbusy_u_on;
+uncontrollable S_processingbusy_u_off;
+uncontrollable S_Binitialized_u_on;
+uncontrollable S_Binitialized_u_off;
+uncontrollable A_separator_c_on;
+uncontrollable A_separator_c_off;
+uncontrollable A_conveyerB_c_on;
+uncontrollable A_conveyerB_c_off;
+uncontrollable A_bufferingready_c_on;
+uncontrollable A_bufferingready_c_off;
+uncontrollable BTimer_c_on;
+uncontrollable BTimer_c_reset;
+uncontrollable BTimer_u_timeout;
+uncontrollable S_atinput_u_on;
+uncontrollable S_atinput_u_off;
+uncontrollable S_attest_u_on;
+uncontrollable S_attest_u_off;
+uncontrollable S_atdrill_u_on;
+uncontrollable S_atdrill_u_off;
+uncontrollable S_atexit_u_on;
+uncontrollable S_atexit_u_off;
+uncontrollable S_atspare_u_on;
+uncontrollable S_atspare_u_off;
+uncontrollable S_clamp_u_on;
+uncontrollable S_clamp_u_off;
+uncontrollable S_test_ok_u_on;
+uncontrollable S_test_ok_u_off;
+uncontrollable S_drill_up_u_on;
+uncontrollable S_drill_up_u_off;
+uncontrollable S_drill_down_u_on;
+uncontrollable S_drill_down_u_off;
+uncontrollable S_turntable_u_on;
+uncontrollable S_turntable_u_off;
+uncontrollable S_sortingbusy_u_on;
+uncontrollable S_sortingbusy_u_off;
+uncontrollable S_Pinitialized_u_on;
+uncontrollable S_Pinitialized_u_off;
+uncontrollable A_drill_c_on;
+uncontrollable A_drill_c_off;
+uncontrollable A_turntable_c_on;
+uncontrollable A_turntable_c_off;
+uncontrollable A_drilldown_c_on;
+uncontrollable A_drilldown_c_off;
+uncontrollable A_drillup_c_on;
+uncontrollable A_drillup_c_off;
+uncontrollable A_clamp_c_on;
+uncontrollable A_clamp_c_off;
+uncontrollable A_tester_c_on;
+uncontrollable A_tester_c_off;
+uncontrollable A_eject_c_on;
+uncontrollable A_eject_c_off;
+uncontrollable A_processingready_c_on;
+uncontrollable A_processingready_c_off;
+uncontrollable Timer_c_on;
+uncontrollable Timer_c_reset;
+uncontrollable Timer_u_timeout;
+uncontrollable S_product_u_on;
+uncontrollable S_product_u_off;
+uncontrollable S_inductive_u_on;
+uncontrollable S_inductive_u_off;
+uncontrollable S_optical_u_on;
+uncontrollable S_optical_u_off;
+uncontrollable S_slidefull_u_on;
+uncontrollable S_slidefull_u_off;
+uncontrollable S_gate1_opened_u_on;
+uncontrollable S_gate1_opened_u_off;
+uncontrollable S_gate1_closed_u_on;
+uncontrollable S_gate1_closed_u_off;
+uncontrollable S_gate2_opened_u_on;
+uncontrollable S_gate2_opened_u_off;
+uncontrollable S_gate2_closed_u_on;
+uncontrollable S_gate2_closed_u_off;
+uncontrollable S_Sinitialized_u_on;
+uncontrollable S_Sinitialized_u_off;
+uncontrollable A_conveyer_c_on;
+uncontrollable A_conveyer_c_off;
+uncontrollable A_gate1_c_on;
+uncontrollable A_gate1_c_off;
+uncontrollable A_gate2_c_on;
+uncontrollable A_gate2_c_off;
+uncontrollable A_stopperretract_c_on;
+uncontrollable A_stopperretract_c_off;
+uncontrollable A_sortingready_c_on;
+uncontrollable A_sortingready_c_off;
+uncontrollable STimer_c_on;
+uncontrollable STimer_c_reset;
+uncontrollable STimer_u_timeout;
+plant automaton S_product1:
+  location On:
+    initial false;
+    marked false;
+    edge S_product1_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_product1_u_on goto On;
+end
+plant automaton S_product2:
+  location On:
+    initial false;
+    marked false;
+    edge S_product2_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_product2_u_on goto On;
+end
+plant automaton S_product3:
+  location On:
+    initial false;
+    marked false;
+    edge S_product3_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_product3_u_on goto On;
+end
+plant automaton S_pusher1_in:
+  location On:
+    initial;
+    marked;
+    edge S_pusher1_in_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_pusher1_in_u_on goto On;
+end
+plant automaton S_pusher1_out:
+  location On:
+    initial false;
+    marked false;
+    edge S_pusher1_out_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_pusher1_out_u_on goto On;
+end
+plant automaton S_stack1_filled:
+  location On:
+    initial;
+    marked;
+    edge S_stack1_filled_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_stack1_filled_u_on goto On;
+end
+plant automaton S_pusher2_in:
+  location On:
+    initial;
+    marked;
+    edge S_pusher2_in_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_pusher2_in_u_on goto On;
+end
+plant automaton S_pusher2_out:
+  location On:
+    initial false;
+    marked false;
+    edge S_pusher2_out_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_pusher2_out_u_on goto On;
+end
+plant automaton S_stack2_filled:
+  location On:
+    initial;
+    marked;
+    edge S_stack2_filled_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_stack2_filled_u_on goto On;
+end
+plant automaton S_pusher3_in:
+  location On:
+    initial;
+    marked;
+    edge S_pusher3_in_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_pusher3_in_u_on goto On;
+end
+plant automaton S_pusher3_out:
+  location On:
+    initial false;
+    marked false;
+    edge S_pusher3_out_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_pusher3_out_u_on goto On;
+end
+plant automaton S_stack3_filled:
+  location On:
+    initial;
+    marked;
+    edge S_stack3_filled_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_stack3_filled_u_on goto On;
+end
+plant automaton S_Dinitialized:
+  location On:
+    initial false;
+    marked false;
+    edge S_Dinitialized_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_Dinitialized_u_on goto On;
+end
+plant automaton S_handlingbusy:
+  location On:
+    initial;
+    marked;
+    edge S_handlingbusy_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_handlingbusy_u_on goto On;
+end
+plant automaton A_pusher1:
+  location On:
+    initial false;
+    marked false;
+    edge A_pusher1_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_pusher1_c_on goto On;
+end
+plant automaton A_pusher2:
+  location On:
+    initial false;
+    marked false;
+    edge A_pusher2_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_pusher2_c_on goto On;
+end
+plant automaton A_pusher3:
+  location On:
+    initial false;
+    marked false;
+    edge A_pusher3_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_pusher3_c_on goto On;
+end
+plant automaton DDynamics1:
+  location:
+    initial;
+    marked;
+    edge S_pusher1_in_u_on when S_pusher1_out.Off;
+    edge S_pusher1_out_u_on when S_pusher1_in.Off;
+end
+plant automaton DDynamics2:
+  location:
+    initial;
+    marked;
+    edge S_pusher2_in_u_on when S_pusher2_out.Off;
+    edge S_pusher2_out_u_on when S_pusher2_in.Off;
+end
+plant automaton DDynamics3:
+  location:
+    initial;
+    marked;
+    edge S_pusher3_in_u_on when S_pusher3_out.Off;
+    edge S_pusher3_out_u_on when S_pusher3_in.Off;
+end
+plant automaton S_product4:
+  location On:
+    initial false;
+    marked false;
+    edge S_product4_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_product4_u_on goto On;
+end
+plant automaton S_xpos_at1:
+  location On:
+    initial false;
+    marked false;
+    edge S_xpos_at1_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_xpos_at1_u_on goto On;
+end
+plant automaton S_xpos_at2:
+  location On:
+    initial false;
+    marked false;
+    edge S_xpos_at2_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_xpos_at2_u_on goto On;
+end
+plant automaton S_xpos_at3:
+  location On:
+    initial false;
+    marked false;
+    edge S_xpos_at3_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_xpos_at3_u_on goto On;
+end
+plant automaton S_xpos_atdrop:
+  location On:
+    initial;
+    marked;
+    edge S_xpos_atdrop_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_xpos_atdrop_u_on goto On;
+end
+plant automaton S_zpos_atup:
+  location On:
+    initial;
+    marked;
+    edge S_zpos_atup_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_zpos_atup_u_on goto On;
+end
+plant automaton S_zpos_atdown:
+  location On:
+    initial false;
+    marked false;
+    edge S_zpos_atdown_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_zpos_atdown_u_on goto On;
+end
+plant automaton S_gripper:
+  location On:
+    initial false;
+    marked false;
+    edge S_gripper_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_gripper_u_on goto On;
+end
+plant automaton S_transfer_atpickup:
+  location On:
+    initial false;
+    marked false;
+    edge S_transfer_atpickup_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_transfer_atpickup_u_on goto On;
+end
+plant automaton S_transfer_atdrop:
+  location On:
+    initial false;
+    marked false;
+    edge S_transfer_atdrop_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_transfer_atdrop_u_on goto On;
+end
+plant automaton S_transfer_athalfway:
+  location On:
+    initial;
+    marked;
+    edge S_transfer_athalfway_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_transfer_athalfway_u_on goto On;
+end
+plant automaton S_vacuum:
+  location On:
+    initial false;
+    marked false;
+    edge S_vacuum_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_vacuum_u_on goto On;
+end
+plant automaton S_Hinitialized:
+  location On:
+    initial false;
+    marked false;
+    edge S_Hinitialized_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_Hinitialized_u_on goto On;
+end
+plant automaton S_testingbusy:
+  location On:
+    initial;
+    marked;
+    edge S_testingbusy_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_testingbusy_u_on goto On;
+end
+plant automaton A_x2distributing:
+  location On:
+    initial;
+    marked;
+    edge A_x2distributing_c_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge A_x2distributing_c_on goto On;
+end
+plant automaton A_x2testing:
+  location On:
+    initial;
+    marked;
+    edge A_x2testing_c_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge A_x2testing_c_on goto On;
+end
+plant automaton A_zdown:
+  location On:
+    initial false;
+    marked false;
+    edge A_zdown_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_zdown_c_on goto On;
+end
+plant automaton A_gripperclose:
+  location On:
+    initial false;
+    marked false;
+    edge A_gripperclose_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_gripperclose_c_on goto On;
+end
+plant automaton A_transfer2pickpos:
+  location On:
+    initial false;
+    marked;
+    edge A_transfer2pickpos_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_transfer2pickpos_c_on goto On;
+end
+plant automaton A_transfer2droppos:
+  location On:
+    initial false;
+    marked;
+    edge A_transfer2droppos_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_transfer2droppos_c_on goto On;
+end
+plant automaton A_vacuum:
+  location On:
+    initial false;
+    marked false;
+    edge A_vacuum_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_vacuum_c_on goto On;
+end
+plant automaton A_ejectpulse:
+  location On:
+    initial false;
+    marked false;
+    edge A_ejectpulse_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_ejectpulse_c_on goto On;
+end
+plant automaton A_handlingready:
+  location On:
+    initial false;
+    marked false;
+    edge A_handlingready_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_handlingready_c_on goto On;
+end
+plant automaton HDynamics1:
+  location:
+    initial;
+    marked;
+    edge S_xpos_at1_u_on when S_xpos_at2.Off and S_xpos_at3.Off and S_xpos_atdrop.Off;
+    edge S_xpos_at2_u_on when S_xpos_at1.Off and S_xpos_at3.Off and S_xpos_atdrop.Off;
+    edge S_xpos_at3_u_on when S_xpos_at1.Off and S_xpos_at2.Off and S_xpos_atdrop.Off;
+    edge S_xpos_atdrop_u_on when S_xpos_at1.Off and S_xpos_at2.Off and S_xpos_at3.Off;
+end
+plant automaton HDynamics3:
+  location:
+    initial;
+    marked;
+    edge S_zpos_atup_u_on when S_zpos_atdown.Off;
+    edge S_zpos_atdown_u_on when S_zpos_atup.Off;
+end
+plant automaton HDynamics2:
+  location:
+    initial;
+    marked;
+    edge S_transfer_atpickup_u_on when S_transfer_atdrop.Off and S_transfer_athalfway.Off;
+    edge S_transfer_atdrop_u_on when S_transfer_atpickup.Off and S_transfer_athalfway.Off;
+    edge S_transfer_athalfway_u_on when S_transfer_atdrop.Off and S_transfer_atpickup.Off;
+end
+plant automaton S_elevator_up:
+  location On:
+    initial false;
+    marked false;
+    edge S_elevator_up_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_elevator_up_u_on goto On;
+end
+plant automaton S_elevator_down:
+  location On:
+    initial;
+    marked;
+    edge S_elevator_down_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_elevator_down_u_on goto On;
+end
+plant automaton S_pusher:
+  location On:
+    initial false;
+    marked false;
+    edge S_pusher_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_pusher_u_on goto On;
+end
+plant automaton S_opticalT:
+  location On:
+    initial false;
+    marked false;
+    edge S_opticalT_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_opticalT_u_on goto On;
+end
+plant automaton S_capacitive:
+  location On:
+    initial false;
+    marked false;
+    edge S_capacitive_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_capacitive_u_on goto On;
+end
+plant automaton S_reflective:
+  location On:
+    initial false;
+    marked false;
+    edge S_reflective_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_reflective_u_on goto On;
+end
+plant automaton S_productheight:
+  location On:
+    initial false;
+    marked false;
+    edge S_productheight_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_productheight_u_on goto On;
+end
+plant automaton S_bufferingbusy:
+  location On:
+    initial;
+    marked;
+    edge S_bufferingbusy_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_bufferingbusy_u_on goto On;
+end
+plant automaton S_Tinitialized:
+  location On:
+    initial false;
+    marked false;
+    edge S_Tinitialized_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_Tinitialized_u_on goto On;
+end
+plant automaton A_elevator_up:
+  location On:
+    initial false;
+    marked false;
+    edge A_elevator_up_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_elevator_up_c_on goto On;
+end
+plant automaton A_elevator_down:
+  location On:
+    initial;
+    marked;
+    edge A_elevator_down_c_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge A_elevator_down_c_on goto On;
+end
+plant automaton A_pusher:
+  location On:
+    initial false;
+    marked false;
+    edge A_pusher_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_pusher_c_on goto On;
+end
+plant automaton A_airslide:
+  location On:
+    initial false;
+    marked false;
+    edge A_airslide_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_airslide_c_on goto On;
+end
+plant automaton A_testingready:
+  location On:
+    initial false;
+    marked false;
+    edge A_testingready_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_testingready_c_on goto On;
+end
+plant automaton TDynamics:
+  location:
+    initial;
+    marked;
+    edge S_elevator_up_u_on when S_elevator_down.Off;
+    edge S_elevator_down_u_on when S_elevator_up.Off;
+end
+plant automaton TTimer:
+  location Off:
+    initial;
+    marked;
+    edge TTimer_c_on goto Running;
+  location Running:
+    edge TTimer_u_timeout goto Timeout;
+    edge TTimer_c_reset goto Off;
+  location Timeout:
+    marked;
+    edge TTimer_c_reset goto Off;
+end
+plant automaton PusherLift:
+  location One:
+    initial;
+    marked;
+    edge A_elevator_down_c_off goto Two;
+  location Two:
+    edge A_pusher_c_on goto Three;
+  location Three:
+    edge A_pusher_c_off goto Four;
+  location Four:
+    edge A_elevator_down_c_on goto One;
+end
+plant automaton S_atin:
+  location On:
+    initial false;
+    marked false;
+    edge S_atin_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_atin_u_on goto On;
+end
+plant automaton S_atseparator:
+  location On:
+    initial false;
+    marked false;
+    edge S_atseparator_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_atseparator_u_on goto On;
+end
+plant automaton S_atend:
+  location On:
+    initial false;
+    marked false;
+    edge S_atend_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_atend_u_on goto On;
+end
+plant automaton S_separator_opened:
+  location On:
+    initial false;
+    marked false;
+    edge S_separator_opened_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_separator_opened_u_on goto On;
+end
+plant automaton S_separator_closed:
+  location On:
+    initial;
+    marked;
+    edge S_separator_closed_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_separator_closed_u_on goto On;
+end
+plant automaton S_processingbusy:
+  location On:
+    initial;
+    marked;
+    edge S_processingbusy_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_processingbusy_u_on goto On;
+end
+plant automaton S_Binitialized:
+  location On:
+    initial false;
+    marked false;
+    edge S_Binitialized_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_Binitialized_u_on goto On;
+end
+plant automaton A_separator:
+  location On:
+    initial;
+    marked;
+    edge A_separator_c_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge A_separator_c_on goto On;
+end
+plant automaton A_conveyerB:
+  location On:
+    initial false;
+    marked false;
+    edge A_conveyerB_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_conveyerB_c_on goto On;
+end
+plant automaton A_bufferingready:
+  location On:
+    initial false;
+    marked false;
+    edge A_bufferingready_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_bufferingready_c_on goto On;
+end
+plant automaton BTimer:
+  location Off:
+    initial;
+    marked;
+    edge BTimer_c_on goto Running;
+  location Running:
+    edge BTimer_u_timeout goto Timeout;
+    edge BTimer_c_reset goto Off;
+  location Timeout:
+    marked;
+    edge BTimer_c_reset goto Off;
+end
+plant automaton BDynamics:
+  location:
+    initial;
+    marked;
+    edge S_separator_opened_u_on when S_separator_closed.Off;
+    edge S_separator_closed_u_on when S_separator_opened.Off;
+end
+plant automaton S_atinput:
+  location On:
+    initial false;
+    marked false;
+    edge S_atinput_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_atinput_u_on goto On;
+end
+plant automaton S_attest:
+  location On:
+    initial false;
+    marked false;
+    edge S_attest_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_attest_u_on goto On;
+end
+plant automaton S_atdrill:
+  location On:
+    initial false;
+    marked false;
+    edge S_atdrill_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_atdrill_u_on goto On;
+end
+plant automaton S_atexit:
+  location On:
+    initial false;
+    marked false;
+    edge S_atexit_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_atexit_u_on goto On;
+end
+plant automaton S_atspare:
+  location On:
+    initial false;
+    marked false;
+    edge S_atspare_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_atspare_u_on goto On;
+end
+plant automaton S_clamp:
+  location On:
+    initial false;
+    marked false;
+    edge S_clamp_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_clamp_u_on goto On;
+end
+plant automaton S_test_ok:
+  location On:
+    initial false;
+    marked false;
+    edge S_test_ok_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_test_ok_u_on goto On;
+end
+plant automaton S_drill_up:
+  location On:
+    initial;
+    marked;
+    edge S_drill_up_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_drill_up_u_on goto On;
+end
+plant automaton S_drill_down:
+  location On:
+    initial false;
+    marked false;
+    edge S_drill_down_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_drill_down_u_on goto On;
+end
+plant automaton S_turntable:
+  location On:
+    initial;
+    marked;
+    edge S_turntable_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_turntable_u_on goto On;
+end
+plant automaton S_sortingbusy:
+  location On:
+    initial;
+    marked;
+    edge S_sortingbusy_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_sortingbusy_u_on goto On;
+end
+plant automaton S_Pinitialized:
+  location On:
+    initial false;
+    marked false;
+    edge S_Pinitialized_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_Pinitialized_u_on goto On;
+end
+plant automaton A_drill:
+  location On:
+    initial false;
+    marked false;
+    edge A_drill_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_drill_c_on goto On;
+end
+plant automaton A_turntable:
+  location On:
+    initial false;
+    marked false;
+    edge A_turntable_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_turntable_c_on goto On;
+end
+plant automaton A_drilldown:
+  location On:
+    initial false;
+    marked false;
+    edge A_drilldown_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_drilldown_c_on goto On;
+end
+plant automaton A_drillup:
+  location On:
+    initial;
+    marked;
+    edge A_drillup_c_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge A_drillup_c_on goto On;
+end
+plant automaton A_clamp:
+  location On:
+    initial false;
+    marked false;
+    edge A_clamp_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_clamp_c_on goto On;
+end
+plant automaton A_tester:
+  location On:
+    initial false;
+    marked false;
+    edge A_tester_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_tester_c_on goto On;
+end
+plant automaton A_eject:
+  location On:
+    initial false;
+    marked false;
+    edge A_eject_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_eject_c_on goto On;
+end
+plant automaton A_processingready:
+  location On:
+    initial false;
+    marked false;
+    edge A_processingready_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_processingready_c_on goto On;
+end
+plant automaton Timer:
+  location Off:
+    initial;
+    marked;
+    edge Timer_c_on goto Running;
+  location Running:
+    edge Timer_u_timeout goto Timeout;
+    edge Timer_c_reset goto Off;
+  location Timeout:
+    edge Timer_c_reset goto Off;
+end
+plant automaton PDynamics:
+  location:
+    initial;
+    marked;
+    edge S_drill_up_u_on when S_drill_down.Off;
+    edge S_drill_down_u_on when S_drill_up.Off;
+end
+plant automaton Tester:
+  location One:
+    initial;
+    marked;
+    edge A_turntable_c_on;
+    edge A_tester_c_on goto Two;
+  location Two:
+    edge A_tester_c_off goto Three;
+  location Three:
+    edge A_turntable_c_on goto One;
+end
+plant automaton ClampDrill:
+  location one:
+    initial;
+    marked;
+    edge A_turntable_c_on;
+    edge A_clamp_c_on goto two;
+  location two:
+    edge A_drill_c_on goto three;
+  location three:
+    edge A_drillup_c_off goto four;
+  location four:
+    edge A_drilldown_c_on goto five;
+  location five:
+    edge A_drilldown_c_off goto six;
+  location six:
+    edge A_drillup_c_on goto seven;
+  location seven:
+    edge A_drill_c_off goto eight;
+  location eight:
+    edge A_clamp_c_off goto nine;
+  location nine:
+    edge A_turntable_c_on goto one;
+end
+plant automaton S_product:
+  location On:
+    initial false;
+    marked false;
+    edge S_product_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_product_u_on goto On;
+end
+plant automaton S_inductive:
+  location On:
+    initial false;
+    marked false;
+    edge S_inductive_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_inductive_u_on goto On;
+end
+plant automaton S_optical:
+  location On:
+    initial false;
+    marked false;
+    edge S_optical_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_optical_u_on goto On;
+end
+plant automaton S_slidefull:
+  location On:
+    initial false;
+    marked false;
+    edge S_slidefull_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_slidefull_u_on goto On;
+end
+plant automaton S_gate1_opened:
+  location On:
+    initial;
+    marked;
+    edge S_gate1_opened_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_gate1_opened_u_on goto On;
+end
+plant automaton S_gate1_closed:
+  location On:
+    initial false;
+    marked false;
+    edge S_gate1_closed_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_gate1_closed_u_on goto On;
+end
+plant automaton S_gate2_opened:
+  location On:
+    initial;
+    marked;
+    edge S_gate2_opened_u_off goto Off;
+  location Off:
+    initial not true;
+    marked not true;
+    edge S_gate2_opened_u_on goto On;
+end
+plant automaton S_gate2_closed:
+  location On:
+    initial false;
+    marked false;
+    edge S_gate2_closed_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_gate2_closed_u_on goto On;
+end
+plant automaton S_Sinitialized:
+  location On:
+    initial false;
+    marked false;
+    edge S_Sinitialized_u_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge S_Sinitialized_u_on goto On;
+end
+plant automaton A_conveyer:
+  location On:
+    initial false;
+    marked false;
+    edge A_conveyer_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_conveyer_c_on goto On;
+end
+plant automaton A_gate1:
+  location On:
+    initial false;
+    marked false;
+    edge A_gate1_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_gate1_c_on goto On;
+end
+plant automaton A_gate2:
+  location On:
+    initial false;
+    marked false;
+    edge A_gate2_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_gate2_c_on goto On;
+end
+plant automaton A_stopperretract:
+  location On:
+    initial false;
+    marked false;
+    edge A_stopperretract_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_stopperretract_c_on goto On;
+end
+plant automaton A_sortingready:
+  location On:
+    initial false;
+    marked false;
+    edge A_sortingready_c_off goto Off;
+  location Off:
+    initial;
+    marked;
+    edge A_sortingready_c_on goto On;
+end
+plant automaton STimer:
+  location Off:
+    initial;
+    marked;
+    edge STimer_c_on goto Running;
+  location Running:
+    edge STimer_u_timeout goto Timeout;
+    edge STimer_c_reset goto Off;
+  location Timeout:
+    edge STimer_c_reset goto Off;
+end
+plant automaton SDynamics1:
+  location:
+    initial;
+    marked;
+    edge S_gate1_opened_u_on when S_gate1_closed.Off;
+    edge S_gate1_closed_u_on when S_gate1_opened.Off;
+end
+plant automaton SDynamics2:
+  location:
+    initial;
+    marked;
+    edge S_gate2_opened_u_on when S_gate2_closed.Off;
+    edge S_gate2_closed_u_on when S_gate2_opened.Off;
+end
+plant automaton sup6:
+  alphabet A_x2distributing_c_off, A_x2distributing_c_on, A_x2testing_c_off, A_x2testing_c_on, A_zdown_c_off, A_zdown_c_on, A_gripperclose_c_off, A_gripperclose_c_on, A_transfer2pickpos_c_off, A_transfer2pickpos_c_on;
+  location:
+    initial;
+    marked;
+    edge A_gripperclose_c_off when true;
+    edge A_gripperclose_c_on when true;
+    edge A_transfer2pickpos_c_off when true;
+    edge A_transfer2pickpos_c_on when true;
+    edge A_x2distributing_c_off when true;
+    edge A_x2distributing_c_on when true;
+    edge A_x2testing_c_off when true;
+    edge A_x2testing_c_on when true;
+    edge A_zdown_c_off when true;
+    edge A_zdown_c_on when true;
+end
+plant automaton sup7:
+  alphabet A_pusher1_c_off, A_pusher1_c_on, A_pusher3_c_off, A_pusher3_c_on, A_x2testing_c_off, A_x2testing_c_on, A_zdown_c_off, A_zdown_c_on;
+  location:
+    initial;
+    marked;
+    edge A_pusher1_c_off when true;
+    edge A_pusher1_c_on when true;
+    edge A_pusher3_c_off when true;
+    edge A_pusher3_c_on when true;
+    edge A_x2testing_c_off when true;
+    edge A_x2testing_c_on when true;
+    edge A_zdown_c_off when true;
+    edge A_zdown_c_on when true;
+end
+plant automaton sup8:
+  alphabet A_pusher1_c_off, A_pusher1_c_on;
+  location:
+    initial;
+    marked;
+    edge A_pusher1_c_off when true;
+    edge A_pusher1_c_on when true;
+end
+plant automaton sup13:
+  alphabet A_pusher2_c_off, A_pusher2_c_on;
+  location:
+    initial;
+    marked;
+    edge A_pusher2_c_off when true;
+    edge A_pusher2_c_on when true;
+end
+plant automaton sup19:
+  alphabet A_pusher3_c_off, A_pusher3_c_on;
+  location:
+    initial;
+    marked;
+    edge A_pusher3_c_off when true;
+    edge A_pusher3_c_on when true;
+end
+plant automaton sup24:
+  alphabet A_x2distributing_c_off, A_x2distributing_c_on, A_x2testing_c_off, A_x2testing_c_on, A_zdown_c_off, A_zdown_c_on, A_gripperclose_c_off, A_gripperclose_c_on;
+  location:
+    initial;
+    marked;
+    edge A_gripperclose_c_off when true;
+    edge A_gripperclose_c_on when true;
+    edge A_x2distributing_c_off when true;
+    edge A_x2distributing_c_on when true;
+    edge A_x2testing_c_off when true;
+    edge A_x2testing_c_on when true;
+    edge A_zdown_c_off when true;
+    edge A_zdown_c_on when true;
+end
+plant automaton sup33:
+  alphabet A_transfer2pickpos_c_off, A_transfer2pickpos_c_on, A_transfer2droppos_c_off, A_transfer2droppos_c_on, A_vacuum_c_off, A_vacuum_c_on, A_ejectpulse_c_off, A_ejectpulse_c_on, A_elevator_up_c_off, A_elevator_up_c_on, A_elevator_down_c_off, A_elevator_down_c_on, A_pusher_c_off, A_pusher_c_on, TTimer_c_on, TTimer_c_reset;
+  location:
+    initial;
+    marked;
+    edge A_ejectpulse_c_off when true;
+    edge A_ejectpulse_c_on when true;
+    edge A_elevator_down_c_off when true;
+    edge A_elevator_down_c_on when true;
+    edge A_elevator_up_c_off when true;
+    edge A_elevator_up_c_on when true;
+    edge A_pusher_c_off when true;
+    edge A_pusher_c_on when true;
+    edge A_transfer2droppos_c_off when true;
+    edge A_transfer2droppos_c_on when true;
+    edge A_transfer2pickpos_c_off when true;
+    edge A_transfer2pickpos_c_on when true;
+    edge A_vacuum_c_off when true;
+    edge A_vacuum_c_on when true;
+    edge TTimer_c_on when true;
+    edge TTimer_c_reset when true;
+end
+plant automaton sup34:
+  alphabet A_transfer2pickpos_c_off, A_transfer2pickpos_c_on, A_transfer2droppos_c_off, A_transfer2droppos_c_on, A_ejectpulse_c_off, A_ejectpulse_c_on;
+  location:
+    initial;
+    marked;
+    edge A_ejectpulse_c_off when true;
+    edge A_ejectpulse_c_on when true;
+    edge A_transfer2droppos_c_off when true;
+    edge A_transfer2droppos_c_on when true;
+    edge A_transfer2pickpos_c_off when true;
+    edge A_transfer2pickpos_c_on when true;
+end
+plant automaton sup41:
+  alphabet A_vacuum_c_off, A_vacuum_c_on, A_handlingready_c_off, A_handlingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_handlingready_c_off when true;
+    edge A_handlingready_c_on when true;
+    edge A_vacuum_c_off when true;
+    edge A_vacuum_c_on when true;
+end
+plant automaton sup44:
+  alphabet A_handlingready_c_off, A_handlingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_handlingready_c_off when false;
+    edge A_handlingready_c_on when false;
+end
+plant automaton sup45:
+  alphabet A_pusher_c_off, A_pusher_c_on, A_airslide_c_off, A_airslide_c_on, A_testingready_c_off, A_testingready_c_on, TTimer_c_on, TTimer_c_reset;
+  location:
+    initial;
+    marked;
+    edge A_airslide_c_off when true;
+    edge A_airslide_c_on when true;
+    edge A_pusher_c_off when true;
+    edge A_pusher_c_on when true;
+    edge A_testingready_c_off when true;
+    edge A_testingready_c_on when true;
+    edge TTimer_c_on when true;
+    edge TTimer_c_reset when true;
+end
+plant automaton sup51:
+  alphabet A_testingready_c_off, A_testingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_testingready_c_off when false;
+    edge A_testingready_c_on when false;
+end
+plant automaton sup53:
+  alphabet A_elevator_up_c_off, A_elevator_up_c_on, A_elevator_down_c_off, A_elevator_down_c_on;
+  location:
+    initial;
+    marked;
+    edge A_elevator_down_c_off when true;
+    edge A_elevator_down_c_on when true;
+    edge A_elevator_up_c_off when true;
+    edge A_elevator_up_c_on when true;
+end
+plant automaton sup61:
+  alphabet A_separator_c_off, A_separator_c_on, A_turntable_c_off, A_turntable_c_on, A_eject_c_off, A_eject_c_on, A_conveyer_c_off, A_conveyer_c_on;
+  location:
+    initial;
+    marked;
+    edge A_conveyer_c_off when true;
+    edge A_conveyer_c_on when true;
+    edge A_eject_c_off when true;
+    edge A_eject_c_on when true;
+    edge A_separator_c_off when true;
+    edge A_separator_c_on when true;
+    edge A_turntable_c_off when true;
+    edge A_turntable_c_on when true;
+end
+plant automaton sup62:
+  alphabet A_separator_c_off, A_separator_c_on, A_conveyerB_c_off, A_conveyerB_c_on;
+  location:
+    initial;
+    marked;
+    edge A_conveyerB_c_off when true;
+    edge A_conveyerB_c_on when true;
+    edge A_separator_c_off when true;
+    edge A_separator_c_on when true;
+end
+plant automaton sup63:
+  alphabet A_bufferingready_c_off, A_bufferingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_bufferingready_c_off when true;
+    edge A_bufferingready_c_on when true;
+end
+plant automaton sup65:
+  alphabet A_bufferingready_c_off, A_bufferingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_bufferingready_c_off when false;
+    edge A_bufferingready_c_on when false;
+end
+plant automaton sup66:
+  alphabet A_separator_c_off, A_separator_c_on;
+  location:
+    initial;
+    marked;
+    edge A_separator_c_off when true;
+    edge A_separator_c_on when true;
+end
+plant automaton sup71:
+  alphabet A_conveyerB_c_off, A_conveyerB_c_on, BTimer_c_on, BTimer_c_reset;
+  location:
+    initial;
+    marked;
+    edge A_conveyerB_c_off when true;
+    edge A_conveyerB_c_on when true;
+    edge BTimer_c_on when true;
+    edge BTimer_c_reset when true;
+end
+plant automaton sup76:
+  alphabet A_drill_c_off, A_drill_c_on, A_turntable_c_off, A_turntable_c_on, A_drilldown_c_off, A_drilldown_c_on, A_drillup_c_off, A_drillup_c_on, A_clamp_c_off, A_clamp_c_on, A_tester_c_off, A_tester_c_on, A_eject_c_off, A_eject_c_on, Timer_c_on, Timer_c_reset;
+  location:
+    initial;
+    marked;
+    edge A_clamp_c_off when true;
+    edge A_clamp_c_on when true;
+    edge A_drill_c_off when true;
+    edge A_drill_c_on when true;
+    edge A_drilldown_c_off when true;
+    edge A_drilldown_c_on when true;
+    edge A_drillup_c_off when true;
+    edge A_drillup_c_on when true;
+    edge A_eject_c_off when true;
+    edge A_eject_c_on when true;
+    edge A_tester_c_off when true;
+    edge A_tester_c_on when true;
+    edge A_turntable_c_off when true;
+    edge A_turntable_c_on when true;
+    edge Timer_c_on when true;
+    edge Timer_c_reset when true;
+end
+plant automaton sup77:
+  alphabet A_processingready_c_off, A_processingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_processingready_c_off when true;
+    edge A_processingready_c_on when true;
+end
+plant automaton sup79:
+  alphabet A_processingready_c_off, A_processingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_processingready_c_off when false;
+    edge A_processingready_c_on when false;
+end
+plant automaton sup80:
+  alphabet A_drill_c_off, A_drill_c_on, A_turntable_c_off, A_turntable_c_on, A_drilldown_c_off, A_drilldown_c_on, A_drillup_c_off, A_drillup_c_on;
+  location:
+    initial;
+    marked;
+    edge A_drill_c_off when true;
+    edge A_drill_c_on when true;
+    edge A_drilldown_c_off when true;
+    edge A_drilldown_c_on when true;
+    edge A_drillup_c_off when true;
+    edge A_drillup_c_on when true;
+    edge A_turntable_c_off when true;
+    edge A_turntable_c_on when true;
+end
+plant automaton sup87:
+  alphabet A_clamp_c_off, A_clamp_c_on;
+  location:
+    initial;
+    marked;
+    edge A_clamp_c_off when true;
+    edge A_clamp_c_on when true;
+end
+plant automaton sup90:
+  alphabet A_tester_c_off, A_tester_c_on, Timer_c_on, Timer_c_reset;
+  location:
+    initial;
+    marked;
+    edge A_tester_c_off when true;
+    edge A_tester_c_on when true;
+    edge Timer_c_on when true;
+    edge Timer_c_reset when true;
+end
+plant automaton sup96:
+  alphabet A_eject_c_off, A_eject_c_on;
+  location:
+    initial;
+    marked;
+    edge A_eject_c_off when true;
+    edge A_eject_c_on when true;
+end
+plant automaton sup99:
+  alphabet A_conveyer_c_off, A_conveyer_c_on, A_gate1_c_off, A_gate1_c_on, A_gate2_c_off, A_gate2_c_on, A_stopperretract_c_off, A_stopperretract_c_on, STimer_c_on, STimer_c_reset;
+  location:
+    initial;
+    marked;
+    edge A_conveyer_c_off when true;
+    edge A_conveyer_c_on when true;
+    edge A_gate1_c_off when true;
+    edge A_gate1_c_on when true;
+    edge A_gate2_c_off when true;
+    edge A_gate2_c_on when true;
+    edge A_stopperretract_c_off when true;
+    edge A_stopperretract_c_on when true;
+    edge STimer_c_on when true;
+    edge STimer_c_reset when true;
+end
+plant automaton sup100:
+  alphabet A_conveyer_c_off, A_conveyer_c_on, A_stopperretract_c_off, A_stopperretract_c_on, STimer_c_on, STimer_c_reset;
+  location:
+    initial;
+    marked;
+    edge A_conveyer_c_off when true;
+    edge A_conveyer_c_on when true;
+    edge A_stopperretract_c_off when true;
+    edge A_stopperretract_c_on when true;
+    edge STimer_c_on when true;
+    edge STimer_c_reset when true;
+end
+plant automaton sup106:
+  alphabet A_sortingready_c_off, A_sortingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_sortingready_c_off when true;
+    edge A_sortingready_c_on when true;
+end
+plant automaton sup108:
+  alphabet A_sortingready_c_off, A_sortingready_c_on;
+  location:
+    initial;
+    marked;
+    edge A_sortingready_c_off when false;
+    edge A_sortingready_c_on when false;
+end
+plant automaton sup109:
+  alphabet A_gate1_c_off, A_gate1_c_on, A_gate2_c_off, A_gate2_c_on;
+  location:
+    initial;
+    marked;
+    edge A_gate1_c_off when true;
+    edge A_gate1_c_on when true;
+    edge A_gate2_c_off when true;
+    edge A_gate2_c_on when true;
+end
+plant automaton RequirementStateEvtExcls:
+  location:
+    initial;
+    marked;
+    edge A_elevator_up_c_on when S_transfer_athalfway.On, S_reflective.Off, S_Tinitialized.On, A_elevator_down.Off, S_elevator_down.On, S_pusher.Off, TTimer.Timeout, S_capacitive.On, S_reflective.Off;
+    edge A_elevator_down_c_off when S_transfer_athalfway.On, S_reflective.Off, S_Tinitialized.On, S_elevator_down.On, S_pusher.Off, TTimer.Timeout, S_capacitive.On, S_reflective.Off;
+    edge A_transfer2droppos_c_on when S_transfer_atpickup.On or S_transfer_athalfway.On and S_elevator_down.On and S_capacitive.Off, S_Hinitialized.On, A_transfer2pickpos.Off, S_vacuum.On;
+    edge A_transfer2droppos_c_off when S_transfer_atdrop.On or S_transfer_athalfway.On and (S_elevator_down.Off or S_capacitive.On), S_Hinitialized.On;
+    edge A_separator_c_off when S_atinput.Off, S_turntable.On, S_Binitialized.On, S_separator_opened.On, S_atseparator.Off;
+    edge A_eject_c_off when A_conveyer.Off, S_Pinitialized.On, S_atexit.Off;
+    edge A_pusher1_c_on when S_Dinitialized.On, S_pusher1_in.On, S_product1.Off;
+    edge A_pusher1_c_off when S_Dinitialized.On, S_pusher1_out.On, S_stack1_filled.On, S_product1.Off;
+    edge A_pusher2_c_on when S_Dinitialized.On, S_pusher2_in.On, S_product2.Off;
+    edge A_pusher2_c_off when S_Dinitialized.On, S_pusher2_out.On, S_stack2_filled.On, S_product2.Off;
+    edge A_pusher3_c_on when S_Dinitialized.On, S_pusher3_in.On, S_product3.Off;
+    edge A_pusher3_c_off when S_Dinitialized.On, S_pusher3_out.On, S_stack3_filled.On, S_product3.Off;
+    edge A_x2distributing_c_on when S_Hinitialized.On, S_xpos_at3.On and S_transfer_athalfway.Off or S_xpos_at3.On and S_product4.On or S_xpos_atdrop.On;
+    edge A_x2distributing_c_off when S_Hinitialized.On, S_zpos_atup.On, A_x2testing.On, S_xpos_at1.On and S_gripper.On or S_xpos_at2.On and S_gripper.On or S_xpos_at3.On and S_gripper.On and S_product4.Off and S_transfer_athalfway.On;
+    edge A_x2testing_c_on when S_Hinitialized.On, S_xpos_at3.On and S_product3.On or S_xpos_at3.On and S_product2.Off and S_product1.Off or S_xpos_at2.On and S_product2.On or S_xpos_at1.On;
+    edge A_x2testing_c_off when S_Hinitialized.On, S_zpos_atup.On, A_x2distributing.On, S_xpos_atdrop.On and S_gripper.Off or S_xpos_at3.On and S_gripper.Off and (S_product1.On or S_product2.On) and S_product3.Off or S_xpos_at2.On and S_gripper.Off and S_product1.On and S_product2.Off;
+    edge A_zdown_c_on when S_Hinitialized.On, S_zpos_atup.On, A_x2distributing.On and A_x2testing.On, S_xpos_at1.On and S_product1.On and S_gripper.Off or S_xpos_at2.On and S_product2.On and S_gripper.Off or S_xpos_at3.On and S_product3.On and S_gripper.Off or S_xpos_atdrop.On and S_product4.Off and S_gripper.On;
+    edge A_zdown_c_off when S_Hinitialized.On, S_zpos_atdown.On, S_xpos_at1.On and A_gripperclose.On and S_gripper.On or S_xpos_at2.On and A_gripperclose.On and S_gripper.On or S_xpos_at3.On and A_gripperclose.On and S_gripper.On or S_xpos_atdrop.On and A_gripperclose.Off;
+    edge A_gripperclose_c_on when S_Hinitialized.On, S_zpos_atdown.On, S_xpos_at1.On or S_xpos_at2.On or S_xpos_at3.On;
+    edge A_gripperclose_c_off when S_Hinitialized.On, S_zpos_atdown.On, S_xpos_atdrop.On;
+    edge A_transfer2pickpos_c_on when S_Hinitialized.On, A_transfer2droppos.Off, S_vacuum.Off, S_transfer_atdrop.On or S_transfer_athalfway.On and S_product4.On and S_xpos_at3.On;
+    edge A_transfer2pickpos_c_off when S_Hinitialized.On, S_transfer_atpickup.On or S_transfer_athalfway.On and not S_product4.On;
+    edge A_vacuum_c_on when S_Hinitialized.On, S_transfer_atpickup.On;
+    edge A_vacuum_c_off when S_Hinitialized.On, S_transfer_atdrop.On;
+    edge A_ejectpulse_c_on when S_Hinitialized.On, S_transfer_atdrop.On and S_vacuum.On;
+    edge A_ejectpulse_c_off when S_Hinitialized.On, S_vacuum.Off;
+    edge A_handlingready_c_on when S_Hinitialized.On, false;
+    edge A_handlingready_c_off when S_Hinitialized.On;
+    edge A_elevator_up_c_off when S_Tinitialized.On, S_elevator_up.On, S_pusher.Off, TTimer.Timeout, S_opticalT.Off;
+    edge A_elevator_down_c_on when S_Tinitialized.On, A_elevator_up.Off, S_elevator_up.On, S_pusher.Off, TTimer.Timeout, S_opticalT.Off;
+    edge A_pusher_c_on when S_Tinitialized.On, S_elevator_up.On;
+    edge A_pusher_c_off when S_Tinitialized.On, S_pusher.On;
+    edge A_airslide_c_on when S_Tinitialized.On, S_elevator_up.On and S_pusher.On;
+    edge A_airslide_c_off when S_Tinitialized.On, S_elevator_down.On;
+    edge A_testingready_c_on when S_Tinitialized.On;
+    edge A_testingready_c_off when S_Tinitialized.On, false;
+    edge TTimer_c_on when S_Tinitialized.On, A_pusher.Off;
+    edge TTimer_c_reset when S_Tinitialized.On, A_pusher.On;
+    edge A_separator_c_on when S_Binitialized.On, S_separator_closed.On, S_atseparator.On;
+    edge A_conveyerB_c_on when S_Binitialized.On, S_atin.On;
+    edge A_conveyerB_c_off when S_Binitialized.On, BTimer.Timeout;
+    edge A_bufferingready_c_on when S_Binitialized.On, false;
+    edge A_bufferingready_c_off when S_Binitialized.On;
+    edge BTimer_c_on when S_atend.On;
+    edge BTimer_c_reset when S_atin.On or A_conveyerB.Off;
+    edge A_drill_c_on when S_Pinitialized.On, S_drill_up.On, S_clamp.On;
+    edge A_drill_c_off when S_Pinitialized.On, S_drill_down.On;
+    edge A_turntable_c_on when S_Pinitialized.On, S_turntable.On, Timer.Timeout, S_drill_up.On, S_clamp.Off, A_eject.Off, A_drill.Off, A_tester.Off, S_atinput.On;
+    edge A_turntable_c_off when S_Pinitialized.On, S_turntable.Off;
+    edge A_drilldown_c_on when S_Pinitialized.On, S_drill_up.On;
+    edge A_drillup_c_off when S_Pinitialized.On, S_drill_up.On;
+    edge A_clamp_c_on when S_Pinitialized.On, S_turntable.On, A_turntable.Off, Timer.Timeout, S_atdrill.On;
+    edge A_clamp_c_off when S_Pinitialized.On, S_drill_up.On;
+    edge A_tester_c_on when S_Pinitialized.On, S_turntable.On, A_turntable.Off, Timer.Timeout, S_attest.On;
+    edge A_tester_c_off when S_Pinitialized.On, S_test_ok.On;
+    edge A_eject_c_on when S_Pinitialized.On, S_turntable.On, A_turntable.Off, Timer.Timeout, S_atexit.On;
+    edge A_processingready_c_on when S_Pinitialized.On, false;
+    edge A_processingready_c_off when S_Pinitialized.On;
+    edge Timer_c_on when S_turntable.On;
+    edge Timer_c_reset when S_turntable.Off;
+    edge A_drillup_c_on when S_drill_down.On;
+    edge A_drilldown_c_off when S_drill_down.On;
+    edge A_conveyer_c_on when S_Sinitialized.On, S_product.On;
+    edge A_conveyer_c_off when S_Sinitialized.On, S_slidefull.On;
+    edge A_gate1_c_on when S_Sinitialized.On, S_optical.On, S_inductive.Off, STimer.Timeout, A_stopperretract.Off;
+    edge A_gate1_c_off when S_Sinitialized.On, S_slidefull.On, A_stopperretract.Off;
+    edge A_gate2_c_on when S_Sinitialized.On, S_optical.On, S_inductive.On, STimer.Timeout, A_stopperretract.Off;
+    edge A_gate2_c_off when S_Sinitialized.On, S_slidefull.On, A_stopperretract.Off;
+    edge A_stopperretract_c_on when S_Sinitialized.On, STimer.Timeout, S_slidefull.Off;
+    edge A_stopperretract_c_off when S_Sinitialized.On, S_slidefull.On;
+    edge A_sortingready_c_on when S_Sinitialized.On, false;
+    edge A_sortingready_c_off when S_Sinitialized.On;
+    edge STimer_c_on when S_product.On;
+    edge STimer_c_reset when S_slidefull.On;
+end
+supervisor automaton ncsup:
+  alphabet;
+  location:
+    initial;
+    marked;
+end

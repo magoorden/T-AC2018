@@ -1,0 +1,1 @@
+plant def Button():  uncontrollable u_pushed, u_released;  disc bool pushed = false;  location:    initial; marked;    edge u_pushed   when not pushed             do pushed := true;    edge u_released when     pushed             do pushed := false;end

@@ -1,0 +1,12 @@
+plant def Switch_Sensor():
+  controllable c_notifyWhenClosed;
+  uncontrollable u_closed;
+
+    location Idle:
+      initial; marked;
+      edge c_notifyWhenClosed   goto Reply;
+
+    location Reply:
+      edge u_closed             goto Idle;
+end
+

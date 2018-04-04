@@ -1,0 +1,129 @@
+// This example is originally from 'Aggregative Synthesis of Distributed
+// Supervisors based on Automaton Abstraction' by Rong Su, Jan H. van Schuppen
+// and Jacobus E. Rooda
+
+// ===========================================================================
+// Plant models
+
+// Robots
+controllable R1_pick_Lin, R1_pick_C11, R1_pick_C12, R1_pick_B1;
+controllable R1_drop_Lout, R1_drop_C11, R1_drop_C12, R1_drop_B1;
+
+controllable R2_pick_B1, R2_pick_C21, R2_pick_C22, R2_pick_B2;
+controllable R2_drop_B1, R2_drop_C21, R2_drop_C22, R2_drop_B2;
+
+controllable R3_pick_B2, R3_pick_C31, R3_pick_C32, R3_pick_B3;
+controllable R3_drop_B2, R3_drop_C31, R3_drop_C32, R3_drop_B3;
+
+controllable R4_pick_B3, R4_pick_C41, R4_pick_C42, R4_pick_C43;
+controllable R4_drop_B3, R4_drop_C41, R4_drop_C42, R4_drop_C43;
+
+plant def robot (event Rx_pick_a, Rx_pick_b, Rx_pick_c, Rx_pick_d,
+					   Rx_drop_a, Rx_drop_b, Rx_drop_c, Rx_drop_d):
+	location l1:
+// 		initial; marked; // As in original
+		edge Rx_drop_a, Rx_drop_b, Rx_drop_c, Rx_drop_d goto l2;
+	location l2:
+		initial; marked; // Own correction
+		edge Rx_pick_a, Rx_pick_b, Rx_pick_c, Rx_pick_d goto l1;
+end
+
+R1 : robot (R1_pick_Lin, R1_pick_C11, R1_pick_C12, R1_pick_B1,
+			R1_drop_Lout, R1_drop_C11, R1_drop_C12, R1_drop_B1);
+R2 : robot (R2_pick_B1, R2_pick_C21, R2_pick_C22, R2_pick_B2,
+			R2_drop_B1, R2_drop_C21, R2_drop_C22, R2_drop_B2);
+R3 : robot (R3_pick_B2, R3_pick_C31, R3_pick_C32, R3_pick_B3,
+			R3_drop_B2, R3_drop_C31, R3_drop_C32, R3_drop_B3);
+R4 : robot (R4_pick_B3, R4_pick_C41, R4_pick_C42, R4_pick_C43,
+			R4_drop_B3, R4_drop_C41, R4_drop_C42, R4_drop_C43);
+
+// Input and output cluster tool
+plant def Lx (event R):
+	location l1:
+		initial; marked;
+		edge R;
+end
+
+Lin : Lx (R1_pick_Lin);
+Lout : Lx (R1_drop_Lout);
+
+// Chambers
+uncontrollable Process11, Process12;
+uncontrollable Process21, Process22;
+uncontrollable Process31, Process32;
+uncontrollable Process41, Process42, Process43;
+
+plant def chamber_Cij (event Ri_pick_Cij, Ri_drop_Cij, Processij):
+	location l1:
+		initial; marked;
+		edge Ri_drop_Cij goto l2;
+		edge Ri_pick_Cij goto l3;
+	location l2:
+		edge Ri_drop_Cij, Ri_pick_Cij goto l3;
+		edge Processij goto l4;
+	location l3;
+	location l4:
+		edge Ri_drop_Cij goto l3;
+		edge Ri_pick_Cij goto l1;
+end
+
+Chamber_C11 : chamber_Cij (R1_pick_C11, R1_drop_C11, Process11);
+Chamber_C12 : chamber_Cij (R1_pick_C12, R1_drop_C12, Process12);
+Chamber_C21 : chamber_Cij (R2_pick_C21, R2_drop_C21, Process21);
+Chamber_C22 : chamber_Cij (R2_pick_C22, R2_drop_C22, Process22);
+Chamber_C31 : chamber_Cij (R3_pick_C31, R3_drop_C31, Process31);
+Chamber_C32 : chamber_Cij (R3_pick_C32, R3_drop_C32, Process32);
+Chamber_C41 : chamber_Cij (R4_pick_C41, R4_drop_C41, Process41);
+Chamber_C42 : chamber_Cij (R4_pick_C42, R4_drop_C42, Process42);
+Chamber_C43 : chamber_Cij (R4_pick_C43, R4_drop_C43, Process43);
+
+// Buffers
+plant def bufferi (event Ri_pick_Bi, Ri_drop_Bi, Rip1_pick_Bi, Rip1_drop_Bi):
+	location l1:
+		initial; marked;
+		edge Ri_drop_Bi goto l2;
+		edge Ri_pick_Bi, Rip1_pick_Bi goto l3;
+		edge Rip1_drop_Bi goto l4;
+	location l2:
+		edge Rip1_pick_Bi goto l1;
+		edge Ri_drop_Bi goto l3;
+	location l3;
+	location l4:
+		edge Ri_pick_Bi goto l1;
+		edge Rip1_drop_Bi goto l3;
+end
+
+Buffer1 : bufferi (R1_pick_B1, R1_drop_B1, R2_pick_B1, R2_drop_B1);
+Buffer2 : bufferi (R2_pick_B2, R2_drop_B2, R3_pick_B2, R3_drop_B2);
+Buffe31 : bufferi (R3_pick_B3, R3_drop_B3, R4_pick_B3, R4_drop_B3);
+
+// ======================================================================
+// Requirement models
+
+requirement def Hij (event Ri_pick_a, Ri_drop_b):
+	location l1:
+		initial; marked;
+		edge Ri_pick_a goto l2;
+	location l2:
+		edge Ri_drop_b goto l1;
+end
+
+H11 : Hij (R1_pick_Lin, R1_drop_C11);
+H12 : Hij (R1_pick_C11, R1_drop_B1);
+H13 : Hij (R1_pick_B1, R1_drop_C12);
+H14 : Hij (R1_pick_C12, R1_drop_Lout);
+
+H21 : Hij (R2_pick_B1, R2_drop_C21);
+H22 : Hij (R2_pick_C21, R2_drop_B2);
+H23 : Hij (R2_pick_B2, R2_drop_C22);
+H24 : Hij (R2_pick_C22, R2_drop_B1);
+
+H31 : Hij (R3_pick_B2, R3_drop_C31);
+H32 : Hij (R3_pick_C31, R3_drop_B3);
+H33 : Hij (R3_pick_B3, R3_drop_C32);
+H34 : Hij (R3_pick_C32, R3_drop_B2);
+
+H41 : Hij (R4_pick_B3, R4_drop_C41);
+H42 : Hij (R4_pick_C41, R4_drop_C42);
+H43 : Hij (R4_pick_C42, R4_drop_C43);
+H44 : Hij (R4_pick_C43, R4_drop_B3);

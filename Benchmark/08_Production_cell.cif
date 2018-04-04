@@ -1,0 +1,502 @@
+// This example is originally from 'A structural approach to the non-blocking
+// supervisory control of discrete-event systems' by Lei Feng, Kai Cai,
+// and W. M. Wonham
+
+// Stock
+controllable blank_add; // Put a blank on feed belt
+
+plant Stock:
+	location l1:
+		initial; marked;
+		edge blank_add;
+end
+
+// Crane
+// fb = feed belt, db = deposit belt
+controllable Cr_mOn; // Pick up one blank
+controllable Cr_mOff; // Put down one blank
+controllable Cr_U; // Move up
+uncontrollable Cr_66; // Height matches fb
+controllable Cr_D; // Move down
+uncontrollable Cr_95; // Height matches db
+uncontrollable Cr_SVf; // Stop vertical move
+controllable Cr_2FB; // Move to fb
+uncontrollable Cr_FB; // Reach fb
+controllable Cr_2DB; // Move to db
+uncontrollable Cr_DB; // Reach db
+uncontrollable Cr_SHf; // Stop horizontal move
+
+plant Cr_V: // vertical movement crane
+	location l1:
+		initial; marked;
+		edge Cr_mOn goto l2;
+	location l2:
+		edge Cr_U goto l3;
+	location l3:
+		edge Cr_66 goto l4;
+	location l4:
+		edge Cr_SVf goto l5;
+	location l5:
+		edge Cr_mOff goto l6;
+	location l6:
+		edge Cr_D goto l7;
+	location l7:
+		edge Cr_95 goto l8;
+	location l8:
+		edge Cr_SVf goto l1;
+end
+
+plant Cr_H: // horizontal movement crane
+	location l1:
+		initial; marked;
+		edge Cr_mOn goto l2;
+	location l2:
+		edge Cr_2FB goto l3;
+	location l3:
+		edge Cr_FB goto l4;
+	location l4:
+		edge Cr_SHf goto l5;
+	location l5:
+		edge Cr_mOff goto l6;
+	location l6:
+		edge Cr_2DB goto l7;
+	location l7:
+		edge Cr_DB goto l8;
+	location l8:
+		edge Cr_SHf goto l1;
+end
+
+// Feed belt
+controllable FB_F; // Move forward
+uncontrollable FB_Sf; // Stop
+controllable FB_tau; // Move forward one step
+uncontrollable FB_s1On; // Sensor1 is on
+uncontrollable FB_s1Off; // Sensor1 is off
+
+plant FB:
+	location l1:
+		initial; marked;
+		edge FB_F goto l2;
+	location l2:
+		edge FB_Sf goto l1;
+		edge FB_s1On goto l3;
+	location l3:
+		edge FB_Sf goto l4;
+		edge FB_tau goto l5;
+	location l4:
+		edge FB_F goto l5;
+	location l5:
+		edge FB_s1Off goto l1;
+end
+
+requirement FB1:
+	location l1:
+		initial; marked;
+		edge Cr_mOff, blank_add goto l2;
+	location l2:
+		edge FB_s1Off goto l1;
+		edge Cr_mOff, blank_add goto l3;
+	location l3:
+		edge FB_s1Off goto l2;
+end
+
+requirement FB2:
+	location l1:
+		initial; marked;
+		edge Cr_mOff, blank_add goto l2;
+	location l2:
+		edge FB_s1On goto l1;
+end
+
+// Elevating rotary table
+controllable Ta_U; // Move up
+uncontrollable Ta_T; // Reach top
+uncontrollable Ta_STf; // Stop at top
+controllable Ta_D; // Move down
+uncontrollable Ta_B; // Reach bottom
+uncontrollable Ta_SBf; // Stop at bottom
+controllable Ta_R; // Turn right
+uncontrollable Ta_50; // Reach 50 degrees
+uncontrollable Ta_S50f; // Stop at 50 degrees
+controllable Ta_L; // Turn left
+uncontrollable Ta_0; // Reach 0 degrees
+uncontrollable Ta_S0f; // Stop at 0 degrees
+
+plant Ta_V:
+	location l1:
+		initial; marked;
+		edge Ta_U goto l2;
+	location l2:
+		edge Ta_T goto l3;
+	location l3:
+		edge Ta_STf goto l4;
+	location l4:
+		edge Ta_D goto l5;
+	location l5:
+		edge Ta_B goto l6;
+	location l6:
+		edge Ta_SBf goto l1;
+end
+
+plant Ta_H:
+	location l1:
+		initial; marked;
+		edge Ta_R goto l2;
+	location l2:
+		edge Ta_50 goto l3;
+	location l3:
+		edge Ta_S50f goto l4;
+	location l4:
+		edge Ta_L goto l5;
+	location l5:
+		edge Ta_0 goto l6;
+	location l6:
+		edge Ta_S0f goto l1;
+end
+
+requirement Ta1:
+	location l1:
+		initial; marked;
+		edge FB_s1Off goto l2;
+	location l2:
+		edge Ta_U goto l3;
+	location l3:
+		edge Ta_SBf goto l1;
+end
+
+requirement Ta2:
+	location l1:
+		initial; marked;
+		edge Ta_STf goto l2;
+	location l2:
+		edge A1_mOn goto l3;
+	location l3:
+		edge Ta_D goto l1;
+end
+
+requirement Ta3:
+	location l1:
+		initial; marked;
+		edge FB_s1Off goto l2;
+	location l2:
+		edge Ta_R goto l3;
+	location l3:
+		edge Ta_S0f goto l1;
+end
+
+requirement Ta4:
+	location l1:
+		initial; marked;
+		edge Ta_S50f goto l2;
+	location l2:
+		edge A1_mOn goto l3;
+	location l3:
+		edge Ta_L goto l1;
+end
+
+// Press
+controllable Pr_UB; // Ascend from bottom
+uncontrollable Pr_MU; // Ascend to middle
+uncontrollable Pr_SMf; // Stop at middle
+controllable Pr_UM; // Ascend from middle
+uncontrollable Pr_T; // Reach top
+uncontrollable Pr_STf; // Stop at top
+controllable Pr_D; // Descend
+uncontrollable Pr_MD; // Descend to middle
+uncontrollable Pr_B; // Reach bottom
+uncontrollable Pr_SBf; // Stop at bottom
+
+plant Pr:
+	location l1:
+		initial; marked;
+		edge Pr_UB goto l2;
+	location l2:
+		edge Pr_MU goto l3;
+	location l3:
+		edge Pr_SMf goto l4;
+	location l4:
+		edge Pr_UM goto l5;
+	location l5:
+		edge Pr_T goto l6;
+	location l6:
+		edge Pr_STf goto l7;
+	location l7:
+		edge Pr_D goto l8;
+	location l8:
+		edge Pr_MD goto l9;
+	location l9:
+		edge Pr_B goto l10;
+	location l10:
+		edge Pr_SBf goto l1;
+end
+
+requirement Pr1:
+	location l1:
+		initial; marked;
+		edge Pr_SMf goto l2;
+	location l2:
+		edge A1_mOff goto l3;
+	location l3:
+		edge Pr_UM goto l1;
+end
+
+requirement Pr2:
+	location l1:
+		initial;
+		edge Pr_UB goto l2;
+	location l2:
+		edge Pr_SBf goto l3;
+	location l3:
+		marked;
+		edge A2_mOn goto l1;
+end
+
+// Deposit belt
+controllable DB_F; // Move forward
+uncontrollable DB_Sf; // Stop
+uncontrollable DB_tau; // Move forward one step
+uncontrollable DB_s2On; // Sensor2 is on
+uncontrollable DB_s2Off; // Sensor2 is off
+uncontrollable DB_yes; // Blank acceptable
+uncontrollable DB_no; // Blank not acceptable
+
+plant DB:
+	location l1:
+		initial; marked;
+		edge DB_F goto l2;
+	location l2:
+		edge DB_Sf goto l1;
+		edge DB_s2On goto l3;
+	location l3:
+		edge DB_s2Off goto l4;
+	location l4:
+		edge DB_Sf goto l5;
+	location l5:
+		edge DB_yes goto l6;
+		edge DB_no goto l1;
+	location l6:
+		edge DB_tau goto l1;
+end
+
+requirement DB1:
+	location l1:
+		initial; marked;
+		edge A2_mOff goto l2;
+	location l2:
+		edge A2_mOff goto l3;
+		edge Cr_mOn, DB_tau goto l1;
+	location l3:
+		edge Cr_mOn, DB_tau goto l2;
+end
+
+requirement DB2:
+	location l1:
+		initial; marked;
+		edge A2_mOff goto l2;
+	location l2:
+		edge DB_s2Off goto l1;
+end
+
+requirement DB3:
+	location l1:
+		initial; marked;
+		edge DB_no goto l2;
+	location l2:
+		edge Cr_mOn goto l1;
+end
+
+// Robot
+controllable Ro_L; // Robot turns left
+controllable Ro_R; // Robot turns right
+uncontrollable Ro_35; // Robot reaches 35 degrees
+uncontrollable Ro_S35; // Arm2 reaches press
+uncontrollable Ro_m90; // Robot reaches -90 degrees, in paper Ro_-90
+uncontrollable Ro_Sm90; // Arm1 reaches press and arm2 reaches db
+uncontrollable Ro_50; // Robot reaches 50 degrees
+uncontrollable Ro_S50; // Arm1 reaches table
+controllable A1_mOn; // Arm1 picks up a blank
+controllable A1_mOff; // Arm1 unloads a blank
+controllable A1_B; // Arm1 retracts
+controllable A1_F; // Arm1 extends
+uncontrollable A1_37; // Arm1 reaches 37
+uncontrollable A1_S37; // Arm1 reaches safe extension
+uncontrollable A1_65; // Arm1 reaches 65
+uncontrollable A1_S65; // Arm1 reaches press
+uncontrollable A1_52; // Arm1 reaches 52
+uncontrollable A1_S52; // Arm1 reaches table
+controllable A2_mOn; // Arm2 picks up a blank
+controllable A2_mOff; // Arm2 unloads a blank
+controllable A2_B; // Arm2 retracts
+controllable A2_F; // Arm2 extends
+uncontrollable A2_0; // Arm2 reaches 0
+uncontrollable A2_S0; // Arm2 reaches safe extension
+uncontrollable A2_80; // Arm2 reaches 80
+uncontrollable A2_S80; // Arm2 reaches press
+uncontrollable A2_57; // Arm2 reaches 57
+uncontrollable A2_S57; // Arm2 reaches db
+
+plant Ro:
+	location l1:
+		initial; marked;
+		edge Ro_L goto l2;
+	location l2:
+		edge Ro_35 goto l3;
+	location l3:
+		edge Ro_S35 goto l4;
+	location l4:
+		edge Ro_L goto l5;
+	location l5:
+		edge Ro_m90 goto l6;
+	location l6:
+		edge Ro_Sm90 goto l7;
+	location l7:
+		edge Ro_R goto l8;
+	location l8:
+		edge Ro_50 goto l9;
+	location l9:
+		edge Ro_S50 goto l1;
+end
+
+plant A1:
+	location l1:
+		initial; marked;
+		edge A1_mOn goto l2;
+	location l2:
+		edge A1_B goto l3;
+		edge A1_F goto l7;
+	location l3:
+		edge A1_37 goto l4;
+	location l4:
+		edge A1_S37 goto l5;
+	location l5:
+		edge A1_F goto l6;
+	location l6:
+		edge A1_65 goto l7;
+	location l7:
+		edge A1_S65 goto l8;
+	location l8:
+		edge A1_mOff goto l9;
+	location l9:
+		edge A1_B goto l10;
+	location l10:
+		edge A1_52 goto l11;
+	location l11:
+		edge A1_S52 goto l1;
+end
+
+plant A2:
+	location l1:
+		initial; marked;
+		edge A2_F goto l2;
+	location l2:
+		edge A2_80 goto l3;
+	location l3:
+		edge A2_S80 goto l4;
+	location l4:
+		edge A2_mOn goto l5;
+	location l5:
+		edge A2_B goto l6;
+	location l6:
+		edge A2_57 goto l7;
+	location l7:
+		edge A2_S57 goto l8;
+	location l8:
+		edge A2_mOff goto l9;
+	location l9:
+		edge A2_B goto l10;
+		edge A2_F goto l3;
+	location l10:
+		edge A2_0 goto l11;
+	location l11:
+		edge A2_S0 goto l1;
+end
+
+requirement R1:
+	location l1:
+		initial; marked;
+		edge A1_mOn goto l2;
+	location l2:
+		edge Ro_S50 goto l1;
+end
+
+requirement R2:
+	location l1:
+		initial;
+		edge Ro_S35 goto l2;
+	location l2:
+		marked;
+		edge Ro_S35 goto l3;
+	location l3:
+		edge A2_mOn goto l2;
+end
+
+requirement R3:
+	location l1:
+		initial;
+		edge A1_mOn goto l2;
+	location l2:
+		edge Ro_L goto l3;
+	location l3:
+		edge Ro_L goto l4;
+	location l4:
+		marked;
+		edge A1_mOn, A2_mOn goto l5;
+	location l5:
+		edge Ro_L goto l4;
+end
+
+requirement R4:
+	location l1:
+		initial; marked;
+		edge Ro_Sm90 goto l2;
+	location l2:
+		edge A1_mOff goto l3;
+	location l3:
+		edge Ro_R goto l1;
+end
+
+requirement R5:
+	location l1:
+		initial;
+		edge Ro_Sm90;
+		edge Ro_R goto l2;
+	location l2:
+		marked;
+		edge Ro_Sm90 goto l3;
+	location l3:
+		edge A2_mOff goto l4;
+	location l4:
+		edge Ro_R goto l2;
+end
+
+// Other specifications
+requirement A1P:
+	location l1:
+		initial; marked;
+		edge A1_37, Ro_50, Pr_MD goto l2;
+		edge A1_65, Ro_m90, Pr_T goto l3;
+	location l2:
+		edge A1_65, Ro_m90, Pr_T goto l1;
+	location l3:
+		edge A1_37, Ro_50, Pr_MD goto l1;
+end
+
+requirement A2P:
+	location l1:
+		initial; marked;
+		edge A2_80, Ro_35, Ro_R, Pr_MU goto l2;
+	location l2:
+		edge A2_80, Ro_35, Ro_R, Pr_MU goto l3;
+		edge A2_0, Ro_m90, Ro_50, Pr_B goto l1;
+	location l3:
+		edge A2_0, Ro_m90, Ro_50, Pr_B goto l2;
+end
+
+requirement A1T:
+	location l1:
+		initial; marked;
+		edge Ro_35;
+		edge Ta_STf goto l2;
+	location l2:
+		edge Ro_35 goto l1;
+end

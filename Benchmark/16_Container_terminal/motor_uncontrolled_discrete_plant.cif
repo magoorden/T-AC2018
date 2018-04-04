@@ -1,0 +1,17 @@
+plant def track_Motor():
+  controllable c_move_forward, c_move_backward, c_stop;
+  uncontrollable u_stopped;
+
+  disc direction motion = Undefined;
+
+    location Idle:
+      initial; marked;
+      edge c_move_forward           do motion := Forward    goto Moving;
+      edge c_move_backward          do motion := Backward   goto Moving;
+
+    location Moving:
+      edge c_stop                                           goto Stop;
+
+    location Stop:
+      edge u_stopped                                        goto Idle;
+end

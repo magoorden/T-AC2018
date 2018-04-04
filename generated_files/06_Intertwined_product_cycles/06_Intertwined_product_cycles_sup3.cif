@@ -1,0 +1,63 @@
+controllable getB1;
+controllable getB2;
+controllable getB3;
+controllable getB4;
+controllable getB5;
+controllable getB6;
+controllable getM1H1;
+controllable getM1H2;
+controllable getM2H3;
+controllable getM2H4;
+uncontrollable outM1;
+uncontrollable outM2;
+uncontrollable putB1;
+uncontrollable putB2;
+uncontrollable putB3;
+uncontrollable putB4;
+plant automaton M2:
+  location Empty:
+    initial;
+    marked;
+    edge getB2 goto FromBx;
+    edge getB1 goto FromBy;
+    edge getB6 goto FromBz;
+  location FromBx:
+    edge outM2 goto Empty;
+  location FromBy:
+    edge getM2H3 goto Empty;
+  location FromBz:
+    edge getM2H4 goto Empty;
+end
+plant automaton H3:
+  location Idle:
+    initial;
+    marked;
+    edge getM2H3 goto Handling;
+  location Handling:
+    edge putB3 goto Idle;
+end
+plant automaton H4:
+  location Idle:
+    initial;
+    marked;
+    edge getM2H4 goto Handling;
+  location Handling:
+    edge putB4 goto Idle;
+end
+supervisor automaton B6:
+  location l0:
+    initial;
+    marked;
+    edge getB6;
+end
+supervisor automaton sup3:
+  alphabet getB2, getB1, getB6, getM2H3, getM2H4;
+  location:
+    initial;
+    marked;
+    edge getB1 when true;
+    edge getB2 when true;
+    edge getB6 when true;
+    edge getM2H3 when true;
+    edge getM2H4 when true;
+end

@@ -1,0 +1,86 @@
+Reading CIF file "Benchmark/14_LockIII.cif".
+Preprocessing CIF specification.
+Creating matrix.
+Prepare clustering.
+Start clustering in Matlab.
+Import data from clustering.
+Prepare synthesis of supervisors.
+Starting synthesis of supervisors.
+Syntesizing supervisor 1.
+Syntesizing supervisor 5.
+Syntesizing supervisor 9.
+Syntesizing supervisor 10.
+Syntesizing supervisor 12.
+Syntesizing supervisor 16.
+Syntesizing supervisor 17.
+Syntesizing supervisor 18.
+Syntesizing supervisor 22.
+Syntesizing supervisor 23.
+Syntesizing supervisor 24.
+Syntesizing supervisor 25.
+Syntesizing supervisor 26.
+Syntesizing supervisor 30.
+Syntesizing supervisor 31.
+Syntesizing supervisor 35.
+Syntesizing supervisor 36.
+Syntesizing supervisor 37.
+Syntesizing supervisor 42.
+Syntesizing supervisor 43.
+Syntesizing supervisor 52.
+Syntesizing supervisor 54.
+Syntesizing supervisor 55.
+Syntesizing supervisor 57.
+Syntesizing supervisor 62.
+Syntesizing supervisor 64.
+Syntesizing supervisor 69.
+Syntesizing supervisor 79.
+Syntesizing supervisor 88.
+Syntesizing supervisor 90.
+Synthesis of supervisors is finished.
+Performing nonconflicting check.
+Finished MLDES synthesis.
+
+Timing measurement           Duration
+---------------------------  ---------
+Total time                   14,851 ms
+  Read input model               33 ms
+  Preprocess input model         27 ms
+  Create matrix                  24 ms
+  Clustering in Matlab        5,012 ms
+  Import clustering results      11 ms
+  Synthesize supervisors      6,318 ms
+  Nonconflicting check        3,419 ms
+
+Controlled system  State space size
+-----------------  --------------------
+1                     46,298,256 states
+2                    444,251,136 states
+3                  2,427,715,584 states
+4                            210 states
+5                             63 states
+6                        111,968 states
+7                            324 states
+8                            324 states
+9                             81 states
+10                            81 states
+11                     2,679,232 states
+12                         3,528 states
+13                            84 states
+14                            63 states
+15                           105 states
+16                            42 states
+17                            63 states
+18                           105 states
+19                    13,172,736 states
+20                           512 states
+21                        32,768 states
+22                   167,510,016 states
+23                            32 states
+24                            32 states
+25                            32 states
+26                            32 states
+27                       262,144 states
+28                           512 states
+29                           105 states
+30                            63 states
+Total states       3,102,040,233 states

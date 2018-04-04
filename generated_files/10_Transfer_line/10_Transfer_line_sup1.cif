@@ -1,0 +1,54 @@
+controllable M1_start;
+uncontrollable M1_finish;
+controllable M2_start;
+uncontrollable M2_finish;
+controllable TU_start;
+uncontrollable TU_accepted;
+uncontrollable TU_rejected;
+plant automaton M1:
+  location Idle:
+    initial;
+    marked;
+    edge M1_start goto Working;
+  location Working:
+    edge M1_finish goto Idle;
+end
+plant automaton M2:
+  location Idle:
+    initial;
+    marked;
+    edge M2_start goto Working;
+  location Working:
+    edge M2_finish goto Idle;
+end
+plant automaton TU:
+  location Idle:
+    initial;
+    marked;
+    edge TU_start goto Testing;
+  location Testing:
+    edge TU_accepted, TU_rejected goto Idle;
+end
+supervisor automaton B1:
+  location l0:
+    initial;
+    marked;
+    edge M1_finish, TU_rejected goto l1;
+  location l1:
+    edge M1_finish, TU_rejected goto l2;
+    edge M2_start goto l0;
+  location l2:
+    edge M1_finish, TU_rejected goto l3;
+    edge M2_start goto l1;
+  location l3:
+    edge M2_start goto l2;
+end
+supervisor automaton sup1:
+  alphabet M1_start, M2_start, TU_start;
+  location:
+    initial;
+    marked;
+    edge M1_start when (not B1.l2 or TU.Idle) and not B1.l3;
+    edge M2_start when true;
+    edge TU_start when (M1.Working or not B1.l3) and (M1.Idle or (B1.l0 or B1.l1));
+end

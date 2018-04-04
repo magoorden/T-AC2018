@@ -1,0 +1,146 @@
+uncontrollable brake_sensor_u_on;
+uncontrollable brake_sensor_u_off;
+controllable CC_enabled_c_enable;
+controllable CC_enabled_c_disable;
+controllable CC_active_c_activate;
+controllable CC_active_c_deactivate;
+controllable set_speed_c_on;
+controllable set_speed_c_off;
+controllable increase_c_on;
+controllable increase_c_off;
+controllable decrease_c_on;
+controllable decrease_c_off;
+controllable resume_c_on;
+controllable resume_c_off;
+controllable mode_c_on;
+controllable mode_c_off;
+controllable cancel_c_on;
+controllable cancel_c_off;
+controllable erase_set_speed_c_on;
+controllable erase_set_speed_c_off;
+controllable timer_180_CC_c_start;
+controllable timer_180_CC_c_cancel;
+controllable timer_180_CC_c_reset;
+uncontrollable timer_180_CC_u_timeout;
+controllable timerdecrease_c_start;
+controllable timerdecrease_c_cancel;
+controllable timerdecrease_c_reset;
+uncontrollable timerdecrease_u_timeout;
+controllable timerincrease_c_start;
+controllable timerincrease_c_cancel;
+controllable timerincrease_c_reset;
+uncontrollable timerincrease_u_timeout;
+uncontrollable obs_min_v_activate_u_above_30;
+uncontrollable obs_min_v_activate_u_below_30;
+uncontrollable obs_min_v_deactivate_u_above_25;
+uncontrollable obs_min_v_deactivate_u_below_25;
+uncontrollable obs_max_speed_u_above_max;
+uncontrollable obs_max_speed_u_below_max;
+uncontrollable obs_overtake_throttle_u_on;
+uncontrollable obs_overtake_throttle_u_off;
+uncontrollable obs_set_speed_u_speed_set;
+uncontrollable obs_set_speed_u_speed_erased;
+uncontrollable obs_min_set_speed_u_above_30;
+uncontrollable obs_min_set_speed_u_below_30;
+controllable ACC_active_c_activate;
+controllable ACC_active_c_deactivate;
+controllable time_gap_c_on;
+controllable time_gap_c_off;
+uncontrollable radar_u_on;
+uncontrollable radar_u_off;
+uncontrollable radar_reliable_u_reliable;
+uncontrollable radar_reliable_u_unreliable;
+uncontrollable obs_higher_speed_u_higher;
+uncontrollable obs_higher_speed_u_not_higher;
+uncontrollable CC_enable_button_u_pushed;
+uncontrollable CC_enable_button_u_released;
+uncontrollable ACC_time_gap_button_u_pushed;
+uncontrollable ACC_time_gap_button_u_released;
+uncontrollable CC_lever_u_forward_on;
+uncontrollable CC_lever_u_forward_off;
+uncontrollable CC_lever_u_backward_on;
+uncontrollable CC_lever_u_backward_off;
+uncontrollable CC_lever_u_down_on;
+uncontrollable CC_lever_u_down_off;
+uncontrollable CC_lever_u_up_on;
+uncontrollable CC_lever_u_up_off;
+controllable mode_observer_c_reset;
+plant automaton brake_sensor:
+  location off:
+    initial;
+    marked;
+    edge brake_sensor_u_on goto on;
+  location on:
+    edge brake_sensor_u_off goto off;
+end
+plant automaton mode:
+  location off:
+    initial;
+    marked;
+    edge mode_c_on goto on;
+  location on:
+    edge mode_c_off goto off;
+end
+plant automaton cancel:
+  location off:
+    initial;
+    marked;
+    edge cancel_c_on goto on;
+  location on:
+    edge cancel_c_off goto off;
+end
+plant automaton ACC_active:
+  location inactive:
+    initial;
+    marked;
+    edge ACC_active_c_activate goto active;
+  location active:
+    edge ACC_active_c_deactivate goto inactive;
+end
+plant automaton radar_reliable:
+  location off:
+    initial;
+    marked;
+    edge radar_reliable_u_reliable goto on;
+  location on:
+    edge radar_reliable_u_unreliable goto off;
+end
+plant automaton obs_higher_speed:
+  location not_higher:
+    initial;
+    marked;
+    edge obs_higher_speed_u_higher goto higher;
+  location higher:
+    edge obs_higher_speed_u_not_higher goto not_higher;
+end
+plant automaton mode_observer:
+  location CC:
+    initial;
+    marked;
+    edge mode_c_on goto ACC;
+  location ACC:
+    edge mode_c_on goto CACC;
+    edge mode_observer_c_reset goto CC;
+  location CACC:
+    edge mode_c_on goto CC;
+    edge mode_observer_c_reset goto CC;
+end
+supervisor automaton sup14:
+  alphabet mode_c_on, mode_c_off, cancel_c_on, cancel_c_off, ACC_active_c_activate, ACC_active_c_deactivate, mode_observer_c_reset;
+  location:
+    initial;
+    marked;
+    edge ACC_active_c_activate when true;
+    edge ACC_active_c_deactivate when true;
+    edge cancel_c_off when true;
+    edge cancel_c_on when true;
+    edge mode_c_off when true;
+    edge mode_c_on when true;
+    edge mode_observer_c_reset when true;
+end
+requirement invariant ACC_active_c_activate needs obs_higher_speed.higher;
+requirement invariant ACC_active_c_activate needs brake_sensor.off;
+requirement invariant ACC_active_c_activate needs not mode_observer.CC;
+requirement invariant ACC_active_c_activate needs not cancel.on;
+requirement invariant ACC_active_c_activate needs radar_reliable.on;
+requirement invariant ACC_active_c_deactivate needs obs_higher_speed.not_higher or brake_sensor.on or mode_observer.CC or cancel.on or radar_reliable.off;

@@ -1,0 +1,10 @@
+G1,Stock
+G2,Cr_V,Cr_H
+G3,FB
+G4,Ta_V
+G5,Ta_H
+G6,Pr
+G7,DB
+G8,Ro
+G9,A1
+G10,A2

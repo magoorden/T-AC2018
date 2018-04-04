@@ -1,0 +1,202 @@
+controllable blank_add;
+controllable Cr_mOn;
+controllable Cr_mOff;
+controllable Cr_U;
+uncontrollable Cr_66;
+controllable Cr_D;
+uncontrollable Cr_95;
+uncontrollable Cr_SVf;
+controllable Cr_2FB;
+uncontrollable Cr_FB;
+controllable Cr_2DB;
+uncontrollable Cr_DB;
+uncontrollable Cr_SHf;
+controllable FB_F;
+uncontrollable FB_Sf;
+controllable FB_tau;
+uncontrollable FB_s1On;
+uncontrollable FB_s1Off;
+controllable Ta_U;
+uncontrollable Ta_T;
+uncontrollable Ta_STf;
+controllable Ta_D;
+uncontrollable Ta_B;
+uncontrollable Ta_SBf;
+controllable Ta_R;
+uncontrollable Ta_50;
+uncontrollable Ta_S50f;
+controllable Ta_L;
+uncontrollable Ta_0;
+uncontrollable Ta_S0f;
+controllable Pr_UB;
+uncontrollable Pr_MU;
+uncontrollable Pr_SMf;
+controllable Pr_UM;
+uncontrollable Pr_T;
+uncontrollable Pr_STf;
+controllable Pr_D;
+uncontrollable Pr_MD;
+uncontrollable Pr_B;
+uncontrollable Pr_SBf;
+controllable DB_F;
+uncontrollable DB_Sf;
+uncontrollable DB_tau;
+uncontrollable DB_s2On;
+uncontrollable DB_s2Off;
+uncontrollable DB_yes;
+uncontrollable DB_no;
+controllable Ro_L;
+controllable Ro_R;
+uncontrollable Ro_35;
+uncontrollable Ro_S35;
+uncontrollable Ro_m90;
+uncontrollable Ro_Sm90;
+uncontrollable Ro_50;
+uncontrollable Ro_S50;
+controllable A1_mOn;
+controllable A1_mOff;
+controllable A1_B;
+controllable A1_F;
+uncontrollable A1_37;
+uncontrollable A1_S37;
+uncontrollable A1_65;
+uncontrollable A1_S65;
+uncontrollable A1_52;
+uncontrollable A1_S52;
+controllable A2_mOn;
+controllable A2_mOff;
+controllable A2_B;
+controllable A2_F;
+uncontrollable A2_0;
+uncontrollable A2_S0;
+uncontrollable A2_80;
+uncontrollable A2_S80;
+uncontrollable A2_57;
+uncontrollable A2_S57;
+plant automaton Pr:
+  location l1:
+    initial;
+    marked;
+    edge Pr_UB goto l2;
+  location l2:
+    edge Pr_MU goto l3;
+  location l3:
+    edge Pr_SMf goto l4;
+  location l4:
+    edge Pr_UM goto l5;
+  location l5:
+    edge Pr_T goto l6;
+  location l6:
+    edge Pr_STf goto l7;
+  location l7:
+    edge Pr_D goto l8;
+  location l8:
+    edge Pr_MD goto l9;
+  location l9:
+    edge Pr_B goto l10;
+  location l10:
+    edge Pr_SBf goto l1;
+end
+supervisor automaton Pr1:
+  location l1:
+    initial;
+    marked;
+    edge Pr_SMf goto l2;
+  location l2:
+    edge A1_mOff goto l3;
+  location l3:
+    edge Pr_UM goto l1;
+end
+plant automaton Ro:
+  location l1:
+    initial;
+    marked;
+    edge Ro_L goto l2;
+  location l2:
+    edge Ro_35 goto l3;
+  location l3:
+    edge Ro_S35 goto l4;
+  location l4:
+    edge Ro_L goto l5;
+  location l5:
+    edge Ro_m90 goto l6;
+  location l6:
+    edge Ro_Sm90 goto l7;
+  location l7:
+    edge Ro_R goto l8;
+  location l8:
+    edge Ro_50 goto l9;
+  location l9:
+    edge Ro_S50 goto l1;
+end
+plant automaton A1:
+  location l1:
+    initial;
+    marked;
+    edge A1_mOn goto l2;
+  location l2:
+    edge A1_B goto l3;
+    edge A1_F goto l7;
+  location l3:
+    edge A1_37 goto l4;
+  location l4:
+    edge A1_S37 goto l5;
+  location l5:
+    edge A1_F goto l6;
+  location l6:
+    edge A1_65 goto l7;
+  location l7:
+    edge A1_S65 goto l8;
+  location l8:
+    edge A1_mOff goto l9;
+  location l9:
+    edge A1_B goto l10;
+  location l10:
+    edge A1_52 goto l11;
+  location l11:
+    edge A1_S52 goto l1;
+end
+supervisor automaton R1:
+  location l1:
+    initial;
+    marked;
+    edge A1_mOn goto l2;
+  location l2:
+    edge Ro_S50 goto l1;
+end
+supervisor automaton R4:
+  location l1:
+    initial;
+    marked;
+    edge Ro_Sm90 goto l2;
+  location l2:
+    edge A1_mOff goto l3;
+  location l3:
+    edge Ro_R goto l1;
+end
+supervisor automaton A1P:
+  location l1:
+    initial;
+    marked;
+    edge A1_37, Ro_50, Pr_MD goto l2;
+    edge A1_65, Ro_m90, Pr_T goto l3;
+  location l2:
+    edge A1_65, Ro_m90, Pr_T goto l1;
+  location l3:
+    edge A1_37, Ro_50, Pr_MD goto l1;
+end
+supervisor automaton sup14:
+  alphabet Pr_UB, Pr_UM, Pr_D, Ro_L, Ro_R, A1_mOn, A1_B, A1_F, A1_mOff;
+  location:
+    initial;
+    marked;
+    edge A1_B when true;
+    edge A1_F when Pr1.l1 and (Pr.l1 or Pr.l9) or (Pr1.l1 and Pr.l5 and (not A1P.l2 and (A1.l2 or A1.l4 or (A1.l6 or (A1.l8 or A1.l10)))) or Pr1.l1 and (Pr.l5 and A1P.l2) and (not Ro.l5 and not Ro.l6 and (not Ro.l7 and not Ro.l8))) or (Pr1.l1 and Pr.l3 or Pr1.l1 and (Pr.l7 and not A1P.l3) and (not Ro.l5 and not Ro.l6 and (not Ro.l7 and not Ro.l8)) or (Pr1.l1 and Pr.l7 and (A1P.l3 and (A1.l2 or A1.l4 or (A1.l6 or (A1.l8 or A1.l10)))) or Pr1.l1 and (Pr.l2 or Pr.l10))) or (Pr1.l1 and (Pr.l6 and not A1P.l3) and (not Ro.l5 and not Ro.l6 and (not Ro.l7 and not Ro.l8)) or (Pr1.l1 and Pr.l6 and (A1P.l3 and (A1.l2 or A1.l4 or (A1.l6 or (A1.l8 or A1.l10)))) or Pr1.l1 and ((Pr.l4 or Pr.l8) and not A1P.l3) and (not Ro.l5 and not Ro.l6 and (not Ro.l7 and not Ro.l8))) or (Pr1.l1 and (Pr.l4 or Pr.l8) and (A1P.l3 and (A1.l2 or A1.l4 or (A1.l6 or (A1.l8 or A1.l10)))) or Pr1.l3 and (A1P.l1 and (A1.l2 or A1.l4 or (A1.l6 or (A1.l8 or A1.l10)))) and (not Ro.l5 and not Ro.l6 and (not Ro.l7 and not Ro.l8)) or (Pr1.l3 and (A1P.l2 and not Ro.l5) and (not Ro.l6 and (not Ro.l7 and not Ro.l8)) or Pr1.l2)));
+    edge A1_mOff when true;
+    edge A1_mOn when true;
+    edge Pr_D when true;
+    edge Pr_UB when true;
+    edge Pr_UM when (not A1P.l1 or (not A1.l1 and not A1.l9 or not Ro.l5)) and ((not A1P.l1 or (not A1.l3 or not Ro.l5 and not Ro.l6 and (not Ro.l7 and not Ro.l8))) and (not A1P.l1 or (not A1.l11 or not Ro.l5))) and ((not A1P.l1 or (not A1.l2 and not A1.l6 or not Ro.l5 and not Ro.l6 and (not Ro.l7 and not Ro.l8))) and ((not A1P.l1 or (not A1.l10 or not Ro.l5)) and not A1P.l3));
+    edge Ro_L when (not Pr1.l1 or not Pr.l5 or (A1P.l2 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))) and (not Pr1.l1 or not Pr.l5 or (not A1P.l2 or (not A1.l2 and (not A1.l6 and not A1.l10) or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))) and ((not Pr1.l1 or not Pr.l7 or (A1P.l3 or (not A1.l2 and (not A1.l6 and not A1.l10) or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))) and ((not Pr1.l1 or not Pr.l7 or (not A1P.l3 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))) and (not Pr1.l1 or not Pr.l6 or (A1P.l3 or (not A1.l2 and (not A1.l6 and not A1.l10) or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))))) and ((not Pr1.l1 or not Pr.l6 or (not A1P.l3 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))) and ((not Pr1.l1 or not Pr.l4 and not Pr.l8 or (A1P.l3 or (not A1.l2 and (not A1.l6 and not A1.l10) or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))) and (not Pr1.l1 or not Pr.l4 and not Pr.l8 or (not A1P.l3 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))) and ((not Pr1.l3 or A1P.l2 or (not A1.l7 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))) and ((not Pr1.l3 or A1P.l2 or (not A1.l4 and not A1.l8 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))) and (not Pr1.l3 or not A1P.l2 or (not A1.l2 and (not A1.l6 and not A1.l10) or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))))));
+    edge Ro_R when true;
+end

@@ -1,0 +1,77 @@
+// This example is originally from 'Nonblocking and Safe Control of Discrete-Event
+// Systems Modeled as Extended Finite Automata' by Lucien Ouedraogo, Ratnesh Kumar,
+// Robi Malik, and Knut Akesson
+
+plant M1:
+	controllable In;
+	uncontrollable pb11;
+	location l1:
+		initial; marked;
+		edge In goto l2;
+	location l2:
+		edge pb11 goto l1;
+end
+
+plant M2:
+	controllable tb22, pb12;
+	uncontrollable o1;
+	location l1:
+		initial; marked;
+		edge tb22 goto l2;
+	location l2:
+		edge o1, pb12 goto l1;
+end
+
+plant M3:
+	controllable tb13, pb23;
+	uncontrollable o2;
+	location l1:
+		initial; marked;
+		edge tb13 goto l2;
+	location l2:
+		edge o2, pb23 goto l1;
+end
+
+// In CIF, only discrete variables can be updated on edges, and these variables
+// should be declared in the automaton that updates it, and no other automaton can
+// alter the value of these discrete variables. Since originally the variables d1
+// and d2 are updated in multiple automata, the variables are declared in new
+// automata that synchronize with the machine automata.
+
+// Furthermore, in the text it is stated that the guards in M1, M2, and M3 are removed
+// when the update would result in values outside the allowed range. So, the
+// transitions are still possible at those boundary situations. We need to model
+// these changes of update functions explicitly.
+plant B1:
+	disc int[0..16] d1 = 0;
+	location:
+		initial; marked;
+		edge M1.pb11, M2.pb12 when d1 < 16 do d1 := d1 + 1;
+		edge M1.pb11, M2.pb12 when d1 = 16;
+		edge M3.tb13 		  when d1 > 0  do d1 := d1 - 1;
+		edge M3.tb13		  when d1 = 0;
+end
+
+plant B2:
+	disc int[0..8] d2 = 0;
+	location:
+		initial; marked;
+		edge M3.pb23 when d2 < 8 do d2 := d2 + 1;
+		edge M3.pb23 when d2 = 8;
+		edge M2.tb22 when d2 > 0 do d2 := d2 - 1;
+		edge M2.tb22 when d2 = 0;
+end
+
+requirement R1:
+	location:
+		initial; marked;
+		edge M1.pb11, M2.pb12 when B1.d1 < 16;
+		edge M3.pb23 when B2.d2 < 8;
+end
+
+requirement R2:
+	location:
+		initial; marked;
+		edge M3.tb13 when B1.d1 > 0;
+		edge M2.tb22 when B2.d2 > 0;
+end

@@ -1,0 +1,298 @@
+import "Types.cif";
+
+controllable CH0toLR_5_s;
+controllable CH0toUR_5_s;
+controllable CH1toLR_5_s;
+controllable CH1toUR_5_s;
+controllable PAtoUR_5_s;
+controllable PAtoLR_5_s;
+controllable LRtoDU_5_s;
+controllable LRtoPA_5_s;
+controllable LRtoCH0_5_s;
+controllable LRtoCH1_5_s;
+controllable LRtoCTC0_5_s;
+controllable SUBtoUR_5_s;
+controllable CTC0toLR_5_s;
+controllable CTC1toUR_5_s;
+controllable DUtoUR_5_s;
+controllable DUtoLR_5_s;
+controllable DUtoTR_5_s;
+controllable TRtoSUB_5_s;
+controllable URtoSUB_5_s;
+controllable URtoDU_5_s;
+controllable URtoPA_5_s;
+controllable URtoCTC1_5_s;
+controllable CH0_Measure_5_s;
+controllable CH0_Expose_5_s;
+controllable CH1_Measure_5_s;
+controllable CH1_Expose_5_s;
+controllable PA_Align_5_s;
+controllable SUB_Condition_5_s;
+uncontrollable CH0toLR_5_e;
+uncontrollable CH0toUR_5_e;
+uncontrollable CH1toLR_5_e;
+uncontrollable CH1toUR_5_e;
+uncontrollable PAtoUR_5_e;
+uncontrollable PAtoLR_5_e;
+uncontrollable LRtoDU_5_e;
+uncontrollable LRtoPA_5_e;
+uncontrollable LRtoCH0_5_e;
+uncontrollable LRtoCH1_5_e;
+uncontrollable LRtoCTC0_5_e;
+uncontrollable SUBtoUR_5_e;
+uncontrollable CTC0toLR_5_e;
+uncontrollable CTC1toUR_5_e;
+uncontrollable DUtoUR_5_e;
+uncontrollable DUtoLR_5_e;
+uncontrollable DUtoTR_5_e;
+uncontrollable TRtoSUB_5_e;
+uncontrollable URtoSUB_5_e;
+uncontrollable URtoDU_5_e;
+uncontrollable URtoPA_5_e;
+uncontrollable URtoCTC1_5_e;
+uncontrollable CH0_Measure_5_e;
+uncontrollable CH0_Expose_5_e;
+uncontrollable CH1_Measure_5_e;
+uncontrollable CH1_Expose_5_e;
+uncontrollable PA_Align_5_e;
+uncontrollable SUB_Condition_5_e;
+uncontrollable assignCH0_5;
+uncontrollable assignCH1_5;
+uncontrollable assignCH0orCH1_5;
+type bdd5_node_type = tuple(int var; int low; int high);
+type bdd5_nodes_type = list bdd5_node_type;
+const bdd5_nodes_type bdd5_nodes = [(0, 1, -2), (1, 2, -2), (2, 3, 13), (5, 4, -2), (6, 5, -2), (7, 6, -2), (8, 7, -2), (9, -2, 8), (10, -2, 9), (11, 10, -2), (12, 11, -2), (13, 12, -2), (14, -1, -2), (3, 14, 17), (5, 4, 15), (6, 16, 5), (7, 7, 6), (4, 14, 18), (5, 4, 19), (6, 20, -2), (7, 21, -2), (8, -2, 7), (0, 23, -2), (1, -2, 2), (0, 25, -2), (1, 26, -2), (2, 27, 33), (5, 28, -2), (6, 29, -2), (7, 30, -2), (8, 31, -2), (9, 32, -2), (10, 9, -2), (3, 34, 37), (5, 28, 35), (6, 36, 29), (7, 31, 30), (4, 34, 38), (5, 28, 39), (6, 40, -2), (7, 41, -2), (8, -2, 31), (0, 43, -2), (1, -2, 26), (0, 45, -2), (1, 46, -2), (2, 47, 52), (5, 48, -2), (6, 49, -2), (7, 50, -2), (8, 51, -2), (9, -2, 32), (3, 53, 56), (5, 48, 54), (6, 55, 49), (7, 51, 50), (4, 53, 57), (5, 48, 58), (6, 59, -2), (7, 60, -2), (8, -2, 51), (0, 62, -2), (1, -2, 46), (0, 64, -2), (1, 65, -2), (2, 66, 71), (5, 67, -2), (6, 68, -2), (7, 69, -2), (8, 70, -2), (9, 8, -2), (3, 72, 75), (5, 67, 73), (6, 74, 68), (7, 70, 69), (4, 72, 76), (5, 67, 77), (6, 78, -2), (7, 79, -2), (8, -2, 70), (0, 81, -2), (1, -2, 65), (0, 83, -2), (1, 84, -2), (2, 85, 92), (5, 86, -2), (6, 87, -2), (7, 88, -2), (8, 89, -2), (9, 90, -2), (10, 91, -2), (11, -2, 10), (3, 93, 96), (5, 86, 94), (6, 95, 87), (7, 89, 88), (4, 93, 97), (5, 86, 98), (6, 99, -2), (7, 100, -2), (8, -2, 89), (0, 102, -2), (1, -2, 84), (0, 104, -2), (1, 105, -2), (2, 106, 112), (5, 107, -2), (6, 108, -2), (7, 109, -2), (8, 110, -2), (9, 111, -2), (10, -2, 91), (3, 113, 116), (5, 107, 114), (6, 115, 108), (7, 110, 109), (4, 113, 117), (5, 107, 118), (6, 119, -2), (7, 120, -2), (8, -2, 110), (0, 122, -2), (1, -2, 105), (0, 124, -2), (2, -2, 125), (5, -2, 126), (6, 127, -2), (7, 128, -2), (8, -2, 129), (9, -2, 111), (0, -2, 131), (2, -2, 132), (3, 133, 141), (5, 134, -2), (6, 135, -2), (7, 136, -2), (8, 137, -2), (9, 138, -2), (10, 139, -2), (11, 140, -2), (12, -2, 11), (4, 133, -2), (0, 143, -2), (1, 26, 144), (2, 27, 145), (3, 146, 148), (5, 28, 147), (6, 36, 30), (4, 146, 38), (0, 150, -2), (2, -2, 151), (4, 152, -2), (5, -2, 153), (6, 154, -2), (7, -2, 30), (0, 156, -2), (2, -2, 157), (4, 158, -2), (5, -2, 159), (6, -2, 154), (0, 161, -2), (1, 46, 162), (2, 47, 163), (3, 164, 166), (5, 48, 165), (6, 55, 50), (4, 164, 57), (0, 168, -2), (2, -2, 169), (3, 170, -2), (5, -2, 171), (6, 172, -2), (7, -2, 50), (0, 174, -2), (2, -2, 175), (3, 176, -2), (5, -2, 177), (6, -2, 172), (0, 179, -2), (1, 65, 180), (2, 66, 181), (3, 182, 184), (5, 67, 183), (6, 74, 69), (4, 182, 76), (0, 186, -2), (2, -2, 187), (3, 188, 190), (5, -2, 189), (6, -2, 68), (4, 188, -2), (0, 192, -2), (2, -2, 193), (3, 194, 197), (5, -2, 195), (6, 196, -2), (7, -2, 69), (4, 194, -2), (0, 199, -2), (1, -2, 200), (2, 3, 201), (3, 202, 204), (5, 4, 203), (6, 16, 6), (4, 202, 18), (0, 206, -2), (2, -2, 207), (3, 208, 209), (5, -2, 86), (4, 208, -2), (0, 211, -2), (1, 212, 227), (2, 213, 218), (5, 214, -2), (6, 215, -2), (7, 216, -2), (8, 217, -2), (9, -2, 90), (3, 219, 222), (5, 214, 220), (6, 221, 215), (7, 217, 216), (4, 219, 223), (5, 214, 224), (6, 225, -2), (7, 226, -2), (8, -2, 217), (2, 213, 228), (3, 229, 231), (5, 214, 230), (6, 221, 216), (4, 229, 223), (0, 233, -2), (1, 234, 245), (2, 235, 239), (5, 236, -2), (6, 237, -2), (7, 238, -2), (8, 129, -2), (3, 240, 243), (5, 236, 241), (6, 242, 237), (7, 129, 238), (4, 240, 244), (5, 236, 126), (2, 235, 246), (3, 247, 249), (5, 236, 248), (6, 242, 238), (4, 247, 244), (0, 251, -2), (2, 252, 257), (5, 253, -2), (6, 254, -2), (7, 255, -2), (8, 256, -2), (9, -2, 138), (3, 258, 261), (5, 253, 259), (6, 260, 254), (7, 256, 255), (4, 258, 262), (5, 253, 263), (6, 264, -2), (7, 265, -2), (8, -2, 256), (0, 267, -2), (1, 251, 268), (2, 252, 269), (3, 270, 272), (5, 253, 271), (6, 260, 255), (4, 270, 262)];
+alg bool bdd5_value0 = AssignChuckDed_5.l1;
+alg bool bdd5_value1 = ObsAligned_5.aligned;
+alg bool bdd5_value2 = ObsChuckDed_5.assignedYes;
+alg bool bdd5_value3 = ObsChuckDed_5.dedication = DedicatedToCH0 or ObsChuckDed_5.dedication = Unknown;
+alg bool bdd5_value4 = ObsChuckDed_5.dedication = DedicatedToCH1 or ObsChuckDed_5.dedication = Unknown;
+alg bool bdd5_value5 = ReqLifeCycle_5.l1 or ReqLifeCycle_5.l3 or (ReqLifeCycle_5.l5 or (ReqLifeCycle_5.l7 or ReqLifeCycle_5.l9));
+alg bool bdd5_value6 = ReqLifeCycle_5.l2 or ReqLifeCycle_5.l3 or (ReqLifeCycle_5.l6 or ReqLifeCycle_5.l7);
+alg bool bdd5_value7 = ReqLifeCycle_5.l4 or ReqLifeCycle_5.l5 or (ReqLifeCycle_5.l6 or ReqLifeCycle_5.l7);
+alg bool bdd5_value8 = ReqLifeCycle_5.l8 or ReqLifeCycle_5.l9;
+alg bool bdd5_value9 = WaferPlant_5.CH1 or WaferPlant_5.LR or (WaferPlant_5.CTC0 or WaferPlant_5.DU) or (WaferPlant_5.UR or WaferPlant_5.CH0_ExposeRunning or (WaferPlant_5.CH1_ExposeRunning or (WaferPlant_5.SUB_ConditionRunning or WaferPlant_5.CH0toUR))) or (WaferPlant_5.CH1toUR or WaferPlant_5.PAtoLR or (WaferPlant_5.LRtoPA or (WaferPlant_5.LRtoCH1 or WaferPlant_5.SUBtoUR)) or (WaferPlant_5.CTC1toUR or WaferPlant_5.DUtoLR or (WaferPlant_5.TRtoSUB or (WaferPlant_5.URtoDU or WaferPlant_5.URtoCTC1))));
+alg bool bdd5_value10 = WaferPlant_5.PA or WaferPlant_5.LR or (WaferPlant_5.CTC1 or WaferPlant_5.DU) or (WaferPlant_5.CH0_MeasureRunning or WaferPlant_5.CH0_ExposeRunning or (WaferPlant_5.PA_AlignRunning or (WaferPlant_5.SUB_ConditionRunning or WaferPlant_5.CH1toLR))) or (WaferPlant_5.CH1toUR or WaferPlant_5.LRtoDU or (WaferPlant_5.LRtoPA or WaferPlant_5.LRtoCTC0) or (WaferPlant_5.SUBtoUR or WaferPlant_5.DUtoUR or (WaferPlant_5.DUtoLR or (WaferPlant_5.URtoSUB or WaferPlant_5.URtoDU))));
+alg bool bdd5_value11 = WaferPlant_5.SUB or WaferPlant_5.CTC0 or (WaferPlant_5.CTC1 or WaferPlant_5.DU) or (WaferPlant_5.CH1_MeasureRunning or WaferPlant_5.CH1_ExposeRunning or (WaferPlant_5.PA_AlignRunning or (WaferPlant_5.SUB_ConditionRunning or WaferPlant_5.PAtoUR))) or (WaferPlant_5.PAtoLR or WaferPlant_5.LRtoDU or (WaferPlant_5.LRtoPA or WaferPlant_5.CTC0toLR) or (WaferPlant_5.CTC1toUR or WaferPlant_5.DUtoUR or (WaferPlant_5.DUtoLR or (WaferPlant_5.URtoPA or WaferPlant_5.URtoCTC1))));
+alg bool bdd5_value12 = WaferPlant_5.TR or WaferPlant_5.UR or (WaferPlant_5.CH0_MeasureRunning or WaferPlant_5.CH0_ExposeRunning) or (WaferPlant_5.CH1_MeasureRunning or WaferPlant_5.CH1_ExposeRunning or (WaferPlant_5.PA_AlignRunning or WaferPlant_5.SUB_ConditionRunning)) or (WaferPlant_5.LRtoCH0 or WaferPlant_5.LRtoCH1 or (WaferPlant_5.LRtoCTC0 or WaferPlant_5.SUBtoUR) or (WaferPlant_5.CTC0toLR or WaferPlant_5.CTC1toUR or (WaferPlant_5.DUtoUR or WaferPlant_5.DUtoLR)));
+alg bool bdd5_value13 = WaferPlant_5.CH0toLR or WaferPlant_5.CH0toUR or (WaferPlant_5.CH1toLR or WaferPlant_5.CH1toUR) or (WaferPlant_5.PAtoUR or WaferPlant_5.PAtoLR or (WaferPlant_5.LRtoDU or WaferPlant_5.LRtoPA)) or (WaferPlant_5.LRtoCH0 or WaferPlant_5.LRtoCH1 or (WaferPlant_5.LRtoCTC0 or WaferPlant_5.SUBtoUR) or (WaferPlant_5.CTC0toLR or WaferPlant_5.CTC1toUR or (WaferPlant_5.DUtoUR or WaferPlant_5.DUtoLR)));
+alg bool bdd5_value14 = WaferPlant_5.DUtoTR or (WaferPlant_5.TRtoSUB or WaferPlant_5.URtoSUB) or (WaferPlant_5.URtoDU or (WaferPlant_5.URtoPA or WaferPlant_5.URtoCTC1));
+alg list[15] bool bdd5_values = [bdd5_value0, bdd5_value1, bdd5_value2, bdd5_value3, bdd5_value4, bdd5_value5, bdd5_value6, bdd5_value7, bdd5_value8, bdd5_value9, bdd5_value10, bdd5_value11, bdd5_value12, bdd5_value13, bdd5_value14];
+func bool bdd5_eval(bdd5_nodes_type nodes; int idx; list[15] bool values):
+  bdd5_node_type node;
+  bool val;
+  while idx >= 0:
+    node := nodes[idx];
+    val := values[node[var]];
+    idx := if val: node[high] else node[low] end;
+  end
+  return idx = -1;
+end
+supervisor ReqLifeCycle_5:
+  monitor;
+  location l0:
+    initial;
+    marked;
+    edge TRtoSUB_5_e goto l1;
+  location l1:
+    edge SUB_Condition_5_s goto l2;
+  location l2:
+    edge SUB_Condition_5_e goto l3;
+  location l3:
+    edge PA_Align_5_s goto l4;
+  location l4:
+    edge PA_Align_5_e goto l5;
+  location l5:
+    edge PA_Align_5_s goto l4;
+    edge CH0_Measure_5_s, CH1_Measure_5_s goto l6;
+  location l6:
+    edge CH0_Measure_5_e, CH1_Measure_5_e goto l7;
+  location l7:
+    edge CH0_Expose_5_s, CH1_Expose_5_s goto l8;
+  location l8:
+    edge CH0_Expose_5_e, CH1_Expose_5_e goto l9;
+  location l9:
+    edge DUtoTR_5_s goto l0;
+end
+plant ObsAligned_5:
+  monitor LRtoDU_5_s, LRtoPA_5_s, LRtoCTC0_5_s, CH0toUR_5_s, CH1toUR_5_s, PAtoUR_5_s, SUBtoUR_5_s, CTC1toUR_5_s, PA_Align_5_e;
+  location not_aligned:
+    initial;
+    marked;
+    edge PA_Align_5_e goto aligned;
+  location aligned:
+    marked;
+    edge LRtoDU_5_s, LRtoPA_5_s, LRtoCTC0_5_s, CH0toUR_5_s, CH1toUR_5_s, PAtoUR_5_s, SUBtoUR_5_s, CTC1toUR_5_s goto not_aligned;
+end
+plant ObsChuckDed_5:
+  monitor assignCH0_5, assignCH1_5, assignCH0orCH1_5;
+  disc ChuckDedicationType dedication = Unknown;
+  location assignedNo:
+    initial;
+    marked;
+    edge assignCH0_5 do dedication := DedicatedToCH0 goto assignedYes;
+    edge assignCH1_5 do dedication := DedicatedToCH1 goto assignedYes;
+    edge assignCH0orCH1_5 do dedication := NoChuckDedication goto assignedYes;
+  location assignedYes:
+    marked;
+    edge DUtoTR_5_s do dedication := Unknown goto assignedNo;
+end
+plant AssignChuckDed_5:
+  location l0:
+    initial;
+    marked;
+    edge assignCH0_5, assignCH1_5, assignCH0orCH1_5 goto l1;
+  location l1:
+    edge TRtoSUB_5_s goto l0;
+end
+plant WaferPlant_5:
+  location CH0:
+    marked;
+    edge CH0toLR_5_s goto CH0toLR;
+    edge CH0toUR_5_s goto CH0toUR;
+    edge CH0_Measure_5_s goto CH0_MeasureRunning;
+    edge CH0_Expose_5_s goto CH0_ExposeRunning;
+  location CH1:
+    marked;
+    edge CH1toLR_5_s goto CH1toLR;
+    edge CH1toUR_5_s goto CH1toUR;
+    edge CH1_Measure_5_s goto CH1_MeasureRunning;
+    edge CH1_Expose_5_s goto CH1_ExposeRunning;
+  location PA:
+    marked;
+    edge PAtoUR_5_s goto PAtoUR;
+    edge PAtoLR_5_s goto PAtoLR;
+    edge PA_Align_5_s goto PA_AlignRunning;
+  location LR:
+    marked;
+    edge LRtoDU_5_s goto LRtoDU;
+    edge LRtoPA_5_s goto LRtoPA;
+    edge LRtoCH0_5_s goto LRtoCH0;
+    edge LRtoCH1_5_s goto LRtoCH1;
+    edge LRtoCTC0_5_s goto LRtoCTC0;
+  location SUB:
+    marked;
+    edge SUBtoUR_5_s goto SUBtoUR;
+    edge SUB_Condition_5_s goto SUB_ConditionRunning;
+  location CTC0:
+    marked;
+    edge CTC0toLR_5_s goto CTC0toLR;
+  location CTC1:
+    marked;
+    edge CTC1toUR_5_s goto CTC1toUR;
+  location DU:
+    marked;
+    edge DUtoUR_5_s goto DUtoUR;
+    edge DUtoLR_5_s goto DUtoLR;
+    edge DUtoTR_5_s goto DUtoTR;
+  location TR:
+    initial;
+    marked;
+    edge TRtoSUB_5_s goto TRtoSUB;
+    edge assignCH0_5, assignCH1_5, assignCH0orCH1_5;
+  location UR:
+    marked;
+    edge URtoSUB_5_s goto URtoSUB;
+    edge URtoDU_5_s goto URtoDU;
+    edge URtoPA_5_s goto URtoPA;
+    edge URtoCTC1_5_s goto URtoCTC1;
+  location CH0_MeasureRunning:
+    edge CH0_Measure_5_e goto CH0;
+  location CH0_ExposeRunning:
+    edge CH0_Expose_5_e goto CH0;
+  location CH1_MeasureRunning:
+    edge CH1_Measure_5_e goto CH1;
+  location CH1_ExposeRunning:
+    edge CH1_Expose_5_e goto CH1;
+  location PA_AlignRunning:
+    edge PA_Align_5_e goto PA;
+  location SUB_ConditionRunning:
+    edge SUB_Condition_5_e goto SUB;
+  location CH0toLR:
+    edge CH0toLR_5_e goto LR;
+  location CH0toUR:
+    edge CH0toUR_5_e goto UR;
+  location CH1toLR:
+    edge CH1toLR_5_e goto LR;
+  location CH1toUR:
+    edge CH1toUR_5_e goto UR;
+  location PAtoUR:
+    edge PAtoUR_5_e goto UR;
+  location PAtoLR:
+    edge PAtoLR_5_e goto LR;
+  location LRtoDU:
+    edge LRtoDU_5_e goto DU;
+  location LRtoPA:
+    edge LRtoPA_5_e goto PA;
+  location LRtoCH0:
+    edge LRtoCH0_5_e goto CH0;
+  location LRtoCH1:
+    edge LRtoCH1_5_e goto CH1;
+  location LRtoCTC0:
+    edge LRtoCTC0_5_e goto CTC0;
+  location SUBtoUR:
+    edge SUBtoUR_5_e goto UR;
+  location CTC0toLR:
+    edge CTC0toLR_5_e goto LR;
+  location CTC1toUR:
+    edge CTC1toUR_5_e goto UR;
+  location DUtoUR:
+    edge DUtoUR_5_e goto UR;
+  location DUtoLR:
+    edge DUtoLR_5_e goto LR;
+  location DUtoTR:
+    edge DUtoTR_5_e goto TR;
+  location TRtoSUB:
+    edge TRtoSUB_5_e goto SUB;
+  location URtoSUB:
+    edge URtoSUB_5_e goto SUB;
+  location URtoDU:
+    edge URtoDU_5_e goto DU;
+  location URtoPA:
+    edge URtoPA_5_e goto PA;
+  location URtoCTC1:
+    edge URtoCTC1_5_e goto CTC1;
+end
+supervisor SupWafer5:
+  alphabet LRtoDU_5_s, LRtoPA_5_s, LRtoCTC0_5_s, CH0toUR_5_s, CH1toUR_5_s, PAtoUR_5_s, SUBtoUR_5_s, CTC1toUR_5_s, DUtoTR_5_s, TRtoSUB_5_s, CH0toLR_5_s, CH0_Measure_5_s, CH0_Expose_5_s, CH1toLR_5_s, CH1_Measure_5_s, CH1_Expose_5_s, PAtoLR_5_s, PA_Align_5_s, LRtoCH0_5_s, LRtoCH1_5_s, SUB_Condition_5_s, CTC0toLR_5_s, DUtoUR_5_s, DUtoLR_5_s, URtoSUB_5_s, URtoDU_5_s, URtoPA_5_s, URtoCTC1_5_s;
+  location:
+    initial;
+    marked;
+    edge CH0_Expose_5_s when bdd5_eval(bdd5_nodes, 155, bdd5_values);
+    edge CH0_Measure_5_s when bdd5_eval(bdd5_nodes, 149, bdd5_values);
+    edge CH0toLR_5_s when bdd5_eval(bdd5_nodes, 142, bdd5_values);
+    edge CH0toUR_5_s when bdd5_eval(bdd5_nodes, 24, bdd5_values);
+    edge CH0toUR_5_s when bdd5_eval(bdd5_nodes, 42, bdd5_values);
+    edge CH1_Expose_5_s when bdd5_eval(bdd5_nodes, 173, bdd5_values);
+    edge CH1_Measure_5_s when bdd5_eval(bdd5_nodes, 167, bdd5_values);
+    edge CH1toLR_5_s when bdd5_eval(bdd5_nodes, 160, bdd5_values);
+    edge CH1toUR_5_s when bdd5_eval(bdd5_nodes, 44, bdd5_values);
+    edge CH1toUR_5_s when bdd5_eval(bdd5_nodes, 61, bdd5_values);
+    edge CTC0toLR_5_s when bdd5_eval(bdd5_nodes, 210, bdd5_values);
+    edge CTC1toUR_5_s when bdd5_eval(bdd5_nodes, 103, bdd5_values);
+    edge CTC1toUR_5_s when bdd5_eval(bdd5_nodes, 121, bdd5_values);
+    edge DUtoLR_5_s when bdd5_eval(bdd5_nodes, 232, bdd5_values);
+    edge DUtoTR_5_s when bdd5_eval(bdd5_nodes, 123, bdd5_values);
+    edge DUtoUR_5_s when bdd5_eval(bdd5_nodes, 232, bdd5_values);
+    edge LRtoCH0_5_s when bdd5_eval(bdd5_nodes, 198, bdd5_values);
+    edge LRtoCH1_5_s when bdd5_eval(bdd5_nodes, 198, bdd5_values);
+    edge LRtoCTC0_5_s when bdd5_eval(bdd5_nodes, 0, bdd5_values);
+    edge LRtoCTC0_5_s when bdd5_eval(bdd5_nodes, 22, bdd5_values);
+    edge LRtoDU_5_s when bdd5_eval(bdd5_nodes, 0, bdd5_values);
+    edge LRtoDU_5_s when bdd5_eval(bdd5_nodes, 22, bdd5_values);
+    edge LRtoPA_5_s when bdd5_eval(bdd5_nodes, 0, bdd5_values);
+    edge LRtoPA_5_s when bdd5_eval(bdd5_nodes, 22, bdd5_values);
+    edge PA_Align_5_s when bdd5_eval(bdd5_nodes, 185, bdd5_values);
+    edge PA_Align_5_s when bdd5_eval(bdd5_nodes, 191, bdd5_values);
+    edge PAtoLR_5_s when bdd5_eval(bdd5_nodes, 178, bdd5_values);
+    edge PAtoUR_5_s when bdd5_eval(bdd5_nodes, 63, bdd5_values);
+    edge PAtoUR_5_s when bdd5_eval(bdd5_nodes, 80, bdd5_values);
+    edge SUB_Condition_5_s when bdd5_eval(bdd5_nodes, 205, bdd5_values);
+    edge SUBtoUR_5_s when bdd5_eval(bdd5_nodes, 82, bdd5_values);
+    edge SUBtoUR_5_s when bdd5_eval(bdd5_nodes, 101, bdd5_values);
+    edge TRtoSUB_5_s when bdd5_eval(bdd5_nodes, 130, bdd5_values);
+    edge URtoCTC1_5_s when bdd5_eval(bdd5_nodes, 250, bdd5_values);
+    edge URtoDU_5_s when bdd5_eval(bdd5_nodes, 266, bdd5_values);
+    edge URtoPA_5_s when bdd5_eval(bdd5_nodes, 266, bdd5_values);
+    edge URtoSUB_5_s when bdd5_eval(bdd5_nodes, 250, bdd5_values);
+end

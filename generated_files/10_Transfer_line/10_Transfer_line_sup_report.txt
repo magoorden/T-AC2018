@@ -1,0 +1,31 @@
+Reading CIF file "Benchmark/10_Transfer_line.cif".
+Preprocessing CIF specification.
+Creating matrix.
+Prepare clustering.
+Start clustering in Matlab.
+Import data from clustering.
+Prepare synthesis of supervisors.
+Starting synthesis of supervisors.
+Syntesizing supervisor 1.
+Syntesizing supervisor 3.
+Synthesis of supervisors is finished.
+Performing nonconflicting check.
+The synthesized supervisors are conflicting.
+Finished MLDES synthesis.
+
+Timing measurement           Duration
+---------------------------  --------
+Total time                   4,537 ms
+  Read input model               2 ms
+  Preprocess input model         0 ms
+  Create matrix                 35 ms
+  Clustering in Matlab       4,468 ms
+  Import clustering results      8 ms
+  Synthesize supervisors        21 ms
+  Nonconflicting check           2 ms
+
+Controlled system  State space size
+-----------------  ----------------
+1                         24 states
+2                          6 states
+Total states              30 states

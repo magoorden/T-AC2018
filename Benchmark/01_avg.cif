@@ -1,0 +1,144 @@
+// This example is originally from 'Supervisory Control
+// for Discrete-Event Systems' by W.M. Wonham
+
+
+plant AVG1:
+	controllable e11, e13;
+	uncontrollable e10, e12;
+	location l0:
+		initial; marked;
+		edge e11 goto l1;
+	location l1:
+		edge e10 goto l2;
+	location l2:
+		edge e13 goto l3;
+	location l3:
+		edge e12 goto l0;
+end
+
+plant AVG2:
+	controllable e21, e23;
+	uncontrollable e18, e20, e22, e24, e26, e28;
+	location l0:
+		initial; marked;
+		edge e21 goto l1;
+	location l1:
+		edge e18 goto l2;
+	location l2:
+		edge e20 goto l3;
+	location l3:
+		edge e22 goto l4;
+	location l4:
+		edge e23 goto l5;
+	location l5:
+		edge e24 goto l6;
+	location l6:
+		edge e26 goto l7;
+	location l7:
+		edge e28 goto l0;
+end
+
+plant AVG3:
+	controllable e31, e33;
+	uncontrollable e32, e34;
+	location l0:
+		initial; marked;
+		edge e33 goto l1;
+	location l1:
+		edge e34 goto l2;
+	location l2:
+		edge e31 goto l3;
+	location l3:
+		edge e32 goto l0;
+end
+
+plant AVG4:
+	controllable e41, e43;
+	uncontrollable e40, e42, e44, e46;
+	location l0:
+		initial; marked;
+		edge e41 goto l1;
+	location l1:
+		edge e40 goto l2;
+	location l2:
+		edge e42 goto l3;
+	location l3:
+		edge e43 goto l4;
+	location l4:
+		edge e44 goto l5;
+	location l5:
+		edge e46 goto l0;
+end
+
+plant AVG5:
+	controllable e51, e53;
+	uncontrollable e50, e52;
+	location l0:
+		initial; marked;
+		edge e51 goto l1;
+	location l1:
+		edge e50 goto l2;
+	location l2:
+		edge e53 goto l3;
+	location l3:
+		edge e52 goto l0;
+end
+
+requirement def ZxSPEC (event a, b, c, d, e, f, g, h):
+	location l0:
+		initial; marked;
+		edge a, b goto l1;
+		edge e, f goto l2;
+	location l1:
+		marked;
+		edge c, d goto l0;
+	location l2:
+		marked;
+		edge g, h goto l0;
+end
+
+Z1SPEC : ZxSPEC (AVG1.e11, AVG1.e13, AVG1.e10, AVG1.e12, AVG2.e20, AVG2.e23, AVG2.e22, AVG2.e24);
+Z2SPEC : ZxSPEC (AVG2.e18, AVG2.e24, AVG2.e20, AVG2.e26, AVG3.e31, AVG3.e33, AVG3.e32, AVG3.e34);
+Z3SPEC : ZxSPEC (AVG2.e21, AVG2.e26, AVG2.e18, AVG2.e28, AVG4.e41, AVG4.e44, AVG4.e40, AVG4.e46);
+Z4SPEC : ZxSPEC (AVG4.e40, AVG4.e43, AVG4.e42, AVG4.e44, AVG5.e51, AVG5.e53, AVG5.e50, AVG5.e52);
+
+requirement WS1SPEC:
+	location l0:
+		initial; marked;
+		edge AVG3.e32 goto l1;
+		edge AVG4.e46 goto l2;
+	location l1:
+		marked;
+		edge AVG4.e46 goto l3;
+	location l2:
+		marked;
+		edge AVG3.e32 goto l3;
+	location l3:
+		marked;
+		edge AVG5.e50 goto l0;
+end
+
+requirement def WSxSPEC (event a, b):
+	location l0:
+		initial; marked;
+		edge a goto l1;
+	location l1:
+		marked;
+		edge b goto l0;
+end
+
+WS2SPEC : WSxSPEC (AVG1.e12, AVG3.e34);
+WS3SPEC : WSxSPEC (AVG2.e28, AVG4.e42);
+
+requirement IPSSPEC:
+	location l0:
+		initial; marked;
+		edge AVG1.e10 goto l1;
+		edge AVG2.e22 goto l2;
+	location l1:
+		marked;
+		edge AVG1.e13 goto l0;
+	location l2:
+		marked;
+		edge AVG2.e23 goto l0;
+end

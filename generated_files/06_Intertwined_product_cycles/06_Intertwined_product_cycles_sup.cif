@@ -1,0 +1,176 @@
+uncontrollable getB1;
+uncontrollable getB2;
+uncontrollable getB3;
+uncontrollable getB4;
+uncontrollable getB5;
+uncontrollable getB6;
+uncontrollable getM1H1;
+uncontrollable getM1H2;
+uncontrollable getM2H3;
+uncontrollable getM2H4;
+uncontrollable outM1;
+uncontrollable outM2;
+uncontrollable putB1;
+uncontrollable putB2;
+uncontrollable putB3;
+uncontrollable putB4;
+plant automaton M1:
+  location Empty:
+    initial;
+    marked;
+    edge getB3 goto FromBx;
+    edge getB4 goto FromBy;
+    edge getB5 goto FromBz;
+  location FromBx:
+    edge outM1 goto Empty;
+  location FromBy:
+    edge getM1H2 goto Empty;
+  location FromBz:
+    edge getM1H1 goto Empty;
+end
+plant automaton M2:
+  location Empty:
+    initial;
+    marked;
+    edge getB2 goto FromBx;
+    edge getB1 goto FromBy;
+    edge getB6 goto FromBz;
+  location FromBx:
+    edge outM2 goto Empty;
+  location FromBy:
+    edge getM2H3 goto Empty;
+  location FromBz:
+    edge getM2H4 goto Empty;
+end
+plant automaton H1:
+  location Idle:
+    initial;
+    marked;
+    edge getM1H1 goto Handling;
+  location Handling:
+    edge putB1 goto Idle;
+end
+plant automaton H2:
+  location Idle:
+    initial;
+    marked;
+    edge getM1H2 goto Handling;
+  location Handling:
+    edge putB2 goto Idle;
+end
+plant automaton H3:
+  location Idle:
+    initial;
+    marked;
+    edge getM2H3 goto Handling;
+  location Handling:
+    edge putB3 goto Idle;
+end
+plant automaton H4:
+  location Idle:
+    initial;
+    marked;
+    edge getM2H4 goto Handling;
+  location Handling:
+    edge putB4 goto Idle;
+end
+plant automaton B1:
+  location l0:
+    initial;
+    marked;
+    edge putB1 goto l1;
+  location l1:
+    edge putB1 goto l2;
+    edge getB1 goto l0;
+  location l2:
+    edge getB1 goto l1;
+end
+plant automaton B2:
+  location l0:
+    initial;
+    marked;
+    edge putB2 goto l1;
+  location l1:
+    edge putB2 goto l2;
+    edge getB2 goto l0;
+  location l2:
+    edge getB2 goto l1;
+end
+plant automaton B3:
+  location l0:
+    initial;
+    marked;
+    edge putB3 goto l1;
+  location l1:
+    edge putB3 goto l2;
+    edge getB3 goto l0;
+  location l2:
+    edge getB3 goto l1;
+end
+plant automaton B4:
+  location l0:
+    initial;
+    marked;
+    edge putB4 goto l1;
+  location l1:
+    edge putB4 goto l2;
+    edge getB4 goto l0;
+  location l2:
+    edge getB4 goto l1;
+end
+plant automaton B5:
+  location l0:
+    initial;
+    marked;
+    edge getB5;
+end
+plant automaton B6:
+  location l0:
+    initial;
+    marked;
+    edge getB6;
+end
+plant automaton sup1:
+  alphabet getB3, getB4, getB5, getM1H2, getM1H1, getB2, getB1, getB6, getM2H3, getM2H4;
+  location:
+    initial;
+    marked;
+    edge getB1 when (H2.Handling or not B2.l2 or (not M1.FromBy or not B3.l2)) and (H2.Handling or not B2.l2 or (not M1.FromBy or (not B3.l1 or H3.Idle))) and ((H2.Idle or not B2.l1 or (not M1.FromBy or not B3.l2)) and (H2.Idle or not B2.l1 or (not M1.FromBy or (not B3.l1 or H3.Idle))));
+    edge getB2 when true;
+    edge getB3 when true;
+    edge getB4 when (H2.Handling or not B2.l2 or (not B3.l2 or not M2.FromBy)) and (H2.Handling or not B2.l2 or (not B3.l1 or (H3.Idle or not M2.FromBy))) and ((H2.Idle or not B2.l1 or (not B3.l2 or not M2.FromBy)) and (H2.Idle or not B2.l1 or (not B3.l1 or (H3.Idle or not M2.FromBy))));
+    edge getB5 when (H1.Handling or not B1.l2 or (not B3.l0 or (not M2.FromBz or not B4.l2))) and (H1.Handling or (not B1.l2 or not B3.l0) or (not M2.FromBz or (not B4.l1 or H4.Idle))) and ((H1.Handling or not B1.l2 or (not B3.l2 or not M2.FromBy)) and ((H1.Handling or not B1.l2 or (not B3.l2 or (not M2.FromBz or not B4.l2))) and (H1.Handling or (not B1.l2 or not B3.l2) or (not M2.FromBz or (not B4.l1 or H4.Idle))))) and ((H1.Handling or (not B1.l2 or not B3.l1) or (H3.Handling or (not M2.FromBz or not B4.l2))) and (H1.Handling or (not B1.l2 or not B3.l1) or (H3.Handling or not M2.FromBz or (not B4.l1 or H4.Idle))) and ((H1.Handling or not B1.l2 or (not B3.l1 or (H3.Idle or not M2.FromBy))) and ((H1.Handling or (not B1.l2 or not B3.l1) or (H3.Idle or (not M2.FromBz or not B4.l2))) and (H1.Handling or (not B1.l2 or not B3.l1) or (H3.Idle or not M2.FromBz or (not B4.l1 or H4.Idle)))))) and ((H1.Idle or not B1.l1 or (not B3.l0 or (not M2.FromBz or not B4.l2))) and (H1.Idle or (not B1.l1 or not B3.l0) or (not M2.FromBz or (not B4.l1 or H4.Idle))) and ((H1.Idle or not B1.l1 or (not B3.l2 or not M2.FromBy)) and ((H1.Idle or not B1.l1 or (not B3.l2 or (not M2.FromBz or not B4.l2))) and (H1.Idle or (not B1.l1 or not B3.l2) or (not M2.FromBz or (not B4.l1 or H4.Idle))))) and ((H1.Idle or (not B1.l1 or not B3.l1) or (H3.Handling or (not M2.FromBz or not B4.l2))) and (H1.Idle or (not B1.l1 or not B3.l1) or (H3.Handling or not M2.FromBz or (not B4.l1 or H4.Idle))) and ((H1.Idle or not B1.l1 or (not B3.l1 or (H3.Idle or not M2.FromBy))) and ((H1.Idle or (not B1.l1 or not B3.l1) or (H3.Idle or (not M2.FromBz or not B4.l2))) and (H1.Idle or (not B1.l1 or not B3.l1) or (H3.Idle or not M2.FromBz or (not B4.l1 or H4.Idle)))))));
+    edge getB6 when (H1.Handling or (not B1.l0 or H2.Handling) or (not B2.l2 or (not M1.FromBy or not B4.l2))) and (H1.Handling or (not B1.l0 or H2.Handling) or (not B2.l2 or not M1.FromBy or (not B4.l1 or H4.Idle))) and ((H1.Handling or (not B1.l0 or H2.Idle) or (not B2.l1 or (not M1.FromBy or not B4.l2))) and (H1.Handling or (not B1.l0 or H2.Idle) or (not B2.l1 or not M1.FromBy or (not B4.l1 or H4.Idle)))) and ((H1.Handling or (not B1.l2 or H2.Handling) or (not B2.l0 or (not M1.FromBz or not B4.l2))) and (H1.Handling or (not B1.l2 or H2.Handling) or (not B2.l0 or not M1.FromBz or (not B4.l1 or H4.Idle))) and ((H1.Handling or (not B1.l2 or H2.Handling) or (not B2.l2 or M1.Empty or (M1.FromBx or not B4.l2))) and (H1.Handling or not B1.l2 or (H2.Handling or not B2.l2) or (M1.Empty or M1.FromBx or (not B4.l1 or H4.Idle))))) and ((H1.Handling or (not B1.l2 or H2.Handling) or (not B2.l1 or (not M1.FromBz or not B4.l2))) and (H1.Handling or (not B1.l2 or H2.Handling) or (not B2.l1 or not M1.FromBz or (not B4.l1 or H4.Idle))) and ((H1.Handling or (not B1.l2 or H2.Idle) or (B2.l1 or (not M1.FromBz or not B4.l2))) and (H1.Handling or (not B1.l2 or H2.Idle) or (B2.l1 or not M1.FromBz or (not B4.l1 or H4.Idle)))) and ((H1.Handling or (not B1.l2 or H2.Idle) or (not B2.l1 or M1.Empty or (M1.FromBx or not B4.l2))) and (H1.Handling or not B1.l2 or (H2.Idle or not B2.l1) or (M1.Empty or M1.FromBx or (not B4.l1 or H4.Idle))) and ((H1.Handling or (not B1.l1 or H2.Handling) or (not B2.l2 or (not M1.FromBy or not B4.l2))) and (H1.Handling or (not B1.l1 or H2.Handling) or (not B2.l2 or not M1.FromBy or (not B4.l1 or H4.Idle)))))) and ((H1.Handling or (not B1.l1 or H2.Idle) or (not B2.l1 or (not M1.FromBy or not B4.l2))) and (H1.Handling or (not B1.l1 or H2.Idle) or (not B2.l1 or not M1.FromBy or (not B4.l1 or H4.Idle))) and ((H1.Idle or (B1.l1 or H2.Handling) or (not B2.l2 or (not M1.FromBy or not B4.l2))) and (H1.Idle or (B1.l1 or H2.Handling) or (not B2.l2 or not M1.FromBy or (not B4.l1 or H4.Idle)))) and ((H1.Idle or (B1.l1 or H2.Idle) or (not B2.l1 or (not M1.FromBy or not B4.l2))) and (H1.Idle or (B1.l1 or H2.Idle) or (not B2.l1 or not M1.FromBy or (not B4.l1 or H4.Idle))) and ((H1.Idle or (not B1.l1 or H2.Handling) or (not B2.l0 or (not M1.FromBz or not B4.l2))) and (H1.Idle or (not B1.l1 or H2.Handling) or (not B2.l0 or not M1.FromBz or (not B4.l1 or H4.Idle))))) and ((H1.Idle or (not B1.l1 or H2.Handling) or (not B2.l2 or M1.Empty or (M1.FromBx or not B4.l2))) and (H1.Idle or not B1.l1 or (H2.Handling or not B2.l2) or (M1.Empty or M1.FromBx or (not B4.l1 or H4.Idle))) and ((H1.Idle or (not B1.l1 or H2.Handling) or (not B2.l1 or (not M1.FromBz or not B4.l2))) and (H1.Idle or (not B1.l1 or H2.Handling) or (not B2.l1 or not M1.FromBz or (not B4.l1 or H4.Idle)))) and ((H1.Idle or (not B1.l1 or H2.Idle) or (B2.l1 or (not M1.FromBz or not B4.l2))) and (H1.Idle or (not B1.l1 or H2.Idle) or (B2.l1 or not M1.FromBz or (not B4.l1 or H4.Idle))) and ((H1.Idle or (not B1.l1 or H2.Idle) or (not B2.l1 or M1.Empty or (M1.FromBx or not B4.l2))) and (H1.Idle or not B1.l1 or (H2.Idle or not B2.l1) or (M1.Empty or M1.FromBx or (not B4.l1 or H4.Idle)))))));
+    edge getM1H1 when not B1.l2;
+    edge getM1H2 when not B2.l2;
+    edge getM2H3 when not B3.l2;
+    edge getM2H4 when not B4.l2;
+end
+plant automaton sup2:
+  alphabet getB3, getB4, getB5, getM1H2, getM1H1;
+  location:
+    initial;
+    marked;
+    edge getB3 when true;
+    edge getB4 when true;
+    edge getB5 when true;
+    edge getM1H1 when true;
+    edge getM1H2 when true;
+end
+plant automaton sup3:
+  alphabet getB2, getB1, getB6, getM2H3, getM2H4;
+  location:
+    initial;
+    marked;
+    edge getB1 when true;
+    edge getB2 when true;
+    edge getB6 when true;
+    edge getM2H3 when true;
+    edge getM2H4 when true;
+end
+supervisor automaton ncsup:
+  alphabet;
+  location:
+    initial;
+    marked;
+end

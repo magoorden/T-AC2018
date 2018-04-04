@@ -1,0 +1,193 @@
+controllable CH0toLR_4_s, CH0toUR_4_s, CH1toLR_4_s, CH1toUR_4_s, PAtoUR_4_s, PAtoLR_4_s, LRtoDU_4_s, LRtoPA_4_s, LRtoCH0_4_s, LRtoCH1_4_s, LRtoCTC0_4_s, SUBtoUR_4_s, CTC0toLR_4_s, CTC1toUR_4_s, DUtoUR_4_s, DUtoLR_4_s, DUtoTR_4_s, TRtoSUB_4_s, URtoSUB_4_s, URtoDU_4_s, URtoPA_4_s, URtoCTC1_4_s, CH0_Measure_4_s, CH0_Expose_4_s, CH1_Measure_4_s, CH1_Expose_4_s, PA_Align_4_s, SUB_Condition_4_s; 
+uncontrollable CH0toLR_4_e, CH0toUR_4_e, CH1toLR_4_e, CH1toUR_4_e, PAtoUR_4_e, PAtoLR_4_e, LRtoDU_4_e, LRtoPA_4_e, LRtoCH0_4_e, LRtoCH1_4_e, LRtoCTC0_4_e, SUBtoUR_4_e, CTC0toLR_4_e, CTC1toUR_4_e, DUtoUR_4_e, DUtoLR_4_e, DUtoTR_4_e, TRtoSUB_4_e, URtoSUB_4_e, URtoDU_4_e, URtoPA_4_e, URtoCTC1_4_e, CH0_Measure_4_e, CH0_Expose_4_e, CH1_Measure_4_e, CH1_Expose_4_e, PA_Align_4_e, SUB_Condition_4_e, assignCH0_4, assignCH1_4, assignCH0orCH1_4; 
+
+import "Types.cif";
+
+ // ReqLifeCycle_4: production wafer life cycle requirement.
+requirement ReqLifeCycle_4:
+  location l0:
+    initial; marked;
+    edge TRtoSUB_4_e goto l1;
+  location l1:
+    edge SUB_Condition_4_s goto l2;
+  location l2:
+    edge SUB_Condition_4_e goto l3;
+  location l3:
+    edge PA_Align_4_s goto l4;
+  location l4:
+    edge PA_Align_4_e goto l5;
+  location l5:
+    edge PA_Align_4_s goto l4;
+    edge CH0_Measure_4_s, CH1_Measure_4_s goto l6;
+  location l6:
+    edge CH0_Measure_4_e, CH1_Measure_4_e goto l7;
+  location l7:
+    edge CH0_Expose_4_s, CH1_Expose_4_s goto l8;
+  location l8:
+    edge CH0_Expose_4_e, CH1_Expose_4_e goto l9;
+  location l9:
+    edge DUtoTR_4_s goto l0;  
+end
+
+// ObsAligned_4: alignment status of wafer 4.
+plant ObsAligned_4:
+  monitor LRtoDU_4_s, LRtoPA_4_s, LRtoCTC0_4_s, CH0toUR_4_s, CH1toUR_4_s, PAtoUR_4_s, SUBtoUR_4_s, CTC1toUR_4_s, PA_Align_4_e;
+
+  location not_aligned:
+    initial; marked;
+    edge PA_Align_4_e goto aligned;
+  location aligned:
+    marked;
+    edge LRtoDU_4_s, LRtoPA_4_s, LRtoCTC0_4_s, CH0toUR_4_s, CH1toUR_4_s, PAtoUR_4_s, SUBtoUR_4_s, CTC1toUR_4_s goto not_aligned;  
+end
+
+// ReqAligned_4: only aligned wafers can be sent to the wafer stage.
+requirement ReqAligned_4:
+  location:
+    initial; marked;
+    edge LRtoCH0_4_s, LRtoCH1_4_s when ObsAligned_4.aligned;
+end
+
+// ObsChuckDed_4: chuck dedication status of wafer 4.
+plant ObsChuckDed_4:
+  disc ChuckDedicationType dedication = Unknown;
+  monitor assignCH0_4, assignCH1_4, assignCH0orCH1_4;
+
+  location assignedNo:
+    initial; marked;
+    edge assignCH0_4 do dedication := DedicatedToCH0 goto assignedYes;
+    edge assignCH1_4 do dedication := DedicatedToCH1 goto assignedYes;
+    edge assignCH0orCH1_4 do dedication := NoChuckDedication goto assignedYes;
+  location assignedYes:
+    marked;
+    edge DUtoTR_4_s do dedication := Unknown goto assignedNo;  
+end
+
+// ReqChuckDed_4: measurement and exposure are only allowed on a dedicated chuck.
+requirement ReqChuckDed_4:
+  location:
+    initial; marked;
+    edge CH0_Measure_4_s, CH0_Expose_4_s when ObsChuckDed_4.dedication = DedicatedToCH0 or ObsChuckDed_4.dedication = NoChuckDedication;
+    edge CH1_Measure_4_s, CH1_Expose_4_s when ObsChuckDed_4.dedication = DedicatedToCH1 or ObsChuckDed_4.dedication = NoChuckDedication;
+end
+
+// AssignChuckDed_4: chuck assignment is done before entering the system.
+plant AssignChuckDed_4:
+  location l0:
+    initial; marked;
+    edge assignCH0_4, assignCH1_4, assignCH0orCH1_4 goto l1;
+  location l1:
+    edge TRtoSUB_4_s goto l0;
+end
+
+// WaferPlant_4: wafer plant for production wafer 4.
+plant WaferPlant_4:
+  location CH0:
+    marked;
+    edge CH0toLR_4_s goto CH0toLR;
+    edge CH0toUR_4_s goto CH0toUR;
+    edge CH0_Measure_4_s goto CH0_MeasureRunning;
+    edge CH0_Expose_4_s goto CH0_ExposeRunning;
+  location CH1:
+    marked;
+    edge CH1toLR_4_s goto CH1toLR;
+    edge CH1toUR_4_s goto CH1toUR;
+    edge CH1_Measure_4_s goto CH1_MeasureRunning;
+    edge CH1_Expose_4_s goto CH1_ExposeRunning;
+  location PA:
+    marked;
+    edge PAtoUR_4_s goto PAtoUR;
+    edge PAtoLR_4_s goto PAtoLR;
+    edge PA_Align_4_s goto PA_AlignRunning;
+  location LR:
+    marked;
+    edge LRtoDU_4_s goto LRtoDU;
+    edge LRtoPA_4_s goto LRtoPA;
+    edge LRtoCH0_4_s goto LRtoCH0;
+    edge LRtoCH1_4_s goto LRtoCH1;
+    edge LRtoCTC0_4_s goto LRtoCTC0;
+  location SUB:
+    marked;
+    edge SUBtoUR_4_s goto SUBtoUR;
+    edge SUB_Condition_4_s goto SUB_ConditionRunning;
+  location CTC0:
+    marked;
+    edge CTC0toLR_4_s goto CTC0toLR;
+  location CTC1:
+    marked;
+    edge CTC1toUR_4_s goto CTC1toUR;
+  location DU:
+    marked;
+    edge DUtoUR_4_s goto DUtoUR;
+    edge DUtoLR_4_s goto DUtoLR;
+    edge DUtoTR_4_s goto DUtoTR;
+  location TR:
+    marked;
+    initial;
+    edge TRtoSUB_4_s goto TRtoSUB;
+    edge assignCH0_4, assignCH1_4, assignCH0orCH1_4;
+  location UR:
+    marked;
+    edge URtoSUB_4_s goto URtoSUB;
+    edge URtoDU_4_s goto URtoDU;
+    edge URtoPA_4_s goto URtoPA;
+    edge URtoCTC1_4_s goto URtoCTC1;
+
+  location CH0_MeasureRunning:
+    edge CH0_Measure_4_e goto CH0;
+  location CH0_ExposeRunning:
+    edge CH0_Expose_4_e goto CH0;
+  location CH1_MeasureRunning:
+    edge CH1_Measure_4_e goto CH1;
+  location CH1_ExposeRunning:
+    edge CH1_Expose_4_e goto CH1;
+  location PA_AlignRunning:
+    edge PA_Align_4_e goto PA;
+  location SUB_ConditionRunning:
+    edge SUB_Condition_4_e goto SUB;
+
+  location CH0toLR:
+    edge CH0toLR_4_e goto LR;
+  location CH0toUR:
+    edge CH0toUR_4_e goto UR;
+  location CH1toLR:
+    edge CH1toLR_4_e goto LR;
+  location CH1toUR:
+    edge CH1toUR_4_e goto UR;
+  location PAtoUR:
+    edge PAtoUR_4_e goto UR;
+  location PAtoLR:
+    edge PAtoLR_4_e goto LR;
+  location LRtoDU:
+    edge LRtoDU_4_e goto DU;
+  location LRtoPA:
+    edge LRtoPA_4_e goto PA;
+  location LRtoCH0:
+    edge LRtoCH0_4_e goto CH0;
+  location LRtoCH1:
+    edge LRtoCH1_4_e goto CH1;
+  location LRtoCTC0:
+    edge LRtoCTC0_4_e goto CTC0;
+  location SUBtoUR:
+    edge SUBtoUR_4_e goto UR;
+  location CTC0toLR:
+    edge CTC0toLR_4_e goto LR;
+  location CTC1toUR:
+    edge CTC1toUR_4_e goto UR;
+  location DUtoUR:
+    edge DUtoUR_4_e goto UR;
+  location DUtoLR:
+    edge DUtoLR_4_e goto LR;
+  location DUtoTR:
+    edge DUtoTR_4_e goto TR;
+  location TRtoSUB:
+    edge TRtoSUB_4_e goto SUB;
+  location URtoSUB:
+    edge URtoSUB_4_e goto SUB;
+  location URtoDU:
+    edge URtoDU_4_e goto DU;
+  location URtoPA:
+    edge URtoPA_4_e goto PA;
+  location URtoCTC1:
+    edge URtoCTC1_4_e goto CTC1;
+end

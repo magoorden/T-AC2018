@@ -1,0 +1,10 @@
+controllable a0;
+controllable a1;
+controllable a2;
+controllable a3;
+controllable a4;
+uncontrollable b0;
+uncontrollable b1;
+uncontrollable b2;
+uncontrollable b3;
+uncontrollable b4;

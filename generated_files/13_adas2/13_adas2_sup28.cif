@@ -1,0 +1,158 @@
+uncontrollable brake_sensor_u_on;
+uncontrollable brake_sensor_u_off;
+controllable CC_enabled_c_enable;
+controllable CC_enabled_c_disable;
+controllable CC_active_c_activate;
+controllable CC_active_c_deactivate;
+controllable set_speed_c_on;
+controllable set_speed_c_off;
+controllable increase_c_on;
+controllable increase_c_off;
+controllable decrease_c_on;
+controllable decrease_c_off;
+controllable resume_c_on;
+controllable resume_c_off;
+controllable mode_c_on;
+controllable mode_c_off;
+controllable cancel_c_on;
+controllable cancel_c_off;
+controllable erase_set_speed_c_on;
+controllable erase_set_speed_c_off;
+controllable timer_180_CC_c_start;
+controllable timer_180_CC_c_cancel;
+controllable timer_180_CC_c_reset;
+uncontrollable timer_180_CC_u_timeout;
+controllable timerdecrease_c_start;
+controllable timerdecrease_c_cancel;
+controllable timerdecrease_c_reset;
+uncontrollable timerdecrease_u_timeout;
+controllable timerincrease_c_start;
+controllable timerincrease_c_cancel;
+controllable timerincrease_c_reset;
+uncontrollable timerincrease_u_timeout;
+uncontrollable obs_min_v_activate_u_above_30;
+uncontrollable obs_min_v_activate_u_below_30;
+uncontrollable obs_min_v_deactivate_u_above_25;
+uncontrollable obs_min_v_deactivate_u_below_25;
+uncontrollable obs_max_speed_u_above_max;
+uncontrollable obs_max_speed_u_below_max;
+uncontrollable obs_overtake_throttle_u_on;
+uncontrollable obs_overtake_throttle_u_off;
+uncontrollable obs_set_speed_u_speed_set;
+uncontrollable obs_set_speed_u_speed_erased;
+uncontrollable obs_min_set_speed_u_above_30;
+uncontrollable obs_min_set_speed_u_below_30;
+controllable ACC_active_c_activate;
+controllable ACC_active_c_deactivate;
+controllable time_gap_c_on;
+controllable time_gap_c_off;
+uncontrollable radar_u_on;
+uncontrollable radar_u_off;
+uncontrollable radar_reliable_u_reliable;
+uncontrollable radar_reliable_u_unreliable;
+uncontrollable obs_higher_speed_u_higher;
+uncontrollable obs_higher_speed_u_not_higher;
+uncontrollable CC_enable_button_u_pushed;
+uncontrollable CC_enable_button_u_released;
+uncontrollable ACC_time_gap_button_u_pushed;
+uncontrollable ACC_time_gap_button_u_released;
+uncontrollable CC_lever_u_forward_on;
+uncontrollable CC_lever_u_forward_off;
+uncontrollable CC_lever_u_backward_on;
+uncontrollable CC_lever_u_backward_off;
+uncontrollable CC_lever_u_down_on;
+uncontrollable CC_lever_u_down_off;
+uncontrollable CC_lever_u_up_on;
+uncontrollable CC_lever_u_up_off;
+controllable mode_observer_c_reset;
+plant automaton set_speed:
+  location off:
+    initial;
+    marked;
+    edge set_speed_c_on goto on;
+  location on:
+    edge set_speed_c_off goto off;
+end
+plant automaton increase:
+  location off:
+    initial;
+    marked;
+    edge increase_c_on goto on;
+  location on:
+    edge increase_c_off goto off;
+end
+plant automaton decrease:
+  location off:
+    initial;
+    marked;
+    edge decrease_c_on goto on;
+  location on:
+    edge decrease_c_off goto off;
+end
+plant automaton resume:
+  location off:
+    initial;
+    marked;
+    edge resume_c_on goto on;
+  location on:
+    edge resume_c_off goto off;
+end
+plant automaton obs_min_v_activate:
+  location below_30:
+    initial;
+    marked;
+    edge obs_min_v_activate_u_above_30 goto above_30;
+  location above_30:
+    edge obs_min_v_activate_u_below_30 goto below_30;
+end
+plant automaton obs_set_speed:
+  location no_set_speed:
+    initial;
+    marked;
+    edge obs_set_speed_u_speed_set goto speed_set;
+  location speed_set:
+    edge obs_set_speed_u_speed_erased goto no_set_speed;
+end
+plant automaton CC_lever:
+  location nothing_on:
+    initial;
+    marked;
+    edge CC_lever_u_forward_on goto forward_on;
+    edge CC_lever_u_backward_on goto backward_on;
+    edge CC_lever_u_down_on goto down_on;
+    edge CC_lever_u_up_on goto up_on;
+  location down_on:
+    edge CC_lever_u_down_off goto nothing_on;
+    edge CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_backward_on, CC_lever_u_backward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location forward_on:
+    edge CC_lever_u_forward_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_backward_on, CC_lever_u_backward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location backward_on:
+    edge CC_lever_u_backward_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_up_on, CC_lever_u_up_off;
+  location up_on:
+    edge CC_lever_u_up_off goto nothing_on;
+    edge CC_lever_u_down_on, CC_lever_u_down_off, CC_lever_u_forward_on, CC_lever_u_forward_off, CC_lever_u_backward_on, CC_lever_u_backward_off;
+end
+supervisor automaton sup28:
+  alphabet set_speed_c_on, set_speed_c_off, increase_c_on, increase_c_off, decrease_c_on, decrease_c_off, resume_c_on, resume_c_off;
+  location:
+    initial;
+    marked;
+    edge decrease_c_off when true;
+    edge decrease_c_on when true;
+    edge increase_c_off when true;
+    edge increase_c_on when true;
+    edge resume_c_off when true;
+    edge resume_c_on when true;
+    edge set_speed_c_off when true;
+    edge set_speed_c_on when true;
+end
+requirement invariant set_speed_c_on needs CC_lever.down_on;
+requirement invariant set_speed_c_on needs decrease.off;
+requirement invariant decrease_c_on needs obs_min_v_activate.above_30;
+requirement invariant decrease_c_on needs obs_set_speed.speed_set;
+requirement invariant resume_c_on needs CC_lever.up_on;
+requirement invariant resume_c_off needs CC_lever.nothing_on or increase.on;
+requirement invariant increase_c_on needs obs_min_v_activate.above_30;
+requirement invariant increase_c_on needs obs_set_speed.speed_set;

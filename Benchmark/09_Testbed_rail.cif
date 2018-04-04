@@ -1,0 +1,666 @@
+// This example is originally from 'PLC implementation of a DES supervisor for
+// a manufacturing testbed: an implementation perspective' by R.J. Leduc
+
+// Trains
+plant def train (event en_traini, umv_traini):
+	location l0:
+		initial; marked;
+		edge en_traini goto l1;
+	location l1:
+		edge umv_traini goto l0;
+end
+
+controllable en_train1, en_train2;
+uncontrollable umv_train1, umv_train2;
+
+train_1 : train (en_train1, umv_train1);
+train_2 : train (en_train2, umv_train2);
+
+// Cranes
+plant def crane (event st_loadj, fin_loadj):
+	location l0:
+		initial; marked;
+		edge st_loadj goto l1;
+	location l1:
+		edge fin_loadj goto l0;
+end
+
+controllable st_load1, st_load2, st_load3;
+uncontrollable fin_load1, fin_load2, fin_load3;
+
+crane_1 : crane (st_load1, fin_load1);
+crane_2 : crane (st_load2, fin_load2);
+crane_3 : crane (st_load3, fin_load3);
+
+
+// Sensors
+plant def sensor_k (event t1_atk, t2_atk, nt_atk):
+	location l0:
+		initial; marked;
+		edge t1_atk, t2_atk goto l1;
+		edge nt_atk;
+	location l1:
+		edge nt_atk goto l1;
+end
+
+uncontrollable t1_at0, t1_at1, t1_at2, t1_at3, t1_at4, t1_at5, t1_at6, t1_at7,
+	t1_at8, t1_at9, t1_at10, t1_at11, t1_at12, t1_at13, t1_at14, t1_at15, t1_at16,
+	t1_at19, t1_at20, t1_at21, t1_at22, t1_at23, t1_at24, t1_at25, t1_at26, t1_at27;
+uncontrollable t2_at0, t2_at1, t2_at2, t2_at3, t2_at4, t2_at5, t2_at6, t2_at7,
+	t2_at8, t2_at9, t2_at10, t2_at11, t2_at12, t2_at13, t2_at14, t2_at15, t2_at16,
+	t2_at19, t2_at20, t2_at21, t2_at22, t2_at23, t2_at24, t2_at25, t2_at26, t2_at27;
+uncontrollable nt_at0, nt_at1, nt_at2, nt_at3, nt_at4, nt_at5, nt_at6, nt_at7,
+	nt_at8, nt_at9, nt_at10, nt_at11, nt_at12, nt_at13, nt_at14, nt_at15, nt_at16,
+	nt_at19, nt_at20, nt_at21, nt_at22, nt_at23, nt_at24, nt_at25, nt_at26, nt_at27;
+
+sensor_0 : sensor_k(t1_at0, t2_at0, nt_at0);
+sensor_1 : sensor_k(t1_at1, t2_at1, nt_at1);
+sensor_2 : sensor_k(t1_at2, t2_at2, nt_at2);
+sensor_3 : sensor_k(t1_at3, t2_at3, nt_at3);
+sensor_4 : sensor_k(t1_at4, t2_at4, nt_at4);
+sensor_5 : sensor_k(t1_at5, t2_at5, nt_at5);
+sensor_6 : sensor_k(t1_at6, t2_at6, nt_at6);
+sensor_7 : sensor_k(t1_at7, t2_at7, nt_at7);
+sensor_8 : sensor_k(t1_at8, t2_at8, nt_at8);
+sensor_9 : sensor_k(t1_at9, t2_at9, nt_at9);
+sensor_10 : sensor_k(t1_at10, t2_at10, nt_at10);
+sensor_11 : sensor_k(t1_at11, t2_at11, nt_at11);
+sensor_12 : sensor_k(t1_at12, t2_at12, nt_at12);
+sensor_13 : sensor_k(t1_at13, t2_at13, nt_at13);
+sensor_14 : sensor_k(t1_at14, t2_at14, nt_at14);
+sensor_15 : sensor_k(t1_at15, t2_at15, nt_at15);
+sensor_16 : sensor_k(t1_at16, t2_at16, nt_at16);
+sensor_19 : sensor_k(t1_at19, t2_at19, nt_at19);
+sensor_20 : sensor_k(t1_at20, t2_at20, nt_at20);
+sensor_21 : sensor_k(t1_at21, t2_at21, nt_at21);
+sensor_22 : sensor_k(t1_at22, t2_at22, nt_at22);
+sensor_23 : sensor_k(t1_at23, t2_at23, nt_at23);
+sensor_24 : sensor_k(t1_at24, t2_at24, nt_at24);
+sensor_25 : sensor_k(t1_at25, t2_at25, nt_at25);
+sensor_26 : sensor_k(t1_at26, t2_at26, nt_at26);
+sensor_27 : sensor_k(t1_at27, t2_at27, nt_at27);
+
+// Switches
+plant def sw_l (event turn_l, str_l):
+	location l0:
+		initial; marked;
+		edge turn_l, str_l;
+end
+
+plant def sw_m (event turnR_m, cplR_m, turnL_m, cplL_m):
+	location l0:
+		initial; marked;
+		edge turnR_m goto l1;
+		edge turnL_m goto l2;
+	location l1:
+		edge cplR_m goto l0;
+	location l2:
+		edge cplL_m goto l0;
+end
+
+controllable turn_4, turn_5, turn_6, turn_7;
+controllable str_4, str_5, str_6, str_7;
+controllable turnR_3, turnR_8;
+controllable turnL_3, turnL_8;
+uncontrollable cplR_3, cplR_8;
+uncontrollable cplL_3, cplL_8;
+
+sw_4 : sw_l (turn_4, str_4);
+sw_5 : sw_l (turn_5, str_5);
+sw_6 : sw_l (turn_6, str_6);
+sw_7 : sw_l (turn_7, str_7);
+
+sw_3 : sw_m (turnR_3, cplR_3, turnL_3, cplL_3);
+sw_8 : sw_m (turnR_8, cplR_8, turnL_8, cplL_8);
+
+// Sensor dependencies
+plant sensor_sensor_intd_t1:
+	location l11:
+		edge t1_at16 goto l1;
+	location l1:
+		edge t1_at14 goto l2;
+	location l2:
+		edge t1_at12 goto l3;
+	location l3:
+		edge t1_at10 goto l4;
+		edge t1_at8 goto l8;
+	location l4:
+		edge t1_at9 goto l5;
+	location l5:
+		edge t1_at11 goto l6;
+	location l6:
+		edge t1_at13 goto l7;
+	location l7:
+		edge t1_at15 goto l0;
+	location l8:
+		edge t1_at5 goto l9;
+	location l9:
+		edge t1_at3 goto l10;
+	location l10:
+		edge t1_at1 goto l11;
+		edge t1_at19 goto l15;
+	location l0:
+		initial; marked;
+		edge t1_at0 goto l12;
+	location l12:
+		edge t1_at2 goto l13;
+	location l13:
+		edge t1_at4 goto l21;
+	location l14:
+		edge t1_at7 goto l8;
+	location l15:
+		edge t1_at20 goto l16;
+	location l16:
+		edge t1_at21 goto l17;
+	location l17:
+		edge t1_at22 goto l18;
+	location l18:
+		edge t1_at23 goto l22;
+	location l19:
+		edge t1_at26 goto l20;
+	location l20:
+		edge t1_at25 goto l1;
+	location l21:
+		edge t1_at6 goto l14;
+		edge t1_at27 goto l5;
+	location l22:
+		edge t1_at24 goto l19;
+end
+
+plant sensor_sensor_intd_t2:
+	location l0:
+		initial; marked;
+		edge t2_at16 goto l1;
+	location l1:
+		edge t2_at14 goto l2;
+	location l2:
+		edge t2_at12 goto l3;
+	location l3:
+		edge t2_at10 goto l4;
+		edge t2_at8 goto l8;
+	location l4:
+		edge t2_at9 goto l5;
+	location l5:
+		edge t2_at11 goto l6;
+	location l6:
+		edge t2_at13 goto l7;
+	location l7:
+		edge t2_at15 goto l0;
+	location l8:
+		edge t2_at5 goto l9;
+	location l9:
+		edge t2_at3 goto l10;
+	location l10:
+		edge t2_at1 goto l11;
+		edge t2_at19 goto l15;
+	location l11:
+		edge t2_at0 goto l12;
+	location l12:
+		edge t2_at2 goto l13;
+	location l13:
+		edge t2_at4 goto l21;
+	location l14:
+		edge t2_at7 goto l8;
+	location l15:
+		edge t2_at20 goto l16;
+	location l16:
+		edge t2_at21 goto l17;
+	location l17:
+		edge t2_at22 goto l18;
+	location l18:
+		edge t2_at23 goto l22;
+	location l19:
+		edge t2_at26 goto l20;
+	location l20:
+		edge t2_at25 goto l1;
+	location l21:
+		edge t2_at6 goto l14;
+		edge t2_at27 goto l5;
+	location l22:
+		edge t2_at24 goto l19;
+end
+
+// Selfloops of X of Figure 6.8 are omitted. These selfloops do not change the behavior.
+plant train1_sensor:
+	location l0:
+		initial; marked;
+		edge en_train1 goto l1;
+	location l1:
+		edge umv_train1 goto l0;
+		edge t1_at0, t1_at1, t1_at2, t1_at3, t1_at4, t1_at5, t1_at6, t1_at7,
+			 t1_at8, t1_at9, t1_at10, t1_at11, t1_at12, t1_at13, t1_at14,
+			 t1_at15, t1_at16, t1_at19, t1_at20, t1_at21, t1_at22, t1_at23,
+			 t1_at24, t1_at25, t1_at26, t1_at27 goto l2;
+	location l2:
+		edge umv_train1 goto l0;
+end
+
+// Selfloops of X of Figure 6.8 are omitted. These selfloops do not change the behavior.
+plant train2_sensor:
+	location l0:
+		initial; marked;
+		edge en_train2 goto l1;
+	location l1:
+		edge umv_train2 goto l0;
+		edge t2_at0, t2_at1, t2_at2, t2_at3, t2_at4, t2_at5, t2_at6, t2_at7,
+			 t2_at8, t2_at9, t2_at10, t2_at11, t2_at12, t2_at13, t2_at14,
+			 t2_at15, t2_at16, t2_at19, t2_at20, t2_at21, t2_at22, t2_at23,
+			 t2_at24, t2_at25, t2_at26, t2_at27 goto l2;
+	location l2:
+		edge umv_train2 goto l0;
+end
+
+plant def sen_swxti (event turn1, turn2,  ti_at3, ti_at1, ti_at19, nt_atx):
+	location l0:
+		initial; marked;
+		edge ti_at3 goto l1;
+		edge turn1 goto l4;
+	location l1:
+		edge nt_atx goto l2;
+		edge turn1 goto l5;
+	location l2:
+		edge ti_at1 goto l0;
+		edge turn1 goto l3;
+	location l3:
+		edge ti_at1, ti_at19 goto l4;
+		edge turn2 goto l7;
+	location l4:
+		edge turn2 goto l0;
+		edge ti_at3 goto l5;
+	location l5:
+		edge turn2 goto l2;
+		edge nt_atx goto l6;
+	location l6:
+		edge ti_at19 goto l4;
+		edge turn2 goto l7;
+	location l7:
+		edge ti_at1, ti_at19 goto l0;
+		edge turn1 goto l3;
+end
+
+sen_sw3t1 : sen_swxti (turnR_3, turnL_3, t1_at3, t1_at1, t1_at19, nt_at3);
+sen_sw3t2 : sen_swxti (turnR_3, turnL_3, t2_at3, t2_at1, t2_at19, nt_at3);
+sen_sw4t1 : sen_swxti (str_4, turn_4, t1_at4, t1_at6, t1_at27, nt_at4);
+sen_sw4t2 : sen_swxti (str_4, turn_4, t2_at4, t2_at6, t2_at27, nt_at4);
+sen_sw7t1 : sen_swxti (str_7, turn_7, t1_at12, t1_at10, t1_at8, nt_at12);
+sen_sw7t2 : sen_swxti (str_7, turn_7, t2_at12, t2_at10, t2_at8, nt_at12);
+
+plant def sen_sw5ti (event ti_at5, ti_at7, ti_at8, ti_at19, ti_at27; alg bool init_l0):
+	location l0:
+		initial init_l0;
+		marked init_l0;
+		edge ti_at27, ti_at19 goto l2;
+		edge ti_at7 goto l3;
+		edge str_5 goto l6;
+	location l1:
+		edge str_5 goto l5;
+	location l2:
+		initial not init_l0;
+		marked not init_l0;
+		edge ti_at8 goto l1;
+		edge str_5 goto l4;
+	location l3:
+		edge ti_at5 goto l0;
+		edge str_5 goto l7;
+	location l4:
+		edge turn_5 goto l2;
+		edge ti_at8 goto l5;
+	location l5:
+		edge turn_5 goto l1;
+		edge ti_at5 goto l6;
+	location l6:
+		edge turn_5 goto l0;
+		edge ti_at27, ti_at19 goto l4;
+		edge ti_at7 goto l7;
+	location l7:
+		edge turn_5 goto l3;
+end
+
+sen_sw5t1 : sen_sw5ti (t1_at5, t1_at7, t1_at8, t1_at19, t1_at27, true);
+sen_sw5t2 : sen_sw5ti (t2_at5, t2_at7, t2_at8, t2_at19, t2_at27, false);
+
+plant def sen_sw6ti (event ti_at9, ti_at11, ti_at27):
+	location l0:
+		initial; marked;
+		edge ti_at9 goto l1;
+		edge ti_at27 goto l2;
+		edge str_6 goto l3;
+	location l1:
+		edge ti_at11 goto l0;
+		edge str_6 goto l4;
+	location l2:
+		edge str_6 goto l5;
+	location l3:
+		edge turn_6 goto l0;
+		edge ti_at9 goto l4;
+		edge ti_at27 goto l5;
+	location l4:
+		edge turn_6 goto l1;
+	location l5:
+		edge ti_at11 goto l3;
+		edge turn_6 goto l2;
+end
+
+sen_sw6t1 : sen_sw6ti (t1_at9, t1_at11, t1_at27);
+sen_sw6t2 : sen_sw6ti (t2_at9, t2_at11, t2_at27);
+
+plant def sen_sw8ti (event ti_at11, ti_at14, ti_at16, ti_at19, ti_at25; alg bool init_l0):
+	location l0:
+		initial init_l0;
+		marked init_l0;
+		edge ti_at11 goto l2;
+		edge ti_at19 goto l3;
+		edge turnL_8 goto l7;
+	location l1:
+		edge ti_at14 goto l0;
+		edge turnL_8 goto l6;
+	location l2:
+		initial not init_l0;
+		marked not init_l0;
+		edge ti_at16 goto l1;
+		edge turnL_8 goto l5;
+	location l3:
+		edge ti_at25 goto l4;
+		edge turnL_8 goto l8;
+	location l4:
+		edge turnL_8 goto l9;
+	location l5:
+		edge turnR_8 goto l2;
+		edge ti_at16 goto l6;
+	location l6:
+		edge turnR_8 goto l1;
+	location l7:
+		edge ti_at11 goto l5;
+		edge turnR_8 goto l0;
+		edge ti_at19 goto l8;
+	location l8:
+		edge ti_at25 goto l9;
+		edge turnR_8 goto l3;
+	location l9:
+		edge ti_at14 goto l7;
+		edge turnR_8 goto l4;
+end
+
+sen_sw8t1 : sen_sw8ti (t1_at11, t1_at14, t1_at16, t1_at19, t1_at25, true);
+sen_sw8t2 : sen_sw8ti (t2_at11, t2_at14, t2_at16, t2_at19, t2_at25, false);
+
+// Switch request handlers
+plant def req_swi (event t1req_swi, t2req_swi, turn_i, str_i):
+	location l0:
+		initial; marked;
+		edge t1req_swi, t2req_swi goto l1;
+	location l1:
+		edge t1req_swi, t2req_swi goto l2;
+		edge turn_i, str_i goto l0;
+	location l2:
+		edge turn_i, str_i goto l1;
+end
+
+controllable t1req_sw3, t1req_sw4, t1req_sw5, t1req_sw6, t1req_sw7, t1req_sw8;
+controllable t2req_sw3, t2req_sw4, t2req_sw5, t2req_sw6, t2req_sw7, t2req_sw8;
+
+req_sw3 : req_swi (t1req_sw3, t2req_sw3, turnL_3, turnR_3);
+req_sw4 : req_swi (t1req_sw4, t2req_sw4, turn_4, str_4);
+req_sw5 : req_swi (t1req_sw5, t2req_sw5, turn_5, str_5);
+req_sw6 : req_swi (t1req_sw6, t2req_sw6, turn_6, str_6);
+req_sw7 : req_swi (t1req_sw7, t2req_sw7, turn_7, str_7);
+req_sw8 : req_swi (t1req_sw8, t2req_sw8, turnL_8, turnR_8);
+
+// ===========================================================================
+// Requirements
+
+// Crane
+requirement def req_cranei (event st_loadi, fin_loadi, t1_atx, t2_atx):
+	location l0:
+		initial; marked;
+		edge t1_atx goto l1;
+		edge t2_atx goto l2;
+		edge en_train1, en_train2, fin_loadi;
+	location l1:
+		edge fin_loadi goto l0;
+		edge en_train2, st_loadi, t1_atx, t2_atx;
+	location l2:
+		edge fin_loadi goto l0;
+		edge en_train1, st_loadi, t1_atx, t2_atx;
+end
+
+req_crane1 : req_cranei (st_load1, fin_load1, t1_at13, t2_at13);
+req_crane2 : req_cranei (st_load2, fin_load2, t1_at2, t2_at21);
+req_crane3 : req_cranei (st_load3, fin_load3, t1_at2, t2_at21);
+
+// Routing train 1
+requirement def req_rtj_swi (event turnR_i, turnL_i, cplR_i, cplL_i, tjreq_swi, tj_atx, tj_aty, en_trainj):
+	monitor cplR_i, cplL_i, tj_atx;
+	location l0:
+		initial; marked;
+		edge tj_atx goto l1;
+		edge turnR_i, turnL_i, en_trainj;
+	location l1:
+		edge tjreq_swi goto l2;
+		edge turnR_i, turnL_i;
+	location l2:
+		edge cplR_i goto l3;
+		edge turnR_i;
+	location l3:
+		edge tj_aty goto l4;
+		edge turnR_i, turnL_i, en_trainj;
+	location l4:
+		edge tjreq_swi goto l5;
+		edge turnR_i, turnL_i;
+	location l5:
+		edge cplL_i goto l0;
+		edge turnL_i;
+end
+
+req_rt1_sw3 : req_rtj_swi (turnR_3, turnL_3, cplR_3, cplL_3, t1req_sw3, t1_at3, t1_at3, en_train1);
+req_rt1_sw8 : req_rtj_swi (turnR_8, turnL_8, cplR_8, cplL_8, t1req_sw8, t1_at16, t1_at25, en_train1);
+
+requirement def req_rt1_swi (event turn_i, str_i, tjreq_swi, tj_atx, en_trainj):
+	monitor tj_atx;
+	location l0:
+		initial; marked;
+		edge tj_atx goto l1;
+		edge turn_i, str_i, en_trainj;
+	location l1:
+		edge tjreq_swi goto l2;
+		edge turn_i, str_i;
+	location l2:
+		edge str_i goto l0;
+end
+
+req_rt1_sw4 : req_rt1_swi (turn_4, str_4, t1req_sw4, t1_at4, en_train1);
+req_rt1_sw5 : req_rt1_swi (turn_5, str_5, t1req_sw5, t1_at8, en_train1);
+req_rt1_sw6 : req_rt1_swi (turn_6, str_6, t1req_sw6, t1_at27, en_train1);
+req_rt1_sw7 : req_rt1_swi (turn_7, str_7, t1req_sw7, t1_at12, en_train1);
+
+// Routing train 2
+req_rt2_sw3 : req_rtj_swi (turnL_3, turnR_3, cplL_3, cplR_3, t2req_sw3, t2_at3, t2_at3, en_train2); // left and right are traversed for train 2
+req_rt2_sw4 : req_rt1_swi (turn_4, str_4, t2req_sw4, t2_at4, en_train2);
+req_rt2_sw6 : req_rt1_swi (turn_6, str_6, t2req_sw6, t2_at9, en_train2);
+
+requirement req_rt2_sw5:
+	monitor t2_at7, t2_at8;
+	location l0:
+		initial; marked;
+		edge t2_at8 goto l1;
+		edge turn_5, str_5, en_train2;
+	location l1:
+		edge t2req_sw5 goto l2;
+		edge turn_5, str_5;
+	location l2:
+		edge str_5 goto l3;
+	location l3:
+		edge t2_at7 goto l4;
+		edge turn_5, str_5, en_train2;
+	location l4:
+		edge t2req_sw5 goto l5;
+		edge turn_5, str_5;
+	location l5:
+		edge turn_5 goto l0;
+end
+
+requirement req_rt2_sw7:
+	monitor t2_at14, t2_at12;
+	location l0:
+		initial; marked;
+		edge t2_at14 goto l1;
+		edge turn_7, str_7, en_train2;
+	location l1:
+		edge t2_at12 goto l2;
+		edge turn_7, str_7, en_train2;
+	location l2:
+		edge t2req_sw7 goto l3;
+		edge turn_7, str_7;
+	location l3:
+		edge turn_7 goto l4;
+	location l4:
+		edge t2_at14 goto l5;
+		edge turn_7, str_7, en_train2;
+	location l5:
+		edge t2_at12 goto l6;
+		edge turn_7, str_7, en_train2;
+	location l6:
+		edge t2req_sw7 goto l7;
+		edge turn_7, str_7;
+	location l7:
+		edge str_7;
+end
+
+requirement req_rt2_sw8:
+	monitor t2_at16, t2_at25, cplR_8, cplL_8;
+	location l0:
+		initial; marked;
+		edge t2_at16 goto l1;
+		edge t2_at25 goto l3;
+		edge turnR_8, turnL_8, en_train2;
+	location l1:
+		edge t2req_sw8 goto l2;
+		edge turnR_8, turnL_8;
+	location l2:
+		edge cplR_8 goto l0;
+		edge turnR_8;
+	location l3:
+		edge t2req_sw8 goto l4;
+		edge turnR_8, turnL_8;
+	location l4:
+		edge cplL_8 goto l0;
+		edge turnL_8;
+end
+
+// Collision Protection requirements, Class I
+requirement def req_cprot_classI (alg bool init_l0; event t1_ats1, t2_ats1, t1_ats2, t2_ats2, t1_ats3, t2_ats3, t1_ats4, t2_ats4):
+	monitor t1_ats1, t2_ats1, t1_ats2, t2_ats2, t1_ats3, t2_ats3;
+	location l0:
+		initial init_l0;
+		marked init_l0;
+		edge t1_ats1 goto l1;
+		edge t2_ats1 goto l3;
+		edge en_train1, en_train2;
+	location l1:
+		initial not init_l0;
+		marked not init_l0;
+		edge t2_ats2 goto l2;
+		edge t1_ats3, t1_ats4 goto l0;
+		edge en_train1, en_train2;
+	location l2:
+		edge t1_ats3, t1_ats4 goto l0;
+		edge en_train1;
+	location l3:
+		edge t1_ats2 goto l4;
+		edge t2_ats3, t2_ats4 goto l0;
+		edge en_train1, en_train2;
+	location l4:
+		edge t2_ats3, t2_ats4 goto l0;
+		edge en_train2;
+end
+
+req_cprot_23_24 : req_cprot_classI (true, t1_at23, t2_at23, t1_at22, t2_at22, t1_at26, t2_at26, t1_at26, t2_at26);
+req_cprot_25_26 : req_cprot_classI (true, t1_at26, t2_at26, t1_at24, t2_at24, t1_at14, t2_at14, t1_at14, t2_at14);
+req_cprot_21_22 : req_cprot_classI (true, t1_at21, t2_at21, t1_at20, t2_at20, t1_at23, t2_at23, t1_at23, t2_at23);
+req_cprot_15_16 : req_cprot_classI (false, t2_at15, t1_at15, t2_at13, t1_at13, t2_at14, t1_at14, t2_at14, t1_at14);
+req_cprot_2_4 : req_cprot_classI (true, t1_at2, t2_at2, t1_at20, t2_at20, t1_at27, t2_at27, t1_at6, t2_at6);
+req_cprot_rs27 : req_cprot_classI (true, t1_at27, t2_at27, t1_at4, t2_at4, t1_at11, t2_at11, t1_at11, t2_at11);
+req_cprot_rs8 : req_cprot_classI (true, t1_at8, t2_at8, t1_at12, t2_at12, t1_at5, t2_at5, t1_at5, t2_at5);
+
+// Collision Protection requirements, Class II
+requirement def req_cprot_classII (event t1_ats1, t2_ats1, t1_ats2, t2_ats2, t1_ats3, t2_ats3, t1_ats4, t2_ats4, t1req_swi, t2req_swi):
+	monitor t1_ats1, t2_ats1, t1_ats2, t2_ats2, t1_ats3, t2_ats3, t1_ats4, t2_ats4;
+	location l0:
+		initial; marked;
+		edge t1_ats1, t1_ats2 goto l1;
+		edge t2_ats1, t2_ats2 goto l3;
+		edge en_train1, en_train2, t1req_swi, t2req_swi;
+	location l1:
+		edge t2_ats1, t2_ats2 goto l2;
+		edge t1_ats3, t1_ats4 goto l0;
+		edge en_train1, en_train2, t1req_swi, t2req_swi;
+	location l2:
+		edge t1_ats3, t1_ats4 goto l3;
+		edge en_train1, t1req_swi;
+	location l3:
+		edge t1_ats1, t1_ats2 goto l4;
+		edge t2_ats3, t2_ats4 goto l0;
+		edge en_train1, en_train2, t1req_swi, t2req_swi;
+	location l4:
+		edge t2_ats3, t2_ats4 goto l1;
+		edge en_train2, t2req_swi;
+end
+
+req_sprot_11_13 : req_cprot_classII (t1_at9, t2_at9, t1_at27, t2_at27, t1_at15, t2_at15, t1_at15, t2_at15, t1req_sw6, t2req_sw6);
+req_sprot_12_14 : req_cprot_classII (t1_at25, t2_at25, t1_at16, t2_at16, t1_at8, t2_at8, t1_at10, t2_at10, t1req_sw8, t2req_sw8);
+req_sprot_3_5 : req_cprot_classII (t1_at8, t2_at8, t1_at7, t2_at7, t1_at19, t2_at19, t1_at1, t2_at1, t1req_sw3, t2req_sw3);
+
+// Collision Protection requirements, Class III
+requirement def req_cprot_classIII (alg bool init_l0; event t1_ats1, t2_ats1, t1_ats2, t2_ats2, t1_ats3, t2_ats3, t1_ats4, t2_ats4):
+	monitor t1_ats1, t2_ats1, t1_ats2, t2_ats2, t1_ats3, t2_ats3, t1_ats4, t2_ats4;
+	location l0:
+		initial init_l0;
+		marked init_l0;
+		edge t1_ats1 goto l1;
+		edge t2_ats1 goto l5;
+		edge en_train1, en_train2;
+	location l1:
+		initial not init_l0;
+		marked not init_l0;
+		edge t2_ats2 goto l2;
+		edge t1_ats3 goto l9;
+		edge en_train1, en_train2;
+	location l2:
+		edge t1_ats3 goto l3;
+		edge en_train1;
+	location l3:
+		edge t2_ats1 goto l4;
+		edge t1_ats4 goto l0;
+		edge en_train1, en_train2;
+	location l4:
+		edge t1_ats4 goto l5;
+		edge en_train1;
+	location l5:
+		edge t1_ats2 goto l6;
+		edge t2_ats3 goto l10;
+		edge en_train1, en_train2;
+	location l6:
+		edge t2_ats3 goto l7;
+		edge en_train2;
+	location l7:
+		edge t1_ats1 goto l8;
+		edge t2_ats4 goto l0;
+		edge en_train1, en_train2;
+	location l8:
+		edge t2_ats4 goto l1;
+		edge en_train2;
+	location l9:
+		edge t1_ats4 goto l0;
+		edge t2_ats2 goto l3;
+		edge en_train1, en_train2;
+	location l10:
+		edge t2_ats4 goto l0;
+		edge t1_ats2 goto l7;
+		edge en_train1, en_train2;
+end
+
+req_cprot_19_20 : req_cprot_classIII (true, t1_at19, t2_at19, t1_at3, t2_at3, t1_at20, t2_at20, t1_at21, t2_at21);
+req_cprot_1_0 : req_cprot_classIII (false, t1_at1, t2_at1, t1_at3, t2_at3, t1_at0, t2_at0, t1_at2, t2_at2);
+req_cprot_6_7 : req_cprot_classIII (true, t1_at6, t2_at6, t1_at4, t2_at4, t1_at7, t2_at7, t1_at5, t2_at5);
+req_cprot_9_10 : req_cprot_classIII (true, t1_at10, t2_at10, t1_at12, t2_at12, t1_at9, t2_at9, t1_at11, t2_at11);
+

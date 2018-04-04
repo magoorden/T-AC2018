@@ -1,0 +1,124 @@
+import "SystemReference.cif";
+
+svgfile "waferflow.svg";
+
+// Set the color of the wafer according to the progress in the life cycle.
+svgout id "Wafer5" attr "fill"
+  value
+    if ReqLifeCycle_5.l0 or ReqLifeCycle_5.l1 or ReqLifeCycle_5.l2:
+        // fresh wafer.
+        "#f0f9e8"
+    elif ReqLifeCycle_5.l3:
+        // conditioned wafer.
+        "#bae4bc"
+    elif ReqLifeCycle_5.l4 or ReqLifeCycle_5.l5 or ReqLifeCycle_5.l6:
+        if ObsAligned_5.not_aligned:
+            // conditioned wafer.
+            "#bae4bc"
+        else
+            // aligned wafer.
+            "#7bccc4"
+        end
+    elif ReqLifeCycle_5.l7 or ReqLifeCycle_5.l8:
+        // measured wafer.
+        "#43a2ca"
+    else
+        // exposed wafer.
+        "#0868ac"
+    end;
+
+// Increase the thickness of stroke if an operation is carried out on the wafer.
+svgout id "Wafer5" attr "stroke-width"
+  value
+    if WaferPlant_5.SUB_ConditionRunning or WaferPlant_5.PA_AlignRunning or
+       WaferPlant_5.CH0_MeasureRunning or WaferPlant_5.CH0_ExposeRunning or
+       WaferPlant_5.CH1_MeasureRunning or WaferPlant_5.CH1_ExposeRunning:
+       "2px"
+    else
+       "1px"
+    end;
+
+// Set the chuck dedication status.
+svgout id "Wafer5chuckDed" text
+  value
+    if ObsChuckDed_5.dedication = Unknown:
+      " ?"
+    elif ObsChuckDed_5.dedication = DedicatedToCH0:
+      "CH0"
+    elif ObsChuckDed_5.dedication = DedicatedToCH1:
+      "CH1"
+    else
+      " *"
+    end;
+
+// Position of the wafer in the system.
+svgout id "Wafer5Group" attr "transform"
+  value
+    if WaferPlant_5.TR:
+        "translate(18.660428,298.0485)"
+    elif WaferPlant_5.DU:
+        "translate(185.46186,154.67372)"
+    elif WaferPlant_5.SUB or WaferPlant_5.SUB_ConditionRunning:
+        "translate(185.46186,478.68219)"
+    elif WaferPlant_5.PA or WaferPlant_5.PA_AlignRunning:
+        "translate(351.13135,309.34745)"
+    elif WaferPlant_5.LR:
+        "translate(429.56779,155.40677)"
+    elif WaferPlant_5.UR:
+        "translate(429.56779,478.68219)"
+    elif WaferPlant_5.CH0 or WaferPlant_5.CH0_MeasureRunning or WaferPlant_5.CH0_ExposeRunning:
+        "translate(691.99999,156.13982)"
+    elif WaferPlant_5.CH1 or WaferPlant_5.CH1_MeasureRunning or WaferPlant_5.CH1_ExposeRunning:
+        "translate(691.99999,478.68219)"
+    elif WaferPlant_5.CTC0:
+        "translate(429.56779,38.851684)"
+    elif WaferPlant_5.CTC1:
+        "translate(429.56779,594.50422)"
+    elif WaferPlant_5.URtoDU:
+        "matrix(0.37174907,0,0,0.35401034,239.8429,377.20592)"
+    elif WaferPlant_5.DUtoUR:
+        "matrix(0.38328667,0,0,0.35389566,211.04177,389.31505)"
+    elif WaferPlant_5.DUtoTR:
+        "matrix(0.34898741,0,0,0.34673407,128.28907,294.03559)"
+    elif WaferPlant_5.DUtoLR:
+        "matrix(0.34898741,0,0,0.34673407,334.84964,220.17139)"
+    elif WaferPlant_5.LRtoDU:
+        "matrix(0.34898741,0,0,0.34673407,334.84964,248.68038)"
+    elif WaferPlant_5.LRtoCTC0:
+        "matrix(0.34898741,0,0,0.34673407,476.35789,176.63039)"
+    elif WaferPlant_5.CTC0toLR:
+        "matrix(0.34898741,0,0,0.34673407,437.482,176.63039)"
+    elif WaferPlant_5.LRtoCH0:
+        "matrix(0.34898741,0,0,0.34673407,578.99024,214.98794)"
+    elif WaferPlant_5.CH0toLR:
+        "matrix(0.34898741,0,0,0.34673407,578.99024,253.86383)"
+    elif WaferPlant_5.LRtoPA:
+        "matrix(0.34898741,0,0,0.34673407,378.90898,295.84979)"
+    elif WaferPlant_5.PAtoLR:
+        "matrix(0.34898741,0,0,0.34673407,415.19315,295.84979)"
+    elif WaferPlant_5.LRtoCH1:
+        "matrix(0.34898741,0,0,0.34673407,527.67406,295.33144)"
+    elif WaferPlant_5.CH1toLR:
+        "matrix(0.34898741,0,0,0.34673407,489.31651,295.84979)"
+    elif WaferPlant_5.PAtoUR:
+        "matrix(0.34898741,0,0,0.34673407,378.90898,477.78897)"
+    elif WaferPlant_5.URtoPA:
+        "matrix(0.34898741,0,0,0.34673407,415.19314,477.78897)"
+    elif WaferPlant_5.CH0toUR:
+        "matrix(0.34898741,0,0,0.34673407,527.67405,477.78897)"
+    elif WaferPlant_5.CH1toUR:
+        "matrix(0.34898741,0,0,0.34673407,578.99022,568.49938)"
+    elif WaferPlant_5.URtoCTC1:
+        "matrix(0.34898741,0,0,0.34673407,476.35787,616.18714)"
+    elif WaferPlant_5.CTC1toUR:
+        "matrix(0.34898741,0,0,0.34673407,437.48198,616.18714)"
+    elif WaferPlant_5.URtoSUB:
+        "matrix(0.34898741,0,0,0.34673407,334.84963,566.426)"
+    elif WaferPlant_5.SUBtoUR:
+        "matrix(0.34898741,0,0,0.34673407,334.84963,537.91701)"
+    elif WaferPlant_5.TRtoSUB:
+        "matrix(0.34898741,0,0,0.34673407,128.12929,452.15006)"
+    else
+        // Track.
+        "translate(18.660428,298.0485)"
+  end;

@@ -1,0 +1,252 @@
+controllable blank_add;
+controllable Cr_mOn;
+controllable Cr_mOff;
+controllable Cr_U;
+uncontrollable Cr_66;
+controllable Cr_D;
+uncontrollable Cr_95;
+uncontrollable Cr_SVf;
+controllable Cr_2FB;
+uncontrollable Cr_FB;
+controllable Cr_2DB;
+uncontrollable Cr_DB;
+uncontrollable Cr_SHf;
+controllable FB_F;
+uncontrollable FB_Sf;
+controllable FB_tau;
+uncontrollable FB_s1On;
+uncontrollable FB_s1Off;
+controllable Ta_U;
+uncontrollable Ta_T;
+uncontrollable Ta_STf;
+controllable Ta_D;
+uncontrollable Ta_B;
+uncontrollable Ta_SBf;
+controllable Ta_R;
+uncontrollable Ta_50;
+uncontrollable Ta_S50f;
+controllable Ta_L;
+uncontrollable Ta_0;
+uncontrollable Ta_S0f;
+controllable Pr_UB;
+uncontrollable Pr_MU;
+uncontrollable Pr_SMf;
+controllable Pr_UM;
+uncontrollable Pr_T;
+uncontrollable Pr_STf;
+controllable Pr_D;
+uncontrollable Pr_MD;
+uncontrollable Pr_B;
+uncontrollable Pr_SBf;
+controllable DB_F;
+uncontrollable DB_Sf;
+uncontrollable DB_tau;
+uncontrollable DB_s2On;
+uncontrollable DB_s2Off;
+uncontrollable DB_yes;
+uncontrollable DB_no;
+controllable Ro_L;
+controllable Ro_R;
+uncontrollable Ro_35;
+uncontrollable Ro_S35;
+uncontrollable Ro_m90;
+uncontrollable Ro_Sm90;
+uncontrollable Ro_50;
+uncontrollable Ro_S50;
+controllable A1_mOn;
+controllable A1_mOff;
+controllable A1_B;
+controllable A1_F;
+uncontrollable A1_37;
+uncontrollable A1_S37;
+uncontrollable A1_65;
+uncontrollable A1_S65;
+uncontrollable A1_52;
+uncontrollable A1_S52;
+controllable A2_mOn;
+controllable A2_mOff;
+controllable A2_B;
+controllable A2_F;
+uncontrollable A2_0;
+uncontrollable A2_S0;
+uncontrollable A2_80;
+uncontrollable A2_S80;
+uncontrollable A2_57;
+uncontrollable A2_S57;
+plant automaton Pr:
+  location l1:
+    initial;
+    marked;
+    edge Pr_UB goto l2;
+  location l2:
+    edge Pr_MU goto l3;
+  location l3:
+    edge Pr_SMf goto l4;
+  location l4:
+    edge Pr_UM goto l5;
+  location l5:
+    edge Pr_T goto l6;
+  location l6:
+    edge Pr_STf goto l7;
+  location l7:
+    edge Pr_D goto l8;
+  location l8:
+    edge Pr_MD goto l9;
+  location l9:
+    edge Pr_B goto l10;
+  location l10:
+    edge Pr_SBf goto l1;
+end
+supervisor automaton Pr2:
+  location l1:
+    initial;
+    edge Pr_UB goto l2;
+  location l2:
+    edge Pr_SBf goto l3;
+  location l3:
+    marked;
+    edge A2_mOn goto l1;
+end
+plant automaton Ro:
+  location l1:
+    initial;
+    marked;
+    edge Ro_L goto l2;
+  location l2:
+    edge Ro_35 goto l3;
+  location l3:
+    edge Ro_S35 goto l4;
+  location l4:
+    edge Ro_L goto l5;
+  location l5:
+    edge Ro_m90 goto l6;
+  location l6:
+    edge Ro_Sm90 goto l7;
+  location l7:
+    edge Ro_R goto l8;
+  location l8:
+    edge Ro_50 goto l9;
+  location l9:
+    edge Ro_S50 goto l1;
+end
+plant automaton A1:
+  location l1:
+    initial;
+    marked;
+    edge A1_mOn goto l2;
+  location l2:
+    edge A1_B goto l3;
+    edge A1_F goto l7;
+  location l3:
+    edge A1_37 goto l4;
+  location l4:
+    edge A1_S37 goto l5;
+  location l5:
+    edge A1_F goto l6;
+  location l6:
+    edge A1_65 goto l7;
+  location l7:
+    edge A1_S65 goto l8;
+  location l8:
+    edge A1_mOff goto l9;
+  location l9:
+    edge A1_B goto l10;
+  location l10:
+    edge A1_52 goto l11;
+  location l11:
+    edge A1_S52 goto l1;
+end
+plant automaton A2:
+  location l1:
+    initial;
+    marked;
+    edge A2_F goto l2;
+  location l2:
+    edge A2_80 goto l3;
+  location l3:
+    edge A2_S80 goto l4;
+  location l4:
+    edge A2_mOn goto l5;
+  location l5:
+    edge A2_B goto l6;
+  location l6:
+    edge A2_57 goto l7;
+  location l7:
+    edge A2_S57 goto l8;
+  location l8:
+    edge A2_mOff goto l9;
+  location l9:
+    edge A2_B goto l10;
+    edge A2_F goto l3;
+  location l10:
+    edge A2_0 goto l11;
+  location l11:
+    edge A2_S0 goto l1;
+end
+supervisor automaton R2:
+  location l1:
+    initial;
+    edge Ro_S35 goto l2;
+  location l2:
+    marked;
+    edge Ro_S35 goto l3;
+  location l3:
+    edge A2_mOn goto l2;
+end
+supervisor automaton R3:
+  location l1:
+    initial;
+    edge A1_mOn goto l2;
+  location l2:
+    edge Ro_L goto l3;
+  location l3:
+    edge Ro_L goto l4;
+  location l4:
+    marked;
+    edge A1_mOn, A2_mOn goto l5;
+  location l5:
+    edge Ro_L goto l4;
+end
+supervisor automaton R5:
+  location l1:
+    initial;
+    edge Ro_Sm90;
+    edge Ro_R goto l2;
+  location l2:
+    marked;
+    edge Ro_Sm90 goto l3;
+  location l3:
+    edge A2_mOff goto l4;
+  location l4:
+    edge Ro_R goto l2;
+end
+supervisor automaton A2P:
+  location l1:
+    initial;
+    marked;
+    edge A2_80, Ro_35, Ro_R, Pr_MU goto l2;
+  location l2:
+    edge A2_80, Ro_35, Ro_R, Pr_MU goto l3;
+    edge A2_0, Ro_m90, Ro_50, Pr_B goto l1;
+  location l3:
+    edge A2_0, Ro_m90, Ro_50, Pr_B goto l2;
+end
+supervisor automaton sup13:
+  alphabet Pr_UB, Pr_UM, Pr_D, Ro_L, Ro_R, A1_mOn, A1_B, A1_F, A1_mOff, A2_F, A2_mOn, A2_B, A2_mOff;
+  location:
+    initial;
+    marked;
+    edge A1_B when true;
+    edge A1_F when true;
+    edge A1_mOff when true;
+    edge A1_mOn when (Pr2.l2 or not A2.l1 or (A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and ((Pr2.l2 or (not A2.l1 or A2P.l2) or (not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3))) and (Pr2.l2 or (not A2.l1 or not A2P.l2) or (not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3)))) and ((Pr2.l2 or not A2.l9 or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9))) and ((Pr2.l2 or (not A2.l9 or not A2P.l2) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (Pr2.l2 or not A2.l9 or (not A2P.l2 or not Ro.l6 and not Ro.l8)))) and ((Pr2.l2 or (not A2.l3 or A2P.l2) or (not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))) and ((Pr2.l2 or not A2.l3 or (not A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (Pr2.l2 or (not A2.l3 or not A2P.l2) or (not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3)))) and ((Pr2.l2 or (not A2.l11 or A2P.l2) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (Pr2.l2 or not A2.l11 or (A2P.l2 or not Ro.l6 and not Ro.l8)) and ((Pr2.l2 or not A2.l11 or (not A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9))) and (Pr2.l2 or not A2.l2 or (A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3)))))) and ((Pr2.l2 or (not A2.l2 or A2P.l2) or (not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3))) and ((Pr2.l2 or (not A2.l2 or not A2P.l2) or (not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))) and (Pr2.l2 or not A2.l10 or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9)))) and ((Pr2.l2 or (not A2.l10 or not A2P.l2) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and ((Pr2.l2 or not A2.l10 or (not A2P.l2 or not Ro.l6 and not Ro.l8)) and (Pr2.l2 or (not A2.l4 or A2P.l2) or (not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))))) and ((Pr2.l2 or not A2.l4 or (not A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and ((Pr2.l2 or (not A2.l4 or not A2P.l2) or (not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3))) and (not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or (not A2.l1 or A2P.l2) or (not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or not A2.l1 or (not A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3)))) and (not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or (not A2.l1 or not A2P.l2) or (not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3)))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or not A2.l9 or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4)))) and (not Pr2.l2 or Pr.l2 or (Pr.l4 or Pr.l6) or (Pr.l8 or Pr.l10 or (not A2.l9 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))))))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or Pr.l6) or (Pr.l8 or Pr.l10 or (not A2.l3 or (not Ro.l3 and not Ro.l7 or not R5.l3)))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or not A2.l3 or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3)))) and (not Pr2.l2 or Pr.l2 or (Pr.l4 or Pr.l6) or (Pr.l8 or Pr.l10 or (not A2.l11 or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9)))))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or (not A2.l11 or not A2P.l2) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4)))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or Pr.l6) or (Pr.l8 or Pr.l10 or (not A2.l11 or (not A2P.l2 or not Ro.l6 and not Ro.l8)))) and (not Pr2.l2 or Pr.l2 or (Pr.l4 or Pr.l6) or (Pr.l8 or Pr.l10 or (not A2.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3)))))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or not A2.l2 or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3)))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or not A2.l10 or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4)))) and (not Pr2.l2 or Pr.l2 or (Pr.l4 or Pr.l6) or (Pr.l8 or Pr.l10 or (not A2.l10 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))))) and ((not Pr2.l2 or Pr.l2 or (Pr.l4 or Pr.l6) or (Pr.l8 or Pr.l10 or (not A2.l4 or (not Ro.l3 and not Ro.l7 or not R5.l3)))) and (not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or not A2.l4 or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3)))) and ((not Pr2.l2 or (not Pr.l2 or not A2.l1) or (A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l2 or not A2.l1) or (A2P.l2 or not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3)))))) and ((not Pr2.l2 or (not Pr.l2 or not A2.l1) or (not A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))) and ((not Pr2.l2 or (not Pr.l2 or not A2.l9) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l2 or (not A2.l9 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))) and ((not Pr2.l2 or not Pr.l2 or (not A2.l3 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l2 or not A2.l3) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3))) and ((not Pr2.l2 or (not Pr.l2 or not A2.l11) or (A2P.l2 or not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l2 or (not A2.l11 or (A2P.l2 or not Ro.l6 and not Ro.l8))))) and ((not Pr2.l2 or not Pr.l2 or (not A2.l11 or (not A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9)))) and ((not Pr2.l2 or not Pr.l2 or (not A2.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l2 or not A2.l2) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3)))) and ((not Pr2.l2 or (not Pr.l2 or not A2.l10) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l2 or (not A2.l10 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))) and ((not Pr2.l2 or not Pr.l2 or (not A2.l4 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l2 or not A2.l4) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3)))))))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l1) or (A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l1) or (A2P.l2 or not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3))) and (not Pr2.l2 or (not Pr.l10 or not A2.l1) or (not A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3)))) and ((not Pr2.l2 or not Pr.l10 or (not A2.l9 or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9)))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l9) or (not A2P.l2 or not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l10 or (not A2.l9 or (not A2P.l2 or not Ro.l6 and not Ro.l8))))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l3) or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l3) or (not A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l10 or not A2.l3) or (not A2P.l2 or not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3)))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l11) or (A2P.l2 or not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l10 or (not A2.l11 or (A2P.l2 or not Ro.l6 and not Ro.l8))) and ((not Pr2.l2 or not Pr.l10 or (not A2.l11 or (not A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9)))) and (not Pr2.l2 or (not Pr.l10 or not A2.l2) or (A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3)))))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l2) or (A2P.l2 or not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l2) or (not A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))) and (not Pr2.l2 or not Pr.l10 or (not A2.l10 or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9))))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l10) or (not A2P.l2 or not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and ((not Pr2.l2 or not Pr.l10 or (not A2.l10 or (not A2P.l2 or not Ro.l6 and not Ro.l8))) and (not Pr2.l2 or (not Pr.l10 or not A2.l4) or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l4) or (not A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and ((not Pr2.l2 or (not Pr.l10 or not A2.l4) or (not A2P.l2 or not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3))) and (not Pr2.l2 or (not Pr.l6 or not A2.l1) or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3)))) and ((not Pr2.l2 or (not Pr.l6 or not A2.l1) or (not A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l6 or not A2.l1) or (not A2P.l2 or not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3))) and ((not Pr2.l2 or (not Pr.l6 or not A2.l9) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l6 or (not A2.l9 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))))))) and ((not Pr2.l2 or not Pr.l6 or (not A2.l3 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and ((not Pr2.l2 or (not Pr.l6 or not A2.l3) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3))) and (not Pr2.l2 or not Pr.l6 or (not A2.l11 or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9))))) and ((not Pr2.l2 or (not Pr.l6 or not A2.l11) or (not A2P.l2 or not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and ((not Pr2.l2 or not Pr.l6 or (not A2.l11 or (not A2P.l2 or not Ro.l6 and not Ro.l8))) and (not Pr2.l2 or not Pr.l6 or (not A2.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))))) and ((not Pr2.l2 or (not Pr.l6 or not A2.l2) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3))) and ((not Pr2.l2 or (not Pr.l6 or not A2.l10) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l6 or (not A2.l10 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))) and ((not Pr2.l2 or not Pr.l6 or (not A2.l4 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l6 or not A2.l4) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3))) and ((not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l1) or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9) or (R5.l1 or R5.l3))) and (not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l1) or (not A2P.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3)))))) and ((not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l1) or (not A2P.l2 or not Ro.l6 and not Ro.l8 or (R5.l1 or R5.l3))) and ((not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l9) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l4 and not Pr.l8 or (not A2.l9 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8)))) and ((not Pr2.l2 or not Pr.l4 and not Pr.l8 or (not A2.l3 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l3) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3))) and ((not Pr2.l2 or not Pr.l4 and not Pr.l8 or (not A2.l11 or (A2P.l2 or not Ro.l1 and (not Ro.l5 and not Ro.l9)))) and (not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l11) or (not A2P.l2 or not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))))) and ((not Pr2.l2 or not Pr.l4 and not Pr.l8 or (not A2.l11 or (not A2P.l2 or not Ro.l6 and not Ro.l8))) and ((not Pr2.l2 or not Pr.l4 and not Pr.l8 or (not A2.l2 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l2) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3)))) and ((not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l10) or (not Ro.l3 and not Ro.l7 or (R5.l2 or R5.l4))) and (not Pr2.l2 or not Pr.l4 and not Pr.l8 or (not A2.l10 or not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8))) and ((not Pr2.l2 or not Pr.l4 and not Pr.l8 or (not A2.l4 or (not Ro.l3 and not Ro.l7 or not R5.l3))) and (not Pr2.l2 or (not Pr.l4 and not Pr.l8 or not A2.l4) or (not Ro.l2 and not Ro.l4 and (not Ro.l6 and not Ro.l8) or (R5.l1 or R5.l3)))))))));
+    edge A2_B when true;
+    edge A2_F when (not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or A2.l9 or (A2.l10 or (A2.l11 or A2P.l2)))) and (not Pr2.l2 or Pr.l2 or (Pr.l4 or (Pr.l6 or Pr.l8)) or (Pr.l10 or (A2.l9 or A2.l10) or (A2.l11 or (not A2P.l2 or not Ro.l2 and not Ro.l4)))) and ((not Pr2.l2 or (not Pr.l2 or A2.l9) or (A2.l10 or A2.l11 or (A2P.l2 or not Ro.l2 and not Ro.l4))) and (not Pr2.l2 or (not Pr.l2 or A2.l9) or (A2.l10 or (A2.l11 or not A2P.l2)))) and ((not Pr2.l2 or (not Pr.l6 or A2.l9) or (A2.l10 or (A2.l11 or A2P.l2))) and (not Pr2.l2 or (not Pr.l6 or A2.l9) or (A2.l10 or A2.l11 or (not A2P.l2 or not Ro.l2 and not Ro.l4))) and ((not Pr2.l2 or (not Pr.l4 and not Pr.l8 or A2.l9) or (A2.l10 or (A2.l11 or A2P.l2))) and (not Pr2.l2 or (not Pr.l4 and not Pr.l8 or A2.l9) or (A2.l10 or A2.l11 or (not A2P.l2 or not Ro.l2 and not Ro.l4)))));
+    edge A2_mOff when true;
+    edge A2_mOn when true;
+    edge Pr_D when true;
+    edge Pr_UB when (not A2.l9 or A2P.l2) and ((not A2.l9 or (not A2P.l2 or not Ro.l2 and not Ro.l4)) and (not A2.l5 or A2P.l2)) and ((not A2.l3 or A2P.l2) and (not A2.l3 or (not A2P.l2 or not Ro.l2 and not Ro.l4)) and ((not A2.l7 or A2P.l2) and (not A2.l2 or (A2P.l2 or not Ro.l2 and not Ro.l4)))) and ((not A2.l2 or not A2P.l2) and ((not A2.l10 or A2P.l2) and (not A2.l10 or (not A2P.l2 or not Ro.l2 and not Ro.l4))) and ((not A2.l6 or A2P.l2) and (not A2.l4 or A2P.l2) and ((not A2.l4 or (not A2P.l2 or not Ro.l2 and not Ro.l4)) and (not A2.l8 or A2P.l2))));
+    edge Pr_UM when true;
+    edge Ro_L when not Pr2.l2 or Pr2.l2 and ((Pr.l1 or Pr.l3 or (Pr.l5 or (Pr.l7 or Pr.l9))) and (A2.l1 or A2.l5)) or (Pr2.l2 and ((Pr.l1 or Pr.l3 or (Pr.l5 or (Pr.l7 or Pr.l9))) and A2.l11) or (Pr2.l2 and (Pr.l2 and (A2.l1 or A2.l5)) or Pr2.l2 and (Pr.l2 and A2.l11))) or (Pr2.l2 and Pr.l10 or Pr2.l2 and (Pr.l6 and (A2.l1 or A2.l5)) or (Pr2.l2 and (Pr.l6 and A2.l11) or (Pr2.l2 and ((Pr.l4 or Pr.l8) and (A2.l1 or A2.l5)) or Pr2.l2 and ((Pr.l4 or Pr.l8) and A2.l11))));
+    edge Ro_R when not Pr2.l2 or (Pr2.l2 and ((Pr.l1 or Pr.l3 or (Pr.l5 or (Pr.l7 or Pr.l9))) and not A2.l2) and (not A2.l4 and not A2.l6 and (not A2.l8 and not A2.l10)) or Pr2.l2 and (Pr.l2 and (A2.l1 or A2.l5))) or (Pr2.l2 and (Pr.l2 and A2.l11) or Pr2.l2 and Pr.l10 or (Pr2.l2 and (Pr.l6 and not A2.l2) and (not A2.l4 and not A2.l6 and (not A2.l8 and not A2.l10)) or Pr2.l2 and ((Pr.l4 or Pr.l8) and not A2.l2) and (not A2.l4 and not A2.l6 and (not A2.l8 and not A2.l10))));
+end

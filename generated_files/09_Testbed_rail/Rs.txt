@@ -1,0 +1,5 @@
+1,req_crane1,req_crane2,req_crane3
+2,req_rt1_sw3,req_rt1_sw8,req_rt1_sw4,req_rt1_sw5,req_rt1_sw6,req_rt1_sw7,req_rt2_sw3,req_rt2_sw4,req_rt2_sw6,req_rt2_sw5,req_rt2_sw7,req_rt2_sw8,req_cprot_23_24,req_cprot_25_26,req_cprot_21_22,req_cprot_15_16,req_cprot_2_4,req_cprot_rs27,req_cprot_rs8,req_sprot_11_13,req_sprot_12_14,req_sprot_3_5,req_cprot_19_20,req_cprot_1_0,req_cprot_6_7,req_cprot_9_10
+3
+4
+5

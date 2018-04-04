@@ -1,0 +1,20 @@
+// The controlled system where modular wafer supervisors and a chuck swap
+// supervisor are added.
+
+import "Resources.cif";
+import "SystemPlant.cif";
+import "SystemReq.cif";
+
+// Chuck swap supervisor.
+import "SupChuckSwap.cif";
+
+// Wafer supervisors.
+import "SupWafer0.cif";
+import "SupWafer1.cif";
+import "SupWafer2.cif";
+import "SupWafer3.cif";
+import "SupWafer4.cif";
+import "SupWafer5.cif";
+import "SupWafer6.cif";
+import "SupWafer7.cif";
+import "SupWafer8.cif";

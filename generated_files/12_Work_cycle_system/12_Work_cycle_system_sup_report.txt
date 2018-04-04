@@ -1,0 +1,21 @@
+Reading CIF file "Benchmark/12_Work_cycle_system.cif".
+Preprocessing CIF specification.
+Creating matrix.
+
+Most refined product system contains a single plant model.
+Monolithic synthesis is performed.
+Syntesizing supervisor.
+Synthesis of supervisors is finished.
+
+Timing measurement        Duration
+------------------------  --------
+Total time                   17 ms
+  Read input model            2 ms
+  Preprocess input model      2 ms
+  Create matrix               3 ms
+  Synthesize supervisors      8 ms
+
+Controlled system  State space size
+-----------------  ----------------
+1                      1,188 states
+Total states           1,188 states

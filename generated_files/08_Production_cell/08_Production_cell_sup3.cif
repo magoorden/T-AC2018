@@ -1,0 +1,155 @@
+controllable blank_add;
+controllable Cr_mOn;
+controllable Cr_mOff;
+controllable Cr_U;
+uncontrollable Cr_66;
+controllable Cr_D;
+uncontrollable Cr_95;
+uncontrollable Cr_SVf;
+controllable Cr_2FB;
+uncontrollable Cr_FB;
+controllable Cr_2DB;
+uncontrollable Cr_DB;
+uncontrollable Cr_SHf;
+controllable FB_F;
+uncontrollable FB_Sf;
+controllable FB_tau;
+uncontrollable FB_s1On;
+uncontrollable FB_s1Off;
+controllable Ta_U;
+uncontrollable Ta_T;
+uncontrollable Ta_STf;
+controllable Ta_D;
+uncontrollable Ta_B;
+uncontrollable Ta_SBf;
+controllable Ta_R;
+uncontrollable Ta_50;
+uncontrollable Ta_S50f;
+controllable Ta_L;
+uncontrollable Ta_0;
+uncontrollable Ta_S0f;
+controllable Pr_UB;
+uncontrollable Pr_MU;
+uncontrollable Pr_SMf;
+controllable Pr_UM;
+uncontrollable Pr_T;
+uncontrollable Pr_STf;
+controllable Pr_D;
+uncontrollable Pr_MD;
+uncontrollable Pr_B;
+uncontrollable Pr_SBf;
+controllable DB_F;
+uncontrollable DB_Sf;
+uncontrollable DB_tau;
+uncontrollable DB_s2On;
+uncontrollable DB_s2Off;
+uncontrollable DB_yes;
+uncontrollable DB_no;
+controllable Ro_L;
+controllable Ro_R;
+uncontrollable Ro_35;
+uncontrollable Ro_S35;
+uncontrollable Ro_m90;
+uncontrollable Ro_Sm90;
+uncontrollable Ro_50;
+uncontrollable Ro_S50;
+controllable A1_mOn;
+controllable A1_mOff;
+controllable A1_B;
+controllable A1_F;
+uncontrollable A1_37;
+uncontrollable A1_S37;
+uncontrollable A1_65;
+uncontrollable A1_S65;
+uncontrollable A1_52;
+uncontrollable A1_S52;
+controllable A2_mOn;
+controllable A2_mOff;
+controllable A2_B;
+controllable A2_F;
+uncontrollable A2_0;
+uncontrollable A2_S0;
+uncontrollable A2_80;
+uncontrollable A2_S80;
+uncontrollable A2_57;
+uncontrollable A2_S57;
+plant automaton FB:
+  location l1:
+    initial;
+    marked;
+    edge FB_F goto l2;
+  location l2:
+    edge FB_Sf goto l1;
+    edge FB_s1On goto l3;
+  location l3:
+    edge FB_Sf goto l4;
+    edge FB_tau goto l5;
+  location l4:
+    edge FB_F goto l5;
+  location l5:
+    edge FB_s1Off goto l1;
+end
+plant automaton Ta_V:
+  location l1:
+    initial;
+    marked;
+    edge Ta_U goto l2;
+  location l2:
+    edge Ta_T goto l3;
+  location l3:
+    edge Ta_STf goto l4;
+  location l4:
+    edge Ta_D goto l5;
+  location l5:
+    edge Ta_B goto l6;
+  location l6:
+    edge Ta_SBf goto l1;
+end
+plant automaton Ta_H:
+  location l1:
+    initial;
+    marked;
+    edge Ta_R goto l2;
+  location l2:
+    edge Ta_50 goto l3;
+  location l3:
+    edge Ta_S50f goto l4;
+  location l4:
+    edge Ta_L goto l5;
+  location l5:
+    edge Ta_0 goto l6;
+  location l6:
+    edge Ta_S0f goto l1;
+end
+supervisor automaton Ta1:
+  location l1:
+    initial;
+    marked;
+    edge FB_s1Off goto l2;
+  location l2:
+    edge Ta_U goto l3;
+  location l3:
+    edge Ta_SBf goto l1;
+end
+supervisor automaton Ta3:
+  location l1:
+    initial;
+    marked;
+    edge FB_s1Off goto l2;
+  location l2:
+    edge Ta_R goto l3;
+  location l3:
+    edge Ta_S0f goto l1;
+end
+supervisor automaton sup3:
+  alphabet FB_F, FB_tau, Ta_U, Ta_D, Ta_R, Ta_L;
+  location:
+    initial;
+    marked;
+    edge FB_F when Ta_H.l1 and not Ta3.l2 and (not FB.l2 and not FB.l4) or (Ta_H.l1 and not Ta3.l2 and ((FB.l2 or FB.l4) and Ta1.l1) or Ta_H.l1 and Ta3.l2 and (not FB.l2 and not FB.l4)) or (Ta_H.l5 and (not FB.l2 and not FB.l4) or (Ta_H.l3 and (not FB.l2 and not FB.l4) or (Ta_H.l2 or (Ta_H.l4 or Ta_H.l6)) and (not FB.l2 and not FB.l4)));
+    edge FB_tau when Ta_H.l1 and (not Ta3.l2 and Ta1.l1);
+    edge Ta_D when true;
+    edge Ta_L when true;
+    edge Ta_R when true;
+    edge Ta_U when true;
+end

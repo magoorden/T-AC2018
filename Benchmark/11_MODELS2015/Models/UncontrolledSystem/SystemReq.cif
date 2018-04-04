@@ -1,0 +1,119 @@
+import "System.cif";
+
+// ReqBreakingWater: the water layer is not allowed to break.
+requirement ReqBreakingWater:
+  location:
+    initial; marked;
+    edge breakWater when false;
+end
+
+// ReqFIFO (a): In-order.
+requirement ReqFIFO_in:
+  location l0:
+    marked; initial;
+    edge TRtoSUB_0_s goto l1;
+  location l1:
+    edge TRtoSUB_1_s goto l2;
+  location l2:
+    edge TRtoSUB_2_s goto l3;
+  location l3:
+    edge TRtoSUB_3_s goto l4;
+  location l4:
+    edge TRtoSUB_4_s goto l5;
+  location l5:
+    edge TRtoSUB_5_s goto l6;
+  location l6:
+    edge TRtoSUB_6_s goto l0;
+end
+
+// ReqFIFO (b): Out-order.
+requirement ReqFIFO_out:
+  location l0:
+    marked; initial;
+    edge DUtoTR_0_s goto l1;
+  location l1:
+    edge DUtoTR_1_s goto l2;
+  location l2:
+    edge DUtoTR_2_s goto l3;
+  location l3:
+    edge DUtoTR_3_s goto l4;
+  location l4:
+    edge DUtoTR_4_s goto l5;
+  location l5:
+    edge DUtoTR_5_s goto l6;
+  location l6:
+    edge DUtoTR_6_s goto l0;
+end
+
+// ReqOccupied: wafer place status for each resource.
+requirement ReqOccupied_SUB:
+  location free:
+    marked; initial;
+    edge TRtoSUB_0_s, URtoSUB_0_s, TRtoSUB_1_s, URtoSUB_1_s, TRtoSUB_2_s, URtoSUB_2_s, TRtoSUB_3_s, URtoSUB_3_s, TRtoSUB_4_s, URtoSUB_4_s, TRtoSUB_5_s, URtoSUB_5_s, TRtoSUB_6_s, URtoSUB_6_s, TRtoSUB_7_s, URtoSUB_7_s, TRtoSUB_8_s, URtoSUB_8_s goto occupied;
+  location occupied:
+    edge SUBtoUR_0_s, SUBtoUR_1_s, SUBtoUR_2_s, SUBtoUR_3_s, SUBtoUR_4_s, SUBtoUR_5_s, SUBtoUR_6_s, SUBtoUR_7_s, SUBtoUR_8_s goto free;
+end
+
+requirement ReqOccupied_CTC0:
+  location free:
+    marked; initial;
+    edge LRtoCTC0_0_s, LRtoCTC0_1_s, LRtoCTC0_2_s, LRtoCTC0_3_s, LRtoCTC0_4_s, LRtoCTC0_5_s, LRtoCTC0_6_s, LRtoCTC0_7_s, LRtoCTC0_8_s goto occupied;
+  location occupied:
+    edge CTC0toLR_0_s, CTC0toLR_1_s, CTC0toLR_2_s, CTC0toLR_3_s, CTC0toLR_4_s, CTC0toLR_5_s, CTC0toLR_6_s, CTC0toLR_7_s, CTC0toLR_8_s goto free;
+end
+
+requirement ReqOccupied_CTC1:
+  location free:
+    marked; initial;
+    edge URtoCTC1_0_s, URtoCTC1_1_s, URtoCTC1_2_s, URtoCTC1_3_s, URtoCTC1_4_s, URtoCTC1_5_s, URtoCTC1_6_s, URtoCTC1_7_s, URtoCTC1_8_s goto occupied;
+  location occupied:
+    edge CTC1toUR_0_s, CTC1toUR_1_s, CTC1toUR_2_s, CTC1toUR_3_s, CTC1toUR_4_s, CTC1toUR_5_s, CTC1toUR_6_s, CTC1toUR_7_s, CTC1toUR_8_s goto free;
+end
+
+requirement ReqOccupied_UR:
+  location free:
+    marked; initial;
+    edge CH0toUR_0_s, CH1toUR_0_s, PAtoUR_0_s, SUBtoUR_0_s, CTC1toUR_0_s, DUtoUR_0_s, CH0toUR_1_s, CH1toUR_1_s, PAtoUR_1_s, SUBtoUR_1_s, CTC1toUR_1_s, DUtoUR_1_s, CH0toUR_2_s, CH1toUR_2_s, PAtoUR_2_s, SUBtoUR_2_s, CTC1toUR_2_s, DUtoUR_2_s, CH0toUR_3_s, CH1toUR_3_s, PAtoUR_3_s, SUBtoUR_3_s, CTC1toUR_3_s, DUtoUR_3_s, CH0toUR_4_s, CH1toUR_4_s, PAtoUR_4_s, SUBtoUR_4_s, CTC1toUR_4_s, DUtoUR_4_s, CH0toUR_5_s, CH1toUR_5_s, PAtoUR_5_s, SUBtoUR_5_s, CTC1toUR_5_s, DUtoUR_5_s, CH0toUR_6_s, CH1toUR_6_s, PAtoUR_6_s, SUBtoUR_6_s, CTC1toUR_6_s, DUtoUR_6_s, CH0toUR_7_s, CH1toUR_7_s, PAtoUR_7_s, SUBtoUR_7_s, CTC1toUR_7_s, DUtoUR_7_s, CH0toUR_8_s, CH1toUR_8_s, PAtoUR_8_s, SUBtoUR_8_s, CTC1toUR_8_s, DUtoUR_8_s goto occupied;
+  location occupied:
+    edge URtoSUB_0_s, URtoDU_0_s, URtoPA_0_s, URtoCTC1_0_s, URtoSUB_1_s, URtoDU_1_s, URtoPA_1_s, URtoCTC1_1_s, URtoSUB_2_s, URtoDU_2_s, URtoPA_2_s, URtoCTC1_2_s, URtoSUB_3_s, URtoDU_3_s, URtoPA_3_s, URtoCTC1_3_s, URtoSUB_4_s, URtoDU_4_s, URtoPA_4_s, URtoCTC1_4_s, URtoSUB_5_s, URtoDU_5_s, URtoPA_5_s, URtoCTC1_5_s, URtoSUB_6_s, URtoDU_6_s, URtoPA_6_s, URtoCTC1_6_s, URtoSUB_7_s, URtoDU_7_s, URtoPA_7_s, URtoCTC1_7_s, URtoSUB_8_s, URtoDU_8_s, URtoPA_8_s, URtoCTC1_8_s goto free;
+end
+
+requirement ReqOccupied_CH0:
+  location free:
+    edge LRtoCH0_0_s, LRtoCH0_1_s, LRtoCH0_2_s, LRtoCH0_3_s, LRtoCH0_4_s, LRtoCH0_5_s, LRtoCH0_6_s, LRtoCH0_7_s, LRtoCH0_8_s goto occupied;
+  location occupied:
+    marked; initial;
+    edge CH0toLR_0_s, CH0toUR_0_s, CH0toLR_1_s, CH0toUR_1_s, CH0toLR_2_s, CH0toUR_2_s, CH0toLR_3_s, CH0toUR_3_s, CH0toLR_4_s, CH0toUR_4_s, CH0toLR_5_s, CH0toUR_5_s, CH0toLR_6_s, CH0toUR_6_s, CH0toLR_7_s, CH0toUR_7_s, CH0toLR_8_s, CH0toUR_8_s goto free;
+end
+
+requirement ReqOccupied_CH1:
+  location free:
+    edge LRtoCH1_0_s, LRtoCH1_1_s, LRtoCH1_2_s, LRtoCH1_3_s, LRtoCH1_4_s, LRtoCH1_5_s, LRtoCH1_6_s, LRtoCH1_7_s, LRtoCH1_8_s goto occupied;
+  location occupied:
+    marked; initial;
+    edge CH1toLR_0_s, CH1toUR_0_s, CH1toLR_1_s, CH1toUR_1_s, CH1toLR_2_s, CH1toUR_2_s, CH1toLR_3_s, CH1toUR_3_s, CH1toLR_4_s, CH1toUR_4_s, CH1toLR_5_s, CH1toUR_5_s, CH1toLR_6_s, CH1toUR_6_s, CH1toLR_7_s, CH1toUR_7_s, CH1toLR_8_s, CH1toUR_8_s goto free;
+end
+
+requirement ReqOccupied_PA:
+  location free:
+    marked; initial;
+    edge LRtoPA_0_s, URtoPA_0_s, LRtoPA_1_s, URtoPA_1_s, LRtoPA_2_s, URtoPA_2_s, LRtoPA_3_s, URtoPA_3_s, LRtoPA_4_s, URtoPA_4_s, LRtoPA_5_s, URtoPA_5_s, LRtoPA_6_s, URtoPA_6_s, LRtoPA_7_s, URtoPA_7_s, LRtoPA_8_s, URtoPA_8_s goto occupied;
+  location occupied:
+    edge PAtoUR_0_s, PAtoLR_0_s, PAtoUR_1_s, PAtoLR_1_s, PAtoUR_2_s, PAtoLR_2_s, PAtoUR_3_s, PAtoLR_3_s, PAtoUR_4_s, PAtoLR_4_s, PAtoUR_5_s, PAtoLR_5_s, PAtoUR_6_s, PAtoLR_6_s, PAtoUR_7_s, PAtoLR_7_s, PAtoUR_8_s, PAtoLR_8_s goto free;
+end
+
+requirement ReqOccupied_LR:
+  location free:
+    marked; initial;
+    edge CH0toLR_0_s, CH1toLR_0_s, PAtoLR_0_s, CTC0toLR_0_s, DUtoLR_0_s, CH0toLR_1_s, CH1toLR_1_s, PAtoLR_1_s, CTC0toLR_1_s, DUtoLR_1_s, CH0toLR_2_s, CH1toLR_2_s, PAtoLR_2_s, CTC0toLR_2_s, DUtoLR_2_s, CH0toLR_3_s, CH1toLR_3_s, PAtoLR_3_s, CTC0toLR_3_s, DUtoLR_3_s, CH0toLR_4_s, CH1toLR_4_s, PAtoLR_4_s, CTC0toLR_4_s, DUtoLR_4_s, CH0toLR_5_s, CH1toLR_5_s, PAtoLR_5_s, CTC0toLR_5_s, DUtoLR_5_s, CH0toLR_6_s, CH1toLR_6_s, PAtoLR_6_s, CTC0toLR_6_s, DUtoLR_6_s, CH0toLR_7_s, CH1toLR_7_s, PAtoLR_7_s, CTC0toLR_7_s, DUtoLR_7_s, CH0toLR_8_s, CH1toLR_8_s, PAtoLR_8_s, CTC0toLR_8_s, DUtoLR_8_s goto occupied;
+  location occupied:
+    edge LRtoDU_0_s, LRtoPA_0_s, LRtoCH0_0_s, LRtoCH1_0_s, LRtoCTC0_0_s, LRtoDU_1_s, LRtoPA_1_s, LRtoCH0_1_s, LRtoCH1_1_s, LRtoCTC0_1_s, LRtoDU_2_s, LRtoPA_2_s, LRtoCH0_2_s, LRtoCH1_2_s, LRtoCTC0_2_s, LRtoDU_3_s, LRtoPA_3_s, LRtoCH0_3_s, LRtoCH1_3_s, LRtoCTC0_3_s, LRtoDU_4_s, LRtoPA_4_s, LRtoCH0_4_s, LRtoCH1_4_s, LRtoCTC0_4_s, LRtoDU_5_s, LRtoPA_5_s, LRtoCH0_5_s, LRtoCH1_5_s, LRtoCTC0_5_s, LRtoDU_6_s, LRtoPA_6_s, LRtoCH0_6_s, LRtoCH1_6_s, LRtoCTC0_6_s, LRtoDU_7_s, LRtoPA_7_s, LRtoCH0_7_s, LRtoCH1_7_s, LRtoCTC0_7_s, LRtoDU_8_s, LRtoPA_8_s, LRtoCH0_8_s, LRtoCH1_8_s, LRtoCTC0_8_s goto free;
+end
+
+requirement ReqOccupied_DU:
+  location free:
+    marked; initial;
+    edge LRtoDU_0_s, URtoDU_0_s, LRtoDU_1_s, URtoDU_1_s, LRtoDU_2_s, URtoDU_2_s, LRtoDU_3_s, URtoDU_3_s, LRtoDU_4_s, URtoDU_4_s, LRtoDU_5_s, URtoDU_5_s, LRtoDU_6_s, URtoDU_6_s, LRtoDU_7_s, URtoDU_7_s, LRtoDU_8_s, URtoDU_8_s goto occupied;
+  location occupied:
+    edge DUtoUR_0_s, DUtoLR_0_s, DUtoTR_0_s, DUtoUR_1_s, DUtoLR_1_s, DUtoTR_1_s, DUtoUR_2_s, DUtoLR_2_s, DUtoTR_2_s, DUtoUR_3_s, DUtoLR_3_s, DUtoTR_3_s, DUtoUR_4_s, DUtoLR_4_s, DUtoTR_4_s, DUtoUR_5_s, DUtoLR_5_s, DUtoTR_5_s, DUtoUR_6_s, DUtoLR_6_s, DUtoTR_6_s, DUtoUR_7_s, DUtoLR_7_s, DUtoTR_7_s, DUtoUR_8_s, DUtoLR_8_s, DUtoTR_8_s goto free;
+end

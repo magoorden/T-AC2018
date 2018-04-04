@@ -1,0 +1,73 @@
+controllable a0;
+controllable a1;
+controllable a2;
+controllable a3;
+controllable a4;
+uncontrollable b0;
+uncontrollable b1;
+uncontrollable b2;
+uncontrollable b3;
+uncontrollable b4;
+plant automaton G0:
+  location g0:
+    initial;
+    marked;
+    edge a0 goto g1;
+  location g1:
+    edge b0 goto g0;
+end
+plant automaton G3:
+  location g0:
+    initial;
+    marked;
+    edge a3 goto g1;
+  location g1:
+    edge b3 goto g0;
+end
+plant automaton G4:
+  location g0:
+    initial;
+    marked;
+    edge a4 goto g1;
+  location g1:
+    edge b4 goto g0;
+end
+supervisor automaton Egen_b3:
+  location e0:
+    initial;
+    marked;
+    edge a0, a3 goto e1;
+  location e1:
+    edge b0, b3 goto e0;
+end
+supervisor automaton Egen_b4:
+  location e0:
+    initial;
+    marked;
+    edge a0, a4 goto e1;
+  location e1:
+    edge b0, b4 goto e0;
+end
+supervisor automaton Egen_c3:
+  location e0:
+    initial;
+    marked;
+    edge a0 goto e0;
+    edge b3 goto e1;
+  location e1:
+    edge a0 goto e2;
+  location e2:
+    edge b3 goto e3;
+    edge a4 goto e0;
+  location e3:
+    edge a4 goto e1;
+end
+supervisor automaton sup5:
+  alphabet a0, a3, a4;
+  location:
+    initial;
+    marked;
+    edge a0 when true;
+    edge a3 when Egen_c3.e0 or Egen_c3.e2;
+    edge a4 when true;
+end

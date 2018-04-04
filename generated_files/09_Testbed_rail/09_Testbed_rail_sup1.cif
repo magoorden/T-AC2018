@@ -1,0 +1,1051 @@
+controllable en_train1;
+controllable en_train2;
+uncontrollable umv_train1;
+uncontrollable umv_train2;
+controllable st_load1;
+controllable st_load2;
+controllable st_load3;
+uncontrollable fin_load1;
+uncontrollable fin_load2;
+uncontrollable fin_load3;
+uncontrollable t1_at0;
+uncontrollable t1_at1;
+uncontrollable t1_at2;
+uncontrollable t1_at3;
+uncontrollable t1_at4;
+uncontrollable t1_at5;
+uncontrollable t1_at6;
+uncontrollable t1_at7;
+uncontrollable t1_at8;
+uncontrollable t1_at9;
+uncontrollable t1_at10;
+uncontrollable t1_at11;
+uncontrollable t1_at12;
+uncontrollable t1_at13;
+uncontrollable t1_at14;
+uncontrollable t1_at15;
+uncontrollable t1_at16;
+uncontrollable t1_at19;
+uncontrollable t1_at20;
+uncontrollable t1_at21;
+uncontrollable t1_at22;
+uncontrollable t1_at23;
+uncontrollable t1_at24;
+uncontrollable t1_at25;
+uncontrollable t1_at26;
+uncontrollable t1_at27;
+uncontrollable t2_at0;
+uncontrollable t2_at1;
+uncontrollable t2_at2;
+uncontrollable t2_at3;
+uncontrollable t2_at4;
+uncontrollable t2_at5;
+uncontrollable t2_at6;
+uncontrollable t2_at7;
+uncontrollable t2_at8;
+uncontrollable t2_at9;
+uncontrollable t2_at10;
+uncontrollable t2_at11;
+uncontrollable t2_at12;
+uncontrollable t2_at13;
+uncontrollable t2_at14;
+uncontrollable t2_at15;
+uncontrollable t2_at16;
+uncontrollable t2_at19;
+uncontrollable t2_at20;
+uncontrollable t2_at21;
+uncontrollable t2_at22;
+uncontrollable t2_at23;
+uncontrollable t2_at24;
+uncontrollable t2_at25;
+uncontrollable t2_at26;
+uncontrollable t2_at27;
+uncontrollable nt_at0;
+uncontrollable nt_at1;
+uncontrollable nt_at2;
+uncontrollable nt_at3;
+uncontrollable nt_at4;
+uncontrollable nt_at5;
+uncontrollable nt_at6;
+uncontrollable nt_at7;
+uncontrollable nt_at8;
+uncontrollable nt_at9;
+uncontrollable nt_at10;
+uncontrollable nt_at11;
+uncontrollable nt_at12;
+uncontrollable nt_at13;
+uncontrollable nt_at14;
+uncontrollable nt_at15;
+uncontrollable nt_at16;
+uncontrollable nt_at19;
+uncontrollable nt_at20;
+uncontrollable nt_at21;
+uncontrollable nt_at22;
+uncontrollable nt_at23;
+uncontrollable nt_at24;
+uncontrollable nt_at25;
+uncontrollable nt_at26;
+uncontrollable nt_at27;
+controllable turn_4;
+controllable turn_5;
+controllable turn_6;
+controllable turn_7;
+controllable str_4;
+controllable str_5;
+controllable str_6;
+controllable str_7;
+controllable turnR_3;
+controllable turnR_8;
+controllable turnL_3;
+controllable turnL_8;
+uncontrollable cplR_3;
+uncontrollable cplR_8;
+uncontrollable cplL_3;
+uncontrollable cplL_8;
+controllable t1req_sw3;
+controllable t1req_sw4;
+controllable t1req_sw5;
+controllable t1req_sw6;
+controllable t1req_sw7;
+controllable t1req_sw8;
+controllable t2req_sw3;
+controllable t2req_sw4;
+controllable t2req_sw5;
+controllable t2req_sw6;
+controllable t2req_sw7;
+controllable t2req_sw8;
+plant automaton train_1:
+  location l0:
+    initial;
+    marked;
+    edge en_train1 goto l1;
+  location l1:
+    edge umv_train1 goto l0;
+end
+plant automaton train_2:
+  location l0:
+    initial;
+    marked;
+    edge en_train2 goto l1;
+  location l1:
+    edge umv_train2 goto l0;
+end
+plant automaton crane_1:
+  location l0:
+    initial;
+    marked;
+    edge st_load1 goto l1;
+  location l1:
+    edge fin_load1 goto l0;
+end
+plant automaton crane_2:
+  location l0:
+    initial;
+    marked;
+    edge st_load2 goto l1;
+  location l1:
+    edge fin_load2 goto l0;
+end
+plant automaton crane_3:
+  location l0:
+    initial;
+    marked;
+    edge st_load3 goto l1;
+  location l1:
+    edge fin_load3 goto l0;
+end
+plant automaton sensor_0:
+  location l0:
+    initial;
+    marked;
+    edge t1_at0, t2_at0 goto l1;
+    edge nt_at0;
+  location l1:
+    edge nt_at0 goto l1;
+end
+plant automaton sensor_1:
+  location l0:
+    initial;
+    marked;
+    edge t1_at1, t2_at1 goto l1;
+    edge nt_at1;
+  location l1:
+    edge nt_at1 goto l1;
+end
+plant automaton sensor_2:
+  location l0:
+    initial;
+    marked;
+    edge t1_at2, t2_at2 goto l1;
+    edge nt_at2;
+  location l1:
+    edge nt_at2 goto l1;
+end
+plant automaton sensor_3:
+  location l0:
+    initial;
+    marked;
+    edge t1_at3, t2_at3 goto l1;
+    edge nt_at3;
+  location l1:
+    edge nt_at3 goto l1;
+end
+plant automaton sensor_4:
+  location l0:
+    initial;
+    marked;
+    edge t1_at4, t2_at4 goto l1;
+    edge nt_at4;
+  location l1:
+    edge nt_at4 goto l1;
+end
+plant automaton sensor_5:
+  location l0:
+    initial;
+    marked;
+    edge t1_at5, t2_at5 goto l1;
+    edge nt_at5;
+  location l1:
+    edge nt_at5 goto l1;
+end
+plant automaton sensor_6:
+  location l0:
+    initial;
+    marked;
+    edge t1_at6, t2_at6 goto l1;
+    edge nt_at6;
+  location l1:
+    edge nt_at6 goto l1;
+end
+plant automaton sensor_7:
+  location l0:
+    initial;
+    marked;
+    edge t1_at7, t2_at7 goto l1;
+    edge nt_at7;
+  location l1:
+    edge nt_at7 goto l1;
+end
+plant automaton sensor_8:
+  location l0:
+    initial;
+    marked;
+    edge t1_at8, t2_at8 goto l1;
+    edge nt_at8;
+  location l1:
+    edge nt_at8 goto l1;
+end
+plant automaton sensor_9:
+  location l0:
+    initial;
+    marked;
+    edge t1_at9, t2_at9 goto l1;
+    edge nt_at9;
+  location l1:
+    edge nt_at9 goto l1;
+end
+plant automaton sensor_10:
+  location l0:
+    initial;
+    marked;
+    edge t1_at10, t2_at10 goto l1;
+    edge nt_at10;
+  location l1:
+    edge nt_at10 goto l1;
+end
+plant automaton sensor_11:
+  location l0:
+    initial;
+    marked;
+    edge t1_at11, t2_at11 goto l1;
+    edge nt_at11;
+  location l1:
+    edge nt_at11 goto l1;
+end
+plant automaton sensor_12:
+  location l0:
+    initial;
+    marked;
+    edge t1_at12, t2_at12 goto l1;
+    edge nt_at12;
+  location l1:
+    edge nt_at12 goto l1;
+end
+plant automaton sensor_13:
+  location l0:
+    initial;
+    marked;
+    edge t1_at13, t2_at13 goto l1;
+    edge nt_at13;
+  location l1:
+    edge nt_at13 goto l1;
+end
+plant automaton sensor_14:
+  location l0:
+    initial;
+    marked;
+    edge t1_at14, t2_at14 goto l1;
+    edge nt_at14;
+  location l1:
+    edge nt_at14 goto l1;
+end
+plant automaton sensor_15:
+  location l0:
+    initial;
+    marked;
+    edge t1_at15, t2_at15 goto l1;
+    edge nt_at15;
+  location l1:
+    edge nt_at15 goto l1;
+end
+plant automaton sensor_16:
+  location l0:
+    initial;
+    marked;
+    edge t1_at16, t2_at16 goto l1;
+    edge nt_at16;
+  location l1:
+    edge nt_at16 goto l1;
+end
+plant automaton sensor_19:
+  location l0:
+    initial;
+    marked;
+    edge t1_at19, t2_at19 goto l1;
+    edge nt_at19;
+  location l1:
+    edge nt_at19 goto l1;
+end
+plant automaton sensor_20:
+  location l0:
+    initial;
+    marked;
+    edge t1_at20, t2_at20 goto l1;
+    edge nt_at20;
+  location l1:
+    edge nt_at20 goto l1;
+end
+plant automaton sensor_21:
+  location l0:
+    initial;
+    marked;
+    edge t1_at21, t2_at21 goto l1;
+    edge nt_at21;
+  location l1:
+    edge nt_at21 goto l1;
+end
+plant automaton sensor_22:
+  location l0:
+    initial;
+    marked;
+    edge t1_at22, t2_at22 goto l1;
+    edge nt_at22;
+  location l1:
+    edge nt_at22 goto l1;
+end
+plant automaton sensor_23:
+  location l0:
+    initial;
+    marked;
+    edge t1_at23, t2_at23 goto l1;
+    edge nt_at23;
+  location l1:
+    edge nt_at23 goto l1;
+end
+plant automaton sensor_24:
+  location l0:
+    initial;
+    marked;
+    edge t1_at24, t2_at24 goto l1;
+    edge nt_at24;
+  location l1:
+    edge nt_at24 goto l1;
+end
+plant automaton sensor_25:
+  location l0:
+    initial;
+    marked;
+    edge t1_at25, t2_at25 goto l1;
+    edge nt_at25;
+  location l1:
+    edge nt_at25 goto l1;
+end
+plant automaton sensor_26:
+  location l0:
+    initial;
+    marked;
+    edge t1_at26, t2_at26 goto l1;
+    edge nt_at26;
+  location l1:
+    edge nt_at26 goto l1;
+end
+plant automaton sensor_27:
+  location l0:
+    initial;
+    marked;
+    edge t1_at27, t2_at27 goto l1;
+    edge nt_at27;
+  location l1:
+    edge nt_at27 goto l1;
+end
+plant automaton sw_4:
+  location l0:
+    initial;
+    marked;
+    edge turn_4, str_4;
+end
+plant automaton sw_5:
+  location l0:
+    initial;
+    marked;
+    edge turn_5, str_5;
+end
+plant automaton sw_6:
+  location l0:
+    initial;
+    marked;
+    edge turn_6, str_6;
+end
+plant automaton sw_7:
+  location l0:
+    initial;
+    marked;
+    edge turn_7, str_7;
+end
+plant automaton sw_3:
+  location l0:
+    initial;
+    marked;
+    edge turnR_3 goto l1;
+    edge turnL_3 goto l2;
+  location l1:
+    edge cplR_3 goto l0;
+  location l2:
+    edge cplL_3 goto l0;
+end
+plant automaton sw_8:
+  location l0:
+    initial;
+    marked;
+    edge turnR_8 goto l1;
+    edge turnL_8 goto l2;
+  location l1:
+    edge cplR_8 goto l0;
+  location l2:
+    edge cplL_8 goto l0;
+end
+plant automaton sensor_sensor_intd_t1:
+  location l11:
+    edge t1_at16 goto l1;
+  location l1:
+    edge t1_at14 goto l2;
+  location l2:
+    edge t1_at12 goto l3;
+  location l3:
+    edge t1_at10 goto l4;
+    edge t1_at8 goto l8;
+  location l4:
+    edge t1_at9 goto l5;
+  location l5:
+    edge t1_at11 goto l6;
+  location l6:
+    edge t1_at13 goto l7;
+  location l7:
+    edge t1_at15 goto l0;
+  location l8:
+    edge t1_at5 goto l9;
+  location l9:
+    edge t1_at3 goto l10;
+  location l10:
+    edge t1_at1 goto l11;
+    edge t1_at19 goto l15;
+  location l0:
+    initial;
+    marked;
+    edge t1_at0 goto l12;
+  location l12:
+    edge t1_at2 goto l13;
+  location l13:
+    edge t1_at4 goto l21;
+  location l14:
+    edge t1_at7 goto l8;
+  location l15:
+    edge t1_at20 goto l16;
+  location l16:
+    edge t1_at21 goto l17;
+  location l17:
+    edge t1_at22 goto l18;
+  location l18:
+    edge t1_at23 goto l22;
+  location l19:
+    edge t1_at26 goto l20;
+  location l20:
+    edge t1_at25 goto l1;
+  location l21:
+    edge t1_at6 goto l14;
+    edge t1_at27 goto l5;
+  location l22:
+    edge t1_at24 goto l19;
+end
+plant automaton sensor_sensor_intd_t2:
+  location l0:
+    initial;
+    marked;
+    edge t2_at16 goto l1;
+  location l1:
+    edge t2_at14 goto l2;
+  location l2:
+    edge t2_at12 goto l3;
+  location l3:
+    edge t2_at10 goto l4;
+    edge t2_at8 goto l8;
+  location l4:
+    edge t2_at9 goto l5;
+  location l5:
+    edge t2_at11 goto l6;
+  location l6:
+    edge t2_at13 goto l7;
+  location l7:
+    edge t2_at15 goto l0;
+  location l8:
+    edge t2_at5 goto l9;
+  location l9:
+    edge t2_at3 goto l10;
+  location l10:
+    edge t2_at1 goto l11;
+    edge t2_at19 goto l15;
+  location l11:
+    edge t2_at0 goto l12;
+  location l12:
+    edge t2_at2 goto l13;
+  location l13:
+    edge t2_at4 goto l21;
+  location l14:
+    edge t2_at7 goto l8;
+  location l15:
+    edge t2_at20 goto l16;
+  location l16:
+    edge t2_at21 goto l17;
+  location l17:
+    edge t2_at22 goto l18;
+  location l18:
+    edge t2_at23 goto l22;
+  location l19:
+    edge t2_at26 goto l20;
+  location l20:
+    edge t2_at25 goto l1;
+  location l21:
+    edge t2_at6 goto l14;
+    edge t2_at27 goto l5;
+  location l22:
+    edge t2_at24 goto l19;
+end
+plant automaton train1_sensor:
+  location l0:
+    initial;
+    marked;
+    edge en_train1 goto l1;
+  location l1:
+    edge umv_train1 goto l0;
+    edge t1_at0, t1_at1, t1_at2, t1_at3, t1_at4, t1_at5, t1_at6, t1_at7, t1_at8, t1_at9, t1_at10, t1_at11, t1_at12, t1_at13, t1_at14, t1_at15, t1_at16, t1_at19, t1_at20, t1_at21, t1_at22, t1_at23, t1_at24, t1_at25, t1_at26, t1_at27 goto l2;
+  location l2:
+    edge umv_train1 goto l0;
+end
+plant automaton train2_sensor:
+  location l0:
+    initial;
+    marked;
+    edge en_train2 goto l1;
+  location l1:
+    edge umv_train2 goto l0;
+    edge t2_at0, t2_at1, t2_at2, t2_at3, t2_at4, t2_at5, t2_at6, t2_at7, t2_at8, t2_at9, t2_at10, t2_at11, t2_at12, t2_at13, t2_at14, t2_at15, t2_at16, t2_at19, t2_at20, t2_at21, t2_at22, t2_at23, t2_at24, t2_at25, t2_at26, t2_at27 goto l2;
+  location l2:
+    edge umv_train2 goto l0;
+end
+plant automaton sen_sw3t1:
+  location l0:
+    initial;
+    marked;
+    edge t1_at3 goto l1;
+    edge turnR_3 goto l4;
+  location l1:
+    edge nt_at3 goto l2;
+    edge turnR_3 goto l5;
+  location l2:
+    edge t1_at1 goto l0;
+    edge turnR_3 goto l3;
+  location l3:
+    edge t1_at1, t1_at19 goto l4;
+    edge turnL_3 goto l7;
+  location l4:
+    edge turnL_3 goto l0;
+    edge t1_at3 goto l5;
+  location l5:
+    edge turnL_3 goto l2;
+    edge nt_at3 goto l6;
+  location l6:
+    edge t1_at19 goto l4;
+    edge turnL_3 goto l7;
+  location l7:
+    edge t1_at1, t1_at19 goto l0;
+    edge turnR_3 goto l3;
+end
+plant automaton sen_sw3t2:
+  location l0:
+    initial;
+    marked;
+    edge t2_at3 goto l1;
+    edge turnR_3 goto l4;
+  location l1:
+    edge nt_at3 goto l2;
+    edge turnR_3 goto l5;
+  location l2:
+    edge t2_at1 goto l0;
+    edge turnR_3 goto l3;
+  location l3:
+    edge t2_at1, t2_at19 goto l4;
+    edge turnL_3 goto l7;
+  location l4:
+    edge turnL_3 goto l0;
+    edge t2_at3 goto l5;
+  location l5:
+    edge turnL_3 goto l2;
+    edge nt_at3 goto l6;
+  location l6:
+    edge t2_at19 goto l4;
+    edge turnL_3 goto l7;
+  location l7:
+    edge t2_at1, t2_at19 goto l0;
+    edge turnR_3 goto l3;
+end
+plant automaton sen_sw4t1:
+  location l0:
+    initial;
+    marked;
+    edge t1_at4 goto l1;
+    edge str_4 goto l4;
+  location l1:
+    edge nt_at4 goto l2;
+    edge str_4 goto l5;
+  location l2:
+    edge t1_at6 goto l0;
+    edge str_4 goto l3;
+  location l3:
+    edge t1_at6, t1_at27 goto l4;
+    edge turn_4 goto l7;
+  location l4:
+    edge turn_4 goto l0;
+    edge t1_at4 goto l5;
+  location l5:
+    edge turn_4 goto l2;
+    edge nt_at4 goto l6;
+  location l6:
+    edge t1_at27 goto l4;
+    edge turn_4 goto l7;
+  location l7:
+    edge t1_at6, t1_at27 goto l0;
+    edge str_4 goto l3;
+end
+plant automaton sen_sw4t2:
+  location l0:
+    initial;
+    marked;
+    edge t2_at4 goto l1;
+    edge str_4 goto l4;
+  location l1:
+    edge nt_at4 goto l2;
+    edge str_4 goto l5;
+  location l2:
+    edge t2_at6 goto l0;
+    edge str_4 goto l3;
+  location l3:
+    edge t2_at6, t2_at27 goto l4;
+    edge turn_4 goto l7;
+  location l4:
+    edge turn_4 goto l0;
+    edge t2_at4 goto l5;
+  location l5:
+    edge turn_4 goto l2;
+    edge nt_at4 goto l6;
+  location l6:
+    edge t2_at27 goto l4;
+    edge turn_4 goto l7;
+  location l7:
+    edge t2_at6, t2_at27 goto l0;
+    edge str_4 goto l3;
+end
+plant automaton sen_sw7t1:
+  location l0:
+    initial;
+    marked;
+    edge t1_at12 goto l1;
+    edge str_7 goto l4;
+  location l1:
+    edge nt_at12 goto l2;
+    edge str_7 goto l5;
+  location l2:
+    edge t1_at10 goto l0;
+    edge str_7 goto l3;
+  location l3:
+    edge t1_at10, t1_at8 goto l4;
+    edge turn_7 goto l7;
+  location l4:
+    edge turn_7 goto l0;
+    edge t1_at12 goto l5;
+  location l5:
+    edge turn_7 goto l2;
+    edge nt_at12 goto l6;
+  location l6:
+    edge t1_at8 goto l4;
+    edge turn_7 goto l7;
+  location l7:
+    edge t1_at10, t1_at8 goto l0;
+    edge str_7 goto l3;
+end
+plant automaton sen_sw7t2:
+  location l0:
+    initial;
+    marked;
+    edge t2_at12 goto l1;
+    edge str_7 goto l4;
+  location l1:
+    edge nt_at12 goto l2;
+    edge str_7 goto l5;
+  location l2:
+    edge t2_at10 goto l0;
+    edge str_7 goto l3;
+  location l3:
+    edge t2_at10, t2_at8 goto l4;
+    edge turn_7 goto l7;
+  location l4:
+    edge turn_7 goto l0;
+    edge t2_at12 goto l5;
+  location l5:
+    edge turn_7 goto l2;
+    edge nt_at12 goto l6;
+  location l6:
+    edge t2_at8 goto l4;
+    edge turn_7 goto l7;
+  location l7:
+    edge t2_at10, t2_at8 goto l0;
+    edge str_7 goto l3;
+end
+plant automaton sen_sw5t1:
+  location l0:
+    initial;
+    marked;
+    edge t1_at27, t1_at19 goto l2;
+    edge t1_at7 goto l3;
+    edge str_5 goto l6;
+  location l1:
+    edge str_5 goto l5;
+  location l2:
+    initial not true;
+    marked not true;
+    edge t1_at8 goto l1;
+    edge str_5 goto l4;
+  location l3:
+    edge t1_at5 goto l0;
+    edge str_5 goto l7;
+  location l4:
+    edge turn_5 goto l2;
+    edge t1_at8 goto l5;
+  location l5:
+    edge turn_5 goto l1;
+    edge t1_at5 goto l6;
+  location l6:
+    edge turn_5 goto l0;
+    edge t1_at27, t1_at19 goto l4;
+    edge t1_at7 goto l7;
+  location l7:
+    edge turn_5 goto l3;
+end
+plant automaton sen_sw5t2:
+  location l0:
+    initial false;
+    marked false;
+    edge t2_at27, t2_at19 goto l2;
+    edge t2_at7 goto l3;
+    edge str_5 goto l6;
+  location l1:
+    edge str_5 goto l5;
+  location l2:
+    initial;
+    marked;
+    edge t2_at8 goto l1;
+    edge str_5 goto l4;
+  location l3:
+    edge t2_at5 goto l0;
+    edge str_5 goto l7;
+  location l4:
+    edge turn_5 goto l2;
+    edge t2_at8 goto l5;
+  location l5:
+    edge turn_5 goto l1;
+    edge t2_at5 goto l6;
+  location l6:
+    edge turn_5 goto l0;
+    edge t2_at27, t2_at19 goto l4;
+    edge t2_at7 goto l7;
+  location l7:
+    edge turn_5 goto l3;
+end
+plant automaton sen_sw6t1:
+  location l0:
+    initial;
+    marked;
+    edge t1_at9 goto l1;
+    edge t1_at27 goto l2;
+    edge str_6 goto l3;
+  location l1:
+    edge t1_at11 goto l0;
+    edge str_6 goto l4;
+  location l2:
+    edge str_6 goto l5;
+  location l3:
+    edge turn_6 goto l0;
+    edge t1_at9 goto l4;
+    edge t1_at27 goto l5;
+  location l4:
+    edge turn_6 goto l1;
+  location l5:
+    edge t1_at11 goto l3;
+    edge turn_6 goto l2;
+end
+plant automaton sen_sw6t2:
+  location l0:
+    initial;
+    marked;
+    edge t2_at9 goto l1;
+    edge t2_at27 goto l2;
+    edge str_6 goto l3;
+  location l1:
+    edge t2_at11 goto l0;
+    edge str_6 goto l4;
+  location l2:
+    edge str_6 goto l5;
+  location l3:
+    edge turn_6 goto l0;
+    edge t2_at9 goto l4;
+    edge t2_at27 goto l5;
+  location l4:
+    edge turn_6 goto l1;
+  location l5:
+    edge t2_at11 goto l3;
+    edge turn_6 goto l2;
+end
+plant automaton sen_sw8t1:
+  location l0:
+    initial;
+    marked;
+    edge t1_at11 goto l2;
+    edge t1_at19 goto l3;
+    edge turnL_8 goto l7;
+  location l1:
+    edge t1_at14 goto l0;
+    edge turnL_8 goto l6;
+  location l2:
+    initial not true;
+    marked not true;
+    edge t1_at16 goto l1;
+    edge turnL_8 goto l5;
+  location l3:
+    edge t1_at25 goto l4;
+    edge turnL_8 goto l8;
+  location l4:
+    edge turnL_8 goto l9;
+  location l5:
+    edge turnR_8 goto l2;
+    edge t1_at16 goto l6;
+  location l6:
+    edge turnR_8 goto l1;
+  location l7:
+    edge t1_at11 goto l5;
+    edge turnR_8 goto l0;
+    edge t1_at19 goto l8;
+  location l8:
+    edge t1_at25 goto l9;
+    edge turnR_8 goto l3;
+  location l9:
+    edge t1_at14 goto l7;
+    edge turnR_8 goto l4;
+end
+plant automaton sen_sw8t2:
+  location l0:
+    initial false;
+    marked false;
+    edge t2_at11 goto l2;
+    edge t2_at19 goto l3;
+    edge turnL_8 goto l7;
+  location l1:
+    edge t2_at14 goto l0;
+    edge turnL_8 goto l6;
+  location l2:
+    initial;
+    marked;
+    edge t2_at16 goto l1;
+    edge turnL_8 goto l5;
+  location l3:
+    edge t2_at25 goto l4;
+    edge turnL_8 goto l8;
+  location l4:
+    edge turnL_8 goto l9;
+  location l5:
+    edge turnR_8 goto l2;
+    edge t2_at16 goto l6;
+  location l6:
+    edge turnR_8 goto l1;
+  location l7:
+    edge t2_at11 goto l5;
+    edge turnR_8 goto l0;
+    edge t2_at19 goto l8;
+  location l8:
+    edge t2_at25 goto l9;
+    edge turnR_8 goto l3;
+  location l9:
+    edge t2_at14 goto l7;
+    edge turnR_8 goto l4;
+end
+plant automaton req_sw3:
+  location l0:
+    initial;
+    marked;
+    edge t1req_sw3, t2req_sw3 goto l1;
+  location l1:
+    edge t1req_sw3, t2req_sw3 goto l2;
+    edge turnL_3, turnR_3 goto l0;
+  location l2:
+    edge turnL_3, turnR_3 goto l1;
+end
+plant automaton req_sw4:
+  location l0:
+    initial;
+    marked;
+    edge t1req_sw4, t2req_sw4 goto l1;
+  location l1:
+    edge t1req_sw4, t2req_sw4 goto l2;
+    edge turn_4, str_4 goto l0;
+  location l2:
+    edge turn_4, str_4 goto l1;
+end
+plant automaton req_sw5:
+  location l0:
+    initial;
+    marked;
+    edge t1req_sw5, t2req_sw5 goto l1;
+  location l1:
+    edge t1req_sw5, t2req_sw5 goto l2;
+    edge turn_5, str_5 goto l0;
+  location l2:
+    edge turn_5, str_5 goto l1;
+end
+plant automaton req_sw6:
+  location l0:
+    initial;
+    marked;
+    edge t1req_sw6, t2req_sw6 goto l1;
+  location l1:
+    edge t1req_sw6, t2req_sw6 goto l2;
+    edge turn_6, str_6 goto l0;
+  location l2:
+    edge turn_6, str_6 goto l1;
+end
+plant automaton req_sw7:
+  location l0:
+    initial;
+    marked;
+    edge t1req_sw7, t2req_sw7 goto l1;
+  location l1:
+    edge t1req_sw7, t2req_sw7 goto l2;
+    edge turn_7, str_7 goto l0;
+  location l2:
+    edge turn_7, str_7 goto l1;
+end
+plant automaton req_sw8:
+  location l0:
+    initial;
+    marked;
+    edge t1req_sw8, t2req_sw8 goto l1;
+  location l1:
+    edge t1req_sw8, t2req_sw8 goto l2;
+    edge turnL_8, turnR_8 goto l0;
+  location l2:
+    edge turnL_8, turnR_8 goto l1;
+end
+supervisor automaton req_crane1:
+  location l0:
+    initial;
+    marked;
+    edge t1_at13 goto l1;
+    edge t2_at13 goto l2;
+    edge en_train1, en_train2, fin_load1;
+  location l1:
+    edge fin_load1 goto l0;
+    edge en_train2, st_load1, t1_at13, t2_at13;
+  location l2:
+    edge fin_load1 goto l0;
+    edge en_train1, st_load1, t1_at13, t2_at13;
+end
+supervisor automaton req_crane2:
+  location l0:
+    initial;
+    marked;
+    edge t1_at2 goto l1;
+    edge t2_at21 goto l2;
+    edge en_train1, en_train2, fin_load2;
+  location l1:
+    edge fin_load2 goto l0;
+    edge en_train2, st_load2, t1_at2, t2_at21;
+  location l2:
+    edge fin_load2 goto l0;
+    edge en_train1, st_load2, t1_at2, t2_at21;
+end
+supervisor automaton req_crane3:
+  location l0:
+    initial;
+    marked;
+    edge t1_at2 goto l1;
+    edge t2_at21 goto l2;
+    edge en_train1, en_train2, fin_load3;
+  location l1:
+    edge fin_load3 goto l0;
+    edge en_train2, st_load3, t1_at2, t2_at21;
+  location l2:
+    edge fin_load3 goto l0;
+    edge en_train1, st_load3, t1_at2, t2_at21;
+end
+supervisor automaton sup1:
+  alphabet en_train1, en_train2, st_load1, st_load2, st_load3, turn_4, str_4, turn_5, str_5, turn_6, str_6, turn_7, str_7, turnR_3, turnL_3, turnR_8, turnL_8, t1req_sw3, t2req_sw3, t1req_sw4, t2req_sw4, t1req_sw5, t2req_sw5, t1req_sw6, t2req_sw6, t1req_sw7, t2req_sw7, t1req_sw8, t2req_sw8;
+  location:
+    initial;
+    marked;
+    edge en_train1 when false;
+    edge en_train2 when false;
+    edge st_load1 when false;
+    edge st_load2 when false;
+    edge st_load3 when false;
+    edge str_4 when true;
+    edge str_5 when true;
+    edge str_6 when true;
+    edge str_7 when true;
+    edge t1req_sw3 when true;
+    edge t1req_sw4 when true;
+    edge t1req_sw5 when true;
+    edge t1req_sw6 when true;
+    edge t1req_sw7 when true;
+    edge t1req_sw8 when true;
+    edge t2req_sw3 when true;
+    edge t2req_sw4 when true;
+    edge t2req_sw5 when true;
+    edge t2req_sw6 when true;
+    edge t2req_sw7 when true;
+    edge t2req_sw8 when true;
+    edge turn_4 when true;
+    edge turn_5 when true;
+    edge turn_6 when true;
+    edge turn_7 when true;
+    edge turnL_3 when true;
+    edge turnL_8 when true;
+    edge turnR_3 when true;
+    edge turnR_8 when true;
+end

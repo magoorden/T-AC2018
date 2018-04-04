@@ -1,0 +1,544 @@
+uncontrollable cod_er;
+uncontrollable cod_ser;
+controllable inc_ctr_WSP;
+controllable reset_ctr_WSP;
+uncontrollable ctr_ge_max_WSP;
+uncontrollable ctr_lt_max_WSP;
+controllable MER_an_FT;
+controllable MER_an_BT;
+controllable MER_an_HT;
+controllable MER_aus_FT;
+controllable MER_aus_BT;
+controllable MER_aus_HT;
+controllable MVR_an_HT;
+controllable MVR_aus_HT;
+controllable MVR_an_FT;
+controllable MVR_an_BT;
+controllable MVR_aus_FT;
+controllable MVR_aus_BT;
+uncontrollable STZV_FT;
+uncontrollable STZV_BT;
+controllable MZS_an_HT;
+controllable MZS_aus_HT;
+controllable time_WSP;
+controllable time_FS;
+controllable reset_WSP;
+controllable reset_FS;
+uncontrollable timeout_WSP;
+uncontrollable timeout_FS;
+uncontrollable tuer_zu_FT;
+uncontrollable tuer_zu_BT;
+uncontrollable tuer_zu_HT;
+uncontrollable tuer_auf_FT;
+uncontrollable tuer_auf_BT;
+uncontrollable tuer_auf_HT;
+controllable time_W_FT;
+controllable time_ER_FT;
+controllable time_VR_FT;
+controllable time_ZS_FT;
+controllable reset_FT;
+controllable time_W_BT;
+controllable time_ER_BT;
+controllable time_VR_BT;
+controllable time_ZS_BT;
+controllable reset_BT;
+controllable time_W_HT;
+controllable time_ER_HT;
+controllable time_VR_HT;
+controllable time_ZS_HT;
+controllable reset_HT;
+uncontrollable timeout_FT;
+uncontrollable timeout_BT;
+uncontrollable timeout_HT;
+uncontrollable zuendung_an;
+uncontrollable zuendung_aus;
+controllable soft_ER;
+controllable soft_SER_FT;
+controllable SERFS;
+controllable soft_CS;
+controllable ER;
+controllable SER;
+controllable ZS;
+controllable TAST;
+controllable wsp;
+controllable soft_VR;
+controllable soft_ZS;
+controllable autom_VR;
+controllable is_cod_er;
+controllable is_cod_ser;
+controllable done_ZS;
+controllable CS_ok;
+uncontrollable CS;
+controllable ZSA;
+controllable ZSI;
+uncontrollable ER_FT;
+uncontrollable ER_BT;
+uncontrollable ER_HK;
+uncontrollable ER_FS;
+uncontrollable VR_FT;
+uncontrollable VR_BT;
+uncontrollable VR_HK;
+uncontrollable VR_FS;
+uncontrollable TASTVR;
+controllable kein_ZS;
+controllable start_ER_FT;
+controllable stop_ER_FT;
+controllable done_ER;
+controllable done_SER_FT;
+controllable start_VR_FT;
+controllable stop_VR_FT;
+controllable done_VR;
+controllable start_ZS_FT;
+controllable stop_ZS_FT;
+controllable sync_FT;
+controllable async_FT;
+controllable start_ER_BT;
+controllable stop_ER_BT;
+controllable start_VR_BT;
+controllable stop_VR_BT;
+controllable start_ZS_BT;
+controllable stop_ZS_BT;
+controllable sync_BT;
+controllable async_BT;
+controllable start_ER_HT;
+controllable stop_ER_HT;
+controllable start_VR_HT;
+controllable stop_VR_HT;
+controllable start_ZS_HT;
+controllable stop_ZS_HT;
+controllable sync_HT;
+controllable async_HT;
+plant automaton ttimer_FT:
+  location IDLE:
+    initial;
+    marked;
+    edge time_W_FT, time_ER_FT, time_VR_FT, time_ZS_FT goto RUN;
+  location RUN:
+    edge reset_FT, timeout_FT goto IDLE;
+end
+plant automaton ttimer_HT:
+  location IDLE:
+    initial;
+    marked;
+    edge time_W_HT, time_ER_HT, time_VR_HT, time_ZS_HT goto RUN;
+  location RUN:
+    edge reset_HT, timeout_HT goto IDLE;
+end
+plant automaton P1:
+  location:
+    initial;
+    marked;
+    edge soft_ER;
+end
+plant automaton P2:
+  location:
+    initial;
+    marked;
+    edge soft_SER_FT;
+end
+plant automaton P4:
+  location:
+    initial;
+    marked;
+    edge soft_CS;
+end
+plant automaton P10:
+  location:
+    initial;
+    marked;
+    edge soft_VR;
+end
+plant automaton P11:
+  location:
+    initial;
+    marked;
+    edge soft_ZS;
+end
+plant automaton P15:
+  location:
+    initial;
+    marked;
+    edge done_ZS;
+end
+plant automaton P16:
+  location:
+    initial;
+    marked;
+    edge CS_ok;
+end
+plant automaton P30:
+  location:
+    initial;
+    marked;
+    edge start_ER_FT;
+end
+plant automaton P31:
+  location:
+    initial;
+    marked;
+    edge stop_ER_FT;
+end
+plant automaton P32:
+  location:
+    initial;
+    marked;
+    edge done_ER;
+end
+plant automaton P33:
+  location:
+    initial;
+    marked;
+    edge done_SER_FT;
+end
+plant automaton P34:
+  location:
+    initial;
+    marked;
+    edge start_VR_FT;
+end
+plant automaton P35:
+  location:
+    initial;
+    marked;
+    edge stop_VR_FT;
+end
+plant automaton P36:
+  location:
+    initial;
+    marked;
+    edge done_VR;
+end
+plant automaton P37:
+  location:
+    initial;
+    marked;
+    edge start_ZS_FT;
+end
+plant automaton P38:
+  location:
+    initial;
+    marked;
+    edge stop_ZS_FT;
+end
+plant automaton P39:
+  location:
+    initial;
+    marked;
+    edge sync_FT;
+end
+plant automaton P40:
+  location:
+    initial;
+    marked;
+    edge async_FT;
+end
+plant automaton P49:
+  location:
+    initial;
+    marked;
+    edge start_ER_HT;
+end
+plant automaton P50:
+  location:
+    initial;
+    marked;
+    edge stop_ER_HT;
+end
+plant automaton P51:
+  location:
+    initial;
+    marked;
+    edge start_VR_HT;
+end
+plant automaton P52:
+  location:
+    initial;
+    marked;
+    edge stop_VR_HT;
+end
+plant automaton P53:
+  location:
+    initial;
+    marked;
+    edge start_ZS_HT;
+end
+plant automaton P54:
+  location:
+    initial;
+    marked;
+    edge stop_ZS_HT;
+end
+plant automaton P55:
+  location:
+    initial;
+    marked;
+    edge sync_HT;
+end
+plant automaton P56:
+  location:
+    initial;
+    marked;
+    edge async_HT;
+end
+supervisor automaton ftuer_FT:
+  location IN:
+    initial;
+    edge soft_VR goto vr1;
+    edge soft_ER goto er1;
+    edge soft_SER_FT when true goto er1;
+    edge soft_SER_FT when not true goto vr1;
+    edge soft_ZS goto zs1;
+    edge soft_CS goto cs1;
+  location vr1:
+    edge start_ER_FT goto vr2;
+    edge soft_CS goto cs1;
+  location vr2:
+    edge stop_ER_FT goto vr3;
+    edge reset_FT, timeout_FT;
+    edge soft_CS goto cs1;
+  location vr3:
+    edge time_W_FT goto vr4;
+    edge soft_CS goto cs1;
+  location vr4:
+    edge timeout_FT goto vr5;
+    edge soft_CS goto cs1;
+  location vr5:
+    edge start_VR_FT goto vr6;
+    edge soft_CS goto cs1;
+  location vr6:
+    edge stop_VR_FT goto vr7;
+    edge reset_FT, timeout_FT;
+    edge soft_CS goto cs1;
+  location vr7:
+    edge done_VR goto VR;
+    edge soft_CS goto cs1;
+  location VR:
+    marked;
+    edge soft_VR goto vr8;
+    edge soft_ER goto er1;
+    edge soft_SER_FT when true goto er1;
+    edge soft_SER_FT when not true goto vr8;
+    edge soft_ZS goto zs9;
+    edge soft_CS goto cs1;
+  location vr8:
+    edge sync_FT goto vr7;
+    edge async_FT goto vr1;
+    edge soft_CS goto cs1;
+  location er1:
+    edge start_ER_FT goto er2;
+    edge soft_CS goto cs1;
+  location er2:
+    edge stop_ER_FT goto er3;
+    edge reset_FT, timeout_FT;
+    edge soft_CS goto cs1;
+  location er3:
+    edge done_ER goto ER;
+    edge done_SER_FT when true goto ER;
+    edge soft_CS goto cs1;
+  location ER:
+    marked;
+    edge soft_ER goto er3;
+    edge soft_SER_FT when true goto er3;
+    edge soft_VR goto vr5;
+    edge soft_ZS goto zs5;
+    edge soft_CS goto cs1;
+  location zs1:
+    edge start_ER_FT goto zs2;
+    edge soft_CS goto cs1;
+  location zs2:
+    edge stop_ER_FT goto zs3;
+    edge reset_FT, timeout_FT;
+    edge soft_CS goto cs1;
+  location zs3:
+    edge time_W_FT goto zs4;
+    edge soft_CS goto cs1;
+  location zs4:
+    edge timeout_FT goto zs5;
+    edge soft_CS goto cs1;
+  location zs5:
+    edge start_ZS_FT goto zs6;
+    edge soft_CS goto cs1;
+  location zs6:
+    edge stop_ZS_FT goto zs7;
+    edge reset_FT, timeout_FT;
+    edge soft_CS goto cs1;
+  location zs7:
+    edge done_ZS goto ZS;
+    edge soft_CS goto cs1;
+  location ZS:
+    marked;
+    edge soft_ZS goto zs8;
+    edge soft_VR goto vr1;
+    edge soft_ER goto er1;
+    edge soft_SER_FT when true goto er1;
+    edge soft_SER_FT when not true goto vr1;
+    edge soft_CS goto cs1;
+  location zs8:
+    edge sync_FT goto zs7;
+    edge async_FT goto zs1;
+    edge soft_CS goto cs1;
+  location zs9:
+    edge sync_FT goto zs5;
+    edge async_FT goto zs1;
+    edge soft_CS goto cs1;
+  location cs1:
+    edge start_ER_FT goto cs2;
+    edge reset_FT, timeout_FT;
+  location cs2:
+    edge stop_ER_FT goto cs3;
+    edge timeout_FT;
+  location cs3:
+    edge CS_ok goto ER;
+end
+supervisor automaton nftuer_HT:
+  location IN:
+    initial;
+    edge soft_VR goto vr1;
+    edge soft_ER goto er1;
+    edge soft_SER_FT when false goto er1;
+    edge soft_SER_FT when not false goto vr1;
+    edge soft_ZS goto zs1;
+    edge soft_CS goto cs1;
+  location vr1:
+    edge start_ER_HT goto vr2;
+    edge soft_CS goto cs1;
+  location vr2:
+    edge stop_ER_HT goto vr3;
+    edge reset_HT, timeout_HT;
+    edge soft_CS goto cs1;
+  location vr3:
+    edge time_W_HT goto vr4;
+    edge soft_CS goto cs1;
+  location vr4:
+    edge timeout_HT goto vr5;
+    edge soft_CS goto cs1;
+  location vr5:
+    edge start_VR_HT goto vr6;
+    edge soft_CS goto cs1;
+  location vr6:
+    edge stop_VR_HT goto vr7;
+    edge reset_HT, timeout_HT;
+    edge soft_CS goto cs1;
+  location vr7:
+    edge done_VR goto VR;
+    edge soft_CS goto cs1;
+  location VR:
+    marked;
+    edge soft_VR goto vr8;
+    edge soft_ER goto er1;
+    edge soft_SER_FT when false goto er1;
+    edge soft_SER_FT when not false goto vr8;
+    edge soft_ZS goto zs9;
+    edge soft_CS goto cs1;
+  location vr8:
+    edge sync_HT goto vr7;
+    edge async_HT goto vr1;
+    edge soft_CS goto cs1;
+  location er1:
+    edge start_ER_HT goto er2;
+    edge soft_CS goto cs1;
+  location er2:
+    edge stop_ER_HT goto er3;
+    edge reset_HT, timeout_HT;
+    edge soft_CS goto cs1;
+  location er3:
+    edge done_ER goto ER;
+    edge done_SER_FT when false goto ER;
+    edge soft_CS goto cs1;
+  location ER:
+    marked;
+    edge soft_ER goto er3;
+    edge soft_SER_FT when false goto er3;
+    edge soft_VR goto vr5;
+    edge soft_ZS goto zs5;
+    edge soft_CS goto cs1;
+  location zs1:
+    edge start_ER_HT goto zs2;
+    edge soft_CS goto cs1;
+  location zs2:
+    edge stop_ER_HT goto zs3;
+    edge reset_HT, timeout_HT;
+    edge soft_CS goto cs1;
+  location zs3:
+    edge time_W_HT goto zs4;
+    edge soft_CS goto cs1;
+  location zs4:
+    edge timeout_HT goto zs5;
+    edge soft_CS goto cs1;
+  location zs5:
+    edge start_ZS_HT goto zs6;
+    edge soft_CS goto cs1;
+  location zs6:
+    edge stop_ZS_HT goto zs7;
+    edge reset_HT, timeout_HT;
+    edge soft_CS goto cs1;
+  location zs7:
+    edge done_ZS goto ZS;
+    edge soft_CS goto cs1;
+  location ZS:
+    marked;
+    edge soft_ZS goto zs8;
+    edge soft_VR goto vr1;
+    edge soft_ER goto er1;
+    edge soft_SER_FT when false goto er1;
+    edge soft_SER_FT when not false goto vr1;
+    edge soft_CS goto cs1;
+  location zs8:
+    edge sync_HT goto zs7;
+    edge async_HT goto zs1;
+    edge soft_CS goto cs1;
+  location zs9:
+    edge sync_HT goto zs5;
+    edge async_HT goto zs1;
+    edge soft_CS goto cs1;
+  location cs1:
+    edge start_ER_HT goto cs2;
+    edge reset_HT, timeout_HT;
+  location cs2:
+    edge stop_ER_HT goto cs3;
+    edge timeout_HT;
+  location cs3:
+    edge CS_ok goto ER;
+end
+supervisor automaton sup51:
+  alphabet time_W_FT, time_ER_FT, time_VR_FT, time_ZS_FT, reset_FT, time_W_HT, time_ER_HT, time_VR_HT, time_ZS_HT, reset_HT, soft_ER, soft_SER_FT, soft_CS, soft_VR, soft_ZS, done_ZS, CS_ok, start_ER_FT, stop_ER_FT, done_ER, done_SER_FT, start_VR_FT, stop_VR_FT, done_VR, start_ZS_FT, stop_ZS_FT, sync_FT, async_FT, start_ER_HT, stop_ER_HT, start_VR_HT, stop_VR_HT, start_ZS_HT, stop_ZS_HT, sync_HT, async_HT;
+  location:
+    initial;
+    marked;
+    edge async_FT when true;
+    edge async_HT when true;
+    edge CS_ok when true;
+    edge done_ER when true;
+    edge done_SER_FT when false;
+    edge done_VR when true;
+    edge done_ZS when true;
+    edge reset_FT when true;
+    edge reset_HT when true;
+    edge soft_CS when true;
+    edge soft_ER when true;
+    edge soft_SER_FT when true;
+    edge soft_VR when true;
+    edge soft_ZS when true;
+    edge start_ER_FT when true;
+    edge start_ER_HT when true;
+    edge start_VR_FT when true;
+    edge start_VR_HT when true;
+    edge start_ZS_FT when true;
+    edge start_ZS_HT when true;
+    edge stop_ER_FT when ttimer_FT.IDLE;
+    edge stop_ER_HT when ttimer_HT.IDLE;
+    edge stop_VR_FT when ttimer_FT.IDLE;
+    edge stop_VR_HT when ttimer_HT.IDLE;
+    edge stop_ZS_FT when ttimer_FT.IDLE;
+    edge stop_ZS_HT when ttimer_HT.IDLE;
+    edge sync_FT when true;
+    edge sync_HT when true;
+    edge time_ER_FT when ftuer_FT.cs1 or (ftuer_FT.vr2 or ftuer_FT.vr6) or (ftuer_FT.cs2 or ftuer_FT.zs6 or (ftuer_FT.er2 or ftuer_FT.zs2));
+    edge time_ER_HT when ttimer_FT.IDLE and (ftuer_FT.zs3 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs3 and (nftuer_HT.ER or nftuer_HT.zs2)) or (ttimer_FT.IDLE and (ftuer_FT.cs1 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or (ttimer_FT.IDLE and ((ftuer_FT.vr4 or ftuer_FT.zs7) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and ((ftuer_FT.vr4 or ftuer_FT.zs7) and (nftuer_HT.ER or nftuer_HT.zs2)))) or (ttimer_FT.IDLE and (ftuer_FT.er3 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er3 and nftuer_HT.er2) or (ttimer_FT.IDLE and (ftuer_FT.vr2 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs5 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs5 and (nftuer_HT.ER or nftuer_HT.zs2))))) or (ttimer_FT.IDLE and (ftuer_FT.er1 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er1 and nftuer_HT.er2) or (ttimer_FT.IDLE and (ftuer_FT.cs3 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or (ttimer_FT.IDLE and (ftuer_FT.vr6 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.IDLE and (ftuer_FT.zs8 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr5) or (nftuer_HT.vr7 or (nftuer_HT.vr8 or nftuer_HT.er2)) or (nftuer_HT.ER or (nftuer_HT.zs2 or nftuer_HT.zs4) or (nftuer_HT.zs6 or nftuer_HT.ZS or (nftuer_HT.zs9 or nftuer_HT.cs2))))))) or (ttimer_FT.IDLE and (ftuer_FT.zs1 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs1 and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.IDLE and ((ftuer_FT.vr1 or ftuer_FT.zs4) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.vr8 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.cs2 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or ttimer_FT.IDLE and (ftuer_FT.vr5 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))))))) or (ttimer_FT.IDLE and (ftuer_FT.vr3 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.IDLE and (ftuer_FT.zs6 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs6 and (nftuer_HT.ER or nftuer_HT.zs2)) or (ttimer_FT.IDLE and (ftuer_FT.er2 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er2 and nftuer_HT.er2))) or (ttimer_FT.IDLE and (ftuer_FT.vr7 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs9 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs9 and (nftuer_HT.ER or nftuer_HT.zs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs2 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs2 and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and ((ftuer_FT.IN or ftuer_FT.VR or (ftuer_FT.zs3 or ftuer_FT.cs1)) and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3)))))) or (ttimer_FT.RUN and ((ftuer_FT.vr4 or (ftuer_FT.er3 or ftuer_FT.zs7)) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.RUN and ((ftuer_FT.vr2 or (ftuer_FT.vr6 or ftuer_FT.er1) or (ftuer_FT.zs1 or ftuer_FT.zs5 or (ftuer_FT.zs8 or ftuer_FT.cs3))) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.RUN and ((ftuer_FT.vr1 or ftuer_FT.vr5 or (ftuer_FT.zs4 or ftuer_FT.ZS)) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.RUN and ((ftuer_FT.vr1 or ftuer_FT.vr5 or (ftuer_FT.zs4 or ftuer_FT.ZS)) and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and ((ftuer_FT.vr8 or (ftuer_FT.ER or ftuer_FT.cs2)) and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))))) or (ttimer_FT.RUN and ((ftuer_FT.vr3 or ftuer_FT.zs6) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.RUN and ((ftuer_FT.vr3 or ftuer_FT.zs6) and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and (ftuer_FT.er2 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8)))) or (ttimer_FT.RUN and (ftuer_FT.er2 and nftuer_HT.er2) or (ttimer_FT.RUN and ((ftuer_FT.vr7 or (ftuer_FT.zs2 or ftuer_FT.zs9)) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.RUN and ((ftuer_FT.vr7 or (ftuer_FT.zs2 or ftuer_FT.zs9)) and (nftuer_HT.ER or nftuer_HT.zs2)))))));
+    edge time_VR_FT when ftuer_FT.cs1 or (ftuer_FT.vr2 or ftuer_FT.vr6) or (ftuer_FT.cs2 or ftuer_FT.zs6 or (ftuer_FT.er2 or ftuer_FT.zs2));
+    edge time_VR_HT when ttimer_FT.IDLE and (ftuer_FT.zs3 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs3 and (nftuer_HT.ER or nftuer_HT.zs2)) or (ttimer_FT.IDLE and (ftuer_FT.cs1 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or (ttimer_FT.IDLE and ((ftuer_FT.vr4 or ftuer_FT.zs7) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and ((ftuer_FT.vr4 or ftuer_FT.zs7) and (nftuer_HT.ER or nftuer_HT.zs2)))) or (ttimer_FT.IDLE and (ftuer_FT.er3 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er3 and nftuer_HT.er2) or (ttimer_FT.IDLE and (ftuer_FT.vr2 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs5 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs5 and (nftuer_HT.ER or nftuer_HT.zs2))))) or (ttimer_FT.IDLE and (ftuer_FT.er1 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er1 and nftuer_HT.er2) or (ttimer_FT.IDLE and (ftuer_FT.cs3 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or (ttimer_FT.IDLE and (ftuer_FT.vr6 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.IDLE and (ftuer_FT.zs8 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr5) or (nftuer_HT.vr7 or (nftuer_HT.vr8 or nftuer_HT.er2)) or (nftuer_HT.ER or (nftuer_HT.zs2 or nftuer_HT.zs4) or (nftuer_HT.zs6 or nftuer_HT.ZS or (nftuer_HT.zs9 or nftuer_HT.cs2))))))) or (ttimer_FT.IDLE and (ftuer_FT.zs1 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs1 and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.IDLE and ((ftuer_FT.vr1 or ftuer_FT.zs4) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.vr8 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.cs2 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or ttimer_FT.IDLE and (ftuer_FT.vr5 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))))))) or (ttimer_FT.IDLE and (ftuer_FT.vr3 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.IDLE and (ftuer_FT.zs6 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs6 and (nftuer_HT.ER or nftuer_HT.zs2)) or (ttimer_FT.IDLE and (ftuer_FT.er2 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er2 and nftuer_HT.er2))) or (ttimer_FT.IDLE and (ftuer_FT.vr7 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs9 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs9 and (nftuer_HT.ER or nftuer_HT.zs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs2 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs2 and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and ((ftuer_FT.IN or ftuer_FT.VR or (ftuer_FT.zs3 or ftuer_FT.cs1)) and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3)))))) or (ttimer_FT.RUN and ((ftuer_FT.vr4 or (ftuer_FT.er3 or ftuer_FT.zs7)) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.RUN and ((ftuer_FT.vr2 or (ftuer_FT.vr6 or ftuer_FT.er1) or (ftuer_FT.zs1 or ftuer_FT.zs5 or (ftuer_FT.zs8 or ftuer_FT.cs3))) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.RUN and ((ftuer_FT.vr1 or ftuer_FT.vr5 or (ftuer_FT.zs4 or ftuer_FT.ZS)) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.RUN and ((ftuer_FT.vr1 or ftuer_FT.vr5 or (ftuer_FT.zs4 or ftuer_FT.ZS)) and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and ((ftuer_FT.vr8 or (ftuer_FT.ER or ftuer_FT.cs2)) and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))))) or (ttimer_FT.RUN and ((ftuer_FT.vr3 or ftuer_FT.zs6) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.RUN and ((ftuer_FT.vr3 or ftuer_FT.zs6) and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and (ftuer_FT.er2 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8)))) or (ttimer_FT.RUN and (ftuer_FT.er2 and nftuer_HT.er2) or (ttimer_FT.RUN and ((ftuer_FT.vr7 or (ftuer_FT.zs2 or ftuer_FT.zs9)) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.RUN and ((ftuer_FT.vr7 or (ftuer_FT.zs2 or ftuer_FT.zs9)) and (nftuer_HT.ER or nftuer_HT.zs2)))))));
+    edge time_W_FT when true;
+    edge time_W_HT when true;
+    edge time_ZS_FT when ftuer_FT.cs1 or (ftuer_FT.vr2 or ftuer_FT.vr6) or (ftuer_FT.cs2 or ftuer_FT.zs6 or (ftuer_FT.er2 or ftuer_FT.zs2));
+    edge time_ZS_HT when ttimer_FT.IDLE and (ftuer_FT.zs3 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs3 and (nftuer_HT.ER or nftuer_HT.zs2)) or (ttimer_FT.IDLE and (ftuer_FT.cs1 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or (ttimer_FT.IDLE and ((ftuer_FT.vr4 or ftuer_FT.zs7) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and ((ftuer_FT.vr4 or ftuer_FT.zs7) and (nftuer_HT.ER or nftuer_HT.zs2)))) or (ttimer_FT.IDLE and (ftuer_FT.er3 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er3 and nftuer_HT.er2) or (ttimer_FT.IDLE and (ftuer_FT.vr2 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs5 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs5 and (nftuer_HT.ER or nftuer_HT.zs2))))) or (ttimer_FT.IDLE and (ftuer_FT.er1 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er1 and nftuer_HT.er2) or (ttimer_FT.IDLE and (ftuer_FT.cs3 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or (ttimer_FT.IDLE and (ftuer_FT.vr6 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.IDLE and (ftuer_FT.zs8 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr5) or (nftuer_HT.vr7 or (nftuer_HT.vr8 or nftuer_HT.er2)) or (nftuer_HT.ER or (nftuer_HT.zs2 or nftuer_HT.zs4) or (nftuer_HT.zs6 or nftuer_HT.ZS or (nftuer_HT.zs9 or nftuer_HT.cs2))))))) or (ttimer_FT.IDLE and (ftuer_FT.zs1 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs1 and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.IDLE and ((ftuer_FT.vr1 or ftuer_FT.zs4) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.vr8 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.cs2 and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))) or ttimer_FT.IDLE and (ftuer_FT.vr5 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))))))) or (ttimer_FT.IDLE and (ftuer_FT.vr3 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.IDLE and (ftuer_FT.zs6 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs6 and (nftuer_HT.ER or nftuer_HT.zs2)) or (ttimer_FT.IDLE and (ftuer_FT.er2 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8))) or ttimer_FT.IDLE and (ftuer_FT.er2 and nftuer_HT.er2))) or (ttimer_FT.IDLE and (ftuer_FT.vr7 and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs9 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.IDLE and (ftuer_FT.zs9 and (nftuer_HT.ER or nftuer_HT.zs2))) or (ttimer_FT.IDLE and (ftuer_FT.zs2 and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.IDLE and (ftuer_FT.zs2 and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and ((ftuer_FT.IN or ftuer_FT.VR or (ftuer_FT.zs3 or ftuer_FT.cs1)) and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3)))))) or (ttimer_FT.RUN and ((ftuer_FT.vr4 or (ftuer_FT.er3 or ftuer_FT.zs7)) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or ttimer_FT.RUN and ((ftuer_FT.vr2 or (ftuer_FT.vr6 or ftuer_FT.er1) or (ftuer_FT.zs1 or ftuer_FT.zs5 or (ftuer_FT.zs8 or ftuer_FT.cs3))) and not nftuer_HT.vr1) and (not nftuer_HT.vr3 and not nftuer_HT.vr5 and (not nftuer_HT.vr7 and not nftuer_HT.vr8)) and (not nftuer_HT.er2 and not nftuer_HT.ER and (not nftuer_HT.zs2 and not nftuer_HT.zs4) and (not nftuer_HT.zs6 and not nftuer_HT.ZS and (not nftuer_HT.zs9 and not nftuer_HT.cs2))) or (ttimer_FT.RUN and ((ftuer_FT.vr1 or ftuer_FT.vr5 or (ftuer_FT.zs4 or ftuer_FT.ZS)) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.RUN and ((ftuer_FT.vr1 or ftuer_FT.vr5 or (ftuer_FT.zs4 or ftuer_FT.ZS)) and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and ((ftuer_FT.vr8 or (ftuer_FT.ER or ftuer_FT.cs2)) and not nftuer_HT.vr2) and (not nftuer_HT.vr3 and not nftuer_HT.vr6 and (not nftuer_HT.vr7 and not nftuer_HT.er1)) and (not nftuer_HT.er2 and not nftuer_HT.zs1 and (not nftuer_HT.zs2 and not nftuer_HT.zs5) and (not nftuer_HT.zs6 and not nftuer_HT.zs8 and (not nftuer_HT.zs9 and not nftuer_HT.cs3))))) or (ttimer_FT.RUN and ((ftuer_FT.vr3 or ftuer_FT.zs6) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or (ttimer_FT.RUN and ((ftuer_FT.vr3 or ftuer_FT.zs6) and (nftuer_HT.ER or nftuer_HT.zs2)) or ttimer_FT.RUN and (ftuer_FT.er2 and (nftuer_HT.vr2 or nftuer_HT.vr6 or (nftuer_HT.zs5 or nftuer_HT.zs8)))) or (ttimer_FT.RUN and (ftuer_FT.er2 and nftuer_HT.er2) or (ttimer_FT.RUN and ((ftuer_FT.vr7 or (ftuer_FT.zs2 or ftuer_FT.zs9)) and (nftuer_HT.vr1 or (nftuer_HT.vr3 or nftuer_HT.vr8) or (nftuer_HT.er2 or nftuer_HT.zs4 or (nftuer_HT.zs6 or nftuer_HT.cs2)))) or ttimer_FT.RUN and ((ftuer_FT.vr7 or (ftuer_FT.zs2 or ftuer_FT.zs9)) and (nftuer_HT.ER or nftuer_HT.zs2)))))));
+end

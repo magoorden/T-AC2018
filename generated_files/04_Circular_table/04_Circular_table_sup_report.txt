@@ -1,0 +1,30 @@
+Reading CIF file "Benchmark/04_Circular_table.cif".
+Preprocessing CIF specification.
+Creating matrix.
+Prepare clustering.
+Start clustering in Matlab.
+Import data from clustering.
+Prepare synthesis of supervisors.
+Starting synthesis of supervisors.
+Syntesizing supervisor 1.
+Syntesizing supervisor 5.
+Synthesis of supervisors is finished.
+Performing nonconflicting check.
+Finished MLDES synthesis.
+
+Timing measurement           Duration
+---------------------------  --------
+Total time                   4,780 ms
+  Read input model               4 ms
+  Preprocess input model         2 ms
+  Create matrix                  3 ms
+  Clustering in Matlab       4,680 ms
+  Import clustering results     14 ms
+  Synthesize supervisors        60 ms
+  Nonconflicting check           9 ms
+
+Controlled system  State space size
+-----------------  ----------------
+1                         80 states
+2                         11 states
+Total states              91 states

@@ -1,0 +1,21 @@
+// This example is originally from 'Modular Model-Based Supervisory Controller
+// Design for Wafer Logistics in Lithography Machines' by Bram van der Sanden, Michel Reniers,
+// Marc Geilen, Twan Basten, Johan Jacobs, Jeroen Voeten, and Ramon Schiffelers
+
+// Star interfaces for the resources.
+import "11_MODELS2015/Models/UncontrolledSystem/Resources.cif";
+
+// System plant and requirement models.
+import "11_MODELS2015/Models/UncontrolledSystem/SystemPlant.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/SystemReq.cif";
+
+// Wafer plant and requirement models.
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer0.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer1.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer2.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer3.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer4.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer5.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer6.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer7.cif";
+import "11_MODELS2015/Models/UncontrolledSystem/Wafer8.cif";

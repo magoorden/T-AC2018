@@ -1,0 +1,8 @@
+// Choose the system to be visualized: the controlled system (which contains
+// the modular supervisors) or the uncontrolled system.
+
+// Controlled system.
+import "../Models/ControlledSystem/System.cif";
+
+// Uncontrolled system.
+// import "../Models/UncontrolledSystem/System.cif";

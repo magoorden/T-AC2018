@@ -1,0 +1,2 @@
+Reading CIF file "Benchmark/11_Wafer_scanner.cif".
+Preprocessing CIF specification.

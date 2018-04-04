@@ -1,0 +1,21 @@
+Reading CIF file "Benchmark/05_Cluster_tool.cif".
+Preprocessing CIF specification.
+Creating matrix.
+
+Most refined product system contains a single plant model.
+Monolithic synthesis is performed.
+Syntesizing supervisor.
+Synthesis of supervisors is finished.
+
+Timing measurement        Duration
+------------------------  --------
+Total time                7,841 ms
+  Read input model           12 ms
+  Preprocess input model      5 ms
+  Create matrix               5 ms
+  Synthesize supervisors  7,807 ms
+
+Controlled system  State space size
+-----------------  ----------------
+1                  2,699,535 states
+Total states       2,699,535 states

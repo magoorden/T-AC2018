@@ -1,0 +1,44 @@
+plant def TwoStateSensor(alg bool InitialOn):
+    uncontrollable u_on, u_off;
+    location On:
+        initial InitialOn;
+        marked  InitialOn;
+        edge u_off goto Off;
+    location Off:
+        initial not InitialOn;
+        marked  not InitialOn;
+        edge u_on  goto On;
+end
+
+plant def TwoStateActuator(alg bool InitialOn):
+    controllable c_on, c_off;
+    location On:
+        initial InitialOn;
+        marked  InitialOn;
+        edge c_off goto Off;
+    location Off:
+        initial not InitialOn;
+        marked  not InitialOn;
+        edge c_on  goto On;
+end
+
+plant def TwoStateActuator2(alg bool InitialOn):
+    controllable c_on, c_off;
+    location On:
+        initial InitialOn;
+        marked;
+        edge c_off goto Off;
+    location Off:
+        initial not InitialOn;
+        marked;
+        edge c_on  goto On;
+end
+
+plant def Button():
+    uncontrollable u_push, u_release;
+    location Released:
+        initial; marked;
+        edge u_push goto Pushed;
+    location Pushed:
+        edge u_release goto Released;
+end

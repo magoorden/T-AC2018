@@ -1,0 +1,93 @@
+import "SystemReference.cif";
+
+svgfile "waferflow.svg";
+
+svgout id "Wafer8" attr "fill"
+  value
+    if ObsAligned_8.not_aligned:
+        // conditioned wafer.
+        "#bae4bc"
+    else
+        // aligned wafer.
+        "#7bccc4"
+    end;
+
+// Increase the thickness of stroke if an operation is carried out on the wafer.
+svgout id "Wafer8" attr "stroke-width"
+  value
+    if WaferPlant_8.PA_AlignRunning:
+       "2px"
+    else
+       "1px"
+    end;
+
+// Position of the wafer in the system.
+svgout id "Wafer8Group" attr "transform"
+  value
+    if WaferPlant_8.TR:
+        "translate(18.660428,298.0485)"
+    elif WaferPlant_8.DU:
+        "translate(185.46186,154.67372)"
+    elif WaferPlant_8.SUB:
+        "translate(185.46186,478.68219)"
+    elif WaferPlant_8.PA or WaferPlant_8.PA_AlignRunning:
+        "translate(351.13135,309.34745)"
+    elif WaferPlant_8.LR:
+        "translate(429.56779,155.40677)"
+    elif WaferPlant_8.UR:
+        "translate(429.56779,478.68219)"
+    elif WaferPlant_8.CH0:
+        "translate(691.99999,156.13982)"
+    elif WaferPlant_8.CH1:
+        "translate(691.99999,478.68219)"
+    elif WaferPlant_8.CTC0:
+        "translate(429.56779,38.851684)"
+    elif WaferPlant_8.CTC1:
+        "translate(429.56779,594.50422)"
+    elif WaferPlant_8.URtoDU:
+        "matrix(0.37174907,0,0,0.35401034,239.8429,377.20592)"
+    elif WaferPlant_8.DUtoUR:
+        "matrix(0.38328667,0,0,0.35389566,211.04177,389.31505)"
+    elif WaferPlant_8.DUtoTR:
+        "matrix(0.34898741,0,0,0.34673407,128.28907,294.03559)"
+    elif WaferPlant_8.DUtoLR:
+        "matrix(0.34898741,0,0,0.34673407,334.84964,220.17139)"
+    elif WaferPlant_8.LRtoDU:
+        "matrix(0.34898741,0,0,0.34673407,334.84964,248.68038)"
+    elif WaferPlant_8.LRtoCTC0:
+        "matrix(0.34898741,0,0,0.34673407,476.35789,176.63039)"
+    elif WaferPlant_8.CTC0toLR:
+        "matrix(0.34898741,0,0,0.34673407,437.482,176.63039)"
+    elif WaferPlant_8.LRtoCH0:
+        "matrix(0.34898741,0,0,0.34673407,578.99024,214.98794)"
+    elif WaferPlant_8.CH0toLR:
+        "matrix(0.34898741,0,0,0.34673407,578.99024,253.86383)"
+    elif WaferPlant_8.LRtoPA:
+        "matrix(0.34898741,0,0,0.34673407,378.90898,295.84979)"
+    elif WaferPlant_8.PAtoLR:
+        "matrix(0.34898741,0,0,0.34673407,415.19315,295.84979)"
+    elif WaferPlant_8.LRtoCH1:
+        "matrix(0.34898741,0,0,0.34673407,527.67406,295.33144)"
+    elif WaferPlant_8.CH1toLR:
+        "matrix(0.34898741,0,0,0.34673407,489.31651,295.84979)"
+    elif WaferPlant_8.PAtoUR:
+        "matrix(0.34898741,0,0,0.34673407,378.90898,477.78897)"
+    elif WaferPlant_8.URtoPA:
+        "matrix(0.34898741,0,0,0.34673407,415.19314,477.78897)"
+    elif WaferPlant_8.CH0toUR:
+        "matrix(0.34898741,0,0,0.34673407,527.67405,477.78897)"
+    elif WaferPlant_8.CH1toUR:
+        "matrix(0.34898741,0,0,0.34673407,578.99022,568.49938)"
+    elif WaferPlant_8.URtoCTC1:
+        "matrix(0.34898741,0,0,0.34673407,476.35787,616.18714)"
+    elif WaferPlant_8.CTC1toUR:
+        "matrix(0.34898741,0,0,0.34673407,437.48198,616.18714)"
+    elif WaferPlant_8.URtoSUB:
+        "matrix(0.34898741,0,0,0.34673407,334.84963,566.426)"
+    elif WaferPlant_8.SUBtoUR:
+        "matrix(0.34898741,0,0,0.34673407,334.84963,537.91701)"
+    elif WaferPlant_8.TRtoSUB:
+        "matrix(0.34898741,0,0,0.34673407,128.12929,452.15006)"
+    else
+        "translate(18.660428,298.0485)"
+  end;

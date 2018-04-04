@@ -1,0 +1,199 @@
+import "Definitions.cif";
+
+//TESTING
+
+//Plant:
+//Sensors
+S_elevator_up   : TwoStateSensor(false);
+S_elevator_down : TwoStateSensor(true);
+
+S_pusher        : TwoStateSensor(false);
+
+S_opticalT      : TwoStateSensor(false);
+
+S_capacitive    : TwoStateSensor(false);
+
+S_reflective    : TwoStateSensor(false);
+
+S_productheight : TwoStateSensor(false);
+
+S_bufferingbusy : TwoStateSensor(true);   //This sensor is not used as communication is not needed
+
+S_Tinitialized  : TwoStateSensor(false);
+
+//Actuators
+A_elevator_up   : TwoStateActuator(false);
+A_elevator_down : TwoStateActuator(true);
+
+A_pusher        : TwoStateActuator(false);
+
+A_airslide      : TwoStateActuator(false);
+
+A_testingready  : TwoStateActuator(false); //The corresponding sensors is never used
+
+
+//Dynamics
+//elevator dynamics, sensors are mutually exclusive
+plant TDynamics:
+    location: initial; marked;
+        edge S_elevator_up.u_on   when S_elevator_down.Off;
+        edge S_elevator_down.u_on when S_elevator_up.Off;
+end
+
+plant TTimer:
+    controllable c_on, c_reset; uncontrollable u_timeout;
+    location Off:
+        initial; marked;
+        edge c_on goto Running;
+    location Running:
+        edge u_timeout goto Timeout;
+        edge c_reset goto Off;
+    location Timeout:
+        marked;
+        edge c_reset goto Off;
+end
+
+//Requirements
+//Initialization
+//Actuators are only allowed to enable/disable when the station is initialized
+requirement {A_elevator_up.c_on, A_elevator_up.c_off, A_elevator_down.c_on, A_elevator_down.c_off,
+             A_pusher.c_on, A_pusher.c_off, A_airslide.c_on, A_airslide.c_off,
+             A_testingready.c_on, A_testingready.c_off, TTimer.c_on, TTimer.c_reset} needs
+             S_Tinitialized.On;
+
+//Timer measures if the pusher is retracted long enough
+requirement TTimer.c_on    needs A_pusher.Off;
+requirement TTimer.c_reset needs A_pusher.On;
+
+//Pusher
+//Pusher is only allowed to retract when it is fully extended
+requirement A_pusher.c_off needs S_pusher.On;
+
+//Pusher is only allowed to extend when
+//  - Elevator is fully ascended  with a good product
+//  - Elevator is fully descended with a bad product (this is currently not included)
+requirement A_pusher.c_on needs S_elevator_up.On;
+
+//Elevator
+//Elevator flows cannot be enabled simulteanously
+requirement A_elevator_down.c_on needs A_elevator_up.Off;
+requirement A_elevator_up.c_on   needs A_elevator_down.Off;
+
+//Elevator is only allowed to ascend when its fully descended
+requirement {A_elevator_up.c_on, A_elevator_down.c_off} needs S_elevator_down.On;
+
+//Elevator is only allowed to descend when its fully ascended
+requirement {A_elevator_down.c_on, A_elevator_up.c_off} needs S_elevator_up.On;
+
+//Elevator is only allowed to ascend or descend when the pusher is fully retracted for x seconds
+requirement {A_elevator_down.c_on, A_elevator_up.c_off} needs S_pusher.Off;
+requirement {A_elevator_down.c_on, A_elevator_up.c_off} needs TTimer.Timeout;
+
+requirement {A_elevator_up.c_on, A_elevator_down.c_off} needs S_pusher.Off;
+requirement {A_elevator_up.c_on, A_elevator_down.c_off} needs TTimer.Timeout;
+
+//Elevator is only allowed to ascend when there is a product detected
+requirement {A_elevator_up.c_on, A_elevator_down.c_off} needs S_capacitive.On;
+
+//Elevator is only allowed to ascend when it is safe
+requirement {A_elevator_up.c_on, A_elevator_down.c_off} needs S_reflective.Off;
+
+//Elevator is only allowed to descend down when there is no good product
+requirement {A_elevator_down.c_on, A_elevator_up.c_off} needs S_opticalT.Off;
+
+//Air slide is only allowed to enable when there is a product being pushed onto
+requirement A_airslide.c_on  needs S_elevator_up.On and S_pusher.On;
+
+//Air slide is only allowed to disable after x seconds //Maybe use a timer!
+requirement A_airslide.c_off needs S_elevator_down.On;
+
+
+requirement A_testingready.c_off needs false; //Actuator not used!
+
+//The following flow is required Lift goes up -> Pusher extends -> Pusher retracts -> Lift goes down
+requirement PusherLift:
+    location One:
+        initial; marked;
+        edge A_elevator_down.c_off goto Two;
+    location Two:
+        edge A_pusher.c_on  goto Three;
+    location Three:
+        edge A_pusher.c_off goto Four;
+    location Four:
+        edge A_elevator_down.c_on goto One;
+end
+
+//BUFFERING
+
+//Plant:
+//Sensors
+S_atin             : TwoStateSensor(false);
+S_atseparator      : TwoStateSensor(false);
+S_atend            : TwoStateSensor(false);
+S_separator_opened : TwoStateSensor(false);
+S_separator_closed : TwoStateSensor(true);
+S_processingbusy   : TwoStateSensor(true); //This sensor is not used as communication is not needed
+S_Binitialized     : TwoStateSensor(false);
+
+//Actuators
+A_separator      : TwoStateActuator(true);
+
+A_conveyerB      : TwoStateActuator(false);
+
+A_bufferingready : TwoStateActuator(false); //The corresponding sensors is never used
+
+plant BTimer:
+    controllable c_on, c_reset; uncontrollable u_timeout;
+    location Off:
+        initial; marked;
+        edge c_on goto Running;
+    location Running:
+        edge u_timeout goto Timeout;
+        edge c_reset goto Off;
+    location Timeout:
+        marked;
+        edge c_reset goto Off;
+end
+
+//Dynamics
+//elevator dynamics, sensors are mutually exclusive
+plant BDynamics:
+    location: initial; marked;
+        edge S_separator_opened.u_on when S_separator_closed.Off;
+        edge S_separator_closed.u_on when S_separator_opened.Off;
+end
+
+//Requirements
+//Initialization
+//Actuators are only allowed to enable/disable when the station is initialized
+requirement {A_separator.c_on, A_separator.c_off, A_conveyerB.c_on, A_conveyerB.c_off,
+             A_bufferingready.c_on, A_bufferingready.c_off} needs
+             S_Binitialized.On;
+
+//Timer measures if the conveyer is enabled long enough for a product to exit
+requirement BTimer.c_on    needs S_atend.On;
+requirement BTimer.c_reset needs S_atin.On or A_conveyerB.Off;
+
+//Separator
+//The separator is only allowed to open when it is fully closed
+requirement A_separator.c_on  needs S_separator_closed.On;
+
+//The separator is only allowed to close when it is fully open
+requirement A_separator.c_off needs S_separator_opened.On;
+
+//The separator is only allowed to receive a new product when the current product has left the separator
+requirement A_separator.c_on  needs S_atseparator.On;
+requirement A_separator.c_off needs S_atseparator.Off;
+
+//Conveyer belt
+//The conveyer is only allowed to start when there is a product
+requirement A_conveyerB.c_on needs S_atin.On;
+
+//The conveyer is allowed to stop when a product has exit the system (x seconds after hitting the at exit sensor):
+requirement A_conveyerB.c_off needs BTimer.Timeout;
+
+//The buffer station is ready when there is not product at the start
+requirement A_bufferingready.c_on  needs false; //Never used //S_atin.Off;
+
+//The buffer station is busy when there is a product at the start
+//requirement A_bufferingready.c_off needs S_atin.On;

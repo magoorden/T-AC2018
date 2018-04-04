@@ -1,0 +1,49 @@
+import "Input_variables_optional_disc.cif";
+
+import "buttons_uncontrolled_discrete_plant.cif";
+import "color_sensor_polling_uncontrolled_discrete_plant.cif";
+import "motor_uncontrolled_discrete_plant.cif";
+import "conveyor_motor_uncontrolled_discrete_plant.cif";
+import "gripper_switch_sensor_uncontrolled_discrete_plant.cif";
+
+Start_Button: Button();
+
+Loadplatform_switch_sensor: Switch_Sensor();
+
+Loadplatform_conveyor_motor: conveyor_Motor();
+
+Loadplatform_pre_conveyor_motor: conveyor_Motor();
+
+Loadplatform_color_sensor: Sensor_detect_color();
+
+requirement Loadplatform_Notify_Switch:
+
+  location Initial:
+    initial;
+    edge Start_Button.u_pushed                              goto Running;
+
+  location Running:
+    marked;
+    edge Loadplatform_switch_sensor.c_notifyWhenClosed;
+    edge Start_Button.u_pushed;
+
+end
+
+requirement Restrict_behaviour_color_sensor_and_conveyors:
+
+  location :
+    initial; marked;
+    edge Loadplatform_color_sensor.c_get_color              when Loadplatform_switch_sensor.Reply;
+
+    edge Loadplatform_pre_conveyor_motor.c_move_forward     when Loadplatform_conveyor_motor.Moving
+                                                            and  Loadplatform_color_sensor.color_sensor_value = UNDEFINED;
+
+    edge Loadplatform_conveyor_motor.c_move_forward         when Loadplatform_switch_sensor.Reply;
+
+    edge Loadplatform_conveyor_motor.u_stopped              when Loadplatform_switch_sensor.Idle;
+
+    edge Loadplatform_pre_conveyor_motor.u_stopped          when Loadplatform_color_sensor.color_sensor_value = DEFINED
+                                                            or   not Loadplatform_conveyor_motor.Moving;
+
+end
+

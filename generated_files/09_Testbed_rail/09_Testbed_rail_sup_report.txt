@@ -1,0 +1,11 @@
+Reading CIF file "Benchmark/09_Testbed_rail.cif".
+Preprocessing CIF specification.
+Creating matrix.
+Prepare clustering.
+Start clustering in Matlab.
+Import data from clustering.
+Prepare synthesis of supervisors.
+Starting synthesis of supervisors.
+Syntesizing supervisor 1.
+Syntesizing supervisor 2.
+Synthesis of supervisors is finished.

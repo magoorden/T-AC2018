@@ -1,0 +1,559 @@
+controllable em_timer_measure_start;
+controllable em_timer_before_put_start;
+controllable em_timer_putting_start;
+controllable em_timer_before_up_start;
+controllable em_timer_before_ballcheck_start;
+controllable es_timer_before_up_start;
+controllable es_timer_before_deput_start;
+controllable es_timer_before_ballcheck_start;
+uncontrollable em_timer_measure_timeout;
+uncontrollable em_timer_before_put_timeout;
+uncontrollable em_timer_putting_timeout;
+uncontrollable em_timer_before_up_timeout;
+uncontrollable em_timer_before_ballcheck_timeout;
+uncontrollable es_timer_before_up_timeout;
+uncontrollable es_timer_before_deput_timeout;
+uncontrollable es_timer_before_ballcheck_timeout;
+controllable em_go_up;
+controllable em_go_down;
+uncontrollable em_is_up;
+uncontrollable em_is_down;
+controllable gk_in_go_in;
+controllable gk_in_go_out;
+controllable gk_in_is_in;
+controllable gk_in_is_out;
+controllable gk_out_go_in;
+controllable gk_out_go_out;
+controllable gk_out_is_in;
+controllable gk_out_is_out;
+controllable em_putter_go_in;
+controllable em_putter_go_out;
+controllable em_putter_is_in;
+controllable em_putter_is_out;
+controllable mode_automatic;
+controllable mode_manual;
+uncontrollable button_automatic_pressed;
+uncontrollable button_automatic_released;
+uncontrollable button_manual_pressed;
+uncontrollable button_manual_released;
+uncontrollable em_has_ball;
+controllable arm_allocate_lower_buffer;
+controllable arm_allocate_upper_buffer;
+controllable em_measure_start;
+controllable em_measure_allocate_station;
+controllable em_measure_go_out;
+controllable em_measure_go_in;
+controllable em_measure_release_station;
+controllable em_large_ball;
+controllable em_small_ball;
+controllable em_measure_finished;
+controllable es_allocate_upper_buffer;
+controllable arm_release_upper_buffer;
+controllable arm_lower_upper_buffer;
+controllable arm_raise_upper_buffer;
+controllable es_release_upper_buffer;
+controllable es_deput_ball_upper;
+controllable es_put_ball_upper;
+controllable gk_enter_ball;
+controllable gk_has_ball;
+controllable gk_ball_out_of_gatekeeper;
+controllable em_enter_ball;
+controllable gk_release_ball;
+controllable es_allocate_lower_buffer;
+controllable arm_release_lower_buffer;
+controllable arm_lower_lower_buffer;
+controllable arm_raise_lower_buffer;
+controllable es_release_lower_buffer;
+controllable es_deput_ball_lower;
+controllable es_put_ball_lower;
+controllable em_measure_has_ball;
+controllable es_enter_ball;
+controllable em_elevator_allocate_station;
+controllable em_elevator_release_station;
+controllable em_putter_start;
+controllable em_measure_has_no_ball;
+controllable em_putter_finished;
+controllable em_ball_out_of_measure_station;
+controllable es_got_ball;
+controllable is_large_ball;
+controllable is_small_ball;
+controllable es_up_upper;
+controllable es_up_lower;
+controllable es_go_down;
+controllable es_is_not_down;
+controllable es_upper_putter_go_in;
+controllable es_upper_putter_go_out;
+controllable es_lower_putter_go_in;
+controllable es_lower_putter_go_out;
+controllable es_is_upper;
+controllable es_is_lower;
+controllable es_no_ball_upper_level;
+controllable es_no_ball_lower_level;
+controllable es_ball_upper_level;
+controllable es_ball_lower_level;
+controllable em_putter_allocate_station;
+controllable em_putter_release_station;
+plant automaton em_timer_measure:
+  location q0:
+    initial;
+    marked;
+    edge em_timer_measure_start goto q1;
+  location q1:
+    edge em_timer_measure_timeout goto q0;
+    edge em_timer_measure_start;
+end
+plant automaton em_timer_putting:
+  location q0:
+    initial;
+    marked;
+    edge em_timer_putting_start goto q1;
+  location q1:
+    edge em_timer_putting_timeout goto q0;
+    edge em_timer_putting_start;
+end
+plant automaton em_timer_before_up:
+  location q0:
+    initial;
+    marked;
+    edge em_timer_before_up_start goto q1;
+  location q1:
+    edge em_timer_before_up_timeout goto q0;
+    edge em_timer_before_up_start;
+end
+plant automaton em_timer_before_ballcheck:
+  location q0:
+    initial;
+    marked;
+    edge em_timer_before_ballcheck_start goto q1;
+  location q1:
+    edge em_timer_before_ballcheck_timeout goto q0;
+    edge em_timer_before_ballcheck_start;
+end
+plant automaton Elevator_measure:
+  location In:
+    initial;
+    marked;
+    edge em_go_down goto Out;
+    edge em_go_up, em_is_up;
+  location Out:
+    marked;
+    edge em_go_up goto In;
+    edge em_go_down, em_is_down;
+end
+plant automaton Gatekeeper_in:
+  location In:
+    initial;
+    marked;
+    edge gk_in_go_out goto Out;
+    edge gk_in_go_in, gk_in_is_in;
+  location Out:
+    marked;
+    edge gk_in_go_in goto In;
+    edge gk_in_go_out, gk_in_is_out;
+end
+plant automaton Gatekeeper_out:
+  location In:
+    initial;
+    marked;
+    edge gk_out_go_out goto Out;
+    edge gk_out_go_in, gk_out_is_in;
+  location Out:
+    marked;
+    edge gk_out_go_in goto In;
+    edge gk_out_go_out, gk_out_is_out;
+end
+plant automaton Measure_putter:
+  location In:
+    initial;
+    marked;
+    edge em_putter_go_out goto Out;
+    edge em_putter_go_in, em_putter_is_in;
+  location Out:
+    marked;
+    edge em_putter_go_in goto In;
+    edge em_putter_go_out, em_putter_is_out;
+end
+plant automaton Automatic_button:
+  location q0:
+    initial;
+    marked;
+    edge button_automatic_pressed goto q1;
+  location q1:
+    marked;
+    edge mode_automatic goto q2;
+  location q2:
+    marked;
+    edge button_automatic_released goto q0;
+end
+plant automaton GK_EM:
+  location q0:
+    initial;
+    marked;
+    edge gk_out_go_out goto q1;
+  location q1:
+    marked;
+    edge em_has_ball goto q0;
+end
+plant automaton Disable_Events:
+  alphabet arm_allocate_lower_buffer, arm_allocate_upper_buffer, button_automatic_pressed, em_putter_is_in, em_putter_is_out, gk_in_is_in, gk_in_is_out, gk_out_is_in, gk_out_is_out;
+  location dummy:
+    initial;
+    marked;
+end
+plant automaton P1:
+  location:
+    initial;
+    marked;
+    edge em_measure_start;
+end
+plant automaton P2:
+  location:
+    initial;
+    marked;
+    edge em_measure_allocate_station;
+end
+plant automaton P3:
+  location:
+    initial;
+    marked;
+    edge em_measure_go_out;
+end
+plant automaton P4:
+  location:
+    initial;
+    marked;
+    edge em_measure_go_in;
+end
+plant automaton P5:
+  location:
+    initial;
+    marked;
+    edge em_measure_release_station;
+end
+plant automaton P6:
+  location:
+    initial;
+    marked;
+    edge em_large_ball;
+end
+plant automaton P7:
+  location:
+    initial;
+    marked;
+    edge em_small_ball;
+end
+plant automaton P8:
+  location:
+    initial;
+    marked;
+    edge em_measure_finished;
+end
+plant automaton p20:
+  location:
+    initial;
+    marked;
+    edge em_enter_ball;
+end
+plant automaton p30:
+  location:
+    initial;
+    marked;
+    edge em_measure_has_ball;
+end
+plant automaton p31:
+  location:
+    initial;
+    marked;
+    edge es_enter_ball;
+end
+plant automaton p32:
+  location:
+    initial;
+    marked;
+    edge em_elevator_allocate_station;
+end
+plant automaton p33:
+  location:
+    initial;
+    marked;
+    edge em_elevator_release_station;
+end
+plant automaton p34:
+  location:
+    initial;
+    marked;
+    edge em_putter_start;
+end
+plant automaton p35:
+  location:
+    initial;
+    marked;
+    edge em_measure_has_no_ball;
+end
+plant automaton p36:
+  location:
+    initial;
+    marked;
+    edge em_putter_finished;
+end
+plant automaton p37:
+  location:
+    initial;
+    marked;
+    edge em_ball_out_of_measure_station;
+end
+plant automaton p55:
+  location:
+    initial;
+    marked;
+    edge em_putter_allocate_station;
+end
+plant automaton p56:
+  location:
+    initial;
+    marked;
+    edge em_putter_release_station;
+end
+supervisor automaton Measure_station_measure:
+  location q_0:
+    initial;
+    marked;
+    edge em_measure_start goto q_0_1;
+    edge em_timer_measure_timeout;
+  location q_0_1:
+    edge em_measure_allocate_station goto q_0_2;
+    edge em_timer_measure_timeout;
+  location q_0_2:
+    edge em_measure_go_out goto q_1;
+    edge em_timer_measure_timeout;
+  location q_1:
+    edge em_timer_measure_start goto q_2;
+    edge em_timer_measure_timeout;
+  location q_2:
+    edge em_timer_measure_timeout goto q_3;
+  location q_3:
+    edge em_large_ball, em_small_ball goto q_4;
+    edge em_timer_measure_timeout;
+  location q_4:
+    edge em_measure_go_in goto q_5;
+    edge em_timer_measure_timeout;
+  location q_5:
+    edge em_measure_release_station goto q_6;
+    edge em_timer_measure_timeout;
+  location q_6:
+    edge em_measure_finished goto q_0;
+    edge em_timer_measure_timeout;
+end
+supervisor automaton EM_and_ES:
+  location q_0:
+    initial;
+    marked;
+    edge em_measure_has_ball goto q_1;
+  location q_1:
+    edge es_enter_ball goto q_0;
+end
+supervisor automaton Elevate_and_measure:
+  location q_0:
+    initial;
+    marked;
+    edge em_enter_ball goto q_0_1;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_0_1:
+    edge em_has_ball goto q_1;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_1:
+    edge em_timer_before_up_start goto q_2;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_2:
+    edge em_timer_before_up_timeout goto q_3_1;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+  location q_3_1:
+    edge em_elevator_allocate_station goto q_3;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_3:
+    edge em_go_up goto q_4;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_4:
+    edge em_is_up goto q_5_1;
+    edge em_has_ball;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_5_1:
+    edge em_elevator_release_station goto q_5;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_5:
+    edge em_timer_before_ballcheck_start goto q_6;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_6:
+    edge em_timer_before_ballcheck_timeout goto q_7;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_up_timeout;
+  location q_7:
+    edge em_measure_has_no_ball goto q_12;
+    edge em_measure_has_ball goto q_8;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_8:
+    edge em_measure_start goto q_9_1;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_9_1:
+    edge em_measure_finished goto q_9;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_9:
+    edge em_putter_start goto q_11_1;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_11_1:
+    edge em_putter_finished goto q_11;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_11:
+    edge em_ball_out_of_measure_station goto q_12_1;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_12_1:
+    edge em_elevator_allocate_station goto q_12;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_12:
+    edge em_go_down goto q_13;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+  location q_13:
+    edge em_elevator_release_station goto q_0;
+    edge em_has_ball;
+    edge em_is_up;
+    edge em_timer_before_ballcheck_timeout;
+    edge em_timer_before_up_timeout;
+end
+supervisor automaton Measure_station_putter:
+  location q_0:
+    initial;
+    marked;
+    edge em_putter_start goto q_1;
+    edge em_timer_putting_timeout;
+  location q_1:
+    edge em_putter_allocate_station goto q_2;
+    edge em_timer_putting_timeout;
+  location q_2:
+    edge em_putter_go_out goto q_4_1;
+    edge em_timer_putting_timeout;
+  location q_4_1:
+    edge em_timer_putting_start goto q_4_2;
+    edge em_timer_putting_timeout;
+  location q_4_2:
+    edge em_timer_putting_timeout goto q_4;
+  location q_4:
+    edge em_putter_go_in goto q_5;
+    edge em_timer_putting_timeout;
+  location q_5:
+    edge em_putter_release_station goto q_6;
+    edge em_timer_putting_timeout;
+  location q_6:
+    edge em_putter_finished goto q_0;
+    edge em_timer_putting_timeout;
+end
+supervisor automaton Measure_station:
+  location q_0:
+    initial;
+    marked;
+    edge em_measure_allocate_station goto q_1;
+    edge em_putter_allocate_station goto q_2;
+    edge em_elevator_allocate_station goto q_3;
+  location q_1:
+    edge em_measure_release_station goto q_0;
+    edge em_measure_go_in, em_measure_go_out;
+  location q_2:
+    edge em_putter_release_station goto q_0;
+    edge em_putter_go_in, em_putter_go_out;
+  location q_3:
+    edge em_elevator_release_station goto q_0;
+    edge em_go_up, em_go_down;
+end
+supervisor automaton sup1:
+  alphabet em_timer_measure_start, em_timer_putting_start, em_timer_before_up_start, em_timer_before_ballcheck_start, em_go_down, em_go_up, gk_in_go_out, gk_in_go_in, gk_in_is_in, gk_in_is_out, gk_out_go_out, gk_out_go_in, gk_out_is_in, gk_out_is_out, em_putter_go_out, em_putter_go_in, em_putter_is_in, em_putter_is_out, mode_automatic, arm_allocate_lower_buffer, arm_allocate_upper_buffer, em_measure_start, em_measure_allocate_station, em_measure_go_out, em_measure_go_in, em_measure_release_station, em_large_ball, em_small_ball, em_measure_finished, em_enter_ball, em_measure_has_ball, es_enter_ball, em_elevator_allocate_station, em_elevator_release_station, em_putter_start, em_measure_has_no_ball, em_putter_finished, em_ball_out_of_measure_station, em_putter_allocate_station, em_putter_release_station;
+  location:
+    initial;
+    marked;
+    edge arm_allocate_lower_buffer when false;
+    edge arm_allocate_upper_buffer when false;
+    edge em_ball_out_of_measure_station when true;
+    edge em_elevator_allocate_station when true;
+    edge em_elevator_release_station when true;
+    edge em_enter_ball when true;
+    edge em_go_down when true;
+    edge em_go_up when true;
+    edge em_large_ball when true;
+    edge em_measure_allocate_station when true;
+    edge em_measure_finished when true;
+    edge em_measure_go_in when true;
+    edge em_measure_go_out when true;
+    edge em_measure_has_ball when true;
+    edge em_measure_has_no_ball when false;
+    edge em_measure_release_station when true;
+    edge em_measure_start when true;
+    edge em_putter_allocate_station when true;
+    edge em_putter_finished when true;
+    edge em_putter_go_in when true;
+    edge em_putter_go_out when true;
+    edge em_putter_is_in when false;
+    edge em_putter_is_out when false;
+    edge em_putter_release_station when true;
+    edge em_putter_start when true;
+    edge em_small_ball when true;
+    edge em_timer_before_ballcheck_start when true;
+    edge em_timer_before_up_start when true;
+    edge em_timer_measure_start when true;
+    edge em_timer_putting_start when true;
+    edge es_enter_ball when true;
+    edge gk_in_go_in when true;
+    edge gk_in_go_out when true;
+    edge gk_in_is_in when false;
+    edge gk_in_is_out when false;
+    edge gk_out_go_in when true;
+    edge gk_out_go_out when true;
+    edge gk_out_is_in when false;
+    edge gk_out_is_out when false;
+    edge mode_automatic when false;
+end

@@ -1,0 +1,89 @@
+import "Input_variables_optional_disc.cif";
+
+import "gripper_motor_uncontrolled_discrete_plant.cif";
+import "gripper_switch_sensor_uncontrolled_discrete_plant.cif";
+import "lift_motor_uncontrolled_discrete_plant.cif";
+
+Loadcrane_lift_Motor:Crane_Lift_Motor();
+
+Loadcrane_lift_switch_sensor: Switch_Sensor();
+
+Loadcrane_gripper_Motor:Crane_Gripper_Motor();
+
+Loadcrane_gripper_switch_sensor: Switch_Sensor();
+
+
+requirement Loadcrane_lift_activity:
+
+  disc activity action = IDLE;
+
+  location :
+    initial; marked;
+    edge Loadcrane_lift_Motor.c_rotateAbsoluteDegrees   when  (action = IDLE
+                                                                or action = PLACE)
+                                                        and   Loadcrane_gripper_Motor.situation = OPEN
+                                                        and   Loadcrane_lift_Motor.situation = UP               do action := PICK;
+
+    edge Loadcrane_lift_Motor.c_rotateAbsoluteDegrees   when  action = PICK
+                                                        and   Loadcrane_gripper_Motor.situation = CLOSE
+                                                        and   Loadcrane_lift_Motor.situation = UP               do action := PLACE;
+
+end
+
+requirement Loadcrane_Open_Close_Lift_and_Lower_the_Gripper:
+
+  location :
+    initial; marked;
+    edge Loadcrane_gripper_Motor.c_rotateAbsoluteDegrees            when Loadcrane_lift_activity.action = PICK
+                                                                    and  Loadcrane_lift_Motor.situation = DOWN
+                                                                    and  Loadcrane_gripper_Motor.situation = OPEN;
+
+    edge Loadcrane_gripper_Motor.c_move_backward                    when Loadcrane_lift_activity.action = PLACE
+                                                                    and  Loadcrane_lift_Motor.situation = DOWN
+                                                                    and  Loadcrane_gripper_Motor.situation = CLOSE;
+
+    edge Loadcrane_lift_Motor.c_move_backward                       when ((Loadcrane_lift_activity.action = PICK
+                                                                            and Loadcrane_gripper_Motor.situation = CLOSE)
+                                                                    or    (Loadcrane_lift_activity.action = PLACE
+                                                                            and Loadcrane_gripper_Motor.situation = OPEN))
+                                                                    and    Loadcrane_lift_Motor.situation = DOWN;
+
+    edge Loadcrane_lift_switch_sensor.c_notifyWhenClosed            when Loadcrane_lift_Motor.Lifting;
+
+    edge Loadcrane_gripper_switch_sensor.c_notifyWhenClosed         when Loadcrane_gripper_Motor.Opening;
+
+end
+
+requirement Loadcrane_Open_Gripper:
+
+  location Move:
+    initial; marked;
+    edge Loadcrane_gripper_switch_sensor.u_closed                   goto Stop;
+
+  location Stop:
+    edge Loadcrane_gripper_Motor.u_stopped                          goto Move;
+
+end
+
+requirement Loadcrane_Lifting_Gripper:
+
+  location Move:
+    initial; marked;
+    edge Loadcrane_lift_switch_sensor.u_closed                      goto Stop;
+
+  location Stop:
+    edge Loadcrane_lift_Motor.u_stopped                             goto Move;
+
+end
+
+
+
+
+
+
+
+
+
+
+
+

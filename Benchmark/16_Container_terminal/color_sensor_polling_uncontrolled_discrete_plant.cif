@@ -1,0 +1,19 @@
+plant def Sensor_detect_color():
+controllable c_get_color;
+uncontrollable u_COLOR_RED, u_COLOR_YELLOW, u_COLOR_GREEN, u_COLOR_BLUE, u_COLOR_BLACK, u_COLOR_WHITE, u_COLOR_UNDEFINED;
+
+  disc color color_sensor_value = UNDEFINED;
+
+  location Idle:
+      initial; marked;
+      edge c_get_color                                                   goto Wait_for_Reply;
+
+    location Wait_for_Reply:
+      edge u_COLOR_RED          do color_sensor_value := DEFINED         goto Idle;
+      edge u_COLOR_YELLOW       do color_sensor_value := DEFINED         goto Idle;
+      edge u_COLOR_GREEN        do color_sensor_value := DEFINED         goto Idle;
+      edge u_COLOR_BLUE         do color_sensor_value := DEFINED         goto Idle;
+      edge u_COLOR_BLACK        do color_sensor_value := DEFINED         goto Idle;
+      edge u_COLOR_WHITE        do color_sensor_value := DEFINED         goto Idle;
+      edge u_COLOR_UNDEFINED    do color_sensor_value := UNDEFINED       goto Idle;
+end

@@ -1,0 +1,82 @@
+import "System.cif";
+
+controllable chuckSwap_s;
+uncontrollable chuckSwap_e, breakWater;
+
+// PositionChucks: physical position of the chucks.
+plant PositionCH0:
+  location atExpose:
+    marked; initial;
+    edge chuckSwap_s goto ExposeToMeasure;
+  location atMeasure:
+    edge chuckSwap_s goto MeasureToExpose;
+
+  location ExposeToMeasure:
+    edge chuckSwap_e goto atMeasure;
+  location MeasureToExpose:
+    edge chuckSwap_e goto atExpose;
+end
+
+plant PositionCH1:
+  location atExpose:
+    edge chuckSwap_s goto ExposeToMeasure;
+  location atMeasure:
+    marked; initial;
+    edge chuckSwap_s goto MeasureToExpose;
+
+  location ExposeToMeasure:
+    edge chuckSwap_e goto atMeasure;
+  location MeasureToExpose:
+    edge chuckSwap_e goto atExpose;
+end
+
+// ActionChucks: actions allowed on the chucks.
+plant ActionsCH0:
+  location:
+    initial; marked;
+    edge CH0_Expose_0_s, CH0_Expose_1_s, CH0_Expose_2_s, CH0_Expose_3_s, CH0_Expose_4_s, CH0_Expose_5_s, CH0_Expose_6_s when PositionCH0.atExpose;
+    edge CH0_Measure_0_s, CH0_Measure_1_s, CH0_Measure_2_s, CH0_Measure_3_s, CH0_Measure_4_s, CH0_Measure_5_s, CH0_Measure_6_s when PositionCH0.atMeasure;
+    edge CH0toLR_0_s, CH0toLR_1_s, CH0toLR_2_s, CH0toLR_3_s, CH0toLR_4_s, CH0toLR_5_s, CH0toLR_6_s, CH0toLR_7_s, CH0toLR_8_s, LRtoCH0_0_s, LRtoCH0_1_s, LRtoCH0_2_s, LRtoCH0_3_s, LRtoCH0_4_s, LRtoCH0_5_s, LRtoCH0_6_s, LRtoCH0_7_s, LRtoCH0_8_s, CH0toUR_0_s, CH0toUR_1_s, CH0toUR_2_s, CH0toUR_3_s, CH0toUR_4_s, CH0toUR_5_s, CH0toUR_6_s, CH0toUR_7_s, CH0toUR_8_s when PositionCH0.atMeasure;
+end
+
+plant ActionsCH1:
+  location:
+    initial; marked;
+    edge CH1_Expose_0_s, CH1_Expose_1_s, CH1_Expose_2_s, CH1_Expose_3_s, CH1_Expose_4_s, CH1_Expose_5_s, CH1_Expose_6_s when PositionCH1.atExpose;
+    edge CH1_Measure_0_s, CH1_Measure_1_s, CH1_Measure_2_s, CH1_Measure_3_s, CH1_Measure_4_s, CH1_Measure_5_s, CH1_Measure_6_s when PositionCH1.atMeasure;
+    edge CH1toLR_0_s, CH1toLR_1_s, CH1toLR_2_s, CH1toLR_3_s, CH1toLR_4_s, CH1toLR_5_s, CH1toLR_6_s, CH1toLR_7_s, CH1toLR_8_s, LRtoCH1_0_s, LRtoCH1_1_s, LRtoCH1_2_s, LRtoCH1_3_s, LRtoCH1_4_s, LRtoCH1_5_s, LRtoCH1_6_s, LRtoCH1_7_s, LRtoCH1_8_s, CH1toUR_0_s, CH1toUR_1_s, CH1toUR_2_s, CH1toUR_3_s, CH1toUR_4_s, CH1toUR_5_s, CH1toUR_6_s, CH1toUR_7_s, CH1toUR_8_s when PositionCH1.atMeasure;
+end
+
+// BreakWater: when no wafer is below the lens, the water layer can break.
+plant BreakWater:
+  location:
+    initial; marked;
+    edge breakWater when (PositionCH0.atExpose and ReqOccupied_CH0.free) or (PositionCH1.atExpose and ReqOccupied_CH1.free);
+end
+
+// ChuckDedAssignment: Chuck dedication assignment is only done for the wafer
+// that is next to be send to the system.
+plant ChuckDedAssignment:
+  location l0:
+    marked; initial;
+    edge assignCH0_0, assignCH1_0, assignCH0orCH1_0;
+    edge TRtoSUB_0_s goto l1;
+  location l1:
+    edge assignCH0_1, assignCH1_1, assignCH0orCH1_1;
+    edge TRtoSUB_1_s goto l2;
+  location l2:
+    edge assignCH0_2, assignCH1_2, assignCH0orCH1_2;
+    edge TRtoSUB_2_s goto l3;
+  location l3:
+    edge assignCH0_3, assignCH1_3, assignCH0orCH1_3;
+    edge TRtoSUB_3_s goto l4;
+  location l4:
+    edge assignCH0_4, assignCH1_4, assignCH0orCH1_4;
+    edge TRtoSUB_4_s goto l5;
+  location l5:
+    edge assignCH0_5, assignCH1_5, assignCH0orCH1_5;
+    edge TRtoSUB_5_s goto l6;
+  location l6:
+    edge assignCH0_6, assignCH1_6, assignCH0orCH1_6;
+    edge TRtoSUB_6_s goto l0;
+end

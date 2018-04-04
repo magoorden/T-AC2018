@@ -1,0 +1,88 @@
+import "Input_variables_optional_disc.cif";
+
+import "gripper_motor_uncontrolled_discrete_plant.cif";
+import "gripper_switch_sensor_uncontrolled_discrete_plant.cif";
+import "lift_motor_uncontrolled_discrete_plant.cif";
+
+Unloadcrane_1_lift_Motor:Crane_Lift_Motor();
+
+Unloadcrane_1_lift_switch_sensor: Switch_Sensor();
+
+Unloadcrane_1_gripper_Motor:Crane_Gripper_Motor();
+
+Unloadcrane_1_gripper_switch_sensor: Switch_Sensor();
+
+requirement Unloadcrane_1_lift_activity:
+
+  disc activity action = IDLE;
+
+  location :
+    initial; marked;
+    edge Unloadcrane_1_lift_Motor.c_rotateAbsoluteDegrees   when (action = IDLE
+                                                                   or action = PLACE)
+                                                            and  Unloadcrane_1_gripper_Motor.situation = OPEN
+                                                            and  Unloadcrane_1_lift_Motor.situation = UP        do action := PICK;
+
+    edge Unloadcrane_1_lift_Motor.c_rotateAbsoluteDegrees   when action = PICK
+                                                            and  Unloadcrane_1_gripper_Motor.situation = CLOSE
+                                                            and  Unloadcrane_1_lift_Motor.situation = UP        do action := PLACE;
+
+end
+
+requirement Unloadcrane_1_Open_Close_Lift_and_Lower_the_Gripper:
+
+  location :
+    initial; marked;
+    edge Unloadcrane_1_gripper_Motor.c_rotateAbsoluteDegrees     when Unloadcrane_1_lift_activity.action = PICK
+                                                                  and Unloadcrane_1_lift_Motor.situation = DOWN
+                                                                  and Unloadcrane_1_gripper_Motor.situation = OPEN;
+
+    edge Unloadcrane_1_gripper_Motor.c_move_backward             when Unloadcrane_1_lift_activity.action = PLACE
+                                                                  and Unloadcrane_1_lift_Motor.situation = DOWN
+                                                                  and Unloadcrane_1_gripper_Motor.situation = CLOSE;
+
+    edge Unloadcrane_1_lift_Motor.c_move_backward                when ((Unloadcrane_1_lift_activity.action = PICK
+                                                                         and Unloadcrane_1_gripper_Motor.situation = CLOSE)
+                                                                 or    (Unloadcrane_1_lift_activity.action = PLACE
+                                                                         and Unloadcrane_1_gripper_Motor.situation = OPEN))
+                                                                 and Unloadcrane_1_lift_Motor.situation = DOWN;
+
+    edge Unloadcrane_1_lift_switch_sensor.c_notifyWhenClosed     when Unloadcrane_1_lift_Motor.Lifting;
+
+    edge Unloadcrane_1_gripper_switch_sensor.c_notifyWhenClosed  when Unloadcrane_1_gripper_Motor.Opening;
+
+end
+
+requirement Unloadcrane_1_Open_Gripper:
+
+  location Move:
+    initial; marked;
+    edge Unloadcrane_1_gripper_switch_sensor.u_closed                goto Stop;
+
+  location Stop:
+    edge Unloadcrane_1_gripper_Motor.u_stopped                       goto Move;
+
+end
+
+requirement Unloadcrane_1_Lifting_Gripper:
+
+  location Move:
+    initial; marked;
+    edge Unloadcrane_1_lift_switch_sensor.u_closed                   goto Stop;
+
+  location Stop:
+    edge Unloadcrane_1_lift_Motor.u_stopped                          goto Move;
+
+end
+
+
+
+
+
+
+
+
+
+
+
+

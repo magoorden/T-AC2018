@@ -1,0 +1,21 @@
+Reading CIF file "Benchmark/07_Multi_agent_formation.cif".
+Preprocessing CIF specification.
+Creating matrix.
+
+Most refined product system contains a single plant model.
+Monolithic synthesis is performed.
+Syntesizing supervisor.
+Synthesis of supervisors is finished.
+
+Timing measurement        Duration
+------------------------  --------
+Total time                  268 ms
+  Read input model            8 ms
+  Preprocess input model      4 ms
+  Create matrix               2 ms
+  Synthesize supervisors    250 ms
+
+Controlled system  State space size
+-----------------  ----------------
+1                        304 states
+Total states             304 states

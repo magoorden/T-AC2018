@@ -1,0 +1,267 @@
+// This example is originally from 'An engineering perspective on model-based design
+// of supervisors' by  M. A. Reniers and J. M. van de Mortel-Fronczak
+
+
+import "16_Container_terminal/loadplatform_discrete_plant_Auto.cif";
+import "16_Container_terminal/loadcrane_discrete_plant_moving_Auto.cif";
+import "16_Container_terminal/loadcrane_discrete_plant_pick_and_place_Auto.cif";
+import "16_Container_terminal/truck_discrete_plant_Auto.cif";
+import "16_Container_terminal/unloadcrane_1_discrete_plant_moving_Auto.cif";
+import "16_Container_terminal/unloadcrane_1_discrete_plant_pick_and_place_Auto.cif";
+import "16_Container_terminal/unloadcrane_2_discrete_plant_moving_Auto.cif";
+import "16_Container_terminal/unloadcrane_2_discrete_plant_pick_and_place_Auto.cif";
+
+plant Control_Destination:
+  disc destination    loadcrane;
+  disc destination    truck;
+
+    location Observe:
+      initial; marked;
+
+end
+
+Stop_Button: Button();
+
+requirement Stop_System:
+
+  location Running:
+    initial;
+    edge Stop_Button.u_pushed                                                                   goto Stopped;
+    edge Truck_Color_Changing.c_change_color_to_unload_pos_1_color;
+    edge Truck_Color_Changing.c_change_color_to_unload_pos_2_color;
+    edge Loadcrane_lift_Motor.c_rotateAbsoluteDegrees;
+    edge Unloadcrane_1_lift_Motor.c_rotateAbsoluteDegrees;
+   edge Unloadcrane_2_lift_Motor.c_rotateAbsoluteDegrees;
+
+  location Stopped:
+    marked;
+    edge Loadcrane_lift_Motor.c_rotateAbsoluteDegrees       when Loadcrane_Activity_monitor.UP_Close;
+    edge Unloadcrane_1_lift_Motor.c_rotateAbsoluteDegrees   when Unloadcrane_1_Activity_monitor.UP_Close;
+    edge Unloadcrane_2_lift_Motor.c_rotateAbsoluteDegrees   when Unloadcrane_2_Activity_monitor.UP_Close;
+    edge Stop_Button.u_pushed;
+
+end
+
+requirement Loadplatform_Notify_SwitchGlobal:
+
+  location Initial:
+    initial;
+    edge Loadplatform_switch_sensor.c_notifyWhenClosed                                          goto Running;
+
+  location Running:
+    marked;
+    edge Loadplatform_switch_sensor.c_notifyWhenClosed      when Loadcrane_Activity_monitor.UP_Close
+                                                            and Loadcrane_Color_Sensor.detected_color = loadcrane_load_pos_color;
+end
+
+requirement Truck_Change_requested_color:
+
+  location Idle:
+    initial; marked;
+      edge Truck_Color_Changing.c_change_color_to_load_pos_color        when (Unloadcrane_1_Activity_monitor.UP_Close
+                                                                               and Truck_Color_Sensor.detected_color = truck_unload_pos_1_color)
+                                                                        or   (Unloadcrane_2_Activity_monitor.UP_Close
+                                                                               and Truck_Color_Sensor.detected_color = truck_unload_pos_2_color)
+                                                                        or   (Loadcrane_Activity_monitor.UP_Open
+                                                                               and Control_Destination.truck = EMPTY);
+
+      edge Truck_Color_Changing.c_change_color_to_unload_pos_1_color    when Loadcrane_Activity_monitor.UP_Open
+                                                                        and Control_Destination.truck = UNLOAD1
+                                                                        and Loadcrane_Color_Sensor.detected_color = loadcrane_truck_pos_color;
+
+      edge Truck_Color_Changing.c_change_color_to_unload_pos_2_color    when Loadcrane_Activity_monitor.UP_Open
+                                                                        and Control_Destination.truck = UNLOAD2
+                                                                        and Loadcrane_Color_Sensor.detected_color = loadcrane_truck_pos_color;
+
+end
+
+requirement Loadcrane_Change_requested_color:
+
+  location Idle:
+    initial; marked;
+      edge Loadcrane_Color_Changing.c_change_color_to_load_pos_color        when (Loadcrane_Activity_monitor.UP_Open
+                                                                                   and (Control_Destination.loadcrane = UNLOAD1
+                                                                                         or Control_Destination.loadcrane = UNLOAD2)
+                                                                                   and Truck_Color_Sensor.detected_color != truck_load_pos_color)
+                                                                            or   (Loadcrane_Activity_monitor.UP_Open
+                                                                                   and Control_Destination.loadcrane != UNLOAD1
+                                                                                   and Control_Destination.loadcrane != UNLOAD2);
+
+      edge Loadcrane_Color_Changing.c_change_color_to_unload_pos_1_color    when Loadcrane_Activity_monitor.UP_Close
+                                                                            and  Control_Destination.loadcrane = DUMB
+                                                                            and  Loadplatform_switch_sensor.Reply;
+
+      edge Loadcrane_Color_Changing.c_change_color_to_unload_pos_2_color    when Loadcrane_Activity_monitor.UP_Close
+                                                                            and (Control_Destination.loadcrane = UNLOAD1
+                                                                                  or Control_Destination.loadcrane = UNLOAD2)
+                                                                            and Loadplatform_switch_sensor.Reply;
+end
+
+plant Loadcrane_Activity_monitor:
+  monitor;
+  location UP_Open:
+    initial; marked;
+    edge Loadcrane_lift_Motor.c_rotateAbsoluteDegrees       when  (Control_Destination.loadcrane = DUMB
+                                                                    and Loadplatform_conveyor_motor.Idle
+                                                                    and Loadcrane_Color_Sensor.detected_color = loadcrane_load_pos_color)
+                                                            or    ((Control_Destination.loadcrane = UNLOAD1
+                                                                     or Control_Destination.loadcrane = UNLOAD2)
+                                                                    and Loadplatform_conveyor_motor.Idle
+                                                                    and Loadcrane_Color_Sensor.detected_color = loadcrane_load_pos_color
+                                                                    and Truck_Color_Sensor.detected_color = truck_load_pos_color)
+                                                            and Loadcrane_track_Motor.Idle                                                  goto Pick;
+  location Pick:
+    marked;
+    edge Loadcrane_lift_Motor.u_stopped                                                                                                     goto UP_Close;
+
+  location UP_Close:
+    marked;
+    edge Loadcrane_lift_Motor.c_rotateAbsoluteDegrees       when  (Loadcrane_Color_Sensor.detected_color = loadcrane_dumb_pos_color
+                                                                    or Loadcrane_Color_Sensor.detected_color = loadcrane_truck_pos_color)
+                                                            and Loadcrane_track_Motor.Idle                                                  goto Place;
+  location Place:
+    marked;
+    edge Loadcrane_lift_Motor.u_stopped                                                                                                     goto UP_Open;
+
+end
+
+requirement Loadcrane_Activity:
+
+  location UP_Open:
+    initial; marked;
+    edge Loadcrane_lift_Motor.c_rotateAbsoluteDegrees       when  (Control_Destination.loadcrane = DUMB
+                                                                    and Loadplatform_conveyor_motor.Idle
+                                                                    and Loadcrane_Color_Sensor.detected_color = loadcrane_load_pos_color)
+                                                            or    ((Control_Destination.loadcrane = UNLOAD1
+                                                                     or Control_Destination.loadcrane = UNLOAD2)
+                                                                    and Loadplatform_conveyor_motor.Idle
+                                                                    and Loadcrane_Color_Sensor.detected_color = loadcrane_load_pos_color
+                                                                    and Truck_Color_Sensor.detected_color = truck_load_pos_color)
+                                                            and Loadcrane_track_Motor.Idle                                                  goto Pick;
+  location Pick:
+    marked;
+    edge Loadcrane_lift_Motor.u_stopped                                                                                                     goto UP_Close;
+
+  location UP_Close:
+    marked;
+    edge Loadcrane_lift_Motor.c_rotateAbsoluteDegrees       when  (Loadcrane_Color_Sensor.detected_color = loadcrane_dumb_pos_color
+                                                                    or Loadcrane_Color_Sensor.detected_color = loadcrane_truck_pos_color)
+                                                            and Loadcrane_track_Motor.Idle                                                  goto Place;
+  location Place:
+    marked;
+    edge Loadcrane_lift_Motor.u_stopped                                                                                                     goto UP_Open;
+
+end
+
+plant Unloadcrane_1_Activity_monitor:
+  monitor;
+  location UP_Open:
+    initial; marked;
+    edge Unloadcrane_1_lift_Motor.c_rotateAbsoluteDegrees   when  Truck_Color_Sensor.detected_color = truck_unload_pos_1_color
+                                                            and   Unloadcrane_1_Color_Sensor.detected_color = unloadcrane_1_truck_pos_color
+                                                            and   Unloadcrane_1_track_Motor.Idle                                                goto Pick;
+  location Pick:
+    marked;
+    edge Unloadcrane_1_lift_Motor.u_stopped                                                                                                     goto UP_Close;
+
+  location UP_Close:
+    marked;
+    edge Unloadcrane_1_lift_Motor.c_rotateAbsoluteDegrees   when  Unloadcrane_1_Color_Sensor.detected_color = unloadcrane_1_unload_pos_color
+                                                            and   Unloadcrane_1_track_Motor.Idle                                                goto Place;
+  location Place:
+    marked;
+    edge Unloadcrane_1_lift_Motor.u_stopped                                                                                                     goto UP_Open;
+
+end
+
+requirement Unloadcrane_1_Activity:
+
+  location UP_Open:
+    initial; marked;
+    edge Unloadcrane_1_lift_Motor.c_rotateAbsoluteDegrees   when  Truck_Color_Sensor.detected_color = truck_unload_pos_1_color
+                                                            and   Unloadcrane_1_Color_Sensor.detected_color = unloadcrane_1_truck_pos_color
+                                                            and   Unloadcrane_1_track_Motor.Idle                                                goto Pick;
+  location Pick:
+    marked;
+    edge Unloadcrane_1_lift_Motor.u_stopped                                                                                                     goto UP_Close;
+
+  location UP_Close:
+    marked;
+    edge Unloadcrane_1_lift_Motor.c_rotateAbsoluteDegrees   when  Unloadcrane_1_Color_Sensor.detected_color = unloadcrane_1_unload_pos_color
+                                                            and   Unloadcrane_1_track_Motor.Idle                                                goto Place;
+  location Place:
+    marked;
+    edge Unloadcrane_1_lift_Motor.u_stopped                                                                                                     goto UP_Open;
+
+end
+
+requirement Unloadcrane_1_Change_requested_color:
+
+  location Idle:
+    initial; marked;
+      edge Unloadcrane_1_Color_Changing.c_change_color_to_load_pos_color      when (Unloadcrane_1_Activity_monitor.UP_Open
+                                                                                     and Unloadcrane_1_Color_Sensor.detected_color = unloadcrane_1_unload_pos_color)
+                                                                              or   (Unloadcrane_1_Activity_monitor.UP_Open
+                                                                                     and Unloadcrane_1_Color_Sensor.detected_color = UNDEFINED);
+
+      edge Unloadcrane_1_Color_Changing.c_change_color_to_unload_pos_2_color    when  Unloadcrane_1_Activity_monitor.UP_Close;
+
+end
+
+
+requirement Unloadcrane_2_Change_requested_color:
+
+  location Idle:
+    initial; marked;
+      edge Unloadcrane_2_Color_Changing.c_change_color_to_unload_pos_2_color    when Unloadcrane_2_Activity_monitor.UP_Close;
+
+      edge Unloadcrane_2_Color_Changing.c_change_color_to_load_pos_color      when (Unloadcrane_2_Activity_monitor.UP_Open
+                                                                                     and Unloadcrane_2_Color_Sensor.detected_color = unloadcrane_2_unload_pos_color)
+                                                                              or   (Unloadcrane_2_Activity_monitor.UP_Open
+                                                                                     and Unloadcrane_2_Color_Sensor.detected_color = UNDEFINED);
+
+end
+
+plant Unloadcrane_2_Activity_monitor:
+  monitor;
+  location UP_Open:
+    initial; marked;
+    edge Unloadcrane_2_lift_Motor.c_rotateAbsoluteDegrees                     when  Truck_Color_Sensor.detected_color = truck_unload_pos_2_color
+                                                                              and   Unloadcrane_2_Color_Sensor.detected_color = unloadcrane_2_truck_pos_color
+                                                                              and   Unloadcrane_2_track_Motor.Idle                                              goto Pick;
+  location Pick:
+    marked;
+    edge Unloadcrane_2_lift_Motor.u_stopped                                                                                                                     goto UP_Close;
+
+  location UP_Close:
+    marked;
+    edge Unloadcrane_2_lift_Motor.c_rotateAbsoluteDegrees                     when  Unloadcrane_2_Color_Sensor.detected_color = unloadcrane_2_unload_pos_color
+                                                                              and   Unloadcrane_2_track_Motor.Idle                                              goto Place;
+  location Place:
+    marked;
+    edge Unloadcrane_2_lift_Motor.u_stopped                                                                                                                     goto UP_Open;
+
+end
+
+requirement Unloadcrane_2_Activity:
+
+  location UP_Open:
+    initial; marked;
+    edge Unloadcrane_2_lift_Motor.c_rotateAbsoluteDegrees                     when  Truck_Color_Sensor.detected_color = truck_unload_pos_2_color
+                                                                              and   Unloadcrane_2_Color_Sensor.detected_color = unloadcrane_2_truck_pos_color
+                                                                              and   Unloadcrane_2_track_Motor.Idle                                              goto Pick;
+  location Pick:
+    marked;
+    edge Unloadcrane_2_lift_Motor.u_stopped                                                                                                                     goto UP_Close;
+
+  location UP_Close:
+    marked;
+    edge Unloadcrane_2_lift_Motor.c_rotateAbsoluteDegrees                     when  Unloadcrane_2_Color_Sensor.detected_color = unloadcrane_2_unload_pos_color
+                                                                              and   Unloadcrane_2_track_Motor.Idle                                              goto Place;
+  location Place:
+    marked;
+    edge Unloadcrane_2_lift_Motor.u_stopped                                                                                                                     goto UP_Open;
+
+end
+
+

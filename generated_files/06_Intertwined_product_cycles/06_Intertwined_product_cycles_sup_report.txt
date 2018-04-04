@@ -1,0 +1,32 @@
+Reading CIF file "Benchmark/06_Intertwined_product_cycles.cif".
+Preprocessing CIF specification.
+Creating matrix.
+Prepare clustering.
+Start clustering in Matlab.
+Import data from clustering.
+Prepare synthesis of supervisors.
+Starting synthesis of supervisors.
+Syntesizing supervisor 1.
+Syntesizing supervisor 2.
+Syntesizing supervisor 3.
+Synthesis of supervisors is finished.
+Performing nonconflicting check.
+Finished MLDES synthesis.
+
+Timing measurement           Duration
+---------------------------  --------
+Total time                   4,525 ms
+  Read input model               3 ms
+  Preprocess input model         1 ms
+  Create matrix                  3 ms
+  Clustering in Matlab       4,435 ms
+  Import clustering results      6 ms
+  Synthesize supervisors        48 ms
+  Nonconflicting check          22 ms
+
+Controlled system  State space size
+-----------------  ----------------
+1                      9,216 states
+2                         16 states
+3                         16 states
+Total states           9,248 states

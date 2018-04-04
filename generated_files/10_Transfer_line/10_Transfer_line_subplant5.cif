@@ -1,0 +1,15 @@
+controllable M1_start;
+uncontrollable M1_finish;
+controllable M2_start;
+uncontrollable M2_finish;
+controllable TU_start;
+uncontrollable TU_accepted;
+uncontrollable TU_rejected;
+plant automaton TU:
+  location Idle:
+    initial;
+    marked;
+    edge TU_start goto Testing;
+  location Testing:
+    edge TU_accepted, TU_rejected goto Idle;
+end

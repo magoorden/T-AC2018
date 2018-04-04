@@ -1,0 +1,41 @@
+// This example is originally from 'Application of dependency structure matrices
+// and multilevel synthesis to a production line' by  F. F. H. Reijnen,
+// M. A. Goorden, J. M. van de Mortel-Fronczak, M. A. Reniers, and J. E. Rooda
+
+import "15_FESTO/12plant.cif";
+import "15_FESTO/34plant.cif";
+import "15_FESTO/5plant.cif";
+import "15_FESTO/6plant.cif";
+
+
+//Testing - Handling combination
+
+//Elevator is only allowed to ascend when it is safe
+requirement {A_elevator_up.c_on, A_elevator_down.c_off} needs S_transfer_athalfway.On;
+requirement {A_elevator_up.c_on, A_elevator_down.c_off} needs S_reflective.Off;
+
+//Transfer is allowed to move towards droppos when
+//  - Currently at drop
+//  - Currently at middle, testing is safe, testing is empty
+requirement A_transfer2droppos.c_on needs
+    (S_transfer_atpickup.On) or
+    (S_transfer_athalfway.On and S_elevator_down.On and S_capacitive.Off);
+
+//Transfer is allowed to stop move towards droppos when
+//  - Currently at droppos
+//  - Currently at middle, testing is unsafe or non empty
+requirement A_transfer2droppos.c_off needs
+    (S_transfer_atdrop.On) or
+    (S_transfer_athalfway.On and (S_elevator_down.Off or S_capacitive.On));
+
+
+//Buffer - Processing combination
+//The separator is only allowed to release a product when the processing station has a free space
+requirement A_separator.c_off needs S_atinput.Off;
+
+//The separator is only allowed to release a product when the processing station is in a valid position
+requirement A_separator.c_off needs S_turntable.On;
+
+//Processing - Sorting combination
+//Eject can enable when the sorting has sorted the last product
+requirement A_eject.c_off needs A_conveyer.Off;

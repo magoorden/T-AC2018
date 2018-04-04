@@ -1,0 +1,208 @@
+import "Types.cif";
+
+controllable CH0toLR_8_s;
+controllable CH0toUR_8_s;
+controllable CH1toLR_8_s;
+controllable CH1toUR_8_s;
+controllable PAtoUR_8_s;
+controllable PAtoLR_8_s;
+controllable LRtoDU_8_s;
+controllable LRtoPA_8_s;
+controllable LRtoCH0_8_s;
+controllable LRtoCH1_8_s;
+controllable LRtoCTC0_8_s;
+controllable SUBtoUR_8_s;
+controllable CTC0toLR_8_s;
+controllable CTC1toUR_8_s;
+controllable DUtoUR_8_s;
+controllable DUtoLR_8_s;
+controllable DUtoTR_8_s;
+controllable TRtoSUB_8_s;
+controllable URtoSUB_8_s;
+controllable URtoDU_8_s;
+controllable URtoPA_8_s;
+controllable URtoCTC1_8_s;
+controllable PA_Align_8_s;
+uncontrollable CH0toLR_8_e;
+uncontrollable CH0toUR_8_e;
+uncontrollable CH1toLR_8_e;
+uncontrollable CH1toUR_8_e;
+uncontrollable PAtoUR_8_e;
+uncontrollable PAtoLR_8_e;
+uncontrollable LRtoDU_8_e;
+uncontrollable LRtoPA_8_e;
+uncontrollable LRtoCH0_8_e;
+uncontrollable LRtoCH1_8_e;
+uncontrollable LRtoCTC0_8_e;
+uncontrollable SUBtoUR_8_e;
+uncontrollable CTC0toLR_8_e;
+uncontrollable CTC1toUR_8_e;
+uncontrollable DUtoUR_8_e;
+uncontrollable DUtoLR_8_e;
+uncontrollable DUtoTR_8_e;
+uncontrollable TRtoSUB_8_e;
+uncontrollable URtoSUB_8_e;
+uncontrollable URtoDU_8_e;
+uncontrollable URtoPA_8_e;
+uncontrollable URtoCTC1_8_e;
+uncontrollable PA_Align_8_e;
+type bdd8_node_type = tuple(int var; int low; int high);
+type bdd8_nodes_type = list bdd8_node_type;
+const bdd8_nodes_type bdd8_nodes = [(0, 1, -2), (1, -2, 2), (2, -2, 3), (3, 4, -2), (4, 5, -2), (5, 6, -2), (6, -1, -2), (0, -2, 1), (0, 9, -2), (1, 10, -2), (2, 3, -2), (0, -2, 9), (0, 13, -2), (1, -2, 10), (0, -2, 13), (0, 16, -2), (1, 2, -2), (0, -2, 16), (0, 19, -2), (1, 20, -2), (2, 21, -2), (3, -2, 4), (0, -2, 19), (0, 24, -2), (1, 25, -2), (2, -2, 21), (0, -2, 24), (1, -2, 20), (1, -2, 25), (1, 30, -2), (2, 31, -2), (3, 32, -2), (4, -2, 5), (1, -2, 30)];
+alg bool bdd8_value0 = ObsAligned_8.aligned;
+alg bool bdd8_value1 = WaferPlant_8.CH1 or WaferPlant_8.LR or (WaferPlant_8.CTC0 or WaferPlant_8.DU) or (WaferPlant_8.UR or WaferPlant_8.CH0toLR or (WaferPlant_8.CH1toLR or WaferPlant_8.PAtoUR)) or (WaferPlant_8.LRtoDU or WaferPlant_8.LRtoCH0 or (WaferPlant_8.LRtoCTC0 or WaferPlant_8.CTC0toLR) or (WaferPlant_8.DUtoUR or WaferPlant_8.DUtoTR or (WaferPlant_8.URtoSUB or WaferPlant_8.URtoPA)));
+alg bool bdd8_value2 = WaferPlant_8.PA or WaferPlant_8.LR or (WaferPlant_8.CTC1 or WaferPlant_8.DU) or (WaferPlant_8.PA_AlignRunning or WaferPlant_8.CH0toLR or (WaferPlant_8.CH1toUR or WaferPlant_8.PAtoUR)) or (WaferPlant_8.LRtoPA or WaferPlant_8.LRtoCH0 or (WaferPlant_8.SUBtoUR or WaferPlant_8.CTC0toLR) or (WaferPlant_8.DUtoLR or WaferPlant_8.DUtoTR or (WaferPlant_8.URtoDU or WaferPlant_8.URtoPA)));
+alg bool bdd8_value3 = WaferPlant_8.SUB or WaferPlant_8.CTC0 or (WaferPlant_8.CTC1 or WaferPlant_8.DU) or (WaferPlant_8.CH0toUR or WaferPlant_8.CH1toLR or (WaferPlant_8.CH1toUR or WaferPlant_8.PAtoUR)) or (WaferPlant_8.LRtoCH1 or WaferPlant_8.LRtoCTC0 or (WaferPlant_8.SUBtoUR or WaferPlant_8.CTC0toLR) or (WaferPlant_8.TRtoSUB or WaferPlant_8.URtoSUB or (WaferPlant_8.URtoDU or WaferPlant_8.URtoPA)));
+alg bool bdd8_value4 = WaferPlant_8.TR or WaferPlant_8.UR or (WaferPlant_8.PA_AlignRunning or WaferPlant_8.CH0toLR) or (WaferPlant_8.CH0toUR or WaferPlant_8.CH1toLR or (WaferPlant_8.CH1toUR or WaferPlant_8.PAtoUR)) or (WaferPlant_8.CTC1toUR or WaferPlant_8.DUtoUR or (WaferPlant_8.DUtoLR or WaferPlant_8.DUtoTR) or (WaferPlant_8.TRtoSUB or WaferPlant_8.URtoSUB or (WaferPlant_8.URtoDU or WaferPlant_8.URtoPA)));
+alg bool bdd8_value5 = WaferPlant_8.PAtoLR or WaferPlant_8.LRtoDU or (WaferPlant_8.LRtoPA or WaferPlant_8.LRtoCH0) or (WaferPlant_8.LRtoCH1 or WaferPlant_8.LRtoCTC0 or (WaferPlant_8.SUBtoUR or WaferPlant_8.CTC0toLR)) or (WaferPlant_8.CTC1toUR or WaferPlant_8.DUtoUR or (WaferPlant_8.DUtoLR or WaferPlant_8.DUtoTR) or (WaferPlant_8.TRtoSUB or WaferPlant_8.URtoSUB or (WaferPlant_8.URtoDU or WaferPlant_8.URtoPA)));
+alg bool bdd8_value6 = WaferPlant_8.URtoCTC1;
+alg list[7] bool bdd8_values = [bdd8_value0, bdd8_value1, bdd8_value2, bdd8_value3, bdd8_value4, bdd8_value5, bdd8_value6];
+func bool bdd8_eval(bdd8_nodes_type nodes; int idx; list[7] bool values):
+  bdd8_node_type node;
+  bool val;
+  while idx >= 0:
+    node := nodes[idx];
+    val := values[node[var]];
+    idx := if val: node[high] else node[low] end;
+  end
+  return idx = -1;
+end
+plant ObsAligned_8:
+  monitor LRtoDU_8_s, LRtoPA_8_s, LRtoCTC0_8_s, CH0toUR_8_s, CH1toUR_8_s, PAtoUR_8_s, SUBtoUR_8_s, CTC1toUR_8_s, PA_Align_8_e;
+  location not_aligned:
+    initial;
+    marked;
+    edge PA_Align_8_e goto aligned;
+  location aligned:
+    marked;
+    edge LRtoDU_8_s, LRtoPA_8_s, LRtoCTC0_8_s, CH0toUR_8_s, CH1toUR_8_s, PAtoUR_8_s, SUBtoUR_8_s, CTC1toUR_8_s goto not_aligned;
+end
+plant WaferPlant_8:
+  location CH0:
+    marked;
+    edge CH0toLR_8_s goto CH0toLR;
+    edge CH0toUR_8_s goto CH0toUR;
+  location CH1:
+    initial;
+    marked;
+    edge CH1toLR_8_s goto CH1toLR;
+    edge CH1toUR_8_s goto CH1toUR;
+  location PA:
+    marked;
+    edge PAtoUR_8_s goto PAtoUR;
+    edge PAtoLR_8_s goto PAtoLR;
+    edge PA_Align_8_s goto PA_AlignRunning;
+  location LR:
+    marked;
+    edge LRtoDU_8_s goto LRtoDU;
+    edge LRtoPA_8_s goto LRtoPA;
+    edge LRtoCH0_8_s goto LRtoCH0;
+    edge LRtoCH1_8_s goto LRtoCH1;
+    edge LRtoCTC0_8_s goto LRtoCTC0;
+  location SUB:
+    marked;
+    edge SUBtoUR_8_s goto SUBtoUR;
+  location CTC0:
+    marked;
+    edge CTC0toLR_8_s goto CTC0toLR;
+  location CTC1:
+    marked;
+    edge CTC1toUR_8_s goto CTC1toUR;
+  location DU:
+    marked;
+    edge DUtoUR_8_s goto DUtoUR;
+    edge DUtoLR_8_s goto DUtoLR;
+    edge DUtoTR_8_s goto DUtoTR;
+  location TR:
+    marked;
+    edge TRtoSUB_8_s goto TRtoSUB;
+  location UR:
+    marked;
+    edge URtoSUB_8_s goto URtoSUB;
+    edge URtoDU_8_s goto URtoDU;
+    edge URtoPA_8_s goto URtoPA;
+    edge URtoCTC1_8_s goto URtoCTC1;
+  location PA_AlignRunning:
+    edge PA_Align_8_e goto PA;
+  location CH0toLR:
+    edge CH0toLR_8_e goto LR;
+  location CH0toUR:
+    edge CH0toUR_8_e goto UR;
+  location CH1toLR:
+    edge CH1toLR_8_e goto LR;
+  location CH1toUR:
+    edge CH1toUR_8_e goto UR;
+  location PAtoUR:
+    edge PAtoUR_8_e goto UR;
+  location PAtoLR:
+    edge PAtoLR_8_e goto LR;
+  location LRtoDU:
+    edge LRtoDU_8_e goto DU;
+  location LRtoPA:
+    edge LRtoPA_8_e goto PA;
+  location LRtoCH0:
+    edge LRtoCH0_8_e goto CH0;
+  location LRtoCH1:
+    edge LRtoCH1_8_e goto CH1;
+  location LRtoCTC0:
+    edge LRtoCTC0_8_e goto CTC0;
+  location SUBtoUR:
+    edge SUBtoUR_8_e goto UR;
+  location CTC0toLR:
+    edge CTC0toLR_8_e goto LR;
+  location CTC1toUR:
+    edge CTC1toUR_8_e goto UR;
+  location DUtoUR:
+    edge DUtoUR_8_e goto UR;
+  location DUtoLR:
+    edge DUtoLR_8_e goto LR;
+  location DUtoTR:
+    edge DUtoTR_8_e goto TR;
+  location TRtoSUB:
+    edge TRtoSUB_8_e goto SUB;
+  location URtoSUB:
+    edge URtoSUB_8_e goto SUB;
+  location URtoDU:
+    edge URtoDU_8_e goto DU;
+  location URtoPA:
+    edge URtoPA_8_e goto PA;
+  location URtoCTC1:
+    edge URtoCTC1_8_e goto CTC1;
+end
+supervisor SupWafer8:
+  alphabet LRtoDU_8_s, LRtoPA_8_s, LRtoCTC0_8_s, CH0toUR_8_s, CH1toUR_8_s, PAtoUR_8_s, SUBtoUR_8_s, CTC1toUR_8_s, CH0toLR_8_s, CH1toLR_8_s, PAtoLR_8_s, PA_Align_8_s, LRtoCH0_8_s, LRtoCH1_8_s, CTC0toLR_8_s, DUtoUR_8_s, DUtoLR_8_s, DUtoTR_8_s, TRtoSUB_8_s, URtoSUB_8_s, URtoDU_8_s, URtoPA_8_s, URtoCTC1_8_s;
+  location:
+    initial;
+    marked;
+    edge CH0toLR_8_s when bdd8_eval(bdd8_nodes, 9, bdd8_values);
+    edge CH0toUR_8_s when bdd8_eval(bdd8_nodes, 8, bdd8_values);
+    edge CH0toUR_8_s when bdd8_eval(bdd8_nodes, 11, bdd8_values);
+    edge CH1toLR_8_s when bdd8_eval(bdd8_nodes, 13, bdd8_values);
+    edge CH1toUR_8_s when bdd8_eval(bdd8_nodes, 12, bdd8_values);
+    edge CH1toUR_8_s when bdd8_eval(bdd8_nodes, 14, bdd8_values);
+    edge CTC0toLR_8_s when bdd8_eval(bdd8_nodes, 27, bdd8_values);
+    edge CTC1toUR_8_s when bdd8_eval(bdd8_nodes, 23, bdd8_values);
+    edge CTC1toUR_8_s when bdd8_eval(bdd8_nodes, 26, bdd8_values);
+    edge DUtoLR_8_s when bdd8_eval(bdd8_nodes, 28, bdd8_values);
+    edge DUtoTR_8_s when false;
+    edge DUtoUR_8_s when bdd8_eval(bdd8_nodes, 28, bdd8_values);
+    edge LRtoCH0_8_s when bdd8_eval(bdd8_nodes, 7, bdd8_values);
+    edge LRtoCH1_8_s when bdd8_eval(bdd8_nodes, 7, bdd8_values);
+    edge LRtoCTC0_8_s when bdd8_eval(bdd8_nodes, 0, bdd8_values);
+    edge LRtoCTC0_8_s when bdd8_eval(bdd8_nodes, 7, bdd8_values);
+    edge LRtoDU_8_s when bdd8_eval(bdd8_nodes, 0, bdd8_values);
+    edge LRtoDU_8_s when bdd8_eval(bdd8_nodes, 7, bdd8_values);
+    edge LRtoPA_8_s when bdd8_eval(bdd8_nodes, 0, bdd8_values);
+    edge LRtoPA_8_s when bdd8_eval(bdd8_nodes, 7, bdd8_values);
+    edge PA_Align_8_s when bdd8_eval(bdd8_nodes, 16, bdd8_values);
+    edge PAtoLR_8_s when bdd8_eval(bdd8_nodes, 16, bdd8_values);
+    edge PAtoUR_8_s when bdd8_eval(bdd8_nodes, 15, bdd8_values);
+    edge PAtoUR_8_s when bdd8_eval(bdd8_nodes, 17, bdd8_values);
+    edge SUBtoUR_8_s when bdd8_eval(bdd8_nodes, 18, bdd8_values);
+    edge SUBtoUR_8_s when bdd8_eval(bdd8_nodes, 22, bdd8_values);
+    edge TRtoSUB_8_s when bdd8_eval(bdd8_nodes, 29, bdd8_values);
+    edge URtoCTC1_8_s when bdd8_eval(bdd8_nodes, 33, bdd8_values);
+    edge URtoDU_8_s when bdd8_eval(bdd8_nodes, 33, bdd8_values);
+    edge URtoPA_8_s when bdd8_eval(bdd8_nodes, 33, bdd8_values);
+    edge URtoSUB_8_s when bdd8_eval(bdd8_nodes, 33, bdd8_values);
+end

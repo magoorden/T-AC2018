@@ -1,0 +1,20 @@
+plant def Crane_Gripper_Motor():
+  controllable c_move_backward, c_stop, c_rotateAbsoluteDegrees;
+  uncontrollable u_at_position, u_stopped;
+
+  disc open_close situation = OPEN;
+
+    location Idle:
+      initial; marked;
+      edge c_rotateAbsoluteDegrees                         goto Closing;
+      edge c_move_backward                                 goto Opening;
+
+    location Closing:
+      edge u_at_position         do situation := CLOSE     goto Idle;
+
+    location Opening:
+      edge c_stop                                          goto Stop;
+
+    location Stop:
+      edge u_stopped             do situation := OPEN      goto Idle;
+end

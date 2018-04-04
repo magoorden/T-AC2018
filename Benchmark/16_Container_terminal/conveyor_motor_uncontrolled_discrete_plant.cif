@@ -1,0 +1,16 @@
+plant def conveyor_Motor():
+  controllable c_move_forward, c_stop;
+  uncontrollable u_stopped;
+
+    location Idle:
+      initial; marked;
+      edge c_move_forward           goto Moving;
+
+    location Moving:
+      edge c_stop                   goto Stop;
+
+    location Stop:
+      edge u_stopped                goto Idle;
+end
+
+

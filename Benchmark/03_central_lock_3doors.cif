@@ -1,0 +1,791 @@
+// Example from Sumpremica tooling
+
+// No reference to original public available source found. The project website
+// is still available: http://www4.in.tum.de/proj/korsys
+
+// ===========================================================================
+// Plant automaton
+
+plant def basic_2state (event an, aus):
+	location IDLE:
+		initial; marked;
+		edge an goto RUN;
+	location RUN:
+		edge aus goto IDLE;
+end
+
+uncontrollable cod_er, cod_ser;
+Cod_ser : basic_2state (cod_ser, cod_er);
+
+plant def Ircount (event inc_ctr, reset_ctr, ctr_lt_max, ctr_ge_max):
+	location IN:
+		initial; marked;
+		edge inc_ctr goto RUN;
+		edge reset_ctr;
+	location RUN:
+		edge ctr_lt_max, ctr_ge_max goto IN;
+end
+
+controllable inc_ctr_WSP, reset_ctr_WSP;
+uncontrollable ctr_ge_max_WSP, ctr_lt_max_WSP;
+Ircount_WSP : Ircount(inc_ctr_WSP, reset_ctr_WSP, ctr_lt_max_WSP, ctr_ge_max_WSP);
+
+controllable MER_an_FT, MER_an_BT, MER_an_HT;
+controllable MER_aus_FT, MER_aus_BT, MER_aus_HT;
+Mer_FT : basic_2state (MER_an_FT, MER_aus_FT);
+Mer_BT : basic_2state (MER_an_BT, MER_aus_BT);
+Mer_HT : basic_2state (MER_an_HT, MER_aus_HT);
+
+controllable MVR_an_HT, MVR_aus_HT;
+Mvr_HT : basic_2state (MVR_an_HT, MVR_aus_HT);
+
+plant def extended_2state (event an, aus, sen):
+	location IDLE:
+		initial; marked;
+		edge an goto RUN;
+	location RUN:
+		edge aus goto IDLE;
+		edge sen;
+end
+
+controllable MVR_an_FT, MVR_an_BT, MVR_aus_FT, MVR_aus_BT;
+uncontrollable STZV_FT, STZV_BT;
+Mvrstzv_FT : extended_2state (MVR_an_FT, MVR_aus_FT, STZV_FT);
+Mvrstzv_BT : extended_2state (MVR_an_BT, MVR_aus_BT, STZV_BT);
+
+controllable MZS_an_HT, MZS_aus_HT;
+Mzs_HT : basic_2state (MZS_an_HT, MZS_aus_HT);
+
+plant def timer (event on, reset, timeout):
+	location IDLE:
+		initial; marked;
+		edge on goto RUN;
+	location RUN:
+		edge reset, timeout goto IDLE;
+end
+
+controllable time_WSP, time_FS, reset_WSP, reset_FS;
+uncontrollable timeout_WSP, timeout_FS;
+timer_WSP : timer (time_WSP, reset_WSP, timeout_WSP);
+timer_FS : timer (time_FS, reset_FS, timeout_FS);
+
+plant def tklemme (event zu, auf):
+	location AUF:
+		initial;
+		edge zu goto ZU;
+	location ZU:
+		marked;
+		edge auf goto AUF;
+end
+
+uncontrollable tuer_zu_FT, tuer_zu_BT, tuer_zu_HT;
+uncontrollable tuer_auf_FT, tuer_auf_BT, tuer_auf_HT;
+tklemme_FT : tklemme (tuer_zu_FT, tuer_auf_FT);
+tklemme_BT : tklemme (tuer_zu_BT, tuer_auf_BT);
+tklemme_HT : tklemme (tuer_zu_HT, tuer_auf_HT);
+
+plant def ttimer (event time_W, time_ER, time_VR, time_ZS, reset, timeout):
+	location IDLE:
+		initial; marked;
+		edge time_W, time_ER, time_VR, time_ZS goto RUN;
+	location RUN:
+		edge reset, timeout goto IDLE;
+end
+
+controllable time_W_FT, time_ER_FT, time_VR_FT, time_ZS_FT, reset_FT;
+controllable time_W_BT, time_ER_BT, time_VR_BT, time_ZS_BT, reset_BT;
+controllable time_W_HT, time_ER_HT, time_VR_HT, time_ZS_HT, reset_HT;
+uncontrollable timeout_FT, timeout_BT, timeout_HT;
+ttimer_FT : ttimer (time_W_FT, time_ER_FT, time_VR_FT, time_ZS_FT, reset_FT, timeout_FT);
+ttimer_BT : ttimer (time_W_BT, time_ER_BT, time_VR_BT, time_ZS_BT, reset_BT, timeout_BT);
+ttimer_HT : ttimer (time_W_HT, time_ER_HT, time_VR_HT, time_ZS_HT, reset_HT, timeout_HT);
+
+uncontrollable zuendung_an, zuendung_aus;
+zuendung : basic_2state (zuendung_an, zuendung_aus);
+
+
+// ===========================================================================
+// Events not defined in plant model
+
+plant def selfloop (event e):
+	location:
+		initial; marked;
+		edge e;
+end
+
+controllable soft_ER, soft_SER_FT, SERFS, soft_CS, ER, SER, ZS, TAST, wsp, soft_VR, soft_ZS, autom_VR;
+P1: selfloop(soft_ER);
+P2: selfloop(soft_SER_FT);
+P3: selfloop(SERFS);
+P4: selfloop(soft_CS);
+P5: selfloop(ER);
+P6: selfloop(SER);
+P7: selfloop(ZS);
+P8: selfloop(TAST);
+P9: selfloop(wsp);
+P10: selfloop(soft_VR);
+P11: selfloop(soft_ZS);
+P12: selfloop(autom_VR);
+
+controllable is_cod_er, is_cod_ser;
+P13: selfloop(is_cod_er);
+P14: selfloop(is_cod_ser);
+
+controllable done_ZS, CS_ok;
+uncontrollable CS;
+P15: selfloop(done_ZS);
+P16: selfloop(CS_ok);
+P17: selfloop(CS);
+
+controllable ZSA, ZSI;
+P18: selfloop(ZSA);
+P19: selfloop(ZSI);
+
+uncontrollable ER_FT, ER_BT, ER_HK, ER_FS, VR_FT, VR_BT, VR_HK, VR_FS, TASTVR;
+P20: selfloop(ER_FT);
+P21: selfloop(ER_BT);
+P22: selfloop(ER_HK);
+P23: selfloop(ER_FS);
+P24: selfloop(VR_FT);
+P25: selfloop(VR_BT);
+P26: selfloop(VR_HK);
+P27: selfloop(VR_FS);
+P28: selfloop(TASTVR);
+
+controllable kein_ZS;
+P29: selfloop(kein_ZS);
+
+controllable start_ER_FT, stop_ER_FT, done_ER, done_SER_FT, start_VR_FT, stop_VR_FT, done_VR,
+	start_ZS_FT, stop_ZS_FT, sync_FT, async_FT;
+controllable start_ER_BT, stop_ER_BT, start_VR_BT, stop_VR_BT, start_ZS_BT, stop_ZS_BT, sync_BT, async_BT;
+controllable start_ER_HT, stop_ER_HT, start_VR_HT, stop_VR_HT, start_ZS_HT, stop_ZS_HT, sync_HT, async_HT;
+P30: selfloop(start_ER_FT);
+P31: selfloop(stop_ER_FT);
+P32: selfloop(done_ER);
+P33: selfloop(done_SER_FT);
+P34: selfloop(start_VR_FT);
+P35: selfloop(stop_VR_FT);
+P36: selfloop(done_VR);
+P37: selfloop(start_ZS_FT);
+P38: selfloop(stop_ZS_FT);
+P39: selfloop(sync_FT);
+P40: selfloop(async_FT);
+P41: selfloop(start_ER_BT);
+P42: selfloop(stop_ER_BT);
+P43: selfloop(start_VR_BT);
+P44: selfloop(stop_VR_BT);
+P45: selfloop(start_ZS_BT);
+P46: selfloop(stop_ZS_BT);
+P47: selfloop(sync_BT);
+P48: selfloop(async_BT);
+P49: selfloop(start_ER_HT);
+P50: selfloop(stop_ER_HT);
+P51: selfloop(start_VR_HT);
+P52: selfloop(stop_VR_HT);
+P53: selfloop(start_ZS_HT);
+P54: selfloop(stop_ZS_HT);
+P55: selfloop(sync_HT);
+P56: selfloop(async_HT);
+
+// ===========================================================================
+// Requirement automaton
+
+requirement automvr:
+	location VR:
+		initial; marked;
+		edge soft_ER, soft_SER_FT goto lER;
+		edge SERFS goto FS;
+		edge soft_CS, tuer_auf_BT, tuer_auf_FT, tuer_auf_HT goto lER;
+		edge ER, SER, ZS, TAST, wsp, soft_VR, soft_ZS, reset_FS, timeout_FS;
+	location lER:
+		marked;
+		edge soft_VR, soft_ZS goto VR;
+		edge soft_CS, tuer_auf_BT, tuer_auf_FT, tuer_auf_HT goto lER;
+		edge ER, SER, ZS, TAST, wsp, soft_ER, soft_SER_FT, reset_FS, timeout_FS;
+	location FS:
+		edge wsp, ER, SER, ZS, TAST goto VR;
+		edge soft_CS, tuer_auf_BT, tuer_auf_FT, tuer_auf_HT goto lER;
+		edge soft_ER, soft_SER_FT goto AU1;
+		edge reset_FS, timeout_FS;
+	location AU1:
+		edge time_FS goto AU2;
+		edge ER, SER, ZS, TAST goto lER;
+		edge soft_CS, tuer_auf_BT, tuer_auf_FT, tuer_auf_HT goto lER;
+		edge SERFS, reset_FS, timeout_FS;
+	location AU2:
+		edge timeout_FS goto AU3;
+		edge ER, SER, ZS, TAST goto lER;
+		edge soft_CS, tuer_auf_BT, tuer_auf_FT, tuer_auf_HT goto lER;
+		edge SERFS;
+	location AU3:
+		edge autom_VR goto VR;
+		edge ER, SER, ZS, TAST goto lER;
+		edge soft_CS, tuer_auf_BT, tuer_auf_FT, tuer_auf_HT goto lER;
+		edge SERFS;
+end
+
+requirement check_cod_ser:
+	location ER:
+		initial; marked;
+		edge cod_ser goto SER;
+		edge is_cod_er;
+	location SER:
+		edge cod_er goto ER;
+		edge is_cod_ser;
+end
+
+requirement crash:
+	location IN:
+		initial; marked;
+		edge zuendung_an goto RUN;
+		edge done_ZS goto ZS;
+		edge soft_ER, soft_SER_FT, soft_VR, CS;
+	location ZS:
+		marked;
+		edge soft_ER, soft_SER_FT, soft_VR goto IN;
+		edge zuendung_an goto XX;
+		edge done_ZS, CS;
+	location RUN:
+		edge zuendung_aus goto IN;
+		edge done_ZS goto XX;
+		edge CS goto CS1;
+		edge soft_ER, soft_SER_FT, soft_VR;
+	location XX:
+		edge soft_ER, soft_SER_FT, soft_VR goto RUN;
+		edge zuendung_aus goto ZS;
+		edge done_ZS, CS;
+	location CS1:
+		edge zuendung_aus goto CS1a;
+		edge soft_CS goto CS2;
+		edge CS;
+	location CS2:
+		edge zuendung_aus goto CS2a;
+		edge CS_ok goto RUN;
+		edge CS;
+	location CS1a:
+		edge zuendung_an goto CS1;
+		edge soft_CS goto CS2a;
+		edge CS;
+	location CS2a:
+		edge zuendung_an goto CS2;
+		edge CS_ok goto IN;
+		edge CS;
+end
+
+requirement decoder:
+	location IN:
+		initial;
+		edge SER, SERFS goto COD;
+		edge ER goto RQER;
+		edge TAST goto RQVR;
+		edge ZS goto TSTZS;
+		edge soft_CS goto lER;
+	location RQSER:
+		edge soft_SER_FT goto lSER;
+		edge soft_CS goto lER;
+	location RQER:
+		edge soft_ER goto lER;
+		edge soft_CS goto lER;
+	location RQVR:
+		edge soft_VR goto VR;
+		edge soft_CS goto lER;
+	location RQZS:
+		edge soft_ZS goto lZS;
+		edge soft_CS goto lER;
+	location COD:
+		edge is_cod_ser goto RQSER;
+		edge is_cod_er goto RQER;
+		edge soft_CS goto lER;
+	location TSTZS:
+		edge ZSA goto RQZS;
+		edge ZSI goto RQVR;
+		edge soft_CS goto lER;
+	location lSER:
+		marked;
+		edge ER, SER, SERFS, TAST goto RQER;
+		edge autom_VR goto RQVR;
+		edge ZS goto TSTZS;
+		edge soft_CS goto lER;
+	location lER:
+		marked;
+		edge ER, SER, SERFS goto RQER;
+		edge TAST, autom_VR goto RQVR;
+		edge ZS goto TSTZS;
+		edge soft_CS goto lER;
+	location VR:
+		marked;
+		edge SER, SERFS goto COD;
+		edge ER, TAST goto RQER;
+		edge ZS goto TSTZS;
+		edge soft_CS goto lER;
+	location lZS:
+		marked;
+		edge ZS, TAST goto RQZS;
+		edge ER goto RQER;
+		edge SER, SERFS goto COD;
+		edge soft_CS goto lER;
+end
+
+requirement eingabe_er:
+	monitor ER_FT, ER_BT, ER_HK, ER_FS, VR_FT, VR_BT, VR_HK, VR_FS, TASTVR;
+	location IN:
+		initial; marked;
+		edge ER_BT, ER_HK goto lER;
+		edge soft_CS goto C1;
+	location lER:
+		edge soft_CS goto C1;
+		edge ER_FT, ER_FS, VR_FT, VR_BT, VR_HK, VR_FS, TASTVR, ER, wsp goto IN;
+	location C1:
+		edge ER_FT, ER_BT, ER_HK goto C2;
+	location C2:
+		edge CS_ok goto IN;
+end
+
+requirement def eingabe_x (event key_event, alone, n_alone1, n_alone2):
+	monitor ER_BT, ER_HK, VR_FT, VR_BT, VR_HK, VR_FS, wsp, soft_CS, CS_ok, alone, n_alone1, n_alone2;
+	location IN:
+		initial; marked;
+		edge alone goto Other;
+	location Other:
+		edge key_event goto IN;
+		edge ER_BT, ER_HK, VR_FT, VR_BT, VR_HK, VR_FS, wsp, soft_CS, CS_ok goto IN;
+		edge n_alone1, n_alone2 goto IN;
+end
+
+eingabe_fs : eingabe_x (SERFS, ER_FS, ER_FT, TASTVR);
+eingabe_ser : eingabe_x (SER, ER_FT, TASTVR, ER_FS);
+eingabe_vr : eingabe_x (TAST, TASTVR, ER_FS, ER_FT);
+
+requirement eingabe_zs:
+	monitor ER_FT, ER_BT, ER_HK, ER_FS, VR_FT, VR_BT, VR_HK, VR_FS, wsp, soft_CS, CS_ok, TASTVR;
+	location IN:
+		initial; marked;
+		edge VR_FT, VR_BT, VR_HK, VR_FS goto VR;
+	location VR:
+		edge ZS, kein_ZS goto IN;
+		edge ER_FT, ER_BT, ER_HK, ER_FS, wsp, soft_CS, CS_ok, TASTVR goto IN;
+end
+
+requirement def tuer (alg bool isftuer; event soft_SER_t, start_ER_t, stop_ER_t, done_SER_t, reset_t, timeout_t,
+		time_W_t, start_VR_t, stop_VR_t, start_ZS_t, stop_ZS_t, sync_t, async_t):
+	location IN:
+		initial;
+		edge soft_VR goto vr1;
+		edge soft_ER goto er1;
+		edge soft_SER_t when isftuer goto er1;
+		edge soft_SER_t when not isftuer goto vr1;
+		edge soft_ZS goto zs1;
+		edge soft_CS goto cs1;
+	location vr1:
+		edge start_ER_t goto vr2;
+		edge soft_CS goto cs1;
+	location vr2:
+		edge stop_ER_t goto vr3;
+		edge reset_t, timeout_t;
+		edge soft_CS goto cs1;
+	location vr3:
+		edge time_W_t goto vr4;
+		edge soft_CS goto cs1;
+	location vr4:
+		edge timeout_t goto vr5;
+		edge soft_CS goto cs1;
+	location vr5:
+		edge start_VR_t goto vr6;
+		edge soft_CS goto cs1;
+	location vr6:
+		edge stop_VR_t goto vr7;
+		edge reset_t, timeout_t;
+		edge soft_CS goto cs1;
+	location vr7:
+		edge done_VR goto VR;
+		edge soft_CS goto cs1;
+	location VR:
+		marked;
+		edge soft_VR goto vr8;
+		edge soft_ER goto er1;
+		edge soft_SER_t when isftuer goto er1;
+		edge soft_SER_t when not isftuer goto vr8;
+		edge soft_ZS goto zs9;
+		edge soft_CS goto cs1;
+	location vr8:
+		edge sync_t goto vr7;
+		edge async_t goto vr1;
+		edge soft_CS goto cs1;
+
+	location er1:
+		edge start_ER_t goto er2;
+		edge soft_CS goto cs1;
+	location er2:
+		edge stop_ER_t goto er3;
+		edge reset_t, timeout_t;
+		edge soft_CS goto cs1;
+	location er3:
+		edge done_ER goto ER;
+		edge done_SER_t when isftuer goto ER;
+		edge soft_CS goto cs1;
+	location ER:
+		marked;
+		edge soft_ER goto er3;
+		edge soft_SER_t when isftuer goto er3;
+// 		edge soft_SER_t when not isftuer goto vr5; // Not in supremica example. Unclear if this event is intentionally left out.
+		edge soft_VR goto vr5;
+		edge soft_ZS goto zs5;
+		edge soft_CS goto cs1;
+
+	location zs1:
+		edge start_ER_t goto zs2;
+		edge soft_CS goto cs1;
+	location zs2:
+		edge stop_ER_t goto zs3;
+		edge reset_t, timeout_t;
+		edge soft_CS goto cs1;
+	location zs3:
+		edge time_W_t goto zs4;
+		edge soft_CS goto cs1;
+	location zs4:
+		edge timeout_t goto zs5;
+		edge soft_CS goto cs1;
+	location zs5:
+		edge start_ZS_t goto zs6;
+		edge soft_CS goto cs1;
+	location zs6:
+		edge stop_ZS_t goto zs7;
+		edge reset_t, timeout_t;
+		edge soft_CS goto cs1;
+	location zs7:
+		edge done_ZS goto ZS;
+		edge soft_CS goto cs1;
+	location ZS:
+		marked;
+		edge soft_ZS goto zs8;
+		edge soft_VR goto vr1;
+		edge soft_ER goto er1;
+		edge soft_SER_t when isftuer goto er1;
+		edge soft_SER_t when not isftuer goto vr1;
+		edge soft_CS goto cs1;
+	location zs8:
+		edge sync_t goto zs7;
+		edge async_t goto zs1;
+		edge soft_CS goto cs1;
+	location zs9:
+		edge sync_t goto zs5;
+		edge async_t goto zs1;
+		edge soft_CS goto cs1;
+
+	location cs1:
+		edge start_ER_t goto cs2;
+		edge reset_t, timeout_t;
+	location cs2:
+		edge stop_ER_t goto cs3;
+		edge timeout_t;
+	location cs3:
+		edge CS_ok goto ER;
+end
+
+ftuer_FT : tuer (true, soft_SER_FT, start_ER_FT, stop_ER_FT, done_SER_FT, reset_FT, timeout_FT,
+		time_W_FT, start_VR_FT, stop_VR_FT, start_ZS_FT, stop_ZS_FT, sync_FT, async_FT);
+nftuer_BT : tuer (false, soft_SER_FT, start_ER_BT, stop_ER_BT, done_SER_FT, reset_BT, timeout_BT,
+		time_W_BT, start_VR_BT, stop_VR_BT, start_ZS_BT, stop_ZS_BT, sync_BT, async_BT);
+nftuer_HT : tuer (false, soft_SER_FT, start_ER_HT, stop_ER_HT, done_SER_FT, reset_HT, timeout_HT,
+		time_W_HT, start_VR_HT, stop_VR_HT, start_ZS_HT, stop_ZS_HT, sync_HT, async_HT);
+
+requirement kein_zs:
+	location ZU:
+		marked;
+		edge tuer_auf_FT goto AUF;
+		edge ZS;
+	location AUF:
+		initial;
+		edge tuer_zu_FT goto ZU;
+		edge kein_ZS;
+end
+
+requirement keine_wsp:
+	monitor ER_BT, ER_FS, ER_FT, ER_HK, VR_BT, VR_FS, VR_FT, VR_HK, TASTVR, soft_CS;
+	location IDLE:
+		initial; marked;
+		edge ER_BT, ER_FS, ER_FT, ER_HK, VR_BT, VR_FS, VR_FT, VR_HK, TASTVR goto WSP;
+	location WSP:
+		edge ER, SER, SERFS, TAST, ZS, soft_CS, wsp goto IDLE;
+end
+
+requirement def guard (event MER_an_t, MER_aus_t, start_ER_t, stop_ER_t, start_VR_t, stop_VR_t, start_ZS_t, stop_ZS_t):
+	location IDLE:
+		initial; marked;
+		edge MER_an_t goto RUN;
+		edge start_ER_t, stop_ER_t, start_VR_t, stop_VR_t, start_ZS_t, stop_ZS_t;
+	location RUN:
+		edge MER_aus_t goto IDLE;
+end
+
+// These events are not defined in any plant automaton
+merguard_FT : guard (MER_an_FT, MER_aus_FT, start_ER_FT, stop_ER_FT, start_VR_FT, stop_VR_FT, start_ZS_FT, stop_ZS_FT);
+merguard_BT : guard (MER_an_BT, MER_aus_BT, start_ER_BT, stop_ER_BT, start_VR_BT, stop_VR_BT, start_ZS_BT, stop_ZS_BT);
+merguard_HT : guard (MER_an_HT, MER_aus_HT, start_ER_HT, stop_ER_HT, start_VR_HT, stop_VR_HT, start_ZS_HT, stop_ZS_HT);
+
+mvrguard_FT : guard (MVR_an_FT, MVR_aus_FT, start_ER_FT, stop_ER_FT, start_VR_FT, stop_VR_FT, start_ZS_FT, stop_ZS_FT);
+mvrguard_BT : guard (MVR_an_BT, MVR_aus_BT, start_ER_BT, stop_ER_BT, start_VR_BT, stop_VR_BT, start_ZS_BT, stop_ZS_BT);
+mvrguard_HT : guard (MVR_an_HT, MVR_aus_HT, start_ER_HT, stop_ER_HT, start_VR_HT, stop_VR_HT, start_ZS_HT, stop_ZS_HT);
+
+mzsguard_HT : guard (MZS_an_HT, MZS_aus_HT, start_ER_HT, stop_ER_HT, start_VR_HT, stop_VR_HT, start_ZS_HT, stop_ZS_HT);
+
+requirement noreset_WSP:
+	alphabet reset_WSP;
+	location s0:
+		initial; marked;
+end
+
+requirement def sync (event start_VR_t, start_ZS_t, stop_ER_t, sync_t, async_t, tuer_auf_t, tuer_zu_t):
+	location ASY:
+		initial;
+		edge stop_ER_t goto AUF;
+		edge tuer_zu_t goto AZU;
+		edge start_VR_t, start_ZS_t, async_t;
+	location AUF:
+		edge start_VR_t, start_ZS_t goto ASY;
+		edge tuer_zu_t goto ZU;
+		edge sync_t, stop_ER_t;
+	location AZU:
+		edge tuer_auf_t goto ASY;
+		edge stop_ER_t goto ZU;
+		edge async_t, start_VR_t, start_ZS_t;
+	location ZU:
+		marked;
+		edge tuer_auf_t goto AUF;
+		edge start_VR_t, start_ZS_t goto VR;
+		edge sync_t, stop_ER_t;
+	location VR:
+		marked;
+		edge stop_ER_t goto ZU;
+		edge tuer_auf_t goto ASY;
+		edge start_VR_t, start_ZS_t, sync_t;
+end
+
+Sync_FT : sync (start_VR_FT, start_ZS_FT, stop_ER_FT, sync_FT, async_FT, tuer_auf_FT, tuer_zu_FT);
+Sync_BT : sync (start_VR_BT, start_ZS_BT, stop_ER_BT, sync_BT, async_BT, tuer_auf_BT, tuer_zu_BT);
+Sync_HT : sync (start_VR_HT, start_ZS_HT, stop_ER_HT, sync_HT, async_HT, tuer_auf_HT, tuer_zu_HT);
+
+requirement def tmotor1 (event start_ER_t, time_ER_t, stop_ER_t, start_VR_t, time_VR_t, stop_VR_t,
+		start_ZS_t, stop_ZS_t, time_ZS_t, MER_an_t, MER_aus_t, MVR_an_t, MVR_aus_t, reset_t, STZV_t, timeout_t):
+	location IN:
+		initial; marked;
+		edge start_ER_t goto er1;
+		edge start_VR_t goto vr1;
+		edge start_ZS_t goto zs1;
+		edge MER_aus_t, MVR_aus_t, reset_t, STZV_t, timeout_t;
+		edge soft_CS goto IN;
+
+	location er1:
+		edge time_ER_t goto er2;
+		edge soft_CS goto IN;
+	location er2:
+		edge MER_an_t goto er3;
+		edge timeout_t goto er4;
+		edge soft_CS goto IN;
+	location er3:
+		edge timeout_t goto er4;
+		edge soft_CS goto IN;
+	location er4:
+		edge stop_ER_t goto IN;
+		edge MER_aus_t;
+		edge soft_CS goto IN;
+
+	location vr1:
+		edge time_VR_t goto vr2;
+		edge soft_CS goto IN;
+	location vr2:
+		edge MVR_an_t goto vr3;
+		edge timeout_t goto vr5;
+		edge soft_CS goto IN;
+	location vr3:
+		edge STZV_t, timeout_t goto vr4;
+		edge soft_CS goto IN;
+	location vr4:
+		edge MVR_aus_t goto vr5;
+		edge STZV_t, timeout_t;
+		edge soft_CS goto IN;
+	location vr5:
+		edge stop_VR_t goto IN;
+		edge reset_t, timeout_t;
+		edge soft_CS goto IN;
+
+	location zs1:
+		edge time_ZS_t goto zs2;
+		edge soft_CS goto IN;
+	location zs2:
+		edge MVR_an_t goto zs3;
+		edge timeout_t goto zs4;
+		edge soft_CS goto IN;
+	location zs3:
+		edge timeout_t goto zs4;
+		edge STZV_t;
+		edge soft_CS goto IN;
+	location zs4:
+		edge stop_ZS_t goto IN;
+		edge MVR_aus_t, STZV_t;
+		edge soft_CS goto IN;
+end
+
+tmotor1_FT : tmotor1 (start_ER_FT, time_ER_FT, stop_ER_FT, start_VR_FT, time_VR_FT, stop_VR_FT,
+		start_ZS_FT, stop_ZS_FT, time_ZS_FT, MER_an_FT, MER_aus_FT, MVR_an_FT, MVR_aus_FT, reset_FT, STZV_FT, timeout_FT);
+tmotor1_BT : tmotor1 (start_ER_BT, time_ER_BT, stop_ER_BT, start_VR_BT, time_VR_BT, stop_VR_BT,
+		start_ZS_BT, stop_ZS_BT, time_ZS_BT, MER_an_BT, MER_aus_BT, MVR_an_BT, MVR_aus_BT, reset_BT, STZV_BT, timeout_BT);
+
+requirement tmotor2_HT:
+	location IN:
+		initial; marked;
+		edge start_ER_HT goto er1;
+		edge start_VR_HT goto vr1;
+		edge start_ZS_HT goto zs1;
+		edge MER_aus_HT, MVR_aus_HT, MZS_aus_HT, reset_HT, timeout_HT;
+		edge soft_CS goto IN;
+
+	location er1:
+		edge time_ER_HT goto er2;
+		edge soft_CS goto IN;
+	location er2:
+		edge MER_an_HT goto er3;
+		edge timeout_HT goto er4;
+		edge soft_CS goto IN;
+	location er3:
+		edge timeout_HT goto er4;
+		edge soft_CS goto IN;
+	location er4:
+		edge stop_ER_HT goto IN;
+		edge MER_aus_HT;
+		edge soft_CS goto IN;
+
+	location vr1:
+		edge time_VR_HT goto vr2;
+		edge soft_CS goto IN;
+	location vr2:
+		edge MVR_an_HT goto vr3;
+		edge timeout_HT goto vr4;
+		edge soft_CS goto IN;
+	location vr3:
+		edge timeout_HT goto vr4;
+		edge soft_CS goto IN;
+	location vr4:
+		edge stop_VR_HT goto IN;
+		edge MVR_aus_HT;
+		edge soft_CS goto IN;
+
+	location zs1:
+		edge time_ZS_HT goto zs2;
+		edge soft_CS goto IN;
+	location zs2:
+		edge MZS_an_HT goto zs3a;
+		edge MVR_an_HT goto zs3b;
+		edge timeout_HT goto zs5;
+		edge soft_CS goto IN;
+	location zs3a:
+		edge MVR_an_HT goto zs4;
+		edge timeout_HT goto zs5;
+		edge soft_CS goto IN;
+	location zs3b:
+		edge MZS_an_HT goto zs4;
+		edge timeout_HT goto zs5;
+		edge soft_CS goto IN;
+	location zs4:
+		edge timeout_HT goto zs5;
+		edge soft_CS goto IN;
+	location zs5:
+		edge stop_ZS_HT goto IN;
+		edge MVR_aus_HT, MZS_aus_HT;
+		edge soft_CS goto IN;
+end
+
+requirement def ttimguard (event time_W_t, time_ER_t, time_VR_t, time_ZS_t,
+		start_ER_t, stop_ER_t, start_VR_t, stop_VR_t, start_ZS_t, stop_ZS_t,
+		timeout_t, reset_t):
+	location IDLE:
+		initial; marked;
+		edge time_W_t, time_ER_t, time_VR_t, time_ZS_t goto RUN;
+		edge start_ER_t, stop_ER_t, start_VR_t, stop_VR_t, start_ZS_t, stop_ZS_t;
+	location RUN:
+		edge timeout_t, reset_t goto IDLE;
+end
+
+ttimguard_FT : ttimguard (time_W_FT, time_ER_FT, time_VR_FT, time_ZS_FT,
+		start_ER_FT, stop_ER_FT, start_VR_FT, stop_VR_FT, start_ZS_FT, stop_ZS_FT,
+		timeout_FT, reset_FT);
+ttimguard_BT : ttimguard (time_W_BT, time_ER_BT, time_VR_BT, time_ZS_BT,
+		start_ER_BT, stop_ER_BT, start_VR_BT, stop_VR_BT, start_ZS_BT, stop_ZS_BT,
+		timeout_BT, reset_BT);
+ttimguard_HT : ttimguard (time_W_HT, time_ER_HT, time_VR_HT, time_ZS_HT,
+		start_ER_HT, stop_ER_HT, start_VR_HT, stop_VR_HT, start_ZS_HT, stop_ZS_HT,
+		timeout_HT, reset_HT);
+
+requirement warten:
+	location IDLE:
+		initial; marked;
+		edge soft_ER, soft_SER_FT, soft_VR, soft_ZS, soft_CS goto RUN;
+		edge ER, SER, SERFS, ZS, TAST, autom_VR;
+	location RUN:
+		edge done_ER, done_SER_FT, done_VR, done_ZS, CS_ok goto IDLE;
+		edge soft_CS;
+end
+
+requirement wspcount:
+	location COOL:
+		initial; marked;
+		edge ER, SER, SERFS, ZS, TAST, autom_VR goto CNT;
+		edge ctr_ge_max_WSP, ctr_lt_max_WSP, timeout_WSP;
+	location CNT:
+		edge timeout_WSP goto COOL;
+		edge inc_ctr_WSP goto TST;
+		edge ctr_ge_max_WSP, ctr_lt_max_WSP;
+	location TST:
+		edge ctr_lt_max_WSP, timeout_WSP goto COOL;
+		edge ctr_ge_max_WSP goto WSP;
+	location WSP:
+		edge timeout_WSP goto COOL;
+		edge wsp;
+end
+
+requirement wsptime:
+	location IN:
+		initial; marked;
+		edge ER, SER, SERFS, ZS, TAST, autom_VR goto TIME;
+	location TIME:
+		edge time_WSP goto RUN;
+	location RUN:
+		edge timeout_WSP goto RESET;
+		edge ER, SER, SERFS, TAST, ZS, autom_VR;
+	location RESET:
+		edge reset_ctr_WSP goto IN;
+end
+
+requirement zsi:
+	location AUS2:
+		initial;
+		edge zuendung_an goto AN2;
+		edge tuer_zu_FT, tuer_zu_BT goto AUS1;
+		edge ZSA;
+	location AUS1:
+		edge zuendung_an goto AN1;
+		edge tuer_auf_FT, tuer_auf_BT goto AUS2;
+		edge tuer_zu_FT, tuer_zu_BT goto AUS0;
+		edge ZSA;
+	location AUS0:
+		marked;
+		edge tuer_auf_FT, tuer_auf_BT goto AUS1;
+		edge zuendung_an goto AN0;
+		edge ZSA;
+	location AN2:
+		edge zuendung_aus goto AUS2;
+		edge tuer_zu_FT, tuer_zu_BT goto AN1;
+		edge ZSI;
+	location AN1:
+		edge zuendung_aus goto AUS1;
+		edge tuer_auf_FT, tuer_auf_BT goto AN2;
+		edge tuer_zu_FT, tuer_zu_BT goto AN0;
+	location AN0:
+		edge tuer_auf_FT, tuer_auf_BT goto AN1;
+		edge zuendung_aus goto ZU;
+		edge ZSI;
+	location ZU:
+		edge zuendung_an goto AN0;
+		edge tuer_auf_FT, tuer_auf_BT goto AUS1;
+		edge ZSI;
+end

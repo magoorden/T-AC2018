@@ -1,0 +1,75 @@
+import "Input_variables_optional_disc.cif";
+
+import "color_sensor_uncontrolled_discrete_plant.cif";
+//import "color_sending_uncontrolled_discrete_plant.cif";
+import "color_changing_uncontrolled_discrete_plant.cif";
+import "motor_uncontrolled_discrete_plant.cif";
+
+Truck_Color_Sensor:Color_Sensor(Truck_Color_Sending.c_notify);
+
+Truck_Color_Changing:Color_Changing(truck_load_pos_color, truck_unload_pos_1_color, truck_unload_pos_2_color);
+
+Truck_Color_Sending:Color_Sending(truck_home_pos_color);
+
+Truck_Motor:track_Motor();
+
+requirement Truck_move_forward_and_backward:
+
+  location :
+    initial; marked;
+      edge Truck_Motor.c_move_forward                                   when  Truck_Color_Changing.req_color != truck_home_pos_color
+                                                                        and  (Truck_Motor.motion = Backward
+                                                                               or Truck_Motor.motion = Undefined)
+                                                                        and   Truck_notification_color_sensor_monitor.Moving;
+
+      edge Truck_Motor.c_move_backward                                  when  Truck_Color_Changing.req_color  = truck_home_pos_color
+                                                                        and  (Truck_Motor.motion = Forward
+                                                                               or Truck_Motor.motion = Undefined)
+                                                                        and   Truck_notification_color_sensor_monitor.Moving;
+
+      edge Truck_Color_Changing.c_change_color_to_load_pos_color        when Truck_Color_Changing.req_color = Truck_Color_Sensor.detected_color;
+
+      edge Truck_Color_Changing.c_change_color_to_unload_pos_1_color    when Truck_Color_Changing.req_color = Truck_Color_Sensor.detected_color;
+
+      edge Truck_Color_Changing.c_change_color_to_unload_pos_2_color    when Truck_Color_Changing.req_color = Truck_Color_Sensor.detected_color;
+
+end
+
+plant Truck_notification_color_sensor_monitor:
+  monitor;
+  location Send_Color:
+    initial; marked;
+      edge Truck_Color_Sending.c_notify when Truck_Color_Changing.req_color != Truck_Color_Sensor.detected_color    goto Moving;
+
+  location Moving:
+    marked;
+      edge Truck_Motor.u_stopped                                                                                    goto Send_Color;
+end
+
+requirement Truck_notification_color_sensor:
+
+  location Send_Color:
+    initial; marked;
+      edge Truck_Color_Sending.c_notify when Truck_Color_Changing.req_color != Truck_Color_Sensor.detected_color    goto Moving;
+
+  location Moving:
+      edge Truck_Motor.u_stopped                                                                                    goto Send_Color;
+end
+
+
+requirement Truck_Stop_truck_when_requested_color_detected:
+
+  location Moving:
+    initial; marked;
+    edge Truck_Color_Sensor.u_detected_RED       goto Stop;
+    edge Truck_Color_Sensor.u_detected_BLUE      goto Stop;
+    edge Truck_Color_Sensor.u_detected_YELLOW    goto Stop;
+    edge Truck_Color_Sensor.u_detected_GREEN     goto Stop;
+    edge Truck_Color_Sensor.u_detected_BLACK     goto Stop;
+    edge Truck_Color_Sensor.u_detected_WHITE     goto Stop;
+
+  location Stop:
+    edge Truck_Motor.u_stopped                   goto Moving;
+
+end
+

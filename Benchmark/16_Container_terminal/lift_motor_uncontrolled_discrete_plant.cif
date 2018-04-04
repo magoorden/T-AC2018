@@ -1,0 +1,20 @@
+plant def Crane_Lift_Motor():
+  controllable c_move_backward, c_stop, c_rotateAbsoluteDegrees;
+  uncontrollable u_at_position, u_stopped;
+
+  disc up_down situation = UP;
+
+    location Idle:
+      initial; marked;
+      edge c_rotateAbsoluteDegrees                         goto Lowering;
+      edge c_move_backward                                 goto Lifting;
+
+    location Lowering:
+      edge u_at_position     do situation := DOWN          goto Idle;
+
+    location Lifting:
+      edge c_stop                                          goto Stop;
+
+    location Stop:
+      edge u_stopped         do situation := UP            goto Idle;
+end

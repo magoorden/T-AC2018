@@ -1,0 +1,9 @@
+import "System.cif";
+
+// Chuck swap supervisor that avoids the situations where the water layer breaks.
+
+supervisor SupChuckSwap:
+  location:
+    initial; marked;
+    edge chuckSwap_s when (not ReqOccupied_CH0.free) and (not ReqOccupied_CH1.free);
+end

@@ -1,0 +1,42 @@
+// SVG file used for the visualization.
+svgfile "waferflow.svg";
+
+// Import the (un)controlled system.
+import "SystemReference.cif";
+
+// Import settings for the individual wafers.
+import "Wafer0.cif";
+import "Wafer1.cif";
+import "Wafer2.cif";
+import "Wafer3.cif";
+import "Wafer4.cif";
+import "Wafer5.cif";
+import "Wafer6.cif";
+import "Wafer7.cif";
+import "Wafer8.cif";
+
+// Set the function label of CH0.
+svgout id "labelCH0" text
+  value
+    if PositionCH0.atMeasure:
+      "Measure"
+    elif PositionCH0.atExpose:
+      "Expose"
+    else
+      "Swapping"
+    end;
+
+// Set the function label of CH1.
+svgout id "labelCH1" text
+  value
+    if PositionCH1.atMeasure:
+      "Measure"
+    elif PositionCH0.atExpose:
+      "Expose"
+    else
+      "Swapping"
+    end;
+
+// Properties of TR.
+svgout id "TR" attr "stroke-width"
+  value "2px";

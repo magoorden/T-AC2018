@@ -1,0 +1,129 @@
+// This example is originally from 'New results on supervisor
+// localization, with case studies' by K. Cai and W. M. Wonham
+
+plant def route ():
+	controllable e01, e03, e05, e07, e09, e11, e13, e15, e17, e19;
+	location l0:
+		initial;
+		edge e01 goto l1;
+	location l1:
+		marked;
+		edge e03 goto l2;
+	location l2:
+		marked;
+		edge e05 goto l3;
+	location l3:
+		marked;
+		edge e07 goto l4;
+	location l4:
+		marked;
+		edge e09 goto l5;
+	location l5:
+		marked;
+		edge e11 goto l6;
+	location l6:
+		marked;
+		edge e13 goto l7;
+	location l7:
+		marked;
+		edge e15 goto l8;
+	location l8:
+		marked;
+		edge e17 goto l9;
+	location l9:
+		marked;
+		edge e19 goto l1;
+end
+
+R1 : route();
+R2 : route();
+R3 : route();
+
+alg bool formation_1 = (R1.l3 and R2.l6 and R3.l9) or (R1.l6 and R2.l9 and R3.l3) or (R1.l9 and R2.l3 and R3.l6);
+alg bool formation_2 = (R1.l2 and R2.l3 and R3.l4) or (R1.l4 and R2.l5 and R3.l6) or (R1.l6 and R2.l7 and R3.l8);
+
+marked formation_1 or formation_2;
+
+// Separate notation fails. These marked predicates are placed in conjunction with each other
+// marked (R1.l3 and R2.l6 and R3.l9);
+// marked (R1.l6 and R2.l9 and R3.l3);
+// marked (R1.l9 and R2.l3 and R3.l6);
+
+uncontrollable tau_1, tau_2;
+
+plant t:
+	location:
+		initial;
+		marked;
+		edge tau_1 when formation_1;
+		edge tau_2 when formation_2;
+end
+
+// Order of departures (Figure 2 in Cai, Wonham)
+requirement dep_3:
+	location l0:
+		initial; marked;
+		edge R3.e01 goto l1;
+	location l1:
+		marked;
+		edge R2.e01 goto l0;
+end
+
+requirement dep_2:
+	location l0:
+		initial; marked;
+		edge R2.e01 goto l1;
+	location l1:
+		marked;
+		edge R1.e01 goto l0;
+end
+
+requirement dep_1:
+	location l0:
+		initial; marked;
+		edge R1.e01 goto l1;
+	location l1:
+		marked;
+		edge R3.e19;
+end
+
+// Mutual exclusion (Figure 3)
+requirement def mut_ex_lx (event R1a, R2a, R3a, R1b, R2b, R3b):
+	location l0:
+		initial; marked;
+		edge R1a, R2a, R3a goto l1;
+	location l1:
+		marked;
+		edge R1b, R2b, R3b goto l0;
+end
+
+mut_ex_l2 : mut_ex_lx (R1.e03, R2.e03, R3.e03, R1.e05, R2.e05, R3.e05);
+mut_ex_l3 : mut_ex_lx (R1.e05, R2.e05, R3.e05, R1.e07, R2.e07, R3.e07);
+mut_ex_l4 : mut_ex_lx (R1.e07, R2.e07, R3.e07, R1.e09, R2.e09, R3.e09);
+mut_ex_l5 : mut_ex_lx (R1.e09, R2.e09, R3.e09, R1.e11, R2.e11, R3.e11);
+mut_ex_l6 : mut_ex_lx (R1.e11, R2.e11, R3.e11, R1.e13, R2.e13, R3.e13);
+mut_ex_l7 : mut_ex_lx (R1.e13, R2.e13, R3.e13, R1.e15, R2.e15, R3.e15);
+mut_ex_l8 : mut_ex_lx (R1.e15, R2.e15, R3.e15, R1.e17, R2.e17, R3.e17);
+mut_ex_l9 : mut_ex_lx (R1.e17, R2.e17, R3.e17, R1.e19, R2.e19, R3.e19);
+
+requirement mut_ex_l1:
+	location l0:
+		initial; marked;
+		edge R1.e01, R1.e19, R2.e01, R2.e19, R3.e01, R3.e19 goto l1;
+	location l1:
+		marked;
+		edge R1.e03, R2.e03, R3.e03 goto l0;
+end
+
+// Invariance of desired formation sets (Figure 4)
+requirement invariance:
+	location l0:
+		initial;
+		edge tau_1, tau_2 goto l1;
+		edge R1.e01, R1.e03, R1.e05, R1.e07, R1.e09, R1.e11, R1.e13, R1.e15, R1.e17, R1.e19;
+		edge R2.e01, R2.e03, R2.e05, R2.e07, R2.e09, R2.e11, R2.e13, R2.e15, R2.e17, R2.e19;
+		edge R3.e01, R3.e03, R3.e05, R3.e07, R3.e09, R3.e11, R3.e13, R3.e15, R3.e17, R3.e19;
+	location l1:
+		marked;
+		edge tau_1, tau_2;
+end

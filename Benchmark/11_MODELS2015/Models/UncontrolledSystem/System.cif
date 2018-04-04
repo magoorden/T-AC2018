@@ -1,0 +1,17 @@
+// Star interfaces for the resources.
+import "Resources.cif";
+
+// System plant and requirement models.
+import "SystemPlant.cif";
+import "SystemReq.cif";
+
+// Wafer plant and requirement models.
+import "Wafer0.cif";
+import "Wafer1.cif";
+import "Wafer2.cif";
+import "Wafer3.cif";
+import "Wafer4.cif";
+import "Wafer5.cif";
+import "Wafer6.cif";
+import "Wafer7.cif";
+import "Wafer8.cif";

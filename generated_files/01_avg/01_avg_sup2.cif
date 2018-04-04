@@ -1,0 +1,94 @@
+controllable AVG1_e11;
+controllable AVG1_e13;
+uncontrollable AVG1_e10;
+uncontrollable AVG1_e12;
+controllable AVG2_e21;
+controllable AVG2_e23;
+uncontrollable AVG2_e18;
+uncontrollable AVG2_e20;
+uncontrollable AVG2_e22;
+uncontrollable AVG2_e24;
+uncontrollable AVG2_e26;
+uncontrollable AVG2_e28;
+controllable AVG3_e31;
+controllable AVG3_e33;
+uncontrollable AVG3_e32;
+uncontrollable AVG3_e34;
+controllable AVG4_e41;
+controllable AVG4_e43;
+uncontrollable AVG4_e40;
+uncontrollable AVG4_e42;
+uncontrollable AVG4_e44;
+uncontrollable AVG4_e46;
+controllable AVG5_e51;
+controllable AVG5_e53;
+uncontrollable AVG5_e50;
+uncontrollable AVG5_e52;
+plant automaton AVG1:
+  location l0:
+    initial;
+    marked;
+    edge AVG1_e11 goto l1;
+  location l1:
+    edge AVG1_e10 goto l2;
+  location l2:
+    edge AVG1_e13 goto l3;
+  location l3:
+    edge AVG1_e12 goto l0;
+end
+plant automaton AVG2:
+  location l0:
+    initial;
+    marked;
+    edge AVG2_e21 goto l1;
+  location l1:
+    edge AVG2_e18 goto l2;
+  location l2:
+    edge AVG2_e20 goto l3;
+  location l3:
+    edge AVG2_e22 goto l4;
+  location l4:
+    edge AVG2_e23 goto l5;
+  location l5:
+    edge AVG2_e24 goto l6;
+  location l6:
+    edge AVG2_e26 goto l7;
+  location l7:
+    edge AVG2_e28 goto l0;
+end
+supervisor automaton Z1SPEC:
+  location l0:
+    initial;
+    marked;
+    edge AVG1_e11, AVG1_e13 goto l1;
+    edge AVG2_e20, AVG2_e23 goto l2;
+  location l1:
+    marked;
+    edge AVG1_e10, AVG1_e12 goto l0;
+  location l2:
+    marked;
+    edge AVG2_e22, AVG2_e24 goto l0;
+end
+supervisor automaton IPSSPEC:
+  location l0:
+    initial;
+    marked;
+    edge AVG1_e10 goto l1;
+    edge AVG2_e22 goto l2;
+  location l1:
+    marked;
+    edge AVG1_e13 goto l0;
+  location l2:
+    marked;
+    edge AVG2_e23 goto l0;
+end
+supervisor automaton sup2:
+  alphabet AVG1_e11, AVG1_e13, AVG2_e21, AVG2_e23;
+  location:
+    initial;
+    marked;
+    edge AVG1_e11 when AVG2.l0 or AVG2.l6 or (AVG2.l3 or AVG2.l7);
+    edge AVG1_e13 when true;
+    edge AVG2_e21 when not Z1SPEC.l1 and (AVG1.l0 or AVG1.l1);
+    edge AVG2_e23 when true;
+end

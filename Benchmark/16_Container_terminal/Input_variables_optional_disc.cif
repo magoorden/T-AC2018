@@ -1,0 +1,31 @@
+enum color = RED, BLUE, YELLOW, GREEN, BLACK, WHITE, UNDEFINED, DEFINED;
+enum direction = Forward, Backward, Undefined;
+enum destination = DUMB, UNLOAD1, UNLOAD2, EMPTY;
+enum activity = IDLE, PICK, PLACE;
+enum up_down = UP, DOWN;
+enum open_close = OPEN, CLOSE;
+
+alg color truck_home_pos_color = truck_load_pos_color;
+alg color truck_load_pos_color = YELLOW;
+alg color truck_unload_pos_1_color = GREEN;
+alg color truck_unload_pos_2_color = RED;
+
+alg color loadcrane_home_pos_color = loadcrane_load_pos_color;
+alg color loadcrane_load_pos_color = RED;
+alg color loadcrane_dumb_pos_color = GREEN;
+alg color loadcrane_truck_pos_color = YELLOW;
+
+alg color unloadcrane_1_home_pos_color = unloadcrane_1_truck_pos_color;
+alg color unloadcrane_1_truck_pos_color = YELLOW;
+alg color unloadcrane_1_dumb_pos_color = GREEN;
+alg color unloadcrane_1_unload_pos_color = RED;
+
+alg color unloadcrane_2_home_pos_color = unloadcrane_2_truck_pos_color;
+alg color unloadcrane_2_truck_pos_color = YELLOW;
+alg color unloadcrane_2_dumb_pos_color = GREEN;
+alg color unloadcrane_2_unload_pos_color = RED;
+
+alg color dumb_container_color = GREEN;
+alg color unload1_container_color = BLUE;
+alg color unload2_container_color = RED;
+

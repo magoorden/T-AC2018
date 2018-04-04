@@ -1,0 +1,125 @@
+
+controllable CH0toLR_7_s, CH0toUR_7_s, CH1toLR_7_s, CH1toUR_7_s, PAtoUR_7_s, PAtoLR_7_s, LRtoDU_7_s, LRtoPA_7_s, LRtoCH0_7_s, LRtoCH1_7_s, LRtoCTC0_7_s, SUBtoUR_7_s, CTC0toLR_7_s, CTC1toUR_7_s, DUtoUR_7_s, DUtoLR_7_s, DUtoTR_7_s, TRtoSUB_7_s, URtoSUB_7_s, URtoDU_7_s, URtoPA_7_s, URtoCTC1_7_s, PA_Align_7_s; 
+uncontrollable CH0toLR_7_e, CH0toUR_7_e, CH1toLR_7_e, CH1toUR_7_e, PAtoUR_7_e, PAtoLR_7_e, LRtoDU_7_e, LRtoPA_7_e, LRtoCH0_7_e, LRtoCH1_7_e, LRtoCTC0_7_e, SUBtoUR_7_e, CTC0toLR_7_e, CTC1toUR_7_e, DUtoUR_7_e, DUtoLR_7_e, DUtoTR_7_e, TRtoSUB_7_e, URtoSUB_7_e, URtoDU_7_e, URtoPA_7_e, URtoCTC1_7_e, PA_Align_7_e; 
+
+// ObsAligned_7: alignment status of wafer 7.
+plant ObsAligned_7:
+  monitor LRtoDU_7_s, LRtoPA_7_s, LRtoCTC0_7_s, CH0toUR_7_s, CH1toUR_7_s, PAtoUR_7_s, SUBtoUR_7_s, CTC1toUR_7_s, PA_Align_7_e;
+
+  location not_aligned:
+    initial; marked;
+    edge PA_Align_7_e goto aligned;
+  location aligned:
+    marked;
+    edge LRtoDU_7_s, LRtoPA_7_s, LRtoCTC0_7_s, CH0toUR_7_s, CH1toUR_7_s, PAtoUR_7_s, SUBtoUR_7_s, CTC1toUR_7_s goto not_aligned;  
+end
+
+// ReqAligned_7: only aligned wafers can be sent to the wafer stage.
+requirement ReqAligned_7:
+  location:
+    initial; marked;
+    edge LRtoCH0_7_s, LRtoCH1_7_s when ObsAligned_7.aligned;
+end
+
+// ReqStayInSystem_7: dummy wafers are never send to the track.
+requirement ReqStayInSystem_7:
+  location:
+    initial; marked;
+    edge DUtoTR_7_s when false;
+end
+
+// WaferPlant_7: wafer plant for production wafer 7.
+plant WaferPlant_7:
+  location CH0:
+    marked;
+    initial;
+    edge CH0toLR_7_s goto CH0toLR;
+    edge CH0toUR_7_s goto CH0toUR;
+  location CH1:
+    marked;
+    edge CH1toLR_7_s goto CH1toLR;
+    edge CH1toUR_7_s goto CH1toUR;
+  location PA:
+    marked;
+    edge PAtoUR_7_s goto PAtoUR;
+    edge PAtoLR_7_s goto PAtoLR;
+    edge PA_Align_7_s goto PA_AlignRunning;
+  location LR:
+    marked;
+    edge LRtoDU_7_s goto LRtoDU;
+    edge LRtoPA_7_s goto LRtoPA;
+    edge LRtoCH0_7_s goto LRtoCH0;
+    edge LRtoCH1_7_s goto LRtoCH1;
+    edge LRtoCTC0_7_s goto LRtoCTC0;
+  location SUB:
+    marked;
+    edge SUBtoUR_7_s goto SUBtoUR;
+  location CTC0:
+    marked;
+    edge CTC0toLR_7_s goto CTC0toLR;
+  location CTC1:
+    marked;
+    edge CTC1toUR_7_s goto CTC1toUR;
+  location DU:
+    marked;
+    edge DUtoUR_7_s goto DUtoUR;
+    edge DUtoLR_7_s goto DUtoLR;
+    edge DUtoTR_7_s goto DUtoTR;
+  location TR:
+    marked;
+    edge TRtoSUB_7_s goto TRtoSUB;
+  location UR:
+    marked;
+    edge URtoSUB_7_s goto URtoSUB;
+    edge URtoDU_7_s goto URtoDU;
+    edge URtoPA_7_s goto URtoPA;
+    edge URtoCTC1_7_s goto URtoCTC1;
+
+  location PA_AlignRunning:
+    edge PA_Align_7_e goto PA;
+
+  location CH0toLR:
+    edge CH0toLR_7_e goto LR;
+  location CH0toUR:
+    edge CH0toUR_7_e goto UR;
+  location CH1toLR:
+    edge CH1toLR_7_e goto LR;
+  location CH1toUR:
+    edge CH1toUR_7_e goto UR;
+  location PAtoUR:
+    edge PAtoUR_7_e goto UR;
+  location PAtoLR:
+    edge PAtoLR_7_e goto LR;
+  location LRtoDU:
+    edge LRtoDU_7_e goto DU;
+  location LRtoPA:
+    edge LRtoPA_7_e goto PA;
+  location LRtoCH0:
+    edge LRtoCH0_7_e goto CH0;
+  location LRtoCH1:
+    edge LRtoCH1_7_e goto CH1;
+  location LRtoCTC0:
+    edge LRtoCTC0_7_e goto CTC0;
+  location SUBtoUR:
+    edge SUBtoUR_7_e goto UR;
+  location CTC0toLR:
+    edge CTC0toLR_7_e goto LR;
+  location CTC1toUR:
+    edge CTC1toUR_7_e goto UR;
+  location DUtoUR:
+    edge DUtoUR_7_e goto UR;
+  location DUtoLR:
+    edge DUtoLR_7_e goto LR;
+  location DUtoTR:
+    edge DUtoTR_7_e goto TR;
+  location TRtoSUB:
+    edge TRtoSUB_7_e goto SUB;
+  location URtoSUB:
+    edge URtoSUB_7_e goto SUB;
+  location URtoDU:
+    edge URtoDU_7_e goto DU;
+  location URtoPA:
+    edge URtoPA_7_e goto PA;
+  location URtoCTC1:
+    edge URtoCTC1_7_e goto CTC1;
+end

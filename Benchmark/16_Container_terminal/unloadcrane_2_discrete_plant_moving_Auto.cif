@@ -1,0 +1,87 @@
+import "Input_variables_optional_disc.cif";
+
+import "motor_uncontrolled_discrete_plant.cif";
+import "color_sensor_uncontrolled_discrete_plant.cif";
+//import "color_sending_uncontrolled_discrete_plant.cif";
+import "color_changing_uncontrolled_discrete_plant.cif";
+
+Unloadcrane_2_Color_Sensor:Color_Sensor(Unloadcrane_2_Color_Sending.c_notify);
+
+Unloadcrane_2_Color_Changing:Color_Changing(unloadcrane_2_truck_pos_color, unloadcrane_2_dumb_pos_color, unloadcrane_2_unload_pos_color);
+
+Unloadcrane_2_Color_Sending:Color_Sending(unloadcrane_2_home_pos_color);
+
+Unloadcrane_2_track_Motor:track_Motor();
+
+requirement Unloadcrane_2_move_forward_and_backward:
+
+  location :
+    initial; marked;
+      edge Unloadcrane_2_track_Motor.c_move_forward                             when  Unloadcrane_2_Color_Changing.req_color = unloadcrane_2_home_pos_color
+                                                                                and  (Unloadcrane_2_track_Motor.motion = Backward
+                                                                                       or Unloadcrane_2_track_Motor.motion = Undefined)
+                                                                                and   Unloadcrane_2_notification_color_sensor_monitor.Moving;
+
+      edge Unloadcrane_2_track_Motor.c_move_backward                            when  Unloadcrane_2_Color_Changing.req_color != unloadcrane_2_home_pos_color
+                                                                                and  (Unloadcrane_2_track_Motor.motion = Forward
+                                                                                       or Unloadcrane_2_track_Motor.motion = Undefined)
+                                                                                and   Unloadcrane_2_notification_color_sensor_monitor.Moving;
+
+      edge Unloadcrane_2_Color_Changing.c_change_color_to_load_pos_color        when Unloadcrane_2_Color_Changing.req_color = Unloadcrane_2_Color_Sensor.detected_color;
+
+      edge Unloadcrane_2_Color_Changing.c_change_color_to_unload_pos_1_color    when false;
+
+      edge Unloadcrane_2_Color_Changing.c_change_color_to_unload_pos_2_color    when Unloadcrane_2_Color_Changing.req_color = Unloadcrane_2_Color_Sensor.detected_color;
+
+end
+
+plant Unloadcrane_2_notification_color_sensor_monitor:
+  monitor;
+  location Send_Color:
+    initial; marked;
+      edge Unloadcrane_2_Color_Sending.c_notify     when Unloadcrane_2_Color_Changing.req_color != Unloadcrane_2_Color_Sensor.detected_color    goto Moving;
+
+  location Moving:
+    marked;
+      edge Unloadcrane_2_track_Motor.u_stopped                                                                                                  goto Send_Color;
+
+end
+
+requirement Unloadcrane_2_notification_color_sensor:
+
+  location Send_Color:
+    initial; marked;
+      edge Unloadcrane_2_Color_Sending.c_notify     when Unloadcrane_2_Color_Changing.req_color != Unloadcrane_2_Color_Sensor.detected_color    goto Moving;
+
+  location Moving:
+      edge Unloadcrane_2_track_Motor.u_stopped                                                                                                  goto Send_Color;
+//                                                     when (Unloadcrane_2_Color_Sensor.detected_color = unloadcrane_2_truck_pos_color
+//                                                            or  Unloadcrane_2_Color_Sensor.detected_color = unloadcrane_2_unload_pos_color)
+
+//       edge Unloadcrane_2_track_Motor.u_stopped      when ( Unloadcrane_2_Color_Sensor.detected_color != UNDEFINED
+//                                                             and  Unloadcrane_2_Color_Sensor.detected_color != unloadcrane_2_unload_pos_color
+//                                                             and  Unloadcrane_2_Color_Sensor.detected_color != unloadcrane_2_truck_pos_color)    goto Stop;
+//
+//   location Stop:
+//     marked;
+
+end
+
+requirement Unloadcrane_2_Stop_Unloadcrane_2_when_requested_color_detected:
+
+ location Moving:
+    initial; marked;
+    edge Unloadcrane_2_Color_Sensor.u_detected_RED       goto Stop;
+    edge Unloadcrane_2_Color_Sensor.u_detected_BLUE      goto Stop;
+    edge Unloadcrane_2_Color_Sensor.u_detected_YELLOW    goto Stop;
+    edge Unloadcrane_2_Color_Sensor.u_detected_GREEN     goto Stop;
+    edge Unloadcrane_2_Color_Sensor.u_detected_BLACK     goto Stop;
+    edge Unloadcrane_2_Color_Sensor.u_detected_WHITE     goto Stop;
+
+  location Stop:
+    edge Unloadcrane_2_track_Motor.u_stopped             goto Moving;
+
+end
+
+
+

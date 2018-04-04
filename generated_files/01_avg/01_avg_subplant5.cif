@@ -1,0 +1,38 @@
+controllable AVG1_e11;
+controllable AVG1_e13;
+uncontrollable AVG1_e10;
+uncontrollable AVG1_e12;
+controllable AVG2_e21;
+controllable AVG2_e23;
+uncontrollable AVG2_e18;
+uncontrollable AVG2_e20;
+uncontrollable AVG2_e22;
+uncontrollable AVG2_e24;
+uncontrollable AVG2_e26;
+uncontrollable AVG2_e28;
+controllable AVG3_e31;
+controllable AVG3_e33;
+uncontrollable AVG3_e32;
+uncontrollable AVG3_e34;
+controllable AVG4_e41;
+controllable AVG4_e43;
+uncontrollable AVG4_e40;
+uncontrollable AVG4_e42;
+uncontrollable AVG4_e44;
+uncontrollable AVG4_e46;
+controllable AVG5_e51;
+controllable AVG5_e53;
+uncontrollable AVG5_e50;
+uncontrollable AVG5_e52;
+plant automaton AVG3:
+  location l0:
+    initial;
+    marked;
+    edge AVG3_e33 goto l1;
+  location l1:
+    edge AVG3_e34 goto l2;
+  location l2:
+    edge AVG3_e31 goto l3;
+  location l3:
+    edge AVG3_e32 goto l0;
+end

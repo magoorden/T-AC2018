@@ -1,0 +1,18 @@
+controllable a0;
+controllable a1;
+controllable a2;
+controllable a3;
+controllable a4;
+uncontrollable b0;
+uncontrollable b1;
+uncontrollable b2;
+uncontrollable b3;
+uncontrollable b4;
+plant automaton G1:
+  location g0:
+    initial;
+    marked;
+    edge a1 goto g1;
+  location g1:
+    edge b1 goto g0;
+end

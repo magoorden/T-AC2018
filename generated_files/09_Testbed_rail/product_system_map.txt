@@ -1,0 +1,4 @@
+G1,train_1,train1_sensor,sen_sw3t1,sen_sw3t2,sen_sw4t1,sen_sw4t2,sen_sw7t1,sen_sw7t2,sen_sw5t1,sen_sw5t2,sen_sw6t1,sen_sw6t2,sen_sw8t1,sen_sw8t2,req_sw3,req_sw4,req_sw5,req_sw6,req_sw7,req_sw8,sensor_0,sensor_1,sensor_2,sensor_3,sensor_4,sensor_5,sensor_6,sensor_7,sensor_8,sensor_9,sensor_10,sensor_11,sensor_12,sensor_13,sensor_14,sensor_15,sensor_16,sensor_19,sensor_20,sensor_21,sensor_22,sensor_23,sensor_24,sensor_25,sensor_26,sensor_27,sw_4,sw_5,sw_6,sw_7,sw_3,sw_8,sensor_sensor_intd_t1,sensor_sensor_intd_t2,train2_sensor,train_2
+G2,crane_1
+G3,crane_2
+G4,crane_3

@@ -1,0 +1,61 @@
+// Example from Sumpremica tooling
+
+// This example is originally from 'Synthesis and Implementation of a Local Modular
+// Supervisory Control for a Manufacturing Cell' by Max H. de Queiroz and J. E. R. Cury
+
+controllable a0, a1, a2, a3, a4;
+uncontrollable b0, b1, b2, b3, b4;
+
+plant def Gx (event ax, bx):
+	location g0:
+		initial; marked;
+		edge ax goto g1;
+	location g1:
+		edge bx goto g0;
+end
+
+G0 : Gx (a0, b0);
+G1 : Gx (a1, b1);
+G2 : Gx (a2, b2);
+G3 : Gx (a3, b3);
+G4 : Gx (a4, b4);
+
+requirement Egen_a:
+	location e0:
+		initial; marked;
+		edge b1, b2, b3 goto e1;
+	location e1:
+		edge a0 goto e0;
+		edge b1, b2, b3 goto e1;
+end
+
+requirement def Egen_bx (event ax, bx):
+	location e0:
+		initial; marked;
+		edge a0, ax goto e1;
+	location e1:
+		edge b0, bx goto e0;
+end
+
+Egen_b1 : Egen_bx (a1, b1);
+Egen_b2 : Egen_bx (a2, b2);
+Egen_b3 : Egen_bx (a3, b3);
+Egen_b4 : Egen_bx (a4, b4);
+
+requirement def Egen_cx (event ay, bx):
+	location e0:
+		initial; marked;
+		edge a0 goto e0;
+		edge bx goto e1;
+	location e1:
+		edge a0 goto e2;
+	location e2:
+		edge bx goto e3;
+		edge ay goto e0;
+	location e3:
+		edge ay goto e1;
+end
+
+Egen_c1 : Egen_cx (a2, b1);
+Egen_c2 : Egen_cx (a3, b2);
+Egen_c3 : Egen_cx (a4, b3);

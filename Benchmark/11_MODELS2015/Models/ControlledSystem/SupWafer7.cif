@@ -1,0 +1,208 @@
+import "Types.cif";
+
+controllable CH0toLR_7_s;
+controllable CH0toUR_7_s;
+controllable CH1toLR_7_s;
+controllable CH1toUR_7_s;
+controllable PAtoUR_7_s;
+controllable PAtoLR_7_s;
+controllable LRtoDU_7_s;
+controllable LRtoPA_7_s;
+controllable LRtoCH0_7_s;
+controllable LRtoCH1_7_s;
+controllable LRtoCTC0_7_s;
+controllable SUBtoUR_7_s;
+controllable CTC0toLR_7_s;
+controllable CTC1toUR_7_s;
+controllable DUtoUR_7_s;
+controllable DUtoLR_7_s;
+controllable DUtoTR_7_s;
+controllable TRtoSUB_7_s;
+controllable URtoSUB_7_s;
+controllable URtoDU_7_s;
+controllable URtoPA_7_s;
+controllable URtoCTC1_7_s;
+controllable PA_Align_7_s;
+uncontrollable CH0toLR_7_e;
+uncontrollable CH0toUR_7_e;
+uncontrollable CH1toLR_7_e;
+uncontrollable CH1toUR_7_e;
+uncontrollable PAtoUR_7_e;
+uncontrollable PAtoLR_7_e;
+uncontrollable LRtoDU_7_e;
+uncontrollable LRtoPA_7_e;
+uncontrollable LRtoCH0_7_e;
+uncontrollable LRtoCH1_7_e;
+uncontrollable LRtoCTC0_7_e;
+uncontrollable SUBtoUR_7_e;
+uncontrollable CTC0toLR_7_e;
+uncontrollable CTC1toUR_7_e;
+uncontrollable DUtoUR_7_e;
+uncontrollable DUtoLR_7_e;
+uncontrollable DUtoTR_7_e;
+uncontrollable TRtoSUB_7_e;
+uncontrollable URtoSUB_7_e;
+uncontrollable URtoDU_7_e;
+uncontrollable URtoPA_7_e;
+uncontrollable URtoCTC1_7_e;
+uncontrollable PA_Align_7_e;
+type bdd7_node_type = tuple(int var; int low; int high);
+type bdd7_nodes_type = list bdd7_node_type;
+const bdd7_nodes_type bdd7_nodes = [(0, 1, -2), (1, -2, 2), (2, -2, 3), (3, 4, -2), (4, 5, -2), (5, 6, -2), (6, -1, -2), (0, -2, 1), (0, 9, -2), (1, 10, -2), (2, 3, -2), (0, -2, 9), (0, 13, -2), (1, -2, 10), (0, -2, 13), (0, 16, -2), (1, 2, -2), (0, -2, 16), (0, 19, -2), (1, 20, -2), (2, 21, -2), (3, -2, 4), (0, -2, 19), (0, 24, -2), (1, 25, -2), (2, -2, 21), (0, -2, 24), (1, -2, 20), (1, -2, 25), (1, 30, -2), (2, 31, -2), (3, 32, -2), (4, -2, 5), (1, -2, 30)];
+alg bool bdd7_value0 = ObsAligned_7.aligned;
+alg bool bdd7_value1 = WaferPlant_7.CH1 or WaferPlant_7.LR or (WaferPlant_7.CTC0 or WaferPlant_7.DU) or (WaferPlant_7.UR or WaferPlant_7.CH0toLR or (WaferPlant_7.CH1toLR or WaferPlant_7.PAtoUR)) or (WaferPlant_7.LRtoDU or WaferPlant_7.LRtoCH0 or (WaferPlant_7.LRtoCTC0 or WaferPlant_7.CTC0toLR) or (WaferPlant_7.DUtoUR or WaferPlant_7.DUtoTR or (WaferPlant_7.URtoSUB or WaferPlant_7.URtoPA)));
+alg bool bdd7_value2 = WaferPlant_7.PA or WaferPlant_7.LR or (WaferPlant_7.CTC1 or WaferPlant_7.DU) or (WaferPlant_7.PA_AlignRunning or WaferPlant_7.CH0toLR or (WaferPlant_7.CH1toUR or WaferPlant_7.PAtoUR)) or (WaferPlant_7.LRtoPA or WaferPlant_7.LRtoCH0 or (WaferPlant_7.SUBtoUR or WaferPlant_7.CTC0toLR) or (WaferPlant_7.DUtoLR or WaferPlant_7.DUtoTR or (WaferPlant_7.URtoDU or WaferPlant_7.URtoPA)));
+alg bool bdd7_value3 = WaferPlant_7.SUB or WaferPlant_7.CTC0 or (WaferPlant_7.CTC1 or WaferPlant_7.DU) or (WaferPlant_7.CH0toUR or WaferPlant_7.CH1toLR or (WaferPlant_7.CH1toUR or WaferPlant_7.PAtoUR)) or (WaferPlant_7.LRtoCH1 or WaferPlant_7.LRtoCTC0 or (WaferPlant_7.SUBtoUR or WaferPlant_7.CTC0toLR) or (WaferPlant_7.TRtoSUB or WaferPlant_7.URtoSUB or (WaferPlant_7.URtoDU or WaferPlant_7.URtoPA)));
+alg bool bdd7_value4 = WaferPlant_7.TR or WaferPlant_7.UR or (WaferPlant_7.PA_AlignRunning or WaferPlant_7.CH0toLR) or (WaferPlant_7.CH0toUR or WaferPlant_7.CH1toLR or (WaferPlant_7.CH1toUR or WaferPlant_7.PAtoUR)) or (WaferPlant_7.CTC1toUR or WaferPlant_7.DUtoUR or (WaferPlant_7.DUtoLR or WaferPlant_7.DUtoTR) or (WaferPlant_7.TRtoSUB or WaferPlant_7.URtoSUB or (WaferPlant_7.URtoDU or WaferPlant_7.URtoPA)));
+alg bool bdd7_value5 = WaferPlant_7.PAtoLR or WaferPlant_7.LRtoDU or (WaferPlant_7.LRtoPA or WaferPlant_7.LRtoCH0) or (WaferPlant_7.LRtoCH1 or WaferPlant_7.LRtoCTC0 or (WaferPlant_7.SUBtoUR or WaferPlant_7.CTC0toLR)) or (WaferPlant_7.CTC1toUR or WaferPlant_7.DUtoUR or (WaferPlant_7.DUtoLR or WaferPlant_7.DUtoTR) or (WaferPlant_7.TRtoSUB or WaferPlant_7.URtoSUB or (WaferPlant_7.URtoDU or WaferPlant_7.URtoPA)));
+alg bool bdd7_value6 = WaferPlant_7.URtoCTC1;
+alg list[7] bool bdd7_values = [bdd7_value0, bdd7_value1, bdd7_value2, bdd7_value3, bdd7_value4, bdd7_value5, bdd7_value6];
+func bool bdd7_eval(bdd7_nodes_type nodes; int idx; list[7] bool values):
+  bdd7_node_type node;
+  bool val;
+  while idx >= 0:
+    node := nodes[idx];
+    val := values[node[var]];
+    idx := if val: node[high] else node[low] end;
+  end
+  return idx = -1;
+end
+plant ObsAligned_7:
+  monitor LRtoDU_7_s, LRtoPA_7_s, LRtoCTC0_7_s, CH0toUR_7_s, CH1toUR_7_s, PAtoUR_7_s, SUBtoUR_7_s, CTC1toUR_7_s, PA_Align_7_e;
+  location not_aligned:
+    initial;
+    marked;
+    edge PA_Align_7_e goto aligned;
+  location aligned:
+    marked;
+    edge LRtoDU_7_s, LRtoPA_7_s, LRtoCTC0_7_s, CH0toUR_7_s, CH1toUR_7_s, PAtoUR_7_s, SUBtoUR_7_s, CTC1toUR_7_s goto not_aligned;
+end
+plant WaferPlant_7:
+  location CH0:
+    initial;
+    marked;
+    edge CH0toLR_7_s goto CH0toLR;
+    edge CH0toUR_7_s goto CH0toUR;
+  location CH1:
+    marked;
+    edge CH1toLR_7_s goto CH1toLR;
+    edge CH1toUR_7_s goto CH1toUR;
+  location PA:
+    marked;
+    edge PAtoUR_7_s goto PAtoUR;
+    edge PAtoLR_7_s goto PAtoLR;
+    edge PA_Align_7_s goto PA_AlignRunning;
+  location LR:
+    marked;
+    edge LRtoDU_7_s goto LRtoDU;
+    edge LRtoPA_7_s goto LRtoPA;
+    edge LRtoCH0_7_s goto LRtoCH0;
+    edge LRtoCH1_7_s goto LRtoCH1;
+    edge LRtoCTC0_7_s goto LRtoCTC0;
+  location SUB:
+    marked;
+    edge SUBtoUR_7_s goto SUBtoUR;
+  location CTC0:
+    marked;
+    edge CTC0toLR_7_s goto CTC0toLR;
+  location CTC1:
+    marked;
+    edge CTC1toUR_7_s goto CTC1toUR;
+  location DU:
+    marked;
+    edge DUtoUR_7_s goto DUtoUR;
+    edge DUtoLR_7_s goto DUtoLR;
+    edge DUtoTR_7_s goto DUtoTR;
+  location TR:
+    marked;
+    edge TRtoSUB_7_s goto TRtoSUB;
+  location UR:
+    marked;
+    edge URtoSUB_7_s goto URtoSUB;
+    edge URtoDU_7_s goto URtoDU;
+    edge URtoPA_7_s goto URtoPA;
+    edge URtoCTC1_7_s goto URtoCTC1;
+  location PA_AlignRunning:
+    edge PA_Align_7_e goto PA;
+  location CH0toLR:
+    edge CH0toLR_7_e goto LR;
+  location CH0toUR:
+    edge CH0toUR_7_e goto UR;
+  location CH1toLR:
+    edge CH1toLR_7_e goto LR;
+  location CH1toUR:
+    edge CH1toUR_7_e goto UR;
+  location PAtoUR:
+    edge PAtoUR_7_e goto UR;
+  location PAtoLR:
+    edge PAtoLR_7_e goto LR;
+  location LRtoDU:
+    edge LRtoDU_7_e goto DU;
+  location LRtoPA:
+    edge LRtoPA_7_e goto PA;
+  location LRtoCH0:
+    edge LRtoCH0_7_e goto CH0;
+  location LRtoCH1:
+    edge LRtoCH1_7_e goto CH1;
+  location LRtoCTC0:
+    edge LRtoCTC0_7_e goto CTC0;
+  location SUBtoUR:
+    edge SUBtoUR_7_e goto UR;
+  location CTC0toLR:
+    edge CTC0toLR_7_e goto LR;
+  location CTC1toUR:
+    edge CTC1toUR_7_e goto UR;
+  location DUtoUR:
+    edge DUtoUR_7_e goto UR;
+  location DUtoLR:
+    edge DUtoLR_7_e goto LR;
+  location DUtoTR:
+    edge DUtoTR_7_e goto TR;
+  location TRtoSUB:
+    edge TRtoSUB_7_e goto SUB;
+  location URtoSUB:
+    edge URtoSUB_7_e goto SUB;
+  location URtoDU:
+    edge URtoDU_7_e goto DU;
+  location URtoPA:
+    edge URtoPA_7_e goto PA;
+  location URtoCTC1:
+    edge URtoCTC1_7_e goto CTC1;
+end
+supervisor SupWafer7:
+  alphabet LRtoDU_7_s, LRtoPA_7_s, LRtoCTC0_7_s, CH0toUR_7_s, CH1toUR_7_s, PAtoUR_7_s, SUBtoUR_7_s, CTC1toUR_7_s, CH0toLR_7_s, CH1toLR_7_s, PAtoLR_7_s, PA_Align_7_s, LRtoCH0_7_s, LRtoCH1_7_s, CTC0toLR_7_s, DUtoUR_7_s, DUtoLR_7_s, DUtoTR_7_s, TRtoSUB_7_s, URtoSUB_7_s, URtoDU_7_s, URtoPA_7_s, URtoCTC1_7_s;
+  location:
+    initial;
+    marked;
+    edge CH0toLR_7_s when bdd7_eval(bdd7_nodes, 9, bdd7_values);
+    edge CH0toUR_7_s when bdd7_eval(bdd7_nodes, 8, bdd7_values);
+    edge CH0toUR_7_s when bdd7_eval(bdd7_nodes, 11, bdd7_values);
+    edge CH1toLR_7_s when bdd7_eval(bdd7_nodes, 13, bdd7_values);
+    edge CH1toUR_7_s when bdd7_eval(bdd7_nodes, 12, bdd7_values);
+    edge CH1toUR_7_s when bdd7_eval(bdd7_nodes, 14, bdd7_values);
+    edge CTC0toLR_7_s when bdd7_eval(bdd7_nodes, 27, bdd7_values);
+    edge CTC1toUR_7_s when bdd7_eval(bdd7_nodes, 23, bdd7_values);
+    edge CTC1toUR_7_s when bdd7_eval(bdd7_nodes, 26, bdd7_values);
+    edge DUtoLR_7_s when bdd7_eval(bdd7_nodes, 28, bdd7_values);
+    edge DUtoTR_7_s when false;
+    edge DUtoUR_7_s when bdd7_eval(bdd7_nodes, 28, bdd7_values);
+    edge LRtoCH0_7_s when bdd7_eval(bdd7_nodes, 7, bdd7_values);
+    edge LRtoCH1_7_s when bdd7_eval(bdd7_nodes, 7, bdd7_values);
+    edge LRtoCTC0_7_s when bdd7_eval(bdd7_nodes, 0, bdd7_values);
+    edge LRtoCTC0_7_s when bdd7_eval(bdd7_nodes, 7, bdd7_values);
+    edge LRtoDU_7_s when bdd7_eval(bdd7_nodes, 0, bdd7_values);
+    edge LRtoDU_7_s when bdd7_eval(bdd7_nodes, 7, bdd7_values);
+    edge LRtoPA_7_s when bdd7_eval(bdd7_nodes, 0, bdd7_values);
+    edge LRtoPA_7_s when bdd7_eval(bdd7_nodes, 7, bdd7_values);
+    edge PA_Align_7_s when bdd7_eval(bdd7_nodes, 16, bdd7_values);
+    edge PAtoLR_7_s when bdd7_eval(bdd7_nodes, 16, bdd7_values);
+    edge PAtoUR_7_s when bdd7_eval(bdd7_nodes, 15, bdd7_values);
+    edge PAtoUR_7_s when bdd7_eval(bdd7_nodes, 17, bdd7_values);
+    edge SUBtoUR_7_s when bdd7_eval(bdd7_nodes, 18, bdd7_values);
+    edge SUBtoUR_7_s when bdd7_eval(bdd7_nodes, 22, bdd7_values);
+    edge TRtoSUB_7_s when bdd7_eval(bdd7_nodes, 29, bdd7_values);
+    edge URtoCTC1_7_s when bdd7_eval(bdd7_nodes, 33, bdd7_values);
+    edge URtoDU_7_s when bdd7_eval(bdd7_nodes, 33, bdd7_values);
+    edge URtoPA_7_s when bdd7_eval(bdd7_nodes, 33, bdd7_values);
+    edge URtoSUB_7_s when bdd7_eval(bdd7_nodes, 33, bdd7_values);
+end

@@ -1,0 +1,77 @@
+controllable M1_In;
+uncontrollable M1_pb11;
+controllable M2_tb22;
+controllable M2_pb12;
+uncontrollable M2_o1;
+controllable M3_tb13;
+controllable M3_pb23;
+uncontrollable M3_o2;
+plant automaton M1:
+  location l1:
+    initial;
+    marked;
+    edge M1_In goto l2;
+  location l2:
+    edge M1_pb11 goto l1;
+end
+plant automaton M2:
+  location l1:
+    initial;
+    marked;
+    edge M2_tb22 goto l2;
+  location l2:
+    edge M2_o1, M2_pb12 goto l1;
+end
+plant automaton M3:
+  location l1:
+    initial;
+    marked;
+    edge M3_tb13 goto l2;
+  location l2:
+    edge M3_o2, M3_pb23 goto l1;
+end
+plant automaton B1:
+  disc int[0..16] d1 = 0;
+  location:
+    initial;
+    marked;
+    edge M1_pb11, M2_pb12 when d1 < 16 do d1 := d1 + 1;
+    edge M1_pb11, M2_pb12 when d1 = 16;
+    edge M3_tb13 when d1 > 0 do d1 := d1 - 1;
+    edge M3_tb13 when d1 = 0;
+end
+plant automaton B2:
+  disc int[0..8] d2 = 0;
+  location:
+    initial;
+    marked;
+    edge M3_pb23 when d2 < 8 do d2 := d2 + 1;
+    edge M3_pb23 when d2 = 8;
+    edge M2_tb22 when d2 > 0 do d2 := d2 - 1;
+    edge M2_tb22 when d2 = 0;
+end
+supervisor automaton R1:
+  location:
+    initial;
+    marked;
+    edge M1_pb11, M2_pb12 when B1.d1 < 16;
+    edge M3_pb23 when B2.d2 < 8;
+end
+supervisor automaton R2:
+  location:
+    initial;
+    marked;
+    edge M3_tb13 when B1.d1 > 0;
+    edge M2_tb22 when B2.d2 > 0;
+end
+supervisor automaton sup:
+  alphabet M1_In, M2_tb22, M2_pb12, M3_tb13, M3_pb23;
+  location:
+    initial;
+    marked;
+    edge M1_In when B1.d1 != 16;
+    edge M2_pb12 when M1.l1 or B1.d1 != 15;
+    edge M2_tb22 when true;
+    edge M3_pb23 when true;
+    edge M3_tb13 when true;
+end

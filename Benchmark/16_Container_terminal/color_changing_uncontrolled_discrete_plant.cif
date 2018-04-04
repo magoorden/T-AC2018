@@ -1,0 +1,11 @@
+plant def Color_Changing(alg color load_pos_color, unload_pos_1_color, unload_pos_2_color):
+  controllable c_change_color_to_load_pos_color, c_change_color_to_unload_pos_1_color, c_change_color_to_unload_pos_2_color;
+
+  disc color req_color = UNDEFINED;
+
+    location Change_Color:
+      initial; marked;
+      edge c_change_color_to_load_pos_color     when req_color != load_pos_color        do req_color := load_pos_color;
+      edge c_change_color_to_unload_pos_1_color when req_color != unload_pos_1_color    do req_color := unload_pos_1_color;
+      edge c_change_color_to_unload_pos_2_color when req_color != unload_pos_2_color    do req_color := unload_pos_2_color;
+end

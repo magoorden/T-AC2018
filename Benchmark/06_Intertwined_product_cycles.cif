@@ -1,0 +1,65 @@
+// Example from Sumpremica tooling
+
+// This example is originally from 'Decentralized control and coordination of discrete-
+// event systems with partial observation' by F. Lin and W. M. Wonham
+
+plant def Machinei (event getBx, getBy, getBz, outMi, getMiHa, getMiHb):
+	location Empty:
+		initial; marked;
+		edge getBx goto FromBx;
+		edge getBy goto FromBy;
+		edge getBz goto FromBz;
+	location FromBx:
+		edge outMi goto Empty;
+	location FromBy:
+		edge getMiHa goto Empty;
+	location FromBz:
+		edge getMiHb goto Empty;
+end
+
+controllable getB1, getB2, getB3, getB4, getB5, getB6;
+controllable getM1H1, getM1H2, getM2H3, getM2H4;
+uncontrollable outM1, outM2;
+
+M1 : Machinei (getB3, getB4, getB5, outM1, getM1H2, getM1H1);
+M2 : Machinei (getB2, getB1, getB6, outM2, getM2H3, getM2H4);
+
+plant def Hi (event getMjHi, putBi):
+	location Idle:
+		initial; marked;
+		edge getMjHi goto Handling;
+	location Handling:
+		edge putBi goto Idle;
+end
+
+uncontrollable putB1, putB2, putB3, putB4;
+
+H1 : Hi (getM1H1, putB1);
+H2 : Hi (getM1H2, putB2);
+H3 : Hi (getM2H3, putB3);
+H4 : Hi (getM2H4, putB4);
+
+requirement def Bi (event putBi, getBi):
+	location l0:
+		initial; marked;
+		edge putBi goto l1;
+	location l1:
+		edge putBi goto l2;
+		edge getBi goto l0;
+	location l2:
+		edge getBi goto l1;
+end
+
+B1 : Bi (putB1, getB1);
+B2 : Bi (putB2, getB2);
+B3 : Bi (putB3, getB3);
+B4 : Bi (putB4, getB4);
+
+requirement def sourceBi (event getBi):
+	location l0:
+		initial; marked;
+		edge getBi;
+end
+
+B5 : sourceBi (getB5);
+B6 : sourceBi (getB6);

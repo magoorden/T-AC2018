@@ -1,0 +1,70 @@
+import "Input_variables_optional_disc.cif";
+
+import "motor_uncontrolled_discrete_plant.cif";
+import "color_sensor_uncontrolled_discrete_plant.cif";
+import "color_changing_uncontrolled_discrete_plant.cif";
+//import "color_sending_uncontrolled_discrete_plant.cif";
+
+Loadcrane_Color_Sensor:Color_Sensor(Loadcrane_Color_Sending.c_notify);
+
+Loadcrane_Color_Changing:Color_Changing(loadcrane_load_pos_color, loadcrane_dumb_pos_color, loadcrane_truck_pos_color);
+
+Loadcrane_Color_Sending:Color_Sending(loadcrane_home_pos_color);
+
+Loadcrane_track_Motor:track_Motor();
+
+requirement Loadcrane_move_forward_and_backward:
+
+  location :
+    initial; marked;
+      edge Loadcrane_track_Motor.c_move_forward  when Loadcrane_Color_Changing.req_color != loadcrane_home_pos_color
+                                                 and (Loadcrane_track_Motor.motion = Backward
+                                                       or Loadcrane_track_Motor.motion = Undefined)
+                                                 and  Loadcrane_notification_color_sensor_monitor.Moving;
+
+      edge Loadcrane_track_Motor.c_move_backward when Loadcrane_Color_Changing.req_color  = loadcrane_home_pos_color
+                                                 and (Loadcrane_track_Motor.motion = Forward
+                                                       or Loadcrane_track_Motor.motion = Undefined)
+                                                 and  Loadcrane_notification_color_sensor_monitor.Moving;
+
+      edge Loadcrane_Color_Changing.c_change_color_to_load_pos_color        when Loadcrane_Color_Changing.req_color = Loadcrane_Color_Sensor.detected_color;
+      edge Loadcrane_Color_Changing.c_change_color_to_unload_pos_1_color    when Loadcrane_Color_Changing.req_color = Loadcrane_Color_Sensor.detected_color;
+      edge Loadcrane_Color_Changing.c_change_color_to_unload_pos_2_color    when Loadcrane_Color_Changing.req_color = Loadcrane_Color_Sensor.detected_color;
+end
+
+plant Loadcrane_notification_color_sensor_monitor:
+  monitor;
+  location Send_Color:
+    initial; marked;
+      edge Loadcrane_Color_Sending.c_notify       when Loadcrane_Color_Changing.req_color != Loadcrane_Color_Sensor.detected_color      goto Moving;
+
+  location Moving:
+    marked;
+      edge Loadcrane_track_Motor.u_stopped                                                                                              goto Send_Color;
+end
+
+requirement Loadcrane_notification_color_sensor:
+
+  location Send_Color:
+    initial; marked;
+      edge Loadcrane_Color_Sending.c_notify       when Loadcrane_Color_Changing.req_color != Loadcrane_Color_Sensor.detected_color      goto Moving;
+
+  location Moving:
+      edge Loadcrane_track_Motor.u_stopped                                                                                              goto Send_Color;
+end
+
+requirement Loadcrane_stop_when_requested_color_detected:
+
+  location Moving:
+    initial; marked;
+    edge Loadcrane_Color_Sensor.u_detected_RED       goto Stop;
+    edge Loadcrane_Color_Sensor.u_detected_BLUE      goto Stop;
+    edge Loadcrane_Color_Sensor.u_detected_YELLOW    goto Stop;
+    edge Loadcrane_Color_Sensor.u_detected_GREEN     goto Stop;
+    edge Loadcrane_Color_Sensor.u_detected_BLACK     goto Stop;
+    edge Loadcrane_Color_Sensor.u_detected_WHITE     goto Stop;
+
+  location Stop:
+    edge Loadcrane_track_Motor.u_stopped             goto Moving;
+
+end

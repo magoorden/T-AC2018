@@ -1,0 +1,208 @@
+import "System.cif";
+
+plant P_TR:
+  location DUtoTR:
+    edge DUtoTR_0_e, DUtoTR_1_e, DUtoTR_2_e, DUtoTR_3_e, DUtoTR_4_e, DUtoTR_5_e, DUtoTR_6_e, DUtoTR_7_e, DUtoTR_8_e goto l0;
+  location TRtoSUB:
+    edge TRtoSUB_0_e, TRtoSUB_1_e, TRtoSUB_2_e, TRtoSUB_3_e, TRtoSUB_4_e, TRtoSUB_5_e, TRtoSUB_6_e, TRtoSUB_7_e, TRtoSUB_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge TRtoSUB_0_s, TRtoSUB_1_s, TRtoSUB_2_s, TRtoSUB_3_s, TRtoSUB_4_s, TRtoSUB_5_s, TRtoSUB_6_s, TRtoSUB_7_s, TRtoSUB_8_s goto TRtoSUB;
+    edge DUtoTR_0_s, DUtoTR_1_s, DUtoTR_2_s, DUtoTR_3_s, DUtoTR_4_s, DUtoTR_5_s, DUtoTR_6_s, DUtoTR_7_s, DUtoTR_8_s goto DUtoTR;
+    edge assignCH0_0, assignCH0_1, assignCH0_2, assignCH0_3, assignCH0_4, assignCH0_5, assignCH0_6, assignCH1_0, assignCH1_1, assignCH1_2, assignCH1_3, assignCH1_4, assignCH1_5, assignCH1_6, assignCH0orCH1_0, assignCH0orCH1_1, assignCH0orCH1_2, assignCH0orCH1_3, assignCH0orCH1_4, assignCH0orCH1_5, assignCH0orCH1_6 goto l0;
+end
+
+plant P_SUB:
+  location SUBtoUR:
+    edge SUBtoUR_0_e, SUBtoUR_1_e, SUBtoUR_2_e, SUBtoUR_3_e, SUBtoUR_4_e, SUBtoUR_5_e, SUBtoUR_6_e, SUBtoUR_7_e, SUBtoUR_8_e goto l0;
+  location SUB_Condition:
+    edge SUB_Condition_0_e, SUB_Condition_1_e, SUB_Condition_2_e, SUB_Condition_3_e, SUB_Condition_4_e, SUB_Condition_5_e, SUB_Condition_6_e goto l0;
+  location TRtoSUB:
+    edge TRtoSUB_0_e, TRtoSUB_1_e, TRtoSUB_2_e, TRtoSUB_3_e, TRtoSUB_4_e, TRtoSUB_5_e, TRtoSUB_6_e, TRtoSUB_7_e, TRtoSUB_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge SUBtoUR_0_s, SUBtoUR_1_s, SUBtoUR_2_s, SUBtoUR_3_s, SUBtoUR_4_s, SUBtoUR_5_s, SUBtoUR_6_s, SUBtoUR_7_s, SUBtoUR_8_s goto SUBtoUR;
+    edge TRtoSUB_0_s, TRtoSUB_1_s, TRtoSUB_2_s, TRtoSUB_3_s, TRtoSUB_4_s, TRtoSUB_5_s, TRtoSUB_6_s, TRtoSUB_7_s, TRtoSUB_8_s goto TRtoSUB;
+    edge URtoSUB_0_s, URtoSUB_1_s, URtoSUB_2_s, URtoSUB_3_s, URtoSUB_4_s, URtoSUB_5_s, URtoSUB_6_s, URtoSUB_7_s, URtoSUB_8_s goto URtoSUB;
+    edge SUB_Condition_0_s, SUB_Condition_1_s, SUB_Condition_2_s, SUB_Condition_3_s, SUB_Condition_4_s, SUB_Condition_5_s, SUB_Condition_6_s goto SUB_Condition;
+  location URtoSUB:
+    edge URtoSUB_0_e, URtoSUB_1_e, URtoSUB_2_e, URtoSUB_3_e, URtoSUB_4_e, URtoSUB_5_e, URtoSUB_6_e, URtoSUB_7_e, URtoSUB_8_e goto l0;
+end
+
+plant P_UR:
+  location URtoDU:
+    edge URtoDU_0_e, URtoDU_1_e, URtoDU_2_e, URtoDU_3_e, URtoDU_4_e, URtoDU_5_e, URtoDU_6_e, URtoDU_7_e, URtoDU_8_e goto l0;
+  location PAtoUR:
+    edge PAtoUR_0_e, PAtoUR_1_e, PAtoUR_2_e, PAtoUR_3_e, PAtoUR_4_e, PAtoUR_5_e, PAtoUR_6_e, PAtoUR_7_e, PAtoUR_8_e goto l0;
+  location URtoCTC1:
+    edge URtoCTC1_0_e, URtoCTC1_1_e, URtoCTC1_2_e, URtoCTC1_3_e, URtoCTC1_4_e, URtoCTC1_5_e, URtoCTC1_6_e, URtoCTC1_7_e, URtoCTC1_8_e goto l0;
+  location URtoPA:
+    edge URtoPA_0_e, URtoPA_1_e, URtoPA_2_e, URtoPA_3_e, URtoPA_4_e, URtoPA_5_e, URtoPA_6_e, URtoPA_7_e, URtoPA_8_e goto l0;
+  location CH0toUR:
+    edge CH0toUR_0_e, CH0toUR_1_e, CH0toUR_2_e, CH0toUR_3_e, CH0toUR_4_e, CH0toUR_5_e, CH0toUR_6_e, CH0toUR_7_e, CH0toUR_8_e goto l0;
+  location SUBtoUR:
+    edge SUBtoUR_0_e, SUBtoUR_1_e, SUBtoUR_2_e, SUBtoUR_3_e, SUBtoUR_4_e, SUBtoUR_5_e, SUBtoUR_6_e, SUBtoUR_7_e, SUBtoUR_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge URtoSUB_0_s, URtoSUB_1_s, URtoSUB_2_s, URtoSUB_3_s, URtoSUB_4_s, URtoSUB_5_s, URtoSUB_6_s, URtoSUB_7_s, URtoSUB_8_s goto URtoSUB;
+    edge URtoDU_0_s, URtoDU_1_s, URtoDU_2_s, URtoDU_3_s, URtoDU_4_s, URtoDU_5_s, URtoDU_6_s, URtoDU_7_s, URtoDU_8_s goto URtoDU;
+    edge URtoPA_0_s, URtoPA_1_s, URtoPA_2_s, URtoPA_3_s, URtoPA_4_s, URtoPA_5_s, URtoPA_6_s, URtoPA_7_s, URtoPA_8_s goto URtoPA;
+    edge URtoCTC1_0_s, URtoCTC1_1_s, URtoCTC1_2_s, URtoCTC1_3_s, URtoCTC1_4_s, URtoCTC1_5_s, URtoCTC1_6_s, URtoCTC1_7_s, URtoCTC1_8_s goto URtoCTC1;
+    edge CH0toUR_0_s, CH0toUR_1_s, CH0toUR_2_s, CH0toUR_3_s, CH0toUR_4_s, CH0toUR_5_s, CH0toUR_6_s, CH0toUR_7_s, CH0toUR_8_s goto CH0toUR;
+    edge CH1toUR_0_s, CH1toUR_1_s, CH1toUR_2_s, CH1toUR_3_s, CH1toUR_4_s, CH1toUR_5_s, CH1toUR_6_s, CH1toUR_7_s, CH1toUR_8_s goto CH1toUR;
+    edge PAtoUR_0_s, PAtoUR_1_s, PAtoUR_2_s, PAtoUR_3_s, PAtoUR_4_s, PAtoUR_5_s, PAtoUR_6_s, PAtoUR_7_s, PAtoUR_8_s goto PAtoUR;
+    edge SUBtoUR_0_s, SUBtoUR_1_s, SUBtoUR_2_s, SUBtoUR_3_s, SUBtoUR_4_s, SUBtoUR_5_s, SUBtoUR_6_s, SUBtoUR_7_s, SUBtoUR_8_s goto SUBtoUR;
+    edge CTC1toUR_0_s, CTC1toUR_1_s, CTC1toUR_2_s, CTC1toUR_3_s, CTC1toUR_4_s, CTC1toUR_5_s, CTC1toUR_6_s, CTC1toUR_7_s, CTC1toUR_8_s goto CTC1toUR;
+    edge DUtoUR_0_s, DUtoUR_1_s, DUtoUR_2_s, DUtoUR_3_s, DUtoUR_4_s, DUtoUR_5_s, DUtoUR_6_s, DUtoUR_7_s, DUtoUR_8_s goto DUtoUR;
+  location URtoSUB:
+    edge URtoSUB_0_e, URtoSUB_1_e, URtoSUB_2_e, URtoSUB_3_e, URtoSUB_4_e, URtoSUB_5_e, URtoSUB_6_e, URtoSUB_7_e, URtoSUB_8_e goto l0;
+  location CTC1toUR:
+    edge CTC1toUR_0_e, CTC1toUR_1_e, CTC1toUR_2_e, CTC1toUR_3_e, CTC1toUR_4_e, CTC1toUR_5_e, CTC1toUR_6_e, CTC1toUR_7_e, CTC1toUR_8_e goto l0;
+  location DUtoUR:
+    edge DUtoUR_0_e, DUtoUR_1_e, DUtoUR_2_e, DUtoUR_3_e, DUtoUR_4_e, DUtoUR_5_e, DUtoUR_6_e, DUtoUR_7_e, DUtoUR_8_e goto l0;
+  location CH1toUR:
+    edge CH1toUR_0_e, CH1toUR_1_e, CH1toUR_2_e, CH1toUR_3_e, CH1toUR_4_e, CH1toUR_5_e, CH1toUR_6_e, CH1toUR_7_e, CH1toUR_8_e goto l0;
+end
+
+plant P_PA:
+  location LRtoPA:
+    edge LRtoPA_0_e, LRtoPA_1_e, LRtoPA_2_e, LRtoPA_3_e, LRtoPA_4_e, LRtoPA_5_e, LRtoPA_6_e, LRtoPA_7_e, LRtoPA_8_e goto l0;
+  location PAtoUR:
+    edge PAtoUR_0_e, PAtoUR_1_e, PAtoUR_2_e, PAtoUR_3_e, PAtoUR_4_e, PAtoUR_5_e, PAtoUR_6_e, PAtoUR_7_e, PAtoUR_8_e goto l0;
+  location URtoPA:
+    edge URtoPA_0_e, URtoPA_1_e, URtoPA_2_e, URtoPA_3_e, URtoPA_4_e, URtoPA_5_e, URtoPA_6_e, URtoPA_7_e, URtoPA_8_e goto l0;
+  location PAtoLR:
+    edge PAtoLR_0_e, PAtoLR_1_e, PAtoLR_2_e, PAtoLR_3_e, PAtoLR_4_e, PAtoLR_5_e, PAtoLR_6_e, PAtoLR_7_e, PAtoLR_8_e goto l0;
+  location PA_Align:
+    edge PA_Align_0_e, PA_Align_1_e, PA_Align_2_e, PA_Align_3_e, PA_Align_4_e, PA_Align_5_e, PA_Align_6_e, PA_Align_7_e, PA_Align_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge PAtoUR_0_s, PAtoUR_1_s, PAtoUR_2_s, PAtoUR_3_s, PAtoUR_4_s, PAtoUR_5_s, PAtoUR_6_s, PAtoUR_7_s, PAtoUR_8_s goto PAtoUR;
+    edge PAtoLR_0_s, PAtoLR_1_s, PAtoLR_2_s, PAtoLR_3_s, PAtoLR_4_s, PAtoLR_5_s, PAtoLR_6_s, PAtoLR_7_s, PAtoLR_8_s goto PAtoLR;
+    edge LRtoPA_0_s, LRtoPA_1_s, LRtoPA_2_s, LRtoPA_3_s, LRtoPA_4_s, LRtoPA_5_s, LRtoPA_6_s, LRtoPA_7_s, LRtoPA_8_s goto LRtoPA;
+    edge URtoPA_0_s, URtoPA_1_s, URtoPA_2_s, URtoPA_3_s, URtoPA_4_s, URtoPA_5_s, URtoPA_6_s, URtoPA_7_s, URtoPA_8_s goto URtoPA;
+    edge PA_Align_0_s, PA_Align_1_s, PA_Align_2_s, PA_Align_3_s, PA_Align_4_s, PA_Align_5_s, PA_Align_6_s, PA_Align_7_s, PA_Align_8_s goto PA_Align;
+end
+
+plant P_LR:
+  location LRtoPA:
+    edge LRtoPA_0_e, LRtoPA_1_e, LRtoPA_2_e, LRtoPA_3_e, LRtoPA_4_e, LRtoPA_5_e, LRtoPA_6_e, LRtoPA_7_e, LRtoPA_8_e goto l0;
+  location DUtoLR:
+    edge DUtoLR_0_e, DUtoLR_1_e, DUtoLR_2_e, DUtoLR_3_e, DUtoLR_4_e, DUtoLR_5_e, DUtoLR_6_e, DUtoLR_7_e, DUtoLR_8_e goto l0;
+  location CH0toLR:
+    edge CH0toLR_0_e, CH0toLR_1_e, CH0toLR_2_e, CH0toLR_3_e, CH0toLR_4_e, CH0toLR_5_e, CH0toLR_6_e, CH0toLR_7_e, CH0toLR_8_e goto l0;
+  location CH1toLR:
+    edge CH1toLR_0_e, CH1toLR_1_e, CH1toLR_2_e, CH1toLR_3_e, CH1toLR_4_e, CH1toLR_5_e, CH1toLR_6_e, CH1toLR_7_e, CH1toLR_8_e goto l0;
+  location PAtoLR:
+    edge PAtoLR_0_e, PAtoLR_1_e, PAtoLR_2_e, PAtoLR_3_e, PAtoLR_4_e, PAtoLR_5_e, PAtoLR_6_e, PAtoLR_7_e, PAtoLR_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge LRtoDU_0_s, LRtoDU_1_s, LRtoDU_2_s, LRtoDU_3_s, LRtoDU_4_s, LRtoDU_5_s, LRtoDU_6_s, LRtoDU_7_s, LRtoDU_8_s goto LRtoDU;
+    edge LRtoPA_0_s, LRtoPA_1_s, LRtoPA_2_s, LRtoPA_3_s, LRtoPA_4_s, LRtoPA_5_s, LRtoPA_6_s, LRtoPA_7_s, LRtoPA_8_s goto LRtoPA;
+    edge LRtoCH0_0_s, LRtoCH0_1_s, LRtoCH0_2_s, LRtoCH0_3_s, LRtoCH0_4_s, LRtoCH0_5_s, LRtoCH0_6_s, LRtoCH0_7_s, LRtoCH0_8_s goto LRtoCH0;
+    edge LRtoCH1_0_s, LRtoCH1_1_s, LRtoCH1_2_s, LRtoCH1_3_s, LRtoCH1_4_s, LRtoCH1_5_s, LRtoCH1_6_s, LRtoCH1_7_s, LRtoCH1_8_s goto LRtoCH1;
+    edge LRtoCTC0_0_s, LRtoCTC0_1_s, LRtoCTC0_2_s, LRtoCTC0_3_s, LRtoCTC0_4_s, LRtoCTC0_5_s, LRtoCTC0_6_s, LRtoCTC0_7_s, LRtoCTC0_8_s goto LRtoCTC0;
+    edge CH0toLR_0_s, CH0toLR_1_s, CH0toLR_2_s, CH0toLR_3_s, CH0toLR_4_s, CH0toLR_5_s, CH0toLR_6_s, CH0toLR_7_s, CH0toLR_8_s goto CH0toLR;
+    edge CH1toLR_0_s, CH1toLR_1_s, CH1toLR_2_s, CH1toLR_3_s, CH1toLR_4_s, CH1toLR_5_s, CH1toLR_6_s, CH1toLR_7_s, CH1toLR_8_s goto CH1toLR;
+    edge PAtoLR_0_s, PAtoLR_1_s, PAtoLR_2_s, PAtoLR_3_s, PAtoLR_4_s, PAtoLR_5_s, PAtoLR_6_s, PAtoLR_7_s, PAtoLR_8_s goto PAtoLR;
+    edge CTC0toLR_0_s, CTC0toLR_1_s, CTC0toLR_2_s, CTC0toLR_3_s, CTC0toLR_4_s, CTC0toLR_5_s, CTC0toLR_6_s, CTC0toLR_7_s, CTC0toLR_8_s goto CTC0toLR;
+    edge DUtoLR_0_s, DUtoLR_1_s, DUtoLR_2_s, DUtoLR_3_s, DUtoLR_4_s, DUtoLR_5_s, DUtoLR_6_s, DUtoLR_7_s, DUtoLR_8_s goto DUtoLR;
+  location CTC0toLR:
+    edge CTC0toLR_0_e, CTC0toLR_1_e, CTC0toLR_2_e, CTC0toLR_3_e, CTC0toLR_4_e, CTC0toLR_5_e, CTC0toLR_6_e, CTC0toLR_7_e, CTC0toLR_8_e goto l0;
+  location LRtoCTC0:
+    edge LRtoCTC0_0_e, LRtoCTC0_1_e, LRtoCTC0_2_e, LRtoCTC0_3_e, LRtoCTC0_4_e, LRtoCTC0_5_e, LRtoCTC0_6_e, LRtoCTC0_7_e, LRtoCTC0_8_e goto l0;
+  location LRtoDU:
+    edge LRtoDU_0_e, LRtoDU_1_e, LRtoDU_2_e, LRtoDU_3_e, LRtoDU_4_e, LRtoDU_5_e, LRtoDU_6_e, LRtoDU_7_e, LRtoDU_8_e goto l0;
+  location LRtoCH0:
+    edge LRtoCH0_0_e, LRtoCH0_1_e, LRtoCH0_2_e, LRtoCH0_3_e, LRtoCH0_4_e, LRtoCH0_5_e, LRtoCH0_6_e, LRtoCH0_7_e, LRtoCH0_8_e goto l0;
+  location LRtoCH1:
+    edge LRtoCH1_0_e, LRtoCH1_1_e, LRtoCH1_2_e, LRtoCH1_3_e, LRtoCH1_4_e, LRtoCH1_5_e, LRtoCH1_6_e, LRtoCH1_7_e, LRtoCH1_8_e goto l0;
+end
+
+plant P_DU:
+  location URtoDU:
+    edge URtoDU_0_e, URtoDU_1_e, URtoDU_2_e, URtoDU_3_e, URtoDU_4_e, URtoDU_5_e, URtoDU_6_e, URtoDU_7_e, URtoDU_8_e goto l0;
+  location DUtoUR:
+    edge DUtoUR_0_e, DUtoUR_1_e, DUtoUR_2_e, DUtoUR_3_e, DUtoUR_4_e, DUtoUR_5_e, DUtoUR_6_e, DUtoUR_7_e, DUtoUR_8_e goto l0;
+  location DUtoTR:
+    edge DUtoTR_0_e, DUtoTR_1_e, DUtoTR_2_e, DUtoTR_3_e, DUtoTR_4_e, DUtoTR_5_e, DUtoTR_6_e, DUtoTR_7_e, DUtoTR_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge DUtoUR_0_s, DUtoUR_1_s, DUtoUR_2_s, DUtoUR_3_s, DUtoUR_4_s, DUtoUR_5_s, DUtoUR_6_s, DUtoUR_7_s, DUtoUR_8_s goto DUtoUR;
+    edge DUtoLR_0_s, DUtoLR_1_s, DUtoLR_2_s, DUtoLR_3_s, DUtoLR_4_s, DUtoLR_5_s, DUtoLR_6_s, DUtoLR_7_s, DUtoLR_8_s goto DUtoLR;
+    edge DUtoTR_0_s, DUtoTR_1_s, DUtoTR_2_s, DUtoTR_3_s, DUtoTR_4_s, DUtoTR_5_s, DUtoTR_6_s, DUtoTR_7_s, DUtoTR_8_s goto DUtoTR;
+    edge LRtoDU_0_s, LRtoDU_1_s, LRtoDU_2_s, LRtoDU_3_s, LRtoDU_4_s, LRtoDU_5_s, LRtoDU_6_s, LRtoDU_7_s, LRtoDU_8_s goto LRtoDU;
+    edge URtoDU_0_s, URtoDU_1_s, URtoDU_2_s, URtoDU_3_s, URtoDU_4_s, URtoDU_5_s, URtoDU_6_s, URtoDU_7_s, URtoDU_8_s goto URtoDU;
+  location DUtoLR:
+    edge DUtoLR_0_e, DUtoLR_1_e, DUtoLR_2_e, DUtoLR_3_e, DUtoLR_4_e, DUtoLR_5_e, DUtoLR_6_e, DUtoLR_7_e, DUtoLR_8_e goto l0;
+  location LRtoDU:
+    edge LRtoDU_0_e, LRtoDU_1_e, LRtoDU_2_e, LRtoDU_3_e, LRtoDU_4_e, LRtoDU_5_e, LRtoDU_6_e, LRtoDU_7_e, LRtoDU_8_e goto l0;
+end
+
+plant P_CH0:
+  location CH0toLR:
+    edge CH0toLR_0_e, CH0toLR_1_e, CH0toLR_2_e, CH0toLR_3_e, CH0toLR_4_e, CH0toLR_5_e, CH0toLR_6_e, CH0toLR_7_e, CH0toLR_8_e goto l0;
+  location ChuckSwap:
+    edge chuckSwap_e goto l0;
+  location CH0_Measure:
+    edge CH0_Measure_0_e, CH0_Measure_1_e, CH0_Measure_2_e, CH0_Measure_3_e, CH0_Measure_4_e, CH0_Measure_5_e, CH0_Measure_6_e goto l0;
+  location CH0toUR:
+    edge CH0toUR_0_e, CH0toUR_1_e, CH0toUR_2_e, CH0toUR_3_e, CH0toUR_4_e, CH0toUR_5_e, CH0toUR_6_e, CH0toUR_7_e, CH0toUR_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge CH0toLR_0_s, CH0toLR_1_s, CH0toLR_2_s, CH0toLR_3_s, CH0toLR_4_s, CH0toLR_5_s, CH0toLR_6_s, CH0toLR_7_s, CH0toLR_8_s goto CH0toLR;
+    edge CH0toUR_0_s, CH0toUR_1_s, CH0toUR_2_s, CH0toUR_3_s, CH0toUR_4_s, CH0toUR_5_s, CH0toUR_6_s, CH0toUR_7_s, CH0toUR_8_s goto CH0toUR;
+    edge LRtoCH0_0_s, LRtoCH0_1_s, LRtoCH0_2_s, LRtoCH0_3_s, LRtoCH0_4_s, LRtoCH0_5_s, LRtoCH0_6_s, LRtoCH0_7_s, LRtoCH0_8_s goto LRtoCH0;
+    edge CH0_Measure_0_s, CH0_Measure_1_s, CH0_Measure_2_s, CH0_Measure_3_s, CH0_Measure_4_s, CH0_Measure_5_s, CH0_Measure_6_s goto CH0_Measure;
+    edge CH0_Expose_0_s, CH0_Expose_1_s, CH0_Expose_2_s, CH0_Expose_3_s, CH0_Expose_4_s, CH0_Expose_5_s, CH0_Expose_6_s goto CH0_Expose;
+    edge chuckSwap_s goto ChuckSwap;
+  location CH0_Expose:
+    edge CH0_Expose_0_e, CH0_Expose_1_e, CH0_Expose_2_e, CH0_Expose_3_e, CH0_Expose_4_e, CH0_Expose_5_e, CH0_Expose_6_e goto l0;
+  location LRtoCH0:
+    edge LRtoCH0_0_e, LRtoCH0_1_e, LRtoCH0_2_e, LRtoCH0_3_e, LRtoCH0_4_e, LRtoCH0_5_e, LRtoCH0_6_e, LRtoCH0_7_e, LRtoCH0_8_e goto l0;
+end
+
+plant P_CH1:
+  location CH1_Measure:
+    edge CH1_Measure_0_e, CH1_Measure_1_e, CH1_Measure_2_e, CH1_Measure_3_e, CH1_Measure_4_e, CH1_Measure_5_e, CH1_Measure_6_e goto l0;
+  location ChuckSwap:
+    edge chuckSwap_e goto l0;
+  location CH1toLR:
+    edge CH1toLR_0_e, CH1toLR_1_e, CH1toLR_2_e, CH1toLR_3_e, CH1toLR_4_e, CH1toLR_5_e, CH1toLR_6_e, CH1toLR_7_e, CH1toLR_8_e goto l0;
+  location CH1_Expose:
+    edge CH1_Expose_0_e, CH1_Expose_1_e, CH1_Expose_2_e, CH1_Expose_3_e, CH1_Expose_4_e, CH1_Expose_5_e, CH1_Expose_6_e goto l0;
+  location l0:
+    initial; marked;
+    edge CH1toLR_0_s, CH1toLR_1_s, CH1toLR_2_s, CH1toLR_3_s, CH1toLR_4_s, CH1toLR_5_s, CH1toLR_6_s, CH1toLR_7_s, CH1toLR_8_s goto CH1toLR;
+    edge CH1toUR_0_s, CH1toUR_1_s, CH1toUR_2_s, CH1toUR_3_s, CH1toUR_4_s, CH1toUR_5_s, CH1toUR_6_s, CH1toUR_7_s, CH1toUR_8_s goto CH1toUR;
+    edge LRtoCH1_0_s, LRtoCH1_1_s, LRtoCH1_2_s, LRtoCH1_3_s, LRtoCH1_4_s, LRtoCH1_5_s, LRtoCH1_6_s, LRtoCH1_7_s, LRtoCH1_8_s goto LRtoCH1;
+    edge CH1_Measure_0_s, CH1_Measure_1_s, CH1_Measure_2_s, CH1_Measure_3_s, CH1_Measure_4_s, CH1_Measure_5_s, CH1_Measure_6_s goto CH1_Measure;
+    edge CH1_Expose_0_s, CH1_Expose_1_s, CH1_Expose_2_s, CH1_Expose_3_s, CH1_Expose_4_s, CH1_Expose_5_s, CH1_Expose_6_s goto CH1_Expose;
+    edge chuckSwap_s goto ChuckSwap;
+  location LRtoCH1:
+    edge LRtoCH1_0_e, LRtoCH1_1_e, LRtoCH1_2_e, LRtoCH1_3_e, LRtoCH1_4_e, LRtoCH1_5_e, LRtoCH1_6_e, LRtoCH1_7_e, LRtoCH1_8_e goto l0;
+  location CH1toUR:
+    edge CH1toUR_0_e, CH1toUR_1_e, CH1toUR_2_e, CH1toUR_3_e, CH1toUR_4_e, CH1toUR_5_e, CH1toUR_6_e, CH1toUR_7_e, CH1toUR_8_e goto l0;
+end
+
+plant P_CTC0:
+  location CTC0toLR:
+    edge CTC0toLR_0_e, CTC0toLR_1_e, CTC0toLR_2_e, CTC0toLR_3_e, CTC0toLR_4_e, CTC0toLR_5_e, CTC0toLR_6_e, CTC0toLR_7_e, CTC0toLR_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge CTC0toLR_0_s, CTC0toLR_1_s, CTC0toLR_2_s, CTC0toLR_3_s, CTC0toLR_4_s, CTC0toLR_5_s, CTC0toLR_6_s, CTC0toLR_7_s, CTC0toLR_8_s goto CTC0toLR;
+    edge LRtoCTC0_0_s, LRtoCTC0_1_s, LRtoCTC0_2_s, LRtoCTC0_3_s, LRtoCTC0_4_s, LRtoCTC0_5_s, LRtoCTC0_6_s, LRtoCTC0_7_s, LRtoCTC0_8_s goto LRtoCTC0;
+  location LRtoCTC0:
+    edge LRtoCTC0_0_e, LRtoCTC0_1_e, LRtoCTC0_2_e, LRtoCTC0_3_e, LRtoCTC0_4_e, LRtoCTC0_5_e, LRtoCTC0_6_e, LRtoCTC0_7_e, LRtoCTC0_8_e goto l0;
+end
+
+plant P_CTC1:
+  location URtoCTC1:
+    edge URtoCTC1_0_e, URtoCTC1_1_e, URtoCTC1_2_e, URtoCTC1_3_e, URtoCTC1_4_e, URtoCTC1_5_e, URtoCTC1_6_e, URtoCTC1_7_e, URtoCTC1_8_e goto l0;
+  location l0:
+    initial; marked;
+    edge CTC1toUR_0_s, CTC1toUR_1_s, CTC1toUR_2_s, CTC1toUR_3_s, CTC1toUR_4_s, CTC1toUR_5_s, CTC1toUR_6_s, CTC1toUR_7_s, CTC1toUR_8_s goto CTC1toUR;
+    edge URtoCTC1_0_s, URtoCTC1_1_s, URtoCTC1_2_s, URtoCTC1_3_s, URtoCTC1_4_s, URtoCTC1_5_s, URtoCTC1_6_s, URtoCTC1_7_s, URtoCTC1_8_s goto URtoCTC1;
+  location CTC1toUR:
+    edge CTC1toUR_0_e, CTC1toUR_1_e, CTC1toUR_2_e, CTC1toUR_3_e, CTC1toUR_4_e, CTC1toUR_5_e, CTC1toUR_6_e, CTC1toUR_7_e, CTC1toUR_8_e goto l0;
+end
