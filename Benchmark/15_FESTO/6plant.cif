@@ -17,7 +17,6 @@ A_conveyer       : TwoStateActuator(false);
 A_gate1          : TwoStateActuator(false);
 A_gate2          : TwoStateActuator(false);
 A_stopperretract : TwoStateActuator(false);
-A_sortingready   : TwoStateActuator(false); //The corresponding sensors is never used
 
 plant STimer:
     controllable c_on, c_reset; uncontrollable u_timeout;
@@ -49,8 +48,7 @@ end
 //Initialization
 //Actuators are only allowed to enable/disable when the station is initialized
 requirement {A_conveyer.c_on, A_conveyer.c_off, A_gate1.c_on, A_gate1.c_off,
-             A_gate2.c_on, A_gate2.c_off, A_stopperretract.c_on, A_stopperretract.c_off,
-             A_sortingready.c_on, A_sortingready.c_off}
+             A_gate2.c_on, A_gate2.c_off, A_stopperretract.c_on, A_stopperretract.c_off}
       needs S_Sinitialized.On;
 
 //Timer that time out after x seconds, to make sure that a product is identified.
@@ -77,6 +75,14 @@ requirement A_stopperretract.c_on  needs S_slidefull.Off;
 requirement A_stopperretract.c_off needs S_slidefull.On;
 
 //Gates
+//The gates are only allowed to close when they are fully open
+requirement A_gate1.c_on needs S_gate1_opened.On;
+requirement A_gate2.c_on needs S_gate2_opened.On;
+
+//The gates are only allowed to open when they are fully closed
+requirement A_gate1.c_off needs S_gate1_closed.On;
+requirement A_gate2.c_off needs S_gate2_closed.On;
+
 //Gate1 is only allowed to close when there is a plastic product before the stopper
 requirement A_gate1.c_on needs S_optical.On;
 requirement A_gate1.c_on needs S_inductive.Off;
@@ -97,14 +103,3 @@ requirement A_gate2.c_off needs S_slidefull.On;
 requirement {A_gate1.c_on, A_gate1.c_off} needs A_stopperretract.Off;
 requirement {A_gate2.c_on, A_gate2.c_off} needs A_stopperretract.Off;
 
-
-//Ready/Busy
-//Sorting station is ready when there is no product waiting for the stopper
-// requirement A_sortingready.c_on  needs S_product.Off;
-//
-// //Sorting station is ready when the conveyer is disabled.
-// requirement A_sortingready.c_on  needs A_conveyer.Off;
-//
-// //Sorting station is buys when there is a product waiting for the stopper
-// requirement A_sortingready.c_off needs S_product.On;
-requirement A_sortingready.c_on needs false;

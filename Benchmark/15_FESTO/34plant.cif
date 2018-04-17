@@ -17,8 +17,6 @@ S_reflective    : TwoStateSensor(false);
 
 S_productheight : TwoStateSensor(false);
 
-S_bufferingbusy : TwoStateSensor(true);   //This sensor is not used as communication is not needed
-
 S_Tinitialized  : TwoStateSensor(false);
 
 //Actuators
@@ -28,9 +26,6 @@ A_elevator_down : TwoStateActuator(true);
 A_pusher        : TwoStateActuator(false);
 
 A_airslide      : TwoStateActuator(false);
-
-A_testingready  : TwoStateActuator(false); //The corresponding sensors is never used
-
 
 //Dynamics
 //elevator dynamics, sensors are mutually exclusive
@@ -58,7 +53,7 @@ end
 //Actuators are only allowed to enable/disable when the station is initialized
 requirement {A_elevator_up.c_on, A_elevator_up.c_off, A_elevator_down.c_on, A_elevator_down.c_off,
              A_pusher.c_on, A_pusher.c_off, A_airslide.c_on, A_airslide.c_off,
-             A_testingready.c_on, A_testingready.c_off, TTimer.c_on, TTimer.c_reset} needs
+             TTimer.c_on, TTimer.c_reset} needs
              S_Tinitialized.On;
 
 //Timer measures if the pusher is retracted long enough
@@ -73,6 +68,9 @@ requirement A_pusher.c_off needs S_pusher.On;
 //  - Elevator is fully ascended  with a good product
 //  - Elevator is fully descended with a bad product (this is currently not included)
 requirement A_pusher.c_on needs S_elevator_up.On;
+
+//Pusher is only allowed to extend when the product height is ok
+requirement A_pusher.c_on needs S_productheight.On;
 
 //Elevator
 //Elevator flows cannot be enabled simulteanously
@@ -108,8 +106,6 @@ requirement A_airslide.c_on  needs S_elevator_up.On and S_pusher.On;
 requirement A_airslide.c_off needs S_elevator_down.On;
 
 
-requirement A_testingready.c_off needs false; //Actuator not used!
-
 //The following flow is required Lift goes up -> Pusher extends -> Pusher retracts -> Lift goes down
 requirement PusherLift:
     location One:
@@ -132,15 +128,12 @@ S_atseparator      : TwoStateSensor(false);
 S_atend            : TwoStateSensor(false);
 S_separator_opened : TwoStateSensor(false);
 S_separator_closed : TwoStateSensor(true);
-S_processingbusy   : TwoStateSensor(true); //This sensor is not used as communication is not needed
 S_Binitialized     : TwoStateSensor(false);
 
 //Actuators
 A_separator      : TwoStateActuator(true);
-
 A_conveyerB      : TwoStateActuator(false);
 
-A_bufferingready : TwoStateActuator(false); //The corresponding sensors is never used
 
 plant BTimer:
     controllable c_on, c_reset; uncontrollable u_timeout;
@@ -166,8 +159,7 @@ end
 //Requirements
 //Initialization
 //Actuators are only allowed to enable/disable when the station is initialized
-requirement {A_separator.c_on, A_separator.c_off, A_conveyerB.c_on, A_conveyerB.c_off,
-             A_bufferingready.c_on, A_bufferingready.c_off} needs
+requirement {A_separator.c_on, A_separator.c_off, A_conveyerB.c_on, A_conveyerB.c_off} needs
              S_Binitialized.On;
 
 //Timer measures if the conveyer is enabled long enough for a product to exit
@@ -191,9 +183,3 @@ requirement A_conveyerB.c_on needs S_atin.On;
 
 //The conveyer is allowed to stop when a product has exit the system (x seconds after hitting the at exit sensor):
 requirement A_conveyerB.c_off needs BTimer.Timeout;
-
-//The buffer station is ready when there is not product at the start
-requirement A_bufferingready.c_on  needs false; //Never used //S_atin.Off;
-
-//The buffer station is busy when there is a product at the start
-//requirement A_bufferingready.c_off needs S_atin.On;

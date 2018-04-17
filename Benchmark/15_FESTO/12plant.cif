@@ -22,8 +22,6 @@ S_stack3_filled : TwoStateSensor(true);
 
 S_Dinitialized  : TwoStateSensor(false);
 
-S_handlingbusy  : TwoStateSensor(true); //This sensor is not used as communication is not needed
-
 //Actuators
 A_pusher1       : TwoStateActuator(false);
 A_pusher2       : TwoStateActuator(false);
@@ -104,8 +102,6 @@ S_vacuum             : TwoStateSensor(false);
 
 S_Hinitialized       : TwoStateSensor(false);
 
-S_testingbusy        : TwoStateSensor(true); //This sensor is not used as communication is not needed
-
 //Actuators
 A_x2distributing     : TwoStateActuator(true);
 A_x2testing          : TwoStateActuator(true);
@@ -119,8 +115,6 @@ A_transfer2droppos   : TwoStateActuator2(false);
 
 A_vacuum             : TwoStateActuator(false);
 A_ejectpulse         : TwoStateActuator(false);
-
-A_handlingready      : TwoStateActuator(false); //The corresponding sensors is never used
 
 //Dynamics
 //Xpos dynamics, sensors are mutually exclusive
@@ -153,8 +147,7 @@ end
 requirement {A_x2distributing.c_on, A_x2distributing.c_off, A_x2testing.c_on, A_x2testing.c_off,
              A_zdown.c_on, A_zdown.c_off, A_gripperclose.c_on, A_gripperclose.c_off,
              A_transfer2pickpos.c_on, A_transfer2pickpos.c_off, A_transfer2droppos.c_on, A_transfer2droppos.c_off,
-             A_vacuum.c_on, A_vacuum.c_off, A_ejectpulse.c_on, A_ejectpulse.c_off,
-             A_handlingready.c_on, A_handlingready.c_off} needs S_Hinitialized.On;
+             A_vacuum.c_on, A_vacuum.c_off, A_ejectpulse.c_on, A_ejectpulse.c_off} needs S_Hinitialized.On;
 
 //Gripper Y position:
 
@@ -290,6 +283,3 @@ requirement A_ejectpulse.c_on  needs S_transfer_atdrop.On and S_vacuum.On;
 
 //Eject pulse is allowed to disable when there is no product vacuumed
 requirement A_ejectpulse.c_off needs S_vacuum.Off;
-
-//Handling station is safe when the transfer is at a safe position
-requirement A_handlingready.c_on  needs false; //actuator never used!

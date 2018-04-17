@@ -8,13 +8,11 @@ S_atinput        : TwoStateSensor(false);
 S_attest         : TwoStateSensor(false);
 S_atdrill        : TwoStateSensor(false);
 S_atexit         : TwoStateSensor(false);
-S_atspare        : TwoStateSensor(false);
 S_clamp          : TwoStateSensor(false);
 S_test_ok        : TwoStateSensor(false);
 S_drill_up       : TwoStateSensor(true);
 S_drill_down     : TwoStateSensor(false);
 S_turntable      : TwoStateSensor(true);
-S_sortingbusy    : TwoStateSensor(true); //This sensor is not used as communication is not needed
 S_Pinitialized   : TwoStateSensor(false);
 
 //Actuators
@@ -25,9 +23,8 @@ A_drillup         : TwoStateActuator(true);
 A_clamp           : TwoStateActuator(false);
 A_tester          : TwoStateActuator(false);
 A_eject           : TwoStateActuator(false);
-A_processingready : TwoStateActuator(false); //The corresponding sensors is never used
 
-plant Timer:
+plant PTimer:
     controllable c_on, c_reset; uncontrollable u_timeout;
     location Off:
         initial; marked;
@@ -41,6 +38,7 @@ end
 
 //Dynamics
 //drill dynamics, sensors are mutually exclusive
+//This is a more concise notation of the FSA in Figure 6.
 plant PDynamics:
     location: initial; marked;
         edge S_drill_up.u_on   when S_drill_down.Off;
@@ -49,48 +47,48 @@ end
 
 //Requirements
 //Initialization
-//Actuators are only allowed to enable/disable when the station is initialized
+//(R1) The actuators can only activate when the station is initialized.
 requirement {A_drill.c_on, A_drill.c_off, A_turntable.c_on, A_turntable.c_off,
              A_drilldown.c_on, A_drillup.c_off, A_clamp.c_on, A_clamp.c_off,
-             A_tester.c_on, A_tester.c_off, A_eject.c_on, A_eject.c_off,
-             A_processingready.c_on, A_processingready.c_off}
+             A_tester.c_on, A_tester.c_off, A_eject.c_on, A_eject.c_off, PTimer.c_on, PTimer.c_reset}
       needs S_Pinitialized.On;
 
-requirement Timer.c_on    needs S_turntable.On;
-requirement Timer.c_reset needs S_turntable.Off;
+//A timer that makes sure that the turntable is at stand-still for x seconds, such that sensor measurements can be performed
+requirement PTimer.c_on    needs S_turntable.On;
+requirement PTimer.c_reset needs S_turntable.Off;
 
 //Turn table
 //The turn table is only allowed to enable at a valid positions
 requirement A_turntable.c_on  needs S_turntable.On;
+requirement A_turntable.c_on needs PTimer.Timeout;
 
-requirement A_turntable.c_on needs Timer.Timeout;
-
-//The turn table is only allowed to disable at a invalid position, this generates a pulse
+//(R4) The turntable actuator can be disabled when the turntable leaves the valid position.
 requirement A_turntable.c_off needs S_turntable.Off;
 
-//The turn table is only allowed to enable when it is safe!
+//(R2) The turntable can only rotate when the other actuators are in a safe position
 requirement A_turntable.c_on  needs S_drill_up.On;
 requirement A_turntable.c_on  needs S_clamp.Off;
 requirement A_turntable.c_on  needs A_eject.Off;
 requirement A_turntable.c_on  needs A_drill.Off;
 requirement A_turntable.c_on  needs A_tester.Off;
 
-//The turn table is only allowed to enable when a new product has entered
+//(R3) The turntable can only rotate when a new product has entered.
 requirement A_turntable.c_on  needs S_atinput.On;
 
 //Tester
-//The tester is only allowed to enable when the turn table is at standstill
+//(R5) The tester is only allowed to enable when the turntable is at standstill
 requirement A_tester.c_on  needs S_turntable.On;
 requirement A_tester.c_on  needs A_turntable.Off;
-requirement A_tester.c_on  needs Timer.Timeout;
+requirement A_tester.c_on  needs PTimer.Timeout;
 
-//The tester is only allowed to enable when there is a product
+//(R5) The tester is only allowed to enable when there is a product
 requirement A_tester.c_on  needs S_attest.On;
 
-//The tester is only allowed to disable when the test is ok.
+//(R9) The tester can be disabled once the measurement is completed
 requirement A_tester.c_off needs S_test_ok.On;
 
-//Actuator relations:
+//(R10) If there is a product at the testing location, it should be processed,
+//      before the turntable is activated again
 requirement Tester:
     location One:
         initial; marked;
@@ -104,40 +102,45 @@ end
 
 
 //Clamp
-//The clamp is only allowed to enable when the turn table is at standstill
+//(R5) The clamp is only allowed to enable when the turn table is at standstill
 requirement A_clamp.c_on  needs S_turntable.On;
 requirement A_clamp.c_on  needs A_turntable.Off;
-requirement A_clamp.c_on  needs Timer.Timeout;
+requirement A_clamp.c_on  needs PTimer.Timeout;
 
-//The clamp is only allowed to enable when a product is available
+//(R5) The clamp is only allowed to enable when a product is available
 requirement A_clamp.c_on  needs S_atdrill.On;
 
-//The Clamp is only allowed to disable when the drill is at the top position
+//(R6) The clamp can only be released when the drill is up
 requirement A_clamp.c_off needs S_drill_up.On;
 
-//The clamp is only allowed to disable when the drill is powered off
-//requirement A_clamp.c_off needs A_drill.Off;
+//(R6) The clamp can only be released when the drill is disabled
+requirement A_clamp.c_off needs A_drill.Off;
 
 
 //Dril
+//(R11) The cycle at the drilling location should be as follows:
 //The drill is only allowed to enable at the upper position
 requirement A_drill.c_on  needs S_drill_up.On;
 
-//The drill is only allowed to enable when a product is clamped
+//(R7) The drill is only allowed to activate when there is a clamped product.
 requirement A_drill.c_on  needs S_clamp.On;
 
-//The drill is only allowed to disable at the bottom position
-requirement A_drill.c_off needs S_drill_down.On;
+//(R11) The cycle at the drilling location should be as follows:
+//The drill is only allowed to disable at the upper position
+requirement A_drill.c_off needs S_drill_up.On;
 
 
 //Drill movement
+//(R11) The cycle at the drilling location should be as follows:
 //The drill is only allowed to descend when it is fully ascended
 requirement {A_drillup.c_off, A_drilldown.c_on} needs S_drill_up.On;
 
+//(R11) The cycle at the drilling location should be as follows:
 //The drill is only allowed to ascend  when it is fully descended
 requirement {A_drillup.c_on, A_drilldown.c_off} needs S_drill_down.On;
 
-//Actuator relations:
+//(R10) / (R11) The cycle at the drilling location should be as follows:
+//  clamp product, activate drill, descend, ascend, deactivate drill, release product
 requirement ClampDrill:
     location one:
         initial; marked;
@@ -161,26 +164,14 @@ requirement ClampDrill:
         edge A_turntable.c_on  goto one;
 end
 
-
 //Eject
-//Eject can enable when the turn table is at stand-still
+//(R5) The ejector are only allowed to enable when the turntable is at stand-still
 requirement A_eject.c_on  needs S_turntable.On;
 requirement A_eject.c_on  needs A_turntable.Off;
-requirement A_eject.c_on  needs Timer.Timeout;
+requirement A_eject.c_on  needs PTimer.Timeout;
 
-//Eject can enable when there is a product at exit
+//(R5) The ejector is only allowed to enable when there is a product
 requirement A_eject.c_on  needs S_atexit.On;
 
-//Eject can enable when the sorting station is ready
-//requirement A_eject.c_on  needs S_sortingbusy.Off;
-
-//Eject can disable when the product is released
+//(R8) The ejector can be retracted if the product is removed.
 requirement A_eject.c_off needs S_atexit.Off;
-
-//The processing station is ready when it is at stand-still and there is no product at the input
-//requirement A_processingready.c_on  needs S_turntable.On;
-//requirement A_processingready.c_on  needs S_atinput.Off;
-
-//The processing station is busy when the turn table is not at stand-still or there is a product at the input
-//requirement A_processingready.c_off needs S_turntable.Off or S_atinput.On;
-requirement A_processingready.c_on needs false;

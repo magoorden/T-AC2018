@@ -39,3 +39,7 @@ requirement A_separator.c_off needs S_turntable.On;
 //Processing - Sorting combination
 //Eject can enable when the sorting has sorted the last product
 requirement A_eject.c_off needs A_conveyer.Off;
+
+//Testing - Buffering combination
+//The air slide can only be enabled when the buffering station is not full
+requirement A_airslide.c_on needs S_atin.Off;
