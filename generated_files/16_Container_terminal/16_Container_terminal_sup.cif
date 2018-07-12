@@ -2,15 +2,15 @@ uncontrollable Stop_Button_u_pushed;
 uncontrollable Stop_Button_u_released;
 uncontrollable Start_Button_u_pushed;
 uncontrollable Start_Button_u_released;
-controllable Loadplatform_switch_sensor_c_notifyWhenClosed;
+uncontrollable Loadplatform_switch_sensor_c_notifyWhenClosed;
 uncontrollable Loadplatform_switch_sensor_u_closed;
-controllable Loadplatform_conveyor_motor_c_move_forward;
-controllable Loadplatform_conveyor_motor_c_stop;
+uncontrollable Loadplatform_conveyor_motor_c_move_forward;
+uncontrollable Loadplatform_conveyor_motor_c_stop;
 uncontrollable Loadplatform_conveyor_motor_u_stopped;
-controllable Loadplatform_pre_conveyor_motor_c_move_forward;
-controllable Loadplatform_pre_conveyor_motor_c_stop;
+uncontrollable Loadplatform_pre_conveyor_motor_c_move_forward;
+uncontrollable Loadplatform_pre_conveyor_motor_c_stop;
 uncontrollable Loadplatform_pre_conveyor_motor_u_stopped;
-controllable Loadplatform_color_sensor_c_get_color;
+uncontrollable Loadplatform_color_sensor_c_get_color;
 uncontrollable Loadplatform_color_sensor_u_COLOR_RED;
 uncontrollable Loadplatform_color_sensor_u_COLOR_YELLOW;
 uncontrollable Loadplatform_color_sensor_u_COLOR_GREEN;
@@ -24,27 +24,27 @@ uncontrollable Loadcrane_Color_Sensor_u_detected_YELLOW;
 uncontrollable Loadcrane_Color_Sensor_u_detected_GREEN;
 uncontrollable Loadcrane_Color_Sensor_u_detected_BLACK;
 uncontrollable Loadcrane_Color_Sensor_u_detected_WHITE;
-controllable Loadcrane_Color_Changing_c_change_color_to_load_pos_color;
-controllable Loadcrane_Color_Changing_c_change_color_to_unload_pos_1_color;
-controllable Loadcrane_Color_Changing_c_change_color_to_unload_pos_2_color;
-controllable Loadcrane_Color_Sending_c_notify;
-controllable Loadcrane_track_Motor_c_move_forward;
-controllable Loadcrane_track_Motor_c_move_backward;
-controllable Loadcrane_track_Motor_c_stop;
+uncontrollable Loadcrane_Color_Changing_c_change_color_to_load_pos_color;
+uncontrollable Loadcrane_Color_Changing_c_change_color_to_unload_pos_1_color;
+uncontrollable Loadcrane_Color_Changing_c_change_color_to_unload_pos_2_color;
+uncontrollable Loadcrane_Color_Sending_c_notify;
+uncontrollable Loadcrane_track_Motor_c_move_forward;
+uncontrollable Loadcrane_track_Motor_c_move_backward;
+uncontrollable Loadcrane_track_Motor_c_stop;
 uncontrollable Loadcrane_track_Motor_u_stopped;
-controllable Loadcrane_lift_Motor_c_move_backward;
-controllable Loadcrane_lift_Motor_c_stop;
-controllable Loadcrane_lift_Motor_c_rotateAbsoluteDegrees;
+uncontrollable Loadcrane_lift_Motor_c_move_backward;
+uncontrollable Loadcrane_lift_Motor_c_stop;
+uncontrollable Loadcrane_lift_Motor_c_rotateAbsoluteDegrees;
 uncontrollable Loadcrane_lift_Motor_u_at_position;
 uncontrollable Loadcrane_lift_Motor_u_stopped;
-controllable Loadcrane_lift_switch_sensor_c_notifyWhenClosed;
+uncontrollable Loadcrane_lift_switch_sensor_c_notifyWhenClosed;
 uncontrollable Loadcrane_lift_switch_sensor_u_closed;
-controllable Loadcrane_gripper_Motor_c_move_backward;
-controllable Loadcrane_gripper_Motor_c_stop;
-controllable Loadcrane_gripper_Motor_c_rotateAbsoluteDegrees;
+uncontrollable Loadcrane_gripper_Motor_c_move_backward;
+uncontrollable Loadcrane_gripper_Motor_c_stop;
+uncontrollable Loadcrane_gripper_Motor_c_rotateAbsoluteDegrees;
 uncontrollable Loadcrane_gripper_Motor_u_at_position;
 uncontrollable Loadcrane_gripper_Motor_u_stopped;
-controllable Loadcrane_gripper_switch_sensor_c_notifyWhenClosed;
+uncontrollable Loadcrane_gripper_switch_sensor_c_notifyWhenClosed;
 uncontrollable Loadcrane_gripper_switch_sensor_u_closed;
 uncontrollable Truck_Color_Sensor_u_detected_RED;
 uncontrollable Truck_Color_Sensor_u_detected_BLUE;
@@ -52,13 +52,13 @@ uncontrollable Truck_Color_Sensor_u_detected_YELLOW;
 uncontrollable Truck_Color_Sensor_u_detected_GREEN;
 uncontrollable Truck_Color_Sensor_u_detected_BLACK;
 uncontrollable Truck_Color_Sensor_u_detected_WHITE;
-controllable Truck_Color_Changing_c_change_color_to_load_pos_color;
-controllable Truck_Color_Changing_c_change_color_to_unload_pos_1_color;
-controllable Truck_Color_Changing_c_change_color_to_unload_pos_2_color;
-controllable Truck_Color_Sending_c_notify;
-controllable Truck_Motor_c_move_forward;
-controllable Truck_Motor_c_move_backward;
-controllable Truck_Motor_c_stop;
+uncontrollable Truck_Color_Changing_c_change_color_to_load_pos_color;
+uncontrollable Truck_Color_Changing_c_change_color_to_unload_pos_1_color;
+uncontrollable Truck_Color_Changing_c_change_color_to_unload_pos_2_color;
+uncontrollable Truck_Color_Sending_c_notify;
+uncontrollable Truck_Motor_c_move_forward;
+uncontrollable Truck_Motor_c_move_backward;
+uncontrollable Truck_Motor_c_stop;
 uncontrollable Truck_Motor_u_stopped;
 uncontrollable Unloadcrane_1_Color_Sensor_u_detected_RED;
 uncontrollable Unloadcrane_1_Color_Sensor_u_detected_BLUE;
@@ -66,27 +66,27 @@ uncontrollable Unloadcrane_1_Color_Sensor_u_detected_YELLOW;
 uncontrollable Unloadcrane_1_Color_Sensor_u_detected_GREEN;
 uncontrollable Unloadcrane_1_Color_Sensor_u_detected_BLACK;
 uncontrollable Unloadcrane_1_Color_Sensor_u_detected_WHITE;
-controllable Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color;
-controllable Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_1_color;
-controllable Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color;
-controllable Unloadcrane_1_Color_Sending_c_notify;
-controllable Unloadcrane_1_track_Motor_c_move_forward;
-controllable Unloadcrane_1_track_Motor_c_move_backward;
-controllable Unloadcrane_1_track_Motor_c_stop;
+uncontrollable Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color;
+uncontrollable Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_1_color;
+uncontrollable Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color;
+uncontrollable Unloadcrane_1_Color_Sending_c_notify;
+uncontrollable Unloadcrane_1_track_Motor_c_move_forward;
+uncontrollable Unloadcrane_1_track_Motor_c_move_backward;
+uncontrollable Unloadcrane_1_track_Motor_c_stop;
 uncontrollable Unloadcrane_1_track_Motor_u_stopped;
-controllable Unloadcrane_1_lift_Motor_c_move_backward;
-controllable Unloadcrane_1_lift_Motor_c_stop;
-controllable Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees;
+uncontrollable Unloadcrane_1_lift_Motor_c_move_backward;
+uncontrollable Unloadcrane_1_lift_Motor_c_stop;
+uncontrollable Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees;
 uncontrollable Unloadcrane_1_lift_Motor_u_at_position;
 uncontrollable Unloadcrane_1_lift_Motor_u_stopped;
-controllable Unloadcrane_1_lift_switch_sensor_c_notifyWhenClosed;
+uncontrollable Unloadcrane_1_lift_switch_sensor_c_notifyWhenClosed;
 uncontrollable Unloadcrane_1_lift_switch_sensor_u_closed;
-controllable Unloadcrane_1_gripper_Motor_c_move_backward;
-controllable Unloadcrane_1_gripper_Motor_c_stop;
-controllable Unloadcrane_1_gripper_Motor_c_rotateAbsoluteDegrees;
+uncontrollable Unloadcrane_1_gripper_Motor_c_move_backward;
+uncontrollable Unloadcrane_1_gripper_Motor_c_stop;
+uncontrollable Unloadcrane_1_gripper_Motor_c_rotateAbsoluteDegrees;
 uncontrollable Unloadcrane_1_gripper_Motor_u_at_position;
 uncontrollable Unloadcrane_1_gripper_Motor_u_stopped;
-controllable Unloadcrane_1_gripper_switch_sensor_c_notifyWhenClosed;
+uncontrollable Unloadcrane_1_gripper_switch_sensor_c_notifyWhenClosed;
 uncontrollable Unloadcrane_1_gripper_switch_sensor_u_closed;
 uncontrollable Unloadcrane_2_Color_Sensor_u_detected_RED;
 uncontrollable Unloadcrane_2_Color_Sensor_u_detected_BLUE;
@@ -94,27 +94,27 @@ uncontrollable Unloadcrane_2_Color_Sensor_u_detected_YELLOW;
 uncontrollable Unloadcrane_2_Color_Sensor_u_detected_GREEN;
 uncontrollable Unloadcrane_2_Color_Sensor_u_detected_BLACK;
 uncontrollable Unloadcrane_2_Color_Sensor_u_detected_WHITE;
-controllable Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color;
-controllable Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_1_color;
-controllable Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color;
-controllable Unloadcrane_2_Color_Sending_c_notify;
-controllable Unloadcrane_2_track_Motor_c_move_forward;
-controllable Unloadcrane_2_track_Motor_c_move_backward;
-controllable Unloadcrane_2_track_Motor_c_stop;
+uncontrollable Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color;
+uncontrollable Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_1_color;
+uncontrollable Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color;
+uncontrollable Unloadcrane_2_Color_Sending_c_notify;
+uncontrollable Unloadcrane_2_track_Motor_c_move_forward;
+uncontrollable Unloadcrane_2_track_Motor_c_move_backward;
+uncontrollable Unloadcrane_2_track_Motor_c_stop;
 uncontrollable Unloadcrane_2_track_Motor_u_stopped;
-controllable Unloadcrane_2_lift_Motor_c_move_backward;
-controllable Unloadcrane_2_lift_Motor_c_stop;
-controllable Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees;
+uncontrollable Unloadcrane_2_lift_Motor_c_move_backward;
+uncontrollable Unloadcrane_2_lift_Motor_c_stop;
+uncontrollable Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees;
 uncontrollable Unloadcrane_2_lift_Motor_u_at_position;
 uncontrollable Unloadcrane_2_lift_Motor_u_stopped;
-controllable Unloadcrane_2_lift_switch_sensor_c_notifyWhenClosed;
+uncontrollable Unloadcrane_2_lift_switch_sensor_c_notifyWhenClosed;
 uncontrollable Unloadcrane_2_lift_switch_sensor_u_closed;
-controllable Unloadcrane_2_gripper_Motor_c_move_backward;
-controllable Unloadcrane_2_gripper_Motor_c_stop;
-controllable Unloadcrane_2_gripper_Motor_c_rotateAbsoluteDegrees;
+uncontrollable Unloadcrane_2_gripper_Motor_c_move_backward;
+uncontrollable Unloadcrane_2_gripper_Motor_c_stop;
+uncontrollable Unloadcrane_2_gripper_Motor_c_rotateAbsoluteDegrees;
 uncontrollable Unloadcrane_2_gripper_Motor_u_at_position;
 uncontrollable Unloadcrane_2_gripper_Motor_u_stopped;
-controllable Unloadcrane_2_gripper_switch_sensor_c_notifyWhenClosed;
+uncontrollable Unloadcrane_2_gripper_switch_sensor_c_notifyWhenClosed;
 uncontrollable Unloadcrane_2_gripper_switch_sensor_u_closed;
 plant automaton Control_Destination:
   disc int[0..3] loadcrane = 0;
@@ -131,7 +131,7 @@ plant automaton Stop_Button:
     edge Stop_Button_u_pushed when not pushed do pushed := true;
     edge Stop_Button_u_released when pushed do pushed := false;
 end
-supervisor automaton Stop_System:
+plant automaton Stop_System:
   location Running:
     initial;
     edge Stop_Button_u_pushed goto Stopped;
@@ -147,7 +147,7 @@ supervisor automaton Stop_System:
     edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when Unloadcrane_2_Activity_monitor.UP_Close;
     edge Stop_Button_u_pushed;
 end
-supervisor automaton Loadplatform_Notify_SwitchGlobal:
+plant automaton Loadplatform_Notify_SwitchGlobal:
   location Initial:
     initial;
     edge Loadplatform_switch_sensor_c_notifyWhenClosed goto Running;
@@ -155,7 +155,15 @@ supervisor automaton Loadplatform_Notify_SwitchGlobal:
     marked;
     edge Loadplatform_switch_sensor_c_notifyWhenClosed when Loadcrane_Activity_monitor.UP_Close and Loadcrane_Color_Sensor.detected_color = 0;
 end
-supervisor automaton Loadcrane_Change_requested_color:
+plant automaton Truck_Change_requested_color:
+  location Idle:
+    initial;
+    marked;
+    edge Truck_Color_Changing_c_change_color_to_load_pos_color when Unloadcrane_1_Activity_monitor.UP_Close and Truck_Color_Sensor.detected_color = 3 or Unloadcrane_2_Activity_monitor.UP_Close and Truck_Color_Sensor.detected_color = 0 or Loadcrane_Activity_monitor.UP_Open and Control_Destination.truck = 3;
+    edge Truck_Color_Changing_c_change_color_to_unload_pos_1_color when Loadcrane_Activity_monitor.UP_Open and Control_Destination.truck = 1 and Loadcrane_Color_Sensor.detected_color = 2;
+    edge Truck_Color_Changing_c_change_color_to_unload_pos_2_color when Loadcrane_Activity_monitor.UP_Open and Control_Destination.truck = 2 and Loadcrane_Color_Sensor.detected_color = 2;
+end
+plant automaton Loadcrane_Change_requested_color:
   location Idle:
     initial;
     marked;
@@ -184,6 +192,21 @@ plant automaton Loadcrane_Activity_monitor:
     edge Loadcrane_lift_Motor_u_stopped goto UP_Open;
     edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees;
 end
+plant automaton Loadcrane_Activity:
+  location UP_Open:
+    initial;
+    marked;
+    edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when Control_Destination.loadcrane = 0 and Loadplatform_conveyor_motor.Idle and Loadcrane_Color_Sensor.detected_color = 0 or (Control_Destination.loadcrane = 1 or Control_Destination.loadcrane = 2) and Loadplatform_conveyor_motor.Idle and Loadcrane_Color_Sensor.detected_color = 0 and Truck_Color_Sensor.detected_color = 2 and Loadcrane_track_Motor.Idle goto Pick;
+  location Pick:
+    marked;
+    edge Loadcrane_lift_Motor_u_stopped goto UP_Close;
+  location UP_Close:
+    marked;
+    edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when (Loadcrane_Color_Sensor.detected_color = 3 or Loadcrane_Color_Sensor.detected_color = 2) and Loadcrane_track_Motor.Idle goto Place;
+  location Place:
+    marked;
+    edge Loadcrane_lift_Motor_u_stopped goto UP_Open;
+end
 plant automaton Unloadcrane_1_Activity_monitor:
   location UP_Open:
     initial;
@@ -205,6 +228,35 @@ plant automaton Unloadcrane_1_Activity_monitor:
     edge Unloadcrane_1_lift_Motor_u_stopped goto UP_Open;
     edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees;
 end
+plant automaton Unloadcrane_1_Activity:
+  location UP_Open:
+    initial;
+    marked;
+    edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when Truck_Color_Sensor.detected_color = 3 and Unloadcrane_1_Color_Sensor.detected_color = 2 and Unloadcrane_1_track_Motor.Idle goto Pick;
+  location Pick:
+    marked;
+    edge Unloadcrane_1_lift_Motor_u_stopped goto UP_Close;
+  location UP_Close:
+    marked;
+    edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when Unloadcrane_1_Color_Sensor.detected_color = 0 and Unloadcrane_1_track_Motor.Idle goto Place;
+  location Place:
+    marked;
+    edge Unloadcrane_1_lift_Motor_u_stopped goto UP_Open;
+end
+plant automaton Unloadcrane_1_Change_requested_color:
+  location Idle:
+    initial;
+    marked;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color when Unloadcrane_1_Activity_monitor.UP_Open and Unloadcrane_1_Color_Sensor.detected_color = 0 or Unloadcrane_1_Activity_monitor.UP_Open and Unloadcrane_1_Color_Sensor.detected_color = 6;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color when Unloadcrane_1_Activity_monitor.UP_Close;
+end
+plant automaton Unloadcrane_2_Change_requested_color:
+  location Idle:
+    initial;
+    marked;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color when Unloadcrane_2_Activity_monitor.UP_Close;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color when Unloadcrane_2_Activity_monitor.UP_Open and Unloadcrane_2_Color_Sensor.detected_color = 0 or Unloadcrane_2_Activity_monitor.UP_Open and Unloadcrane_2_Color_Sensor.detected_color = 6;
+end
 plant automaton Unloadcrane_2_Activity_monitor:
   location UP_Open:
     initial;
@@ -225,6 +277,29 @@ plant automaton Unloadcrane_2_Activity_monitor:
     marked;
     edge Unloadcrane_2_lift_Motor_u_stopped goto UP_Open;
     edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees;
+end
+plant automaton Unloadcrane_2_Activity:
+  location UP_Open:
+    initial;
+    marked;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when Truck_Color_Sensor.detected_color = 0 and Unloadcrane_2_Color_Sensor.detected_color = 2 and Unloadcrane_2_track_Motor.Idle goto Pick;
+  location Pick:
+    marked;
+    edge Unloadcrane_2_lift_Motor_u_stopped goto UP_Close;
+  location UP_Close:
+    marked;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when Unloadcrane_2_Color_Sensor.detected_color = 0 and Unloadcrane_2_track_Motor.Idle goto Place;
+  location Place:
+    marked;
+    edge Unloadcrane_2_lift_Motor_u_stopped goto UP_Open;
+end
+plant automaton Start_Button:
+  disc bool pushed = false;
+  location:
+    initial;
+    marked;
+    edge Start_Button_u_pushed when not pushed do pushed := true;
+    edge Start_Button_u_released when pushed do pushed := false;
 end
 plant automaton Loadplatform_switch_sensor:
   location Idle:
@@ -269,7 +344,16 @@ plant automaton Loadplatform_color_sensor:
     edge Loadplatform_color_sensor_u_COLOR_WHITE do color_sensor_value := 7 goto Idle;
     edge Loadplatform_color_sensor_u_COLOR_UNDEFINED do color_sensor_value := 6 goto Idle;
 end
-supervisor automaton Restrict_behaviour_color_sensor_and_conveyors:
+plant automaton Loadplatform_Notify_Switch:
+  location Initial:
+    initial;
+    edge Start_Button_u_pushed goto Running;
+  location Running:
+    marked;
+    edge Loadplatform_switch_sensor_c_notifyWhenClosed;
+    edge Start_Button_u_pushed;
+end
+plant automaton Restrict_behaviour_color_sensor_and_conveyors:
   location:
     initial;
     marked;
@@ -320,6 +404,16 @@ plant automaton Loadcrane_track_Motor:
   location Stop:
     edge Loadcrane_track_Motor_u_stopped goto Idle;
 end
+plant automaton Loadcrane_move_forward_and_backward:
+  location:
+    initial;
+    marked;
+    edge Loadcrane_track_Motor_c_move_forward when Loadcrane_Color_Changing.req_color != 0 and (Loadcrane_track_Motor.motion = 1 or Loadcrane_track_Motor.motion = 2) and Loadcrane_notification_color_sensor_monitor.Moving;
+    edge Loadcrane_track_Motor_c_move_backward when Loadcrane_Color_Changing.req_color = 0 and (Loadcrane_track_Motor.motion = 0 or Loadcrane_track_Motor.motion = 2) and Loadcrane_notification_color_sensor_monitor.Moving;
+    edge Loadcrane_Color_Changing_c_change_color_to_load_pos_color when Loadcrane_Color_Changing.req_color = Loadcrane_Color_Sensor.detected_color;
+    edge Loadcrane_Color_Changing_c_change_color_to_unload_pos_1_color when Loadcrane_Color_Changing.req_color = Loadcrane_Color_Sensor.detected_color;
+    edge Loadcrane_Color_Changing_c_change_color_to_unload_pos_2_color when Loadcrane_Color_Changing.req_color = Loadcrane_Color_Sensor.detected_color;
+end
 plant automaton Loadcrane_notification_color_sensor_monitor:
   location Send_Color:
     initial;
@@ -331,6 +425,27 @@ plant automaton Loadcrane_notification_color_sensor_monitor:
     marked;
     edge Loadcrane_track_Motor_u_stopped goto Send_Color;
     edge Loadcrane_Color_Sending_c_notify;
+end
+plant automaton Loadcrane_notification_color_sensor:
+  location Send_Color:
+    initial;
+    marked;
+    edge Loadcrane_Color_Sending_c_notify when Loadcrane_Color_Changing.req_color != Loadcrane_Color_Sensor.detected_color goto Moving;
+  location Moving:
+    edge Loadcrane_track_Motor_u_stopped goto Send_Color;
+end
+plant automaton Loadcrane_stop_when_requested_color_detected:
+  location Moving:
+    initial;
+    marked;
+    edge Loadcrane_Color_Sensor_u_detected_RED goto Stop;
+    edge Loadcrane_Color_Sensor_u_detected_BLUE goto Stop;
+    edge Loadcrane_Color_Sensor_u_detected_YELLOW goto Stop;
+    edge Loadcrane_Color_Sensor_u_detected_GREEN goto Stop;
+    edge Loadcrane_Color_Sensor_u_detected_BLACK goto Stop;
+    edge Loadcrane_Color_Sensor_u_detected_WHITE goto Stop;
+  location Stop:
+    edge Loadcrane_track_Motor_u_stopped goto Moving;
 end
 plant automaton Loadcrane_lift_Motor:
   disc int[0..1] situation = 0;
@@ -385,14 +500,14 @@ plant automaton Loadcrane_lift_activity_monitor:
     edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when action = 1 do action := 2;
     edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when not(action = 0 or action = 2), not(action = 1);
 end
-supervisor automaton Loadcrane_lift_activity:
+plant automaton Loadcrane_lift_activity:
   location:
     initial;
     marked;
     edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when (Loadcrane_lift_activity_monitor.action = 0 or Loadcrane_lift_activity_monitor.action = 2) and Loadcrane_gripper_Motor.situation = 0 and Loadcrane_lift_Motor.situation = 0;
     edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when Loadcrane_lift_activity_monitor.action = 1 and Loadcrane_gripper_Motor.situation = 1 and Loadcrane_lift_Motor.situation = 0;
 end
-supervisor automaton Loadcrane_Open_Close_Lift_and_Lower_the_Gripper:
+plant automaton Loadcrane_Open_Close_Lift_and_Lower_the_Gripper:
   location:
     initial;
     marked;
@@ -402,7 +517,15 @@ supervisor automaton Loadcrane_Open_Close_Lift_and_Lower_the_Gripper:
     edge Loadcrane_lift_switch_sensor_c_notifyWhenClosed when Loadcrane_lift_Motor.Lifting;
     edge Loadcrane_gripper_switch_sensor_c_notifyWhenClosed when Loadcrane_gripper_Motor.Opening;
 end
-supervisor automaton Loadcrane_Lifting_Gripper:
+plant automaton Loadcrane_Open_Gripper:
+  location Move:
+    initial;
+    marked;
+    edge Loadcrane_gripper_switch_sensor_u_closed goto Stop;
+  location Stop:
+    edge Loadcrane_gripper_Motor_u_stopped goto Move;
+end
+plant automaton Loadcrane_Lifting_Gripper:
   location Move:
     initial;
     marked;
@@ -451,6 +574,16 @@ plant automaton Truck_Motor:
   location Stop:
     edge Truck_Motor_u_stopped goto Idle;
 end
+plant automaton Truck_move_forward_and_backward:
+  location:
+    initial;
+    marked;
+    edge Truck_Motor_c_move_forward when Truck_Color_Changing.req_color != 2 and (Truck_Motor.motion = 1 or Truck_Motor.motion = 2) and Truck_notification_color_sensor_monitor.Moving;
+    edge Truck_Motor_c_move_backward when Truck_Color_Changing.req_color = 2 and (Truck_Motor.motion = 0 or Truck_Motor.motion = 2) and Truck_notification_color_sensor_monitor.Moving;
+    edge Truck_Color_Changing_c_change_color_to_load_pos_color when Truck_Color_Changing.req_color = Truck_Color_Sensor.detected_color;
+    edge Truck_Color_Changing_c_change_color_to_unload_pos_1_color when Truck_Color_Changing.req_color = Truck_Color_Sensor.detected_color;
+    edge Truck_Color_Changing_c_change_color_to_unload_pos_2_color when Truck_Color_Changing.req_color = Truck_Color_Sensor.detected_color;
+end
 plant automaton Truck_notification_color_sensor_monitor:
   location Send_Color:
     initial;
@@ -462,6 +595,27 @@ plant automaton Truck_notification_color_sensor_monitor:
     marked;
     edge Truck_Motor_u_stopped goto Send_Color;
     edge Truck_Color_Sending_c_notify;
+end
+plant automaton Truck_notification_color_sensor:
+  location Send_Color:
+    initial;
+    marked;
+    edge Truck_Color_Sending_c_notify when Truck_Color_Changing.req_color != Truck_Color_Sensor.detected_color goto Moving;
+  location Moving:
+    edge Truck_Motor_u_stopped goto Send_Color;
+end
+plant automaton Truck_Stop_truck_when_requested_color_detected:
+  location Moving:
+    initial;
+    marked;
+    edge Truck_Color_Sensor_u_detected_RED goto Stop;
+    edge Truck_Color_Sensor_u_detected_BLUE goto Stop;
+    edge Truck_Color_Sensor_u_detected_YELLOW goto Stop;
+    edge Truck_Color_Sensor_u_detected_GREEN goto Stop;
+    edge Truck_Color_Sensor_u_detected_BLACK goto Stop;
+    edge Truck_Color_Sensor_u_detected_WHITE goto Stop;
+  location Stop:
+    edge Truck_Motor_u_stopped goto Moving;
 end
 plant automaton Unloadcrane_1_Color_Sensor:
   disc int[0..7] detected_color = 6;
@@ -504,6 +658,16 @@ plant automaton Unloadcrane_1_track_Motor:
   location Stop:
     edge Unloadcrane_1_track_Motor_u_stopped goto Idle;
 end
+plant automaton Unloadcrane_1_move_forward_and_backward:
+  location:
+    initial;
+    marked;
+    edge Unloadcrane_1_track_Motor_c_move_forward when Unloadcrane_1_Color_Changing.req_color = 2 and (Unloadcrane_1_track_Motor.motion = 1 or Unloadcrane_1_track_Motor.motion = 2) and Unloadcrane_1_notification_color_sensor_monitor.Moving;
+    edge Unloadcrane_1_track_Motor_c_move_backward when Unloadcrane_1_Color_Changing.req_color != 2 and (Unloadcrane_1_track_Motor.motion = 0 or Unloadcrane_1_track_Motor.motion = 2) and Unloadcrane_1_notification_color_sensor_monitor.Moving;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color when Unloadcrane_1_Color_Changing.req_color = Unloadcrane_1_Color_Sensor.detected_color;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_1_color when false;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color when Unloadcrane_1_Color_Changing.req_color = Unloadcrane_1_Color_Sensor.detected_color;
+end
 plant automaton Unloadcrane_1_notification_color_sensor_monitor:
   location Send_Color:
     initial;
@@ -515,6 +679,27 @@ plant automaton Unloadcrane_1_notification_color_sensor_monitor:
     marked;
     edge Unloadcrane_1_track_Motor_u_stopped goto Send_Color;
     edge Unloadcrane_1_Color_Sending_c_notify;
+end
+plant automaton Unloadcrane_1_notification_color_sensor:
+  location Send_Color:
+    initial;
+    marked;
+    edge Unloadcrane_1_Color_Sending_c_notify when Unloadcrane_1_Color_Changing.req_color != Unloadcrane_1_Color_Sensor.detected_color goto Moving;
+  location Moving:
+    edge Unloadcrane_1_track_Motor_u_stopped goto Send_Color;
+end
+plant automaton Unloadcrane_1_Stop_Unloadcrane_1_when_requested_color_detected:
+  location Moving:
+    initial;
+    marked;
+    edge Unloadcrane_1_Color_Sensor_u_detected_RED goto Stop;
+    edge Unloadcrane_1_Color_Sensor_u_detected_BLUE goto Stop;
+    edge Unloadcrane_1_Color_Sensor_u_detected_YELLOW goto Stop;
+    edge Unloadcrane_1_Color_Sensor_u_detected_GREEN goto Stop;
+    edge Unloadcrane_1_Color_Sensor_u_detected_BLACK goto Stop;
+    edge Unloadcrane_1_Color_Sensor_u_detected_WHITE goto Stop;
+  location Stop:
+    edge Unloadcrane_1_track_Motor_u_stopped goto Moving;
 end
 plant automaton Unloadcrane_1_lift_Motor:
   disc int[0..1] situation = 0;
@@ -569,14 +754,14 @@ plant automaton Unloadcrane_1_lift_activity_monitor:
     edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when action = 1 do action := 2;
     edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when not(action = 0 or action = 2), not(action = 1);
 end
-supervisor automaton Unloadcrane_1_lift_activity:
+plant automaton Unloadcrane_1_lift_activity:
   location:
     initial;
     marked;
     edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when (Unloadcrane_1_lift_activity_monitor.action = 0 or Unloadcrane_1_lift_activity_monitor.action = 2) and Unloadcrane_1_gripper_Motor.situation = 0 and Unloadcrane_1_lift_Motor.situation = 0;
     edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when Unloadcrane_1_lift_activity_monitor.action = 1 and Unloadcrane_1_gripper_Motor.situation = 1 and Unloadcrane_1_lift_Motor.situation = 0;
 end
-supervisor automaton Unloadcrane_1_Open_Close_Lift_and_Lower_the_Gripper:
+plant automaton Unloadcrane_1_Open_Close_Lift_and_Lower_the_Gripper:
   location:
     initial;
     marked;
@@ -586,7 +771,15 @@ supervisor automaton Unloadcrane_1_Open_Close_Lift_and_Lower_the_Gripper:
     edge Unloadcrane_1_lift_switch_sensor_c_notifyWhenClosed when Unloadcrane_1_lift_Motor.Lifting;
     edge Unloadcrane_1_gripper_switch_sensor_c_notifyWhenClosed when Unloadcrane_1_gripper_Motor.Opening;
 end
-supervisor automaton Unloadcrane_1_Lifting_Gripper:
+plant automaton Unloadcrane_1_Open_Gripper:
+  location Move:
+    initial;
+    marked;
+    edge Unloadcrane_1_gripper_switch_sensor_u_closed goto Stop;
+  location Stop:
+    edge Unloadcrane_1_gripper_Motor_u_stopped goto Move;
+end
+plant automaton Unloadcrane_1_Lifting_Gripper:
   location Move:
     initial;
     marked;
@@ -635,6 +828,16 @@ plant automaton Unloadcrane_2_track_Motor:
   location Stop:
     edge Unloadcrane_2_track_Motor_u_stopped goto Idle;
 end
+plant automaton Unloadcrane_2_move_forward_and_backward:
+  location:
+    initial;
+    marked;
+    edge Unloadcrane_2_track_Motor_c_move_forward when Unloadcrane_2_Color_Changing.req_color = 2 and (Unloadcrane_2_track_Motor.motion = 1 or Unloadcrane_2_track_Motor.motion = 2) and Unloadcrane_2_notification_color_sensor_monitor.Moving;
+    edge Unloadcrane_2_track_Motor_c_move_backward when Unloadcrane_2_Color_Changing.req_color != 2 and (Unloadcrane_2_track_Motor.motion = 0 or Unloadcrane_2_track_Motor.motion = 2) and Unloadcrane_2_notification_color_sensor_monitor.Moving;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color when Unloadcrane_2_Color_Changing.req_color = Unloadcrane_2_Color_Sensor.detected_color;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_1_color when false;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color when Unloadcrane_2_Color_Changing.req_color = Unloadcrane_2_Color_Sensor.detected_color;
+end
 plant automaton Unloadcrane_2_notification_color_sensor_monitor:
   location Send_Color:
     initial;
@@ -646,6 +849,27 @@ plant automaton Unloadcrane_2_notification_color_sensor_monitor:
     marked;
     edge Unloadcrane_2_track_Motor_u_stopped goto Send_Color;
     edge Unloadcrane_2_Color_Sending_c_notify;
+end
+plant automaton Unloadcrane_2_notification_color_sensor:
+  location Send_Color:
+    initial;
+    marked;
+    edge Unloadcrane_2_Color_Sending_c_notify when Unloadcrane_2_Color_Changing.req_color != Unloadcrane_2_Color_Sensor.detected_color goto Moving;
+  location Moving:
+    edge Unloadcrane_2_track_Motor_u_stopped goto Send_Color;
+end
+plant automaton Unloadcrane_2_Stop_Unloadcrane_2_when_requested_color_detected:
+  location Moving:
+    initial;
+    marked;
+    edge Unloadcrane_2_Color_Sensor_u_detected_RED goto Stop;
+    edge Unloadcrane_2_Color_Sensor_u_detected_BLUE goto Stop;
+    edge Unloadcrane_2_Color_Sensor_u_detected_YELLOW goto Stop;
+    edge Unloadcrane_2_Color_Sensor_u_detected_GREEN goto Stop;
+    edge Unloadcrane_2_Color_Sensor_u_detected_BLACK goto Stop;
+    edge Unloadcrane_2_Color_Sensor_u_detected_WHITE goto Stop;
+  location Stop:
+    edge Unloadcrane_2_track_Motor_u_stopped goto Moving;
 end
 plant automaton Unloadcrane_2_lift_Motor:
   disc int[0..1] situation = 0;
@@ -661,6 +885,36 @@ plant automaton Unloadcrane_2_lift_Motor:
   location Stop:
     edge Unloadcrane_2_lift_Motor_u_stopped do situation := 0 goto Idle;
 end
+plant automaton Unloadcrane_2_lift_switch_sensor:
+  location Idle:
+    initial;
+    marked;
+    edge Unloadcrane_2_lift_switch_sensor_c_notifyWhenClosed goto Reply;
+  location Reply:
+    edge Unloadcrane_2_lift_switch_sensor_u_closed goto Idle;
+end
+plant automaton Unloadcrane_2_gripper_Motor:
+  disc int[0..1] situation = 0;
+  location Idle:
+    initial;
+    marked;
+    edge Unloadcrane_2_gripper_Motor_c_rotateAbsoluteDegrees goto Closing;
+    edge Unloadcrane_2_gripper_Motor_c_move_backward goto Opening;
+  location Closing:
+    edge Unloadcrane_2_gripper_Motor_u_at_position do situation := 1 goto Idle;
+  location Opening:
+    edge Unloadcrane_2_gripper_Motor_c_stop goto Stop;
+  location Stop:
+    edge Unloadcrane_2_gripper_Motor_u_stopped do situation := 0 goto Idle;
+end
+plant automaton Unloadcrane_2_gripper_switch_sensor:
+  location Idle:
+    initial;
+    marked;
+    edge Unloadcrane_2_gripper_switch_sensor_c_notifyWhenClosed goto Reply;
+  location Reply:
+    edge Unloadcrane_2_gripper_switch_sensor_u_closed goto Idle;
+end
 plant automaton Unloadcrane_2_lift_activity_monitor:
   disc int[0..2] action = 0;
   location Idle:
@@ -670,7 +924,40 @@ plant automaton Unloadcrane_2_lift_activity_monitor:
     edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when action = 1 do action := 2;
     edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when not(action = 0 or action = 2), not(action = 1);
 end
-supervisor automaton sup1:
+plant automaton Unloadcrane_2_lift_activity:
+  location Idle:
+    initial;
+    marked;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when (Unloadcrane_2_lift_activity_monitor.action = 0 or Unloadcrane_2_lift_activity_monitor.action = 2) and Unloadcrane_2_gripper_Motor.situation = 0 and Unloadcrane_2_lift_Motor.situation = 0;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when Unloadcrane_2_lift_activity_monitor.action = 1 and Unloadcrane_2_gripper_Motor.situation = 1 and Unloadcrane_2_lift_Motor.situation = 0;
+end
+plant automaton Unloadcrane_2_Open_Close_Lift_and_Lower_the_Gripper:
+  location:
+    initial;
+    marked;
+    edge Unloadcrane_2_gripper_Motor_c_rotateAbsoluteDegrees when Unloadcrane_2_lift_activity_monitor.action = 1 and Unloadcrane_2_lift_Motor.situation = 1 and Unloadcrane_2_gripper_Motor.situation = 0;
+    edge Unloadcrane_2_gripper_Motor_c_move_backward when Unloadcrane_2_lift_activity_monitor.action = 2 and Unloadcrane_2_lift_Motor.situation = 1 and Unloadcrane_2_gripper_Motor.situation = 1;
+    edge Unloadcrane_2_lift_Motor_c_move_backward when (Unloadcrane_2_lift_activity_monitor.action = 1 and Unloadcrane_2_gripper_Motor.situation = 1 or Unloadcrane_2_lift_activity_monitor.action = 2 and Unloadcrane_2_gripper_Motor.situation = 0) and Unloadcrane_2_lift_Motor.situation = 1;
+    edge Unloadcrane_2_lift_switch_sensor_c_notifyWhenClosed when Unloadcrane_2_lift_Motor.Lifting;
+    edge Unloadcrane_2_gripper_switch_sensor_c_notifyWhenClosed when Unloadcrane_2_gripper_Motor.Opening;
+end
+plant automaton Unloadcrane_2_Open_Gripper:
+  location Move:
+    initial;
+    marked;
+    edge Unloadcrane_2_gripper_switch_sensor_u_closed goto Stop;
+  location Stop:
+    edge Unloadcrane_2_gripper_Motor_u_stopped goto Move;
+end
+plant automaton Unloadcrane_2_Lifting_Gripper:
+  location Move:
+    initial;
+    marked;
+    edge Unloadcrane_2_lift_switch_sensor_u_closed goto Stop;
+  location Stop:
+    edge Unloadcrane_2_lift_Motor_u_stopped goto Move;
+end
+plant automaton sup1:
   alphabet Loadcrane_lift_Motor_c_rotateAbsoluteDegrees, Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees, Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees, Loadplatform_switch_sensor_c_notifyWhenClosed, Loadplatform_conveyor_motor_c_move_forward, Loadplatform_conveyor_motor_c_stop, Loadplatform_pre_conveyor_motor_c_move_forward, Loadplatform_pre_conveyor_motor_c_stop, Loadplatform_color_sensor_c_get_color, Loadcrane_Color_Sending_c_notify, Loadcrane_Color_Changing_c_change_color_to_load_pos_color, Loadcrane_Color_Changing_c_change_color_to_unload_pos_1_color, Loadcrane_Color_Changing_c_change_color_to_unload_pos_2_color, Loadcrane_track_Motor_c_move_forward, Loadcrane_track_Motor_c_move_backward, Loadcrane_track_Motor_c_stop, Loadcrane_lift_Motor_c_move_backward, Loadcrane_lift_Motor_c_stop, Loadcrane_lift_switch_sensor_c_notifyWhenClosed, Loadcrane_gripper_Motor_c_rotateAbsoluteDegrees, Loadcrane_gripper_Motor_c_move_backward, Loadcrane_gripper_Motor_c_stop, Loadcrane_gripper_switch_sensor_c_notifyWhenClosed, Truck_Color_Sending_c_notify, Truck_Color_Changing_c_change_color_to_load_pos_color, Truck_Color_Changing_c_change_color_to_unload_pos_1_color, Truck_Color_Changing_c_change_color_to_unload_pos_2_color, Truck_Motor_c_move_forward, Truck_Motor_c_move_backward, Truck_Motor_c_stop, Unloadcrane_1_Color_Sending_c_notify, Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color, Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_1_color, Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color, Unloadcrane_1_track_Motor_c_move_forward, Unloadcrane_1_track_Motor_c_move_backward, Unloadcrane_1_track_Motor_c_stop, Unloadcrane_1_lift_Motor_c_move_backward, Unloadcrane_1_lift_Motor_c_stop, Unloadcrane_1_lift_switch_sensor_c_notifyWhenClosed, Unloadcrane_1_gripper_Motor_c_rotateAbsoluteDegrees, Unloadcrane_1_gripper_Motor_c_move_backward, Unloadcrane_1_gripper_Motor_c_stop, Unloadcrane_1_gripper_switch_sensor_c_notifyWhenClosed, Unloadcrane_2_Color_Sending_c_notify, Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color, Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_1_color, Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color, Unloadcrane_2_track_Motor_c_move_forward, Unloadcrane_2_track_Motor_c_move_backward, Unloadcrane_2_track_Motor_c_stop, Unloadcrane_2_lift_Motor_c_move_backward, Unloadcrane_2_lift_Motor_c_stop;
   location:
     initial;
@@ -728,4 +1015,132 @@ supervisor automaton sup1:
     edge Unloadcrane_2_track_Motor_c_move_backward when true;
     edge Unloadcrane_2_track_Motor_c_move_forward when true;
     edge Unloadcrane_2_track_Motor_c_stop when true;
+end
+plant automaton sup2:
+  alphabet Loadplatform_switch_sensor_c_notifyWhenClosed;
+  location:
+    initial;
+    marked;
+    edge Loadplatform_switch_sensor_c_notifyWhenClosed when true;
+end
+plant automaton sup7:
+  alphabet Loadcrane_gripper_Motor_c_rotateAbsoluteDegrees, Loadcrane_gripper_Motor_c_move_backward, Loadcrane_gripper_Motor_c_stop, Loadcrane_gripper_switch_sensor_c_notifyWhenClosed;
+  location:
+    initial;
+    marked;
+    edge Loadcrane_gripper_Motor_c_move_backward when true;
+    edge Loadcrane_gripper_Motor_c_rotateAbsoluteDegrees when true;
+    edge Loadcrane_gripper_Motor_c_stop when Loadcrane_Open_Gripper.Stop;
+    edge Loadcrane_gripper_switch_sensor_c_notifyWhenClosed when (Loadcrane_gripper_Motor.Idle or Loadcrane_gripper_Motor.Opening) and Loadcrane_Open_Gripper.Move or Loadcrane_gripper_Motor.Closing and Loadcrane_Open_Gripper.Move;
+end
+plant automaton sup11:
+  alphabet Unloadcrane_1_gripper_Motor_c_rotateAbsoluteDegrees, Unloadcrane_1_gripper_Motor_c_move_backward, Unloadcrane_1_gripper_Motor_c_stop, Unloadcrane_1_gripper_switch_sensor_c_notifyWhenClosed;
+  location:
+    initial;
+    marked;
+    edge Unloadcrane_1_gripper_Motor_c_move_backward when true;
+    edge Unloadcrane_1_gripper_Motor_c_rotateAbsoluteDegrees when true;
+    edge Unloadcrane_1_gripper_Motor_c_stop when Unloadcrane_1_Open_Gripper.Stop;
+    edge Unloadcrane_1_gripper_switch_sensor_c_notifyWhenClosed when (Unloadcrane_1_gripper_Motor.Idle or Unloadcrane_1_gripper_Motor.Opening) and Unloadcrane_1_Open_Gripper.Move or Unloadcrane_1_gripper_Motor.Closing and Unloadcrane_1_Open_Gripper.Move;
+end
+plant automaton sup16:
+  alphabet Loadcrane_lift_Motor_c_rotateAbsoluteDegrees, Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees, Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees, Loadplatform_conveyor_motor_c_move_forward, Loadplatform_conveyor_motor_c_stop, Loadcrane_Color_Sending_c_notify, Loadcrane_Color_Changing_c_change_color_to_load_pos_color, Loadcrane_Color_Changing_c_change_color_to_unload_pos_1_color, Loadcrane_Color_Changing_c_change_color_to_unload_pos_2_color, Loadcrane_track_Motor_c_move_forward, Loadcrane_track_Motor_c_move_backward, Loadcrane_track_Motor_c_stop, Loadcrane_lift_Motor_c_move_backward, Loadcrane_lift_Motor_c_stop, Truck_Color_Sending_c_notify, Truck_Color_Changing_c_change_color_to_load_pos_color, Truck_Color_Changing_c_change_color_to_unload_pos_1_color, Truck_Color_Changing_c_change_color_to_unload_pos_2_color, Truck_Motor_c_move_forward, Truck_Motor_c_move_backward, Truck_Motor_c_stop, Unloadcrane_1_Color_Sending_c_notify, Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color, Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_1_color, Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color, Unloadcrane_1_track_Motor_c_move_forward, Unloadcrane_1_track_Motor_c_move_backward, Unloadcrane_1_track_Motor_c_stop, Unloadcrane_1_lift_Motor_c_move_backward, Unloadcrane_1_lift_Motor_c_stop, Unloadcrane_2_Color_Sending_c_notify, Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color, Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_1_color, Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color, Unloadcrane_2_track_Motor_c_move_forward, Unloadcrane_2_track_Motor_c_move_backward, Unloadcrane_2_track_Motor_c_stop, Unloadcrane_2_lift_Motor_c_move_backward, Unloadcrane_2_lift_Motor_c_stop, Unloadcrane_2_lift_switch_sensor_c_notifyWhenClosed, Unloadcrane_2_gripper_Motor_c_rotateAbsoluteDegrees, Unloadcrane_2_gripper_Motor_c_move_backward, Unloadcrane_2_gripper_Motor_c_stop, Unloadcrane_2_gripper_switch_sensor_c_notifyWhenClosed;
+  location:
+    initial;
+    marked;
+    edge Loadcrane_Color_Changing_c_change_color_to_load_pos_color when true;
+    edge Loadcrane_Color_Changing_c_change_color_to_unload_pos_1_color when true;
+    edge Loadcrane_Color_Changing_c_change_color_to_unload_pos_2_color when true;
+    edge Loadcrane_Color_Sending_c_notify when true;
+    edge Loadcrane_lift_Motor_c_move_backward when true;
+    edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when true;
+    edge Loadcrane_lift_Motor_c_stop when true;
+    edge Loadcrane_track_Motor_c_move_backward when true;
+    edge Loadcrane_track_Motor_c_move_forward when true;
+    edge Loadcrane_track_Motor_c_stop when true;
+    edge Loadplatform_conveyor_motor_c_move_forward when true;
+    edge Loadplatform_conveyor_motor_c_stop when true;
+    edge Truck_Color_Changing_c_change_color_to_load_pos_color when true;
+    edge Truck_Color_Changing_c_change_color_to_unload_pos_1_color when true;
+    edge Truck_Color_Changing_c_change_color_to_unload_pos_2_color when true;
+    edge Truck_Color_Sending_c_notify when true;
+    edge Truck_Motor_c_move_backward when true;
+    edge Truck_Motor_c_move_forward when true;
+    edge Truck_Motor_c_stop when true;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color when true;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_1_color when true;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color when true;
+    edge Unloadcrane_1_Color_Sending_c_notify when true;
+    edge Unloadcrane_1_lift_Motor_c_move_backward when true;
+    edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when true;
+    edge Unloadcrane_1_lift_Motor_c_stop when true;
+    edge Unloadcrane_1_track_Motor_c_move_backward when true;
+    edge Unloadcrane_1_track_Motor_c_move_forward when true;
+    edge Unloadcrane_1_track_Motor_c_stop when true;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color when true;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_1_color when true;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color when true;
+    edge Unloadcrane_2_Color_Sending_c_notify when true;
+    edge Unloadcrane_2_gripper_Motor_c_move_backward when true;
+    edge Unloadcrane_2_gripper_Motor_c_rotateAbsoluteDegrees when true;
+    edge Unloadcrane_2_gripper_Motor_c_stop when Unloadcrane_2_gripper_switch_sensor.Idle and Unloadcrane_2_Open_Gripper.Stop;
+    edge Unloadcrane_2_gripper_switch_sensor_c_notifyWhenClosed when Unloadcrane_2_Open_Gripper.Move;
+    edge Unloadcrane_2_lift_Motor_c_move_backward when true;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when true;
+    edge Unloadcrane_2_lift_Motor_c_stop when Unloadcrane_2_Lifting_Gripper.Stop;
+    edge Unloadcrane_2_lift_switch_sensor_c_notifyWhenClosed when Unloadcrane_2_Lifting_Gripper.Move;
+    edge Unloadcrane_2_track_Motor_c_move_backward when true;
+    edge Unloadcrane_2_track_Motor_c_move_forward when true;
+    edge Unloadcrane_2_track_Motor_c_stop when true;
+end
+plant automaton sup17:
+  alphabet Loadcrane_lift_Motor_c_rotateAbsoluteDegrees, Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees, Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees, Loadplatform_conveyor_motor_c_move_forward, Loadplatform_conveyor_motor_c_stop, Loadcrane_Color_Sending_c_notify, Loadcrane_Color_Changing_c_change_color_to_load_pos_color, Loadcrane_Color_Changing_c_change_color_to_unload_pos_1_color, Loadcrane_Color_Changing_c_change_color_to_unload_pos_2_color, Loadcrane_track_Motor_c_move_forward, Loadcrane_track_Motor_c_move_backward, Loadcrane_track_Motor_c_stop, Loadcrane_lift_Motor_c_move_backward, Loadcrane_lift_Motor_c_stop, Truck_Color_Sending_c_notify, Truck_Color_Changing_c_change_color_to_load_pos_color, Truck_Color_Changing_c_change_color_to_unload_pos_1_color, Truck_Color_Changing_c_change_color_to_unload_pos_2_color, Truck_Motor_c_move_forward, Truck_Motor_c_move_backward, Truck_Motor_c_stop, Unloadcrane_1_Color_Sending_c_notify, Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color, Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_1_color, Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color, Unloadcrane_1_track_Motor_c_move_forward, Unloadcrane_1_track_Motor_c_move_backward, Unloadcrane_1_track_Motor_c_stop, Unloadcrane_1_lift_Motor_c_move_backward, Unloadcrane_1_lift_Motor_c_stop, Unloadcrane_2_Color_Sending_c_notify, Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color, Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_1_color, Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color, Unloadcrane_2_track_Motor_c_move_forward, Unloadcrane_2_track_Motor_c_move_backward, Unloadcrane_2_track_Motor_c_stop, Unloadcrane_2_lift_Motor_c_move_backward, Unloadcrane_2_lift_Motor_c_stop;
+  location:
+    initial;
+    marked;
+    edge Loadcrane_Color_Changing_c_change_color_to_load_pos_color when (Loadcrane_lift_activity_monitor.action != 0 or (Loadcrane_Color_Changing.req_color = 1 or 3 <= Loadcrane_Color_Changing.req_color and Loadcrane_Color_Changing.req_color <= 7) or (Loadcrane_stop_when_requested_color_detected.Moving or (not Loadcrane_track_Motor.Idle or Loadcrane_track_Motor.motion != 1))) and (Loadcrane_lift_activity_monitor.action != 0 or Loadcrane_Color_Changing.req_color = 0 or (Loadcrane_Color_Changing.req_color = 2 or Loadcrane_Color_Changing.req_color = 4) or (Loadcrane_Color_Changing.req_color = 6 or Loadcrane_stop_when_requested_color_detected.Moving or (not Loadcrane_track_Motor.Idle or Loadcrane_track_Motor.motion != 1))) and ((Loadcrane_lift_activity_monitor.action != 2 or (Loadcrane_stop_when_requested_color_detected.Moving or not Loadcrane_track_Motor.Idle)) and (Loadcrane_lift_activity_monitor.action != 1 or (Loadcrane_stop_when_requested_color_detected.Moving or not Loadcrane_track_Motor.Idle)));
+    edge Loadcrane_Color_Changing_c_change_color_to_unload_pos_1_color when (Loadcrane_lift_activity_monitor.action != 0 or Loadcrane_Color_Changing.req_color = 2 or (Loadcrane_Color_Changing.req_color = 3 or Loadcrane_Color_Changing.req_color = 6) or (Loadcrane_Color_Changing.req_color = 7 or Loadcrane_stop_when_requested_color_detected.Moving or (not Loadcrane_track_Motor.Idle or Loadcrane_track_Motor.motion = 2))) and ((Loadcrane_lift_activity_monitor.action != 2 or (Loadcrane_Color_Changing.req_color = 2 or Loadcrane_Color_Changing.req_color = 3) or (Loadcrane_Color_Changing.req_color = 6 or Loadcrane_Color_Changing.req_color = 7 or (Loadcrane_stop_when_requested_color_detected.Moving or not Loadcrane_track_Motor.Idle))) and (Loadcrane_lift_activity_monitor.action != 1 or Loadcrane_Color_Changing.req_color = 2 or (Loadcrane_Color_Changing.req_color = 3 or Loadcrane_Color_Changing.req_color = 6) or (Loadcrane_Color_Changing.req_color = 7 or Loadcrane_stop_when_requested_color_detected.Moving or (not Loadcrane_track_Motor.Idle or Loadcrane_track_Motor.motion = 2))));
+    edge Loadcrane_Color_Changing_c_change_color_to_unload_pos_2_color when (Loadcrane_lift_activity_monitor.action != 0 or not(Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 4) or (Loadcrane_stop_when_requested_color_detected.Moving or (not Loadcrane_track_Motor.Idle or Loadcrane_track_Motor.motion = 2))) and ((Loadcrane_lift_activity_monitor.action != 2 or (Loadcrane_Color_Changing.req_color = 1 or Loadcrane_Color_Changing.req_color = 3) or (Loadcrane_Color_Changing.req_color = 5 or Loadcrane_Color_Changing.req_color = 7 or (Loadcrane_stop_when_requested_color_detected.Moving or not Loadcrane_track_Motor.Idle))) and (Loadcrane_lift_activity_monitor.action != 1 or Loadcrane_Color_Changing.req_color = 1 or (Loadcrane_Color_Changing.req_color = 3 or Loadcrane_Color_Changing.req_color = 5) or (Loadcrane_Color_Changing.req_color = 7 or Loadcrane_stop_when_requested_color_detected.Moving or (not Loadcrane_track_Motor.Idle or Loadcrane_track_Motor.motion = 2))));
+    edge Loadcrane_Color_Sending_c_notify when Loadcrane_lift_activity_monitor.action = 0 and (Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 4) and ((Loadcrane_Color_Sensor.detected_color = 2 or Loadcrane_Color_Sensor.detected_color = 6) and Loadcrane_track_Motor.motion != 1) or (Loadcrane_lift_activity_monitor.action = 0 and (Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 4) and ((Loadcrane_Color_Sensor.detected_color = 1 or Loadcrane_Color_Sensor.detected_color = 3 or (Loadcrane_Color_Sensor.detected_color = 5 or Loadcrane_Color_Sensor.detected_color = 7)) and Loadcrane_track_Motor.motion != 1) or Loadcrane_lift_activity_monitor.action = 0 and (Loadcrane_Color_Changing.req_color = 2 or Loadcrane_Color_Changing.req_color = 6) and ((Loadcrane_Color_Sensor.detected_color = 0 or Loadcrane_Color_Sensor.detected_color = 4) and Loadcrane_track_Motor.motion = 1)) or (Loadcrane_lift_activity_monitor.action = 0 and ((Loadcrane_Color_Changing.req_color = 2 or Loadcrane_Color_Changing.req_color = 6) and (Loadcrane_Color_Sensor.detected_color = 2 or Loadcrane_Color_Sensor.detected_color = 6)) or Loadcrane_lift_activity_monitor.action = 0 and (Loadcrane_Color_Changing.req_color = 1 or Loadcrane_Color_Changing.req_color = 3 or (Loadcrane_Color_Changing.req_color = 5 or Loadcrane_Color_Changing.req_color = 7)) and ((Loadcrane_Color_Sensor.detected_color = 0 or Loadcrane_Color_Sensor.detected_color = 2 or (Loadcrane_Color_Sensor.detected_color = 4 or Loadcrane_Color_Sensor.detected_color = 6)) and Loadcrane_track_Motor.motion = 2) or (Loadcrane_lift_activity_monitor.action = 0 and (Loadcrane_Color_Changing.req_color = 1 or Loadcrane_Color_Changing.req_color = 3 or (Loadcrane_Color_Changing.req_color = 5 or Loadcrane_Color_Changing.req_color = 7)) and ((Loadcrane_Color_Sensor.detected_color = 0 or Loadcrane_Color_Sensor.detected_color = 2 or (Loadcrane_Color_Sensor.detected_color = 4 or Loadcrane_Color_Sensor.detected_color = 6)) and Loadcrane_track_Motor.motion = 1) or Loadcrane_lift_activity_monitor.action = 2 and (Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 4) and ((Loadcrane_Color_Sensor.detected_color = 2 or Loadcrane_Color_Sensor.detected_color = 6) and Loadcrane_track_Motor.motion != 1))) or (Loadcrane_lift_activity_monitor.action = 2 and (Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 4) and ((Loadcrane_Color_Sensor.detected_color = 1 or Loadcrane_Color_Sensor.detected_color = 3 or (Loadcrane_Color_Sensor.detected_color = 5 or Loadcrane_Color_Sensor.detected_color = 7)) and Loadcrane_track_Motor.motion != 1) or (Loadcrane_lift_activity_monitor.action = 2 and (Loadcrane_Color_Changing.req_color = 2 or Loadcrane_Color_Changing.req_color = 6) and ((Loadcrane_Color_Sensor.detected_color = 0 or Loadcrane_Color_Sensor.detected_color = 2 or (Loadcrane_Color_Sensor.detected_color = 4 or Loadcrane_Color_Sensor.detected_color = 6)) and Loadcrane_track_Motor.motion = 1) or Loadcrane_lift_activity_monitor.action = 2 and (Loadcrane_Color_Changing.req_color = 1 or Loadcrane_Color_Changing.req_color = 3 or (Loadcrane_Color_Changing.req_color = 5 or Loadcrane_Color_Changing.req_color = 7)) and ((Loadcrane_Color_Sensor.detected_color = 0 or Loadcrane_Color_Sensor.detected_color = 2 or (Loadcrane_Color_Sensor.detected_color = 4 or Loadcrane_Color_Sensor.detected_color = 6)) and Loadcrane_track_Motor.motion = 1)) or (Loadcrane_lift_activity_monitor.action = 1 and (Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 4) and ((Loadcrane_Color_Sensor.detected_color = 2 or Loadcrane_Color_Sensor.detected_color = 6) and Loadcrane_track_Motor.motion != 1) or Loadcrane_lift_activity_monitor.action = 1 and (Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 4) and ((Loadcrane_Color_Sensor.detected_color = 1 or Loadcrane_Color_Sensor.detected_color = 3 or (Loadcrane_Color_Sensor.detected_color = 5 or Loadcrane_Color_Sensor.detected_color = 7)) and Loadcrane_track_Motor.motion != 1) or (Loadcrane_lift_activity_monitor.action = 1 and (Loadcrane_Color_Changing.req_color = 2 or Loadcrane_Color_Changing.req_color = 6) and ((Loadcrane_Color_Sensor.detected_color = 0 or Loadcrane_Color_Sensor.detected_color = 2 or (Loadcrane_Color_Sensor.detected_color = 4 or Loadcrane_Color_Sensor.detected_color = 6)) and Loadcrane_track_Motor.motion = 1) or Loadcrane_lift_activity_monitor.action = 1 and (Loadcrane_Color_Changing.req_color = 1 or Loadcrane_Color_Changing.req_color = 3 or (Loadcrane_Color_Changing.req_color = 5 or Loadcrane_Color_Changing.req_color = 7)) and ((Loadcrane_Color_Sensor.detected_color = 0 or Loadcrane_Color_Sensor.detected_color = 2 or (Loadcrane_Color_Sensor.detected_color = 4 or Loadcrane_Color_Sensor.detected_color = 6)) and Loadcrane_track_Motor.motion = 1))));
+    edge Loadcrane_lift_Motor_c_move_backward when Loadcrane_lift_activity_monitor.action = 2 and (Loadcrane_Activity.Pick or Loadcrane_Activity.Place) or Loadcrane_lift_activity_monitor.action = 1 and (Loadcrane_Activity.Pick or Loadcrane_Activity.Place);
+    edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when true;
+    edge Loadcrane_lift_Motor_c_stop when true;
+    edge Loadcrane_track_Motor_c_move_backward when true;
+    edge Loadcrane_track_Motor_c_move_forward when true;
+    edge Loadcrane_track_Motor_c_stop when (not(Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 4) or 0 <= Loadcrane_Color_Sensor.detected_color and Loadcrane_Color_Sensor.detected_color <= 5) and ((not(Loadcrane_Color_Changing.req_color = 2 or Loadcrane_Color_Changing.req_color = 6) or Loadcrane_Color_Sensor.detected_color != 6) and (Loadcrane_Color_Changing.req_color = 0 or Loadcrane_Color_Changing.req_color = 2 or (Loadcrane_Color_Changing.req_color = 4 or (Loadcrane_Color_Changing.req_color = 6 or Loadcrane_Color_Sensor.detected_color != 6))));
+    edge Loadplatform_conveyor_motor_c_move_forward when true;
+    edge Loadplatform_conveyor_motor_c_stop when true;
+    edge Truck_Color_Changing_c_change_color_to_load_pos_color when false;
+    edge Truck_Color_Changing_c_change_color_to_unload_pos_1_color when false;
+    edge Truck_Color_Changing_c_change_color_to_unload_pos_2_color when false;
+    edge Truck_Color_Sending_c_notify when false;
+    edge Truck_Motor_c_move_backward when false;
+    edge Truck_Motor_c_move_forward when false;
+    edge Truck_Motor_c_stop when false;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_load_pos_color when true;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_1_color when false;
+    edge Unloadcrane_1_Color_Changing_c_change_color_to_unload_pos_2_color when false;
+    edge Unloadcrane_1_Color_Sending_c_notify when Unloadcrane_1_Color_Sensor.detected_color = 2 or Unloadcrane_1_Color_Sensor.detected_color = 6;
+    edge Unloadcrane_1_lift_Motor_c_move_backward when false;
+    edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when false;
+    edge Unloadcrane_1_lift_Motor_c_stop when false;
+    edge Unloadcrane_1_track_Motor_c_move_backward when false;
+    edge Unloadcrane_1_track_Motor_c_move_forward when true;
+    edge Unloadcrane_1_track_Motor_c_stop when 0 <= Unloadcrane_1_Color_Sensor.detected_color and Unloadcrane_1_Color_Sensor.detected_color <= 5;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_load_pos_color when true;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_1_color when false;
+    edge Unloadcrane_2_Color_Changing_c_change_color_to_unload_pos_2_color when false;
+    edge Unloadcrane_2_Color_Sending_c_notify when Unloadcrane_2_Color_Sensor.detected_color = 2 or Unloadcrane_2_Color_Sensor.detected_color = 6;
+    edge Unloadcrane_2_lift_Motor_c_move_backward when false;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when false;
+    edge Unloadcrane_2_lift_Motor_c_stop when false;
+    edge Unloadcrane_2_track_Motor_c_move_backward when false;
+    edge Unloadcrane_2_track_Motor_c_move_forward when true;
+    edge Unloadcrane_2_track_Motor_c_stop when 0 <= Unloadcrane_2_Color_Sensor.detected_color and Unloadcrane_2_Color_Sensor.detected_color <= 5;
+end
+supervisor automaton ncsup:
+  alphabet;
+  location:
+    initial;
+    marked;
 end

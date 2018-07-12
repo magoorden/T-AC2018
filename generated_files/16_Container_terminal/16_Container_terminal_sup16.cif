@@ -263,6 +263,15 @@ plant automaton Loadcrane_lift_Motor:
   location Stop:
     edge Loadcrane_lift_Motor_u_stopped do situation := 0 goto Idle;
 end
+plant automaton Loadcrane_lift_activity_monitor:
+  disc int[0..2] action = 0;
+  location:
+    initial;
+    marked;
+    edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when action = 0 or action = 2 do action := 1;
+    edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when action = 1 do action := 2;
+    edge Loadcrane_lift_Motor_c_rotateAbsoluteDegrees when not(action = 0 or action = 2), not(action = 1);
+end
 plant automaton Truck_Color_Sensor:
   disc int[0..7] detected_color = 6;
   location Receive_color:
@@ -383,6 +392,15 @@ plant automaton Unloadcrane_1_lift_Motor:
   location Stop:
     edge Unloadcrane_1_lift_Motor_u_stopped do situation := 0 goto Idle;
 end
+plant automaton Unloadcrane_1_lift_activity_monitor:
+  disc int[0..2] action = 0;
+  location:
+    initial;
+    marked;
+    edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when action = 0 or action = 2 do action := 1;
+    edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when action = 1 do action := 2;
+    edge Unloadcrane_1_lift_Motor_c_rotateAbsoluteDegrees when not(action = 0 or action = 2), not(action = 1);
+end
 plant automaton Unloadcrane_2_Color_Sensor:
   disc int[0..7] detected_color = 6;
   location Receive_color:
@@ -480,21 +498,29 @@ plant automaton Unloadcrane_2_gripper_switch_sensor:
   location Reply:
     edge Unloadcrane_2_gripper_switch_sensor_u_closed goto Idle;
 end
-supervisor automaton Unloadcrane_2_lift_ctivity:
+plant automaton Unloadcrane_2_lift_activity_monitor:
   disc int[0..2] action = 0;
   location Idle:
     initial;
     marked;
-    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when (action = 0 or action = 2) and Unloadcrane_2_gripper_Motor.situation = 0 and Unloadcrane_2_lift_Motor.situation = 0 do action := 1;
-    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when action = 1 and Unloadcrane_2_gripper_Motor.situation = 1 and Unloadcrane_2_lift_Motor.situation = 0 do action := 2;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when action = 0 or action = 2 do action := 1;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when action = 1 do action := 2;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when not(action = 0 or action = 2), not(action = 1);
+end
+supervisor automaton Unloadcrane_2_lift_activity:
+  location Idle:
+    initial;
+    marked;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when (Unloadcrane_2_lift_activity_monitor.action = 0 or Unloadcrane_2_lift_activity_monitor.action = 2) and Unloadcrane_2_gripper_Motor.situation = 0 and Unloadcrane_2_lift_Motor.situation = 0;
+    edge Unloadcrane_2_lift_Motor_c_rotateAbsoluteDegrees when Unloadcrane_2_lift_activity_monitor.action = 1 and Unloadcrane_2_gripper_Motor.situation = 1 and Unloadcrane_2_lift_Motor.situation = 0;
 end
 supervisor automaton Unloadcrane_2_Open_Close_Lift_and_Lower_the_Gripper:
   location:
     initial;
     marked;
-    edge Unloadcrane_2_gripper_Motor_c_rotateAbsoluteDegrees when Unloadcrane_2_lift_ctivity.action = 1 and Unloadcrane_2_lift_Motor.situation = 1 and Unloadcrane_2_gripper_Motor.situation = 0;
-    edge Unloadcrane_2_gripper_Motor_c_move_backward when Unloadcrane_2_lift_ctivity.action = 2 and Unloadcrane_2_lift_Motor.situation = 1 and Unloadcrane_2_gripper_Motor.situation = 1;
-    edge Unloadcrane_2_lift_Motor_c_move_backward when (Unloadcrane_2_lift_ctivity.action = 1 and Unloadcrane_2_gripper_Motor.situation = 1 or Unloadcrane_2_lift_ctivity.action = 2 and Unloadcrane_2_gripper_Motor.situation = 0) and Unloadcrane_2_lift_Motor.situation = 1;
+    edge Unloadcrane_2_gripper_Motor_c_rotateAbsoluteDegrees when Unloadcrane_2_lift_activity_monitor.action = 1 and Unloadcrane_2_lift_Motor.situation = 1 and Unloadcrane_2_gripper_Motor.situation = 0;
+    edge Unloadcrane_2_gripper_Motor_c_move_backward when Unloadcrane_2_lift_activity_monitor.action = 2 and Unloadcrane_2_lift_Motor.situation = 1 and Unloadcrane_2_gripper_Motor.situation = 1;
+    edge Unloadcrane_2_lift_Motor_c_move_backward when (Unloadcrane_2_lift_activity_monitor.action = 1 and Unloadcrane_2_gripper_Motor.situation = 1 or Unloadcrane_2_lift_activity_monitor.action = 2 and Unloadcrane_2_gripper_Motor.situation = 0) and Unloadcrane_2_lift_Motor.situation = 1;
     edge Unloadcrane_2_lift_switch_sensor_c_notifyWhenClosed when Unloadcrane_2_lift_Motor.Lifting;
     edge Unloadcrane_2_gripper_switch_sensor_c_notifyWhenClosed when Unloadcrane_2_gripper_Motor.Opening;
 end
