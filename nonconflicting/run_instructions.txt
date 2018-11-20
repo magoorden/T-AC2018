@@ -1,0 +1,66 @@
+Clustering results in    conflicting supervisors for alpha = 1, beta = 2, mu = 4.6.
+Clustering results in nonconflicting supervisors for alpha = 1, beta = 2, mu = 4.5.
+
+State space sizes conflicting supervisors.
+
+Controlled system  State space size
+-----------------  ----------------------------------
+1                  472,019,926,964,351,530,000 states
+2                                   18,698,688 states
+3                                    2,286,144 states
+4                                           81 states
+5                                    1,157,120 states
+6                                          501 states
+7                                           16 states
+8                                           16 states
+9                                        3,528 states
+10                                         210 states
+11                                          63 states
+12                                          84 states
+13                                         105 states
+14                                          63 states
+15                                      98,784 states
+16                                         168 states
+17                                         105 states
+18                                          63 states
+19                                          42 states
+20                                          84 states
+21                                          63 states
+22                                         105 states
+23                                       2,048 states
+24                                          32 states
+25                                          32 states
+26                                          32 states
+27                                          32 states
+28                                          81 states
+Total states       472,019,926,964,373,800,000 states
+
+State space sizes nonconflicting supervisors.
+
+Controlled system  State space size
+-----------------  ------------------------
+1                  4,987,363,000,320 states
+2                                 81 states
+3                                 81 states
+4                                 63 states
+5                                105 states
+6                         83,218,432 states
+7                              7,248 states
+8                                 16 states
+9                              1,764 states
+10                               168 states
+11                                84 states
+12                                42 states
+13                                63 states
+14                               105 states
+15                               105 states
+16                                63 states
+17                             2,048 states
+18                                32 states
+19                                32 states
+20                         1,308,672 states
+21                                32 states
+22                                32 states
+23                           262,144 states
+24                               512 states
+Total states       4,987,447,802,244 states

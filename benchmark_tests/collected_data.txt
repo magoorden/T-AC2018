@@ -1,0 +1,15 @@
+Name,Total time,Create matrix time,Synthesis time,Nonconflicting check time,Clustering time,Number of supervisors,Total states,Conflict
+01_avg,8237,6,271,131,7757,3,9837.0,1
+01_avg,4906,2,178,150,4554,3,9837.0,1
+04_Circular_table,4780,3,60,9,4680,2,91.0,0
+05_Cluster_tool,7841,5,7807,,,1,2699535.0,0
+06_Intertwined_product_cycles,4525,3,48,22,4435,3,9248.0,0
+07_Multi_agent_formation,268,2,250,,,1,304.0,0
+08_Production_cell,8775,4,465,3617,4663,6,22827.0,1
+10_Transfer_line,4537,35,21,2,4468,2,30.0,1
+12_Work_cycle_system,17,3,8,,,1,1188.0,0
+13_adas,5510,5,684,37,4755,8,1.06173094e8,0
+13_adas2,5728,11,900,55,4727,16,523591.0,0
+14_LockIII,14851,24,6318,3419,5012,30,3.102040233e9,0
+15_FESTO,9594,27,4228,528,4755,24,50638.0,0
+16_Container_terminal,275339,5,59994,210462,4811,6,3.3642630842651515e18,0
